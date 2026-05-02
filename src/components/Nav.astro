@@ -1,0 +1,70 @@
+---
+import links from '../content/links.json';
+
+// Highlight active link based on current path
+const currentPath = Astro.url.pathname;
+---
+
+<nav>
+  {links.map(({ label, href }) => (
+    <a
+      href={href}
+      class:list={['nav-link', { active: currentPath === href }]}
+    >
+      {label}
+    </a>
+  ))}
+</nav>
+
+<style>
+  nav {
+    position: fixed;
+    top: 52px; left: 0; right: 0;
+    z-index: 99;
+    background: var(--warm-white);
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-link {
+    font-family: var(--sans),sans-serif;
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    position: relative;
+    padding-bottom: 2px;
+    transition: opacity 0.2s;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; left: 0; right: 0;
+    height: 1px;
+    background: var(--ink);
+    transform: scaleX(0);
+    transition: transform 0.25s ease;
+  }
+
+  .nav-link:hover::after,
+  .nav-link.active::after {
+    transform: scaleX(1);
+  }
+
+  .nav-link:hover { opacity: 0.6; }
+  .nav-link.active { opacity: 1; }
+
+  @media (max-width: 700px) {
+    nav {
+      gap: 1.4rem;
+      flex-wrap: wrap;
+      padding: 10px 1rem;
+    }
+  }
+</style>

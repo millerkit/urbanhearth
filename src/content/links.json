@@ -1,0 +1,10 @@
+[
+	{ "label": "The Restaurant", "href": "/" },
+	{ "label": "Erin Miller",    "href": "/chef" },
+	{ "label": "Dining Areas",   "href": "/dining-areas" },
+	{ "label": "Gallery",        "href": "/gallery" },
+	{ "label": "Happenings",     "href": "/blog" },
+	{ "label": "About",          "href": "/about" },
+	{ "label": "Our Menus",      "href": "/menus" },
+	{ "label": "Reservations",   "href": "/reservations" }
+]

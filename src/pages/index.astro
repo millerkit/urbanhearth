@@ -1,17 +1,19 @@
 ---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import Intro from '../components/Intro.astro';
+import GalleryStrip from '../components/GalleryStrip.astro';
 
+import DiningRoomRendering from '../assets/photos/DiningRoomRendering.jpeg';
+import ChefsCounterRendering from '../assets/photos/ChefsCounterRendering.png';
+import BarRendering from '../assets/photos/BarRendering.jpeg';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Base title="Urban Hearth — Cambridge, MA">
+  <Hero src={DiningRoomRendering} />
+  <Intro />
+  <GalleryStrip images={[
+    { src: ChefsCounterRendering, alt: "Chefs Counter" },
+    { src: BarRendering, alt: "Bar" }
+  ]} />
+</Base>

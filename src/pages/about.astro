@@ -1,0 +1,229 @@
+---
+import Base from '../layouts/Base.astro';
+import restaurant from '../content/restaurant.json';
+
+const farms = [
+  { name: 'Kimball Fruit Farm', location: 'Haverhill, MA' },
+  { name: "D'Ancello Farm", location: 'New Hampshire' },
+  { name: 'Red Lite Farm', location: 'Massachusetts' },
+  { name: "Nab's Farm", location: 'Massachusetts' },
+  { name: 'Kitchen Garden Farm', location: 'Sunderland, MA' },
+  { name: 'La Belle Farm', location: 'New York' },
+  { name: 'Boogy Meadow Farm', location: 'New Hampshire' },
+  { name: 'Manna Greens', location: 'Massachusetts' },
+  { name: 'The Mushroom Shop', location: 'New England' },
+  { name: 'Fat Moon Farms', location: 'Groton, MA' },
+];
+---
+
+<Base
+  title={`About — ${restaurant.name}`}
+  description="Urban Hearth is a woman-owned restaurant in Inman Square, Cambridge. Seasonal cooking rooted in New England."
+>
+  <div class="about-page">
+
+    <header class="about-header">
+      <p class="section-eyebrow">Cambridge, MA</p>
+      <h1>About</h1>
+    </header>
+
+    <div class="about-body">
+
+      <section class="about-section about-section--intro">
+        <p class="about-statement">
+          Urban Hearth is a woman-owned restaurant in Inman Square, Cambridge. We cook seasonal food,
+          sourced from a close network of New England farmers, fishermen, and foragers. The dining room
+          has been open since 2016.
+        </p>
+      </section>
+
+      <section class="about-section">
+        <h2 class="about-section-title">Our Farms</h2>
+        <p class="about-farms-intro">
+          Our menu is shaped by the people who grow and raise the food. These are the farms and producers
+          we work with most closely.
+        </p>
+        <ul class="farms-grid">
+          {farms.map(farm => (
+            <li class="farm-item">
+              <span class="farm-name">{farm.name}</span>
+              <span class="farm-location">{farm.location}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section class="about-section about-section--contact">
+        <h2 class="about-section-title">Find Us</h2>
+        <div class="contact-grid">
+          <div class="contact-block">
+            <p class="contact-label section-eyebrow">Address</p>
+            <p class="contact-value">{restaurant.address}</p>
+          </div>
+          <div class="contact-block">
+            <p class="contact-label section-eyebrow">Hours</p>
+            {restaurant.hours.map(h => <p class="contact-value">{h}</p>)}
+          </div>
+          <div class="contact-block">
+            <p class="contact-label section-eyebrow">Phone</p>
+            <p class="contact-value">
+              <a href={`tel:${restaurant.phone.replace(/\s/g, '')}`}>{restaurant.phone}</a>
+            </p>
+          </div>
+          <div class="contact-block">
+            <p class="contact-label section-eyebrow">Private Dining</p>
+            <p class="contact-value">
+              <a href={`mailto:${restaurant.privateDiningEmail}`}>{restaurant.privateDiningEmail}</a>
+            </p>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</Base>
+
+<style>
+  .about-page {
+    margin-top: 103px;
+  }
+
+  .about-header {
+    text-align: center;
+    padding: 5rem 2rem 4rem;
+    border-bottom: 1px solid var(--border);
+    background: var(--warm-white);
+  }
+
+  .about-header .section-eyebrow {
+    margin-bottom: 1.4rem;
+  }
+
+  .about-header h1 {
+    font-family: var(--serif);
+    font-size: clamp(3rem, 6vw, 5rem);
+    font-weight: 300;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink);
+    line-height: 1;
+  }
+
+  .about-body {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .about-section {
+    padding: 4rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .about-section:last-child {
+    border-bottom: none;
+    padding-bottom: 6rem;
+  }
+
+  .about-statement {
+    font-family: var(--serif);
+    font-size: clamp(1.25rem, 2vw, 1.6rem);
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--ink);
+  }
+
+  .about-section-title {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 300;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+    margin-bottom: 1.5rem;
+  }
+
+  .about-farms-intro {
+    font-family: var(--serif);
+    font-size: 17px;
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--ink-mid);
+    margin-bottom: 2.5rem;
+    max-width: 560px;
+  }
+
+  .farms-grid {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .farm-item {
+    background: var(--warm-white);
+    padding: 1.1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+  }
+
+  .farm-name {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--ink);
+  }
+
+  .farm-location {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 300;
+    color: var(--ink-light);
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem 4rem;
+  }
+
+  .contact-label {
+    margin-bottom: 0.6rem;
+  }
+
+  .contact-value {
+    font-family: var(--sans);
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--ink);
+    line-height: 1.6;
+  }
+
+  .contact-value a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    transition: opacity 0.2s;
+  }
+
+  .contact-value a:hover {
+    opacity: 0.5;
+  }
+
+  @media (max-width: 600px) {
+    .farms-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .contact-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+</style>

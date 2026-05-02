@@ -1,0 +1,468 @@
+---
+import Base from '../layouts/Base.astro';
+import restaurant from '../content/restaurant.json';
+import diningRoom from '../assets/photos/DiningRoomRendering.jpeg';
+import chefsCounter from '../assets/photos/ChefsCounterRendering.png';
+import bar from '../assets/photos/BarRendering.jpeg';
+
+const areas = [
+  {
+    number: '01',
+    label: 'À La Carte',
+    title: 'The Dining Room',
+    id: 'dining-room',
+    photo: diningRoom.src,
+    photoAlt: 'The Dining Room at Urban Hearth',
+    description: [
+      'The heart of Urban Hearth. The dining room is an intimate space built around the idea that dinner should be unhurried — a place where the food is always the main event and the evening can unfold at its own pace.',
+      'Our seasonal menu is written each week around what arrives from our network of New England farmers and fishermen. You might find a roasted root from a farm in Vermont sitting beside a fish that was swimming off the coast of Maine that morning. The menu changes because the land and sea change, and we follow their lead.',
+      'Service is warm and attentive without being formal. The room is small enough that every table feels considered.',
+    ],
+    details: [
+      { label: 'Hours', value: 'Monday – Saturday, 5:00 – 10:00 pm' },
+      { label: 'Service', value: 'Indoor dining only' },
+      { label: 'Large parties', value: `Contact ${restaurant.privateDiningEmail}`, href: `mailto:${restaurant.privateDiningEmail}` },
+    ],
+    cta: { label: 'Reserve a table', href: `${restaurant.reservations.href}#dining-room` },
+  },
+  {
+    number: '02',
+    label: 'Prix Fixe',
+    title: 'The Chef\'s Counter',
+    id: 'chefs-counter',
+    photo: chefsCounter.src,
+    photoAlt: 'The Chef\'s Counter at Urban Hearth',
+    dark: true,
+    description: [
+      'Each night, four guests are invited to take a seat at the kitchen side of the pass for an experience unlike the rest of the restaurant. The Chef\'s Counter is exactly what it sounds like: dinner in the kitchen, close enough to watch every plate being built.',
+      'Five courses move through New England ingredients with a global sensibility. The menu is written daily — shaped entirely by what arrived that morning — so no two seatings are ever the same. It\'s an experience designed for the curious and the adventurous.',
+      'Wine pairing is available and recommended. Because the menu changes nightly, we cannot guarantee accommodation of all dietary restrictions; details are shared with guests upon confirmation.',
+    ],
+    details: [
+      { label: 'Price', value: '$160 per person' },
+      { label: 'Wine pairing', value: '+$70 per person' },
+      { label: 'Seatings', value: '5:45 pm & 8:15 pm' },
+      { label: 'Capacity', value: 'Maximum 4 guests per seating' },
+    ],
+    cta: { label: 'Reserve your seat', href: `${restaurant.reservations.href}#chefs-counter` },
+  },
+  {
+    number: '03',
+    label: 'Bar & Lounge',
+    title: 'The Salon',
+    id: 'salon',
+    photo: bar.src,
+    photoAlt: 'The Salon at Urban Hearth',
+    description: [
+      'The Salon is a quieter room — suited to a drink before dinner, or an evening that has no particular place to be. The pace is its own. The bar pours natural wines by the glass, a concise selection of cocktails made with the same care as the kitchen, and a rotating list of spirits chosen for character over category.',
+      'A curated selection of small plates is available throughout the evening. Walk-ins are always welcome; for groups of four or more, a reservation is recommended.',
+      'The Salon keeps its own hours, staying open later than the dining room. It\'s a good place to end up.',
+    ],
+    details: [
+      { label: 'Hours', value: 'Monday – Saturday, 5:00 – 11:00 pm' },
+      { label: 'Walk-ins', value: 'Always welcome' },
+      { label: 'Groups of 4+', value: 'Reservation recommended' },
+    ],
+    cta: { label: 'Make a reservation', href: `tel:${restaurant.phone.replace(/\s/g, '')}`, altCta: { label: restaurant.phone, href: `tel:${restaurant.phone.replace(/\s/g, '')}` } },
+    phoneReserve: true,
+  },
+];
+---
+
+<Base
+  title={`Dining Areas — ${restaurant.name}`}
+  description="Three distinct experiences under one roof — The Dining Room, The Chef's Counter, and The Salon. Each with its own character, pace, and menu."
+>
+  <div class="dining-page">
+
+    <header class="dining-header">
+      <p class="section-eyebrow">Cambridge, MA</p>
+      <h1>Dining Areas</h1>
+      <p class="dining-lead">Three distinct experiences, each with its own character and pace.</p>
+    </header>
+
+    <nav class="area-nav" aria-label="Dining areas">
+      {areas.map(a => (
+        <a href={`#${a.id}`} class="area-nav-link">
+          <span class="area-nav-num">{a.number}</span>
+          <span>{a.title}</span>
+        </a>
+      ))}
+    </nav>
+
+    {areas.map((area, i) => (
+      <section class={`area ${area.dark ? 'area--dark' : ''}`} id={area.id}>
+
+        <div class="area-photo-wrap">
+          <img
+            src={area.photo}
+            alt={area.photoAlt}
+            class="area-photo"
+            loading={i === 0 ? 'eager' : 'lazy'}
+          />
+          <div class="area-photo-label">
+            <span class="area-num">{area.number}</span>
+            <span class="area-label section-eyebrow">{area.label}</span>
+          </div>
+        </div>
+
+        <div class="area-body">
+          <div class="area-body-inner">
+
+            <div class="area-text">
+              <h2 class="area-title">{area.title}</h2>
+              <div class="area-desc">
+                {area.description.map(p => <p>{p}</p>)}
+              </div>
+            </div>
+
+            <div class="area-sidebar">
+              <dl class="area-details">
+                {area.details.map(d => (
+                  <div class="detail-row">
+                    <dt>{d.label}</dt>
+                    <dd>
+                      {d.href
+                        ? <a href={d.href}>{d.value}</a>
+                        : d.value}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+
+              <div class="area-cta">
+                {area.phoneReserve ? (
+                  <div class="phone-reserve">
+                    <a href={area.cta.href} class="text-cta">Call to reserve</a>
+                    <span class="phone-num">
+                      <a href={`tel:${restaurant.phone.replace(/\s/g, '')}`}>{restaurant.phone}</a>
+                    </span>
+                    <span class="phone-or">or email</span>
+                    <a href={`mailto:${restaurant.privateDiningEmail}`} class="text-cta">{restaurant.privateDiningEmail}</a>
+                  </div>
+                ) : (
+                  <a href={area.cta.href} class="text-cta">{area.cta.label}</a>
+                )}
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </section>
+    ))}
+
+  </div>
+</Base>
+
+<style>
+  .dining-page {
+    margin-top: 103px;
+  }
+
+  /* ── Page header ── */
+  .dining-header {
+    text-align: center;
+    padding: 5rem 2rem 4rem;
+    border-bottom: 1px solid var(--border);
+    background: var(--warm-white);
+  }
+
+  .dining-header .section-eyebrow {
+    margin-bottom: 1.4rem;
+  }
+
+  .dining-header h1 {
+    font-family: var(--serif);
+    font-size: clamp(3rem, 6vw, 5rem);
+    font-weight: 300;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink);
+    line-height: 1;
+    margin-bottom: 1.5rem;
+  }
+
+  .dining-lead {
+    font-family: var(--serif), serif;
+    font-size: 18px;
+    font-weight: 300;
+    color: var(--ink-mid);
+    max-width: 420px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  /* ── Quick-nav ── */
+  .area-nav {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    border-bottom: 1px solid var(--border);
+    background: var(--warm-white);
+  }
+
+  .area-nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 1.1rem 2.5rem;
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 300;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+    text-decoration: none;
+    border-right: 1px solid var(--border);
+    transition: color 0.2s;
+  }
+
+  .area-nav-link:first-child {
+    border-left: 1px solid var(--border);
+  }
+
+  .area-nav-link:hover {
+    color: var(--ink);
+  }
+
+  .area-nav-num {
+    color: var(--ink-light);
+  }
+
+  /* ── Area section ── */
+  .area {
+    border-bottom: 1px solid var(--border);
+    background: var(--warm-white);
+  }
+
+  .area--dark {
+    background: var(--midnight);
+  }
+
+  /* ── Photo ── */
+  .area-photo-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 7;
+    overflow: hidden;
+    background: var(--midnight);
+  }
+
+  .area-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+
+  .area-photo-label {
+    position: absolute;
+    bottom: 2rem;
+    left: 2.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .area-num {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: 0.2em;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .area-label {
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  /* ── Body (text + sidebar) ── */
+  .area-body {
+    padding: 4rem 2.5rem;
+  }
+
+  .area-body-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  /* ── Title & description ── */
+  .area-title {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 300;
+    letter-spacing: 0.07em;
+    color: var(--ink);
+    line-height: 1.1;
+    margin-bottom: 2rem;
+  }
+
+  .area--dark .area-title {
+    color: var(--parchment);
+  }
+
+  .area-desc {
+    display: flex;
+    flex-direction: column;
+    gap: 1.3rem;
+  }
+
+  .area-desc p {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1.85;
+    color: var(--ink);
+  }
+
+  .area--dark .area-desc p {
+    color: rgba(232, 227, 223, 0.82);
+  }
+
+  /* ── Sidebar ── */
+  .area-sidebar {
+    padding-top: 0.4rem;
+  }
+
+  .area-details {
+    border-top: 1px solid var(--border);
+    margin-bottom: 2.5rem;
+  }
+
+  .area--dark .area-details {
+    border-top-color: rgba(255, 255, 255, 0.12);
+  }
+
+  .detail-row {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 0.75rem;
+    padding: 0.85rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .area--dark .detail-row {
+    border-bottom-color: rgba(255, 255, 255, 0.12);
+  }
+
+  .area-details dt {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 300;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+    padding-top: 2px;
+  }
+
+  .area--dark .area-details dt {
+    color: rgba(255, 255, 255, 0.38);
+  }
+
+  .area-details dd {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--ink);
+    line-height: 1.5;
+  }
+
+  .area--dark .area-details dd {
+    color: var(--parchment);
+  }
+
+  .area-details dd a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    transition: opacity 0.2s;
+  }
+
+  .area-details dd a:hover {
+    opacity: 0.6;
+  }
+
+  /* ── CTA ── */
+  .area-cta {
+    padding-top: 0.25rem;
+  }
+
+  .area--dark .text-cta {
+    color: var(--parchment);
+    border-bottom-color: var(--parchment);
+  }
+
+  .phone-reserve {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .phone-num {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 300;
+    letter-spacing: 0.04em;
+  }
+
+  .phone-num a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    transition: opacity 0.2s;
+  }
+
+  .phone-num a:hover {
+    opacity: 0.5;
+  }
+
+  .phone-or {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 300;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 860px) {
+    .area-body-inner {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    .area-nav-link {
+      padding: 1rem 1.5rem;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .area-photo-wrap {
+      aspect-ratio: 4 / 3;
+    }
+
+    .area-body {
+      padding: 3rem 1.5rem;
+    }
+
+    .area-nav {
+      flex-direction: column;
+    }
+
+    .area-nav-link {
+      border-right: none;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .area-nav-link:first-child {
+      border-left: none;
+    }
+  }
+</style>

@@ -1,0 +1,216 @@
+---
+import restaurant from '../content/restaurant.json';
+
+interface FooterLink { label: string; href: string; }
+
+interface Props {
+  year?: number;
+  symbol?: string;
+  secondaryLinks?: FooterLink[];
+  legalLinks?: FooterLink[];
+}
+
+const {
+  year = new Date().getFullYear(),
+  symbol = '✦',
+  secondaryLinks = [
+    { label: 'Wine list',   href: '/wine-list' },
+    { label: 'Team',        href: '/team' },
+    { label: 'Gift cards',  href: '/gift-cards' },
+    { label: 'Careers',     href: '/careers' },
+    { label: 'Events',      href: '/events' },
+    { label: 'Press',       href: '/press' },
+  ],
+  legalLinks = [
+    { label: 'Legal',              href: '/legal' },
+    { label: 'Instagram',          href: 'https://instagram.com' },
+    { label: 'Reservation policy', href: '/reservation-policy' },
+  ],
+} = Astro.props;
+
+const addressLines = restaurant.address.split(',');
+---
+
+<footer>
+  <div class="footer-brand">
+    <span class="symbol">{symbol}</span>
+    <span class="year">{year}</span>
+  </div>
+
+  <nav class="footer-nav">
+    {secondaryLinks.map(({ label, href }) => (
+      <a href={href}>{label}</a>
+    ))}
+  </nav>
+
+  <div class="footer-info">
+    <div class="footer-col">
+      <p class="footer-col-title">Contact</p>
+      <address>
+        {addressLines.map((line, i) => (
+          <>{line.trim()}{i < addressLines.length - 1 ? <br /> : null}</>
+        ))}
+        <br />T: {restaurant.phone}
+      </address>
+    </div>
+
+    <div class="footer-col center">
+      <p class="footer-col-title">Dining hours</p>
+      <p>
+        {restaurant.hours.map((line, i) => (
+          <>{line}{i < restaurant.hours.length - 1 ? <br /> : null}</>
+        ))}
+      </p>
+    </div>
+
+    <div class="footer-col right">
+      <p class="footer-col-title">Private dining</p>
+      <p>
+        Available for groups of 10–40<br />
+        <a href={`mailto:${restaurant.privateDiningEmail}`} class="footer-email">{restaurant.privateDiningEmail}</a>
+      </p>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <span>© {year} {restaurant.name} Restaurant</span>
+    <div class="footer-bottom-links">
+      {legalLinks.map(({ label, href }) => (
+        <a href={href}>{label}</a>
+      ))}
+    </div>
+  </div>
+</footer>
+
+<style>
+  footer {
+    background: var(--cream);
+    border-top: 1px solid var(--border);
+  }
+
+  .footer-brand {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3.5rem 0 2.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .symbol {
+    font-size: 22px;
+    color: var(--ink-light);
+    margin-bottom: 0.4rem;
+  }
+
+  .year {
+    font-family: var(--sans),sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    color: var(--ink-light);
+  }
+
+  .footer-nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0 2.8rem;
+    padding: 1.8rem 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .footer-nav a {
+    font-family: var(--sans),sans-serif;
+    font-size: 10px;
+    font-weight: 300;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .footer-nav a:hover { opacity: 0.5; }
+
+  .footer-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 2.5rem 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .footer-col-title {
+    font-family: var(--sans),sans-serif;
+    font-size: 10px;
+    font-weight: 300;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin-bottom: 1rem;
+  }
+
+  .footer-col p,
+  .footer-col address {
+    font-family: var(--sans),sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--ink);
+    font-style: normal;
+    letter-spacing: 0.04em;
+  }
+
+  .footer-email {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    transition: opacity 0.2s;
+  }
+  .footer-email:hover { opacity: 0.6; }
+
+  .footer-col.center { text-align: center; }
+  .footer-col.right  { text-align: right; }
+
+  .footer-bottom {
+    background: var(--midnight);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .footer-bottom span {
+    font-family: var(--sans),sans-serif;
+    font-size: 10px;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .footer-bottom-links {
+    display: flex;
+    gap: 2rem;
+  }
+
+  .footer-bottom-links a {
+    font-family: var(--sans),sans-serif;
+    font-size: 10px;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-bottom-links a:hover { color: rgba(255,255,255,0.8); }
+
+  @media (max-width: 700px) {
+    .footer-info {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    .footer-col.right,
+    .footer-col.center { text-align: left; }
+  }
+</style>

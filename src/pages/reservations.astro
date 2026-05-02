@@ -1,0 +1,423 @@
+---
+import Base from '../layouts/Base.astro';
+import restaurant from '../content/restaurant.json';
+---
+
+<Base title={`Reservations — ${restaurant.name}`} description="Reserve your table at Urban Hearth. Three distinct dining experiences in Cambridge, MA.">
+  <div class="reservations">
+
+    <header class="res-header">
+      <p class="section-eyebrow">Cambridge, MA</p>
+      <h1>Reserve</h1>
+      <p class="res-lead">Three distinct experiences, each with its own character and pace.</p>
+    </header>
+
+    <div class="experiences-grid">
+
+      <!-- 01 · The Dining Room -->
+      <div class="experience" id="dining-room">
+        <div class="exp-top">
+          <div class="exp-label">
+            <span class="exp-number">01</span>
+            <span class="section-eyebrow">The Dining Room</span>
+          </div>
+          <h2 class="exp-title">À La Carte</h2>
+          <p class="exp-desc">
+            Our seasonal menu changes with the week's best produce, sourced from a close network
+            of New England farmers and fishermen. Warm, unhurried dining in an intimate room
+            where the food is always the main event.
+          </p>
+          <dl class="exp-details">
+            <div>
+              <dt>Hours</dt>
+              <dd>Monday – Saturday, 5:00 – 10:00 pm</dd>
+            </div>
+            <div>
+              <dt>Service</dt>
+              <dd>Indoor dining only</dd>
+            </div>
+            <div>
+              <dt>Large parties</dt>
+              <dd>
+                <a href={`mailto:${restaurant.privateDiningEmail}`}>
+                  {restaurant.privateDiningEmail}
+                </a>
+              </dd>
+            </div>
+          </dl>
+        </div>
+        <div class="exp-booking">
+          <p class="booking-label section-eyebrow">Book online</p>
+          <div class="ot-widget">
+            <script
+              type="text/javascript"
+              src="//www.opentable.com/widget/reservation/loader?rid=342889&type=wide&theme=standard&dark=false&iframe=true&domain=com&lang=en-US&newtab=false&ot_source=Restaurant%20website&btnText=Reserve&primaryColor=F4F1EE&primaryFontColor=162235&buttonColor=162235&buttonFontColor=E8E3DF"
+              is:inline
+            ></script>
+          </div>
+        </div>
+      </div>
+
+      <!-- 02 · The Chef's Counter -->
+      <div class="experience experience--dark" id="chefs-counter">
+        <div class="exp-top">
+          <div class="exp-label">
+            <span class="exp-number">02</span>
+            <span class="section-eyebrow">Prix Fixe</span>
+          </div>
+          <h2 class="exp-title">The Chef's Counter</h2>
+          <p class="exp-desc">
+            Four guests join the kitchen side each night for five courses that move through New England
+            ingredients with a global sensibility. The menu changes daily, shaped by what arrived
+            that morning. An experience for the curious and adventurous.
+          </p>
+          <dl class="exp-details">
+            <div>
+              <dt>Price</dt>
+              <dd>$160 per person</dd>
+            </div>
+            <div>
+              <dt>Wine pairing</dt>
+              <dd>+$70 per person</dd>
+            </div>
+            <div>
+              <dt>Seatings</dt>
+              <dd>5:45 pm &amp; 8:15 pm</dd>
+            </div>
+            <div>
+              <dt>Capacity</dt>
+              <dd>Maximum 4 guests per seating</dd>
+            </div>
+          </dl>
+          <p class="exp-note">
+            As the menu changes nightly we cannot guarantee accommodation of all dietary
+            restrictions. Details are shared upon confirmation.
+          </p>
+        </div>
+        <div class="exp-booking">
+          <p class="booking-label section-eyebrow">Book online</p>
+          <div class="ot-widget">
+            <script
+              type="text/javascript"
+              src="//www.opentable.com/widget/reservation/loader?rid=342889&experienceid=582148&type=wide&theme=standard&dark=true&iframe=true&domain=com&lang=en-US&newtab=false&ot_source=Restaurant%20website&btnText=Reserve&primaryColor=162235&primaryFontColor=E8E3DF&buttonColor=E8E3DF&buttonFontColor=162235"
+              is:inline
+            ></script>
+          </div>
+        </div>
+      </div>
+
+      <!-- 03 · The Salon -->
+      <div class="experience" id="salon">
+        <div class="exp-top">
+          <div class="exp-label">
+            <span class="exp-number">03</span>
+            <span class="section-eyebrow">Bar &amp; Lounge</span>
+          </div>
+          <h2 class="exp-title">The Salon</h2>
+          <p class="exp-desc">
+            A quieter space for cocktails, natural wines by the glass, and a curated selection of
+            small plates. The salon follows its own pace — equally suited to a solo drink before
+            dinner or an evening that lingers well past it.
+          </p>
+          <dl class="exp-details">
+            <div>
+              <dt>Hours</dt>
+              <dd>Monday – Saturday, 5:00 – 11:00 pm</dd>
+            </div>
+            <div>
+              <dt>Walk-ins</dt>
+              <dd>Always welcome</dd>
+            </div>
+            <div>
+              <dt>Groups of 4+</dt>
+              <dd>Reservation recommended</dd>
+            </div>
+          </dl>
+        </div>
+        <div class="exp-booking">
+          <p class="booking-label section-eyebrow">To reserve</p>
+          <p class="contact-line">
+            <a href={`tel:${restaurant.phone.replace(/\s/g, '')}`}>{restaurant.phone}</a>
+          </p>
+          <p class="contact-or">or</p>
+          <a href={`mailto:${restaurant.privateDiningEmail}`} class="text-cta">
+            {restaurant.privateDiningEmail}
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+<script is:inline>
+  (function () {
+    function widenWidgets() {
+      document.querySelectorAll('.ot-widget').forEach(function (container) {
+        var iframe = container.querySelector('iframe');
+        if (iframe) {
+          var w = container.offsetWidth;
+          iframe.width = w;
+          iframe.style.width = w + 'px';
+        }
+      });
+    }
+    var tries = 0;
+    var poll = setInterval(function () {
+      widenWidgets();
+      if (++tries >= 20) clearInterval(poll);
+    }, 150);
+  })();
+</script>
+</Base>
+
+<style>
+  .reservations {
+    margin-top: 103px;
+  }
+
+  /* ── Page header ── */
+  .res-header {
+    text-align: center;
+    padding: 5rem 2rem 4rem;
+    border-bottom: 1px solid var(--border);
+    background: var(--warm-white);
+  }
+
+  .res-header .section-eyebrow {
+    margin-bottom: 1.4rem;
+  }
+
+  .res-header h1 {
+    font-family: var(--serif);
+    font-size: clamp(3rem, 6vw, 5rem);
+    font-weight: 300;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink);
+    line-height: 1;
+    margin-bottom: 1.5rem;
+  }
+
+  .res-lead {
+    font-family: var(--serif),serif;
+    font-size: 18px;
+    font-weight: 300;
+    color: var(--ink-mid);
+    max-width: 480px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  /* ── Three-column grid ── */
+  .experiences-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .experience {
+    background: var(--warm-white);
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    padding: 3rem 2rem 2.5rem;
+  }
+
+  .experience--dark {
+    background: var(--midnight);
+  }
+
+  /* ── Card top (grows to fill) ── */
+  .exp-top {
+    flex: 1;
+  }
+
+  .exp-label {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    margin-bottom: 2rem;
+  }
+
+  .exp-number {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: 0.2em;
+    color: var(--ink-light);
+    flex-shrink: 0;
+  }
+
+  .experience--dark .exp-number,
+  .experience--dark .section-eyebrow {
+    color: rgba(255, 255, 255, 0.4);
+  }
+
+  .exp-title {
+    font-family: var(--serif);
+    font-size: clamp(1.6rem, 2.2vw, 2.2rem);
+    font-weight: 300;
+    letter-spacing: 0.06em;
+    color: var(--ink);
+    line-height: 1.1;
+    margin-bottom: 1.4rem;
+  }
+
+  .experience--dark .exp-title {
+    color: var(--parchment);
+  }
+
+  .exp-desc {
+    font-family: var(--serif);
+    font-size: 17px;
+    font-weight: 300;
+    line-height: 1.85;
+    color: var(--ink);
+    margin-bottom: 2rem;
+  }
+
+  .experience--dark .exp-desc {
+    color: rgba(232, 227, 223, 0.8);
+  }
+
+  /* ── Details list ── */
+  .exp-details {
+    border-top: 1px solid var(--border);
+    margin-bottom: 0;
+  }
+
+  .experience--dark .exp-details {
+    border-top-color: rgba(255, 255, 255, 0.12);
+  }
+
+  .exp-details > div {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 0.75rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .experience--dark .exp-details > div {
+    border-bottom-color: rgba(255, 255, 255, 0.12);
+  }
+
+  .exp-details dt {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 300;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+    padding-top: 2px;
+  }
+
+  .experience--dark .exp-details dt {
+    color: rgba(255, 255, 255, 0.38);
+  }
+
+  .exp-details dd {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--ink);
+    line-height: 1.5;
+  }
+
+  .experience--dark .exp-details dd {
+    color: var(--parchment);
+  }
+
+  .exp-details dd a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    transition: opacity 0.2s;
+  }
+  .exp-details dd a:hover { opacity: 0.6; }
+
+  .exp-note {
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 300;
+    line-height: 1.75;
+    font-style: italic;
+    color: var(--ink-mid);
+    margin-top: 1.5rem;
+  }
+
+  .experience--dark .exp-note {
+    color: rgba(255, 255, 255, 0.32);
+  }
+
+  /* ── Booking section (pinned to bottom) ── */
+  .exp-booking {
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .experience--dark .exp-booking {
+    border-top-color: rgba(255, 255, 255, 0.12);
+  }
+
+  .booking-label {
+    margin-bottom: 1rem;
+  }
+
+  .experience--dark .booking-label {
+    color: rgba(255, 255, 255, 0.4);
+  }
+
+  .ot-widget {
+    overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: 0 2px 12px rgba(22, 34, 53, 0.06);
+  }
+
+  .experience--dark .ot-widget {
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.2);
+  }
+
+  /* ── Salon contact ── */
+  .contact-line {
+    font-family: var(--serif);
+    font-size: 24px;
+    font-weight: 300;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.5rem;
+  }
+
+  .contact-line a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    transition: opacity 0.2s;
+  }
+  .contact-line a:hover { opacity: 0.5; }
+
+  .contact-or {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 300;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin: 1rem 0;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 780px) {
+    .experiences-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 500px) {
+    .experience {
+      padding: 2.5rem 1.5rem 2rem;
+    }
+  }
+</style>

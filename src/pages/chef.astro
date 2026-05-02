@@ -1,0 +1,258 @@
+---
+import Base from '../layouts/Base.astro';
+import restaurant from '../content/restaurant.json';
+import erinPhoto from '../assets/photos/erin.jpg';
+---
+
+<Base
+  title={`Erin Miller — ${restaurant.name}`}
+  description="Erin Miller is the Executive Chef and owner of Urban Hearth. Classically trained, James Beard Finalist, and recognized by the Michelin Guide in 2025."
+>
+  <div class="chef-page">
+
+    <div class="chef-layout">
+
+      <div class="chef-photo-col">
+        <div class="chef-photo-wrap">
+          <img src={erinPhoto.src} alt="Erin Miller" class="chef-photo" />
+        </div>
+      </div>
+
+      <div class="chef-content-col">
+        <div class="chef-content">
+
+          <div class="chef-eyebrow">
+            <p class="section-eyebrow">Executive Chef &amp; Owner</p>
+          </div>
+
+          <h1 class="chef-name">Erin Miller</h1>
+
+          <div class="chef-roles">
+            <span>Forager</span>
+            <span class="role-dot">·</span>
+            <span>Camp Counselor</span>
+          </div>
+
+          <div class="chef-bio">
+            <p>
+              Erin Miller is proud to count Urban Hearth among the small number of acclaimed
+              woman-owned restaurants in the Boston area. Classically trained at the French
+              Culinary Institute of New York and shaped by her time under the mentorship of
+              Dan Barber at Blue Hill, she opened Urban Hearth in 2016 — and through careful
+              stewardship built it into one of Boston's most quietly beloved dining rooms.
+            </p>
+            <p>
+              Her cooking is guided by a simple conviction: that there is much to be learned,
+              and real joy to be found, when people gather around a table. That philosophy
+              extends beyond the kitchen — to how she works with the farmers and fishermen
+              in her network, how she leads her team, and how she engages with the neighborhood
+              she has called home since 2008. Originally from the Blue Ridge mountain town of
+              Floyd, Virginia, Erin lives in Cambridge with her husband and two sons.
+            </p>
+            <p>
+              She is honored to have been named a James Beard Finalist and to receive a
+              recommendation in the inaugural Michelin Guide to Boston in 2025.
+            </p>
+          </div>
+
+          <div class="chef-accolades">
+            <div class="accolade">
+              <span class="accolade-year">2025</span>
+              <span class="accolade-text">James Beard Award Finalist</span>
+            </div>
+            <div class="accolade">
+              <span class="accolade-year">2025</span>
+              <span class="accolade-text">Michelin Guide — Boston</span>
+            </div>
+            <div class="accolade">
+              <span class="accolade-year">2023–25</span>
+              <span class="accolade-text">Best of Boston — Three Consecutive Years</span>
+            </div>
+          </div>
+
+          <div class="chef-cta">
+            <a href={restaurant.reservations.href} class="text-cta">Reserve a table</a>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</Base>
+
+<style>
+  .chef-page {
+    margin-top: 103px;
+    min-height: calc(100vh - 103px);
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ── Split layout ── */
+  .chef-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    flex: 1;
+  }
+
+  /* ── Photo column ── */
+  .chef-photo-col {
+    position: sticky;
+    top: 103px;
+    height: calc(100vh - 103px);
+    overflow: hidden;
+    background: var(--midnight);
+  }
+
+  .chef-photo-wrap {
+    width: 100%;
+    height: 100%;
+  }
+
+  .chef-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    opacity: 0.92;
+  }
+
+  /* ── Content column ── */
+  .chef-content-col {
+    border-left: 1px solid var(--border);
+    display: flex;
+    align-items: flex-start;
+  }
+
+  .chef-content {
+    padding: 5rem 4rem 5rem 4.5rem;
+    max-width: 580px;
+  }
+
+  /* ── Eyebrow ── */
+  .chef-eyebrow {
+    margin-bottom: 1.8rem;
+  }
+
+  /* ── Name ── */
+  .chef-name {
+    font-family: var(--serif);
+    font-size: clamp(2.8rem, 4.5vw, 4.2rem);
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    color: var(--ink);
+    line-height: 1.05;
+    margin-bottom: 1.1rem;
+  }
+
+  /* ── Roles ── */
+  .chef-roles {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 3rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .role-dot {
+    color: var(--border);
+  }
+
+  /* ── Bio ── */
+  .chef-bio {
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
+    margin-bottom: 3rem;
+  }
+
+  .chef-bio p {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1.85;
+    color: var(--ink);
+  }
+
+  /* ── Accolades ── */
+  .chef-accolades {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 3rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .accolade {
+    display: grid;
+    grid-template-columns: 70px 1fr;
+    gap: 1rem;
+    padding: 0.85rem 0;
+    border-bottom: 1px solid var(--border);
+    align-items: baseline;
+  }
+
+  .accolade-year {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 300;
+    letter-spacing: 0.14em;
+    color: var(--ink-mid);
+  }
+
+  .accolade-text {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--ink);
+    letter-spacing: 0.02em;
+  }
+
+  /* ── CTA ── */
+  .chef-cta {
+    padding-top: 0.5rem;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 860px) {
+    .chef-layout {
+      grid-template-columns: 1fr;
+    }
+
+    .chef-photo-col {
+      position: static;
+      height: 60vw;
+      max-height: 480px;
+    }
+
+    .chef-content-col {
+      border-left: none;
+      border-top: 1px solid var(--border);
+    }
+
+    .chef-content {
+      padding: 3.5rem 2rem 4rem;
+      max-width: none;
+    }
+  }
+
+  @media (max-width: 500px) {
+    .chef-content {
+      padding: 2.5rem 1.5rem 3rem;
+    }
+
+    .chef-bio p {
+      font-size: 17px;
+    }
+  }
+</style>

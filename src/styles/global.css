@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:ital,wght@0,200;0,300;0,400;1,300&family=Outfit:wght@200;300;400&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  /* Brand Guide v1.0 — Urban Hearth */
+  --parchment: #E8E3DF;
+  --midnight: #162235;
+  --charcoal: #706F6D;
+
+  --cream: #E8E3DF;              /* = parchment; sections, footer bg */
+  --warm-white: #F4F1EE;         /* page bg; slightly lighter than parchment */
+  --ink: #162235;                /* = midnight; body text, headings */
+  --ink-mid: #706F6D;            /* = charcoal; secondary text */
+  --ink-light: #A9A8A6;          /* muted/tertiary text */
+  --border: rgba(22, 34, 53, 0.1);
+  --serif: 'Cormorant Garamond', Georgia, serif;   /* Cardinal Classic Short substitute */
+  --sans: 'DM Sans', sans-serif;                   /* Basic Commercial substitute */
+  --display: 'Outfit', sans-serif;                 /* Contax Sans substitute — headlines only */
+}
+
+html { font-size: 16px; scroll-behavior: smooth; }
+
+body {
+  background: var(--warm-white);
+  color: var(--ink);
+  font-family: var(--serif), serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Shared utility classes */
+.section-eyebrow {
+  font-family: var(--sans), sans-serif;
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-mid);
+}
+
+.text-cta {
+  display: inline-block;
+  font-family: var(--sans), sans-serif;
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--ink);
+  padding-bottom: 2px;
+  transition: opacity 0.2s;
+}
+
+.text-cta:hover { opacity: 0.5; }
