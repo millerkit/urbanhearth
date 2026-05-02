@@ -152,6 +152,32 @@ const breads = [
             <span class="sidebar-sub-label">Wine pairing</span>
             <span class="sidebar-sub-value">+$70 per person</span>
           </div>
+          <ul class="tasting-courses">
+            <li class="tasting-course">
+              <span class="course-label">I</span>
+              <span class="course-name">Amuse-Bouche</span>
+            </li>
+            <li class="tasting-course">
+              <span class="course-label">II</span>
+              <span class="course-name">Crudo &amp; Garden</span>
+              <span class="course-desc">Raw or lightly cured fish · seasonal vegetable · cold pressed oil</span>
+            </li>
+            <li class="tasting-course">
+              <span class="course-label">III</span>
+              <span class="course-name">The Hearth Course</span>
+              <span class="course-desc">Wood-fired preparation · preserved element · fermented accent</span>
+            </li>
+            <li class="tasting-course">
+              <span class="course-label">IV</span>
+              <span class="course-name">Land &amp; Sea</span>
+              <span class="course-desc">Primary protein · root vegetable · foraged herb</span>
+            </li>
+            <li class="tasting-course">
+              <span class="course-label">V</span>
+              <span class="course-name">Sweets</span>
+              <span class="course-desc">Seasonal dessert · mignardises</span>
+            </li>
+          </ul>
           <p class="sidebar-note">Advanced reservations required. As the menu changes nightly, we cannot guarantee accommodation of all dietary restrictions.</p>
           <a href={`${restaurant.reservations.href}#chefs-counter`} class="sidebar-cta">Reserve your seat</a>
         </div>
@@ -413,6 +439,54 @@ const breads = [
     font-size: 13px;
     font-weight: 300;
     color: var(--parchment);
+  }
+
+  /* ── Tasting courses ── */
+  .tasting-courses {
+    list-style: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 1.5rem;
+  }
+
+  .tasting-course {
+    display: grid;
+    grid-template-columns: 1.4rem 1fr;
+    column-gap: 0.75rem;
+    row-gap: 0.2rem;
+    padding: 0.85rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .course-label {
+    font-family: var(--sans);
+    font-size: 9px;
+    font-weight: 300;
+    letter-spacing: 0.12em;
+    color: rgba(255, 255, 255, 0.3);
+    text-transform: uppercase;
+    padding-top: 0.2rem;
+    grid-row: 1 / 3;
+    align-self: start;
+  }
+
+  .course-name {
+    font-family: var(--serif);
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--parchment);
+    letter-spacing: 0.03em;
+    line-height: 1.3;
+  }
+
+  .course-desc {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 300;
+    letter-spacing: 0.06em;
+    color: rgba(255, 255, 255, 0.35);
+    line-height: 1.5;
+    text-transform: lowercase;
+    grid-column: 2;
   }
 
   .sidebar-note {

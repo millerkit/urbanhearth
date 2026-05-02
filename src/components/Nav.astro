@@ -1,23 +1,44 @@
 ---
-import links from '../content/links.json';
+import links from '../content/nav-links.json';
 
-// Highlight active link based on current path
 const currentPath = Astro.url.pathname;
+
+function isActive(item: { href: string; children?: { href: string }[] }) {
+  if (currentPath === item.href) return true;
+  return item.children?.some(c => currentPath === c.href) ?? false;
+}
 ---
 
-<nav>
-  {links.map(({ label, href }) => (
-    <a
-      href={href}
-      class:list={['nav-link', { active: currentPath === href }]}
-    >
-      {label}
-    </a>
+<nav id="site-nav">
+  {links.map((item) => (
+    item.children ? (
+      <div class={`nav-item nav-item--dropdown${isActive(item) ? ' active' : ''}`}>
+        <a href={item.href} class={`nav-link${isActive(item) ? ' active' : ''}`}>
+          {item.label}
+          <svg class="dropdown-caret" width="8" height="5" viewBox="0 0 8 5" fill="none" aria-hidden="true">
+            <path d="M1 1l3 3 3-3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <div class="dropdown">
+          {item.children.map(child => (
+            <a href={child.href} class={`dropdown-link${currentPath === child.href ? ' active' : ''}`}>
+              {child.label}
+            </a>
+          ))}
+        </div>
+      </div>
+    ) : (
+      <div class="nav-item">
+        <a href={item.href} class={`nav-link${currentPath === item.href ? ' active' : ''}`}>
+          {item.label}
+        </a>
+      </div>
+    )
   ))}
 </nav>
 
-<style>
-  nav {
+<style is:global>
+  #site-nav {
     position: fixed;
     top: 52px; left: 0; right: 0;
     z-index: 99;
@@ -29,8 +50,12 @@ const currentPath = Astro.url.pathname;
     border-bottom: 1px solid var(--border);
   }
 
-  .nav-link {
-    font-family: var(--sans),sans-serif;
+  #site-nav .nav-item {
+    position: relative;
+  }
+
+  #site-nav .nav-link {
+    font-family: var(--sans), sans-serif;
     font-size: 11px;
     font-weight: 300;
     letter-spacing: 0.18em;
@@ -40,9 +65,13 @@ const currentPath = Astro.url.pathname;
     position: relative;
     padding-bottom: 2px;
     transition: opacity 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    white-space: nowrap;
   }
 
-  .nav-link::after {
+  #site-nav .nav-link::after {
     content: '';
     position: absolute;
     bottom: -1px; left: 0; right: 0;
@@ -52,19 +81,107 @@ const currentPath = Astro.url.pathname;
     transition: transform 0.25s ease;
   }
 
-  .nav-link:hover::after,
-  .nav-link.active::after {
+  #site-nav .nav-link:hover::after,
+  #site-nav .nav-link.active::after {
     transform: scaleX(1);
   }
 
-  .nav-link:hover { opacity: 0.6; }
-  .nav-link.active { opacity: 1; }
+  #site-nav .nav-link:hover { opacity: 0.6; }
+  #site-nav .nav-link.active { opacity: 1; }
+
+  /* ── Caret ── */
+  #site-nav .dropdown-caret {
+    opacity: 0.4;
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+    position: relative;
+    top: 1px;
+  }
+
+  #site-nav .nav-item--dropdown:hover .dropdown-caret {
+    transform: rotate(180deg);
+  }
+
+  /* ── Dropdown — hidden by default ── */
+  #site-nav .dropdown {
+    position: absolute;
+    top: calc(100% + 15px);
+    left: 50%;
+    transform: translateX(-50%) translateY(-6px);
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    box-shadow: 0 8px 24px rgba(22, 34, 53, 0.08);
+    min-width: 190px;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.18s ease, transform 0.18s ease, visibility 0s linear 0.18s;
+    pointer-events: none;
+    z-index: 100;
+  }
+
+  /* Bridge the gap so the hover isn't lost while moving the mouse down */
+  #site-nav .dropdown::before {
+    content: '';
+    position: absolute;
+    top: -15px;
+    left: 0;
+    right: 0;
+    height: 15px;
+  }
+
+  /* ── Reveal on hover ── */
+  #site-nav .nav-item--dropdown:hover .dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+    transition: opacity 0.18s ease, transform 0.18s ease, visibility 0s linear 0s;
+    pointer-events: auto;
+  }
+
+  /* ── Dropdown links ── */
+  #site-nav .dropdown-link {
+    font-family: var(--sans), sans-serif;
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    padding: 0.9rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.15s;
+    white-space: nowrap;
+    display: block;
+  }
+
+  #site-nav .dropdown-link:last-child {
+    border-bottom: none;
+  }
+
+  #site-nav .dropdown-link:hover {
+    background: var(--parchment);
+  }
+
+  #site-nav .dropdown-link.active {
+    background: var(--parchment);
+  }
 
   @media (max-width: 700px) {
-    nav {
+    #site-nav {
       gap: 1.4rem;
       flex-wrap: wrap;
       padding: 10px 1rem;
+    }
+
+    #site-nav .dropdown {
+      left: 0;
+      transform: translateX(0) translateY(-6px);
+    }
+
+    #site-nav .nav-item--dropdown:hover .dropdown {
+      transform: translateX(0) translateY(0);
     }
   }
 </style>

@@ -1,0 +1,42 @@
+{
+	"secondaryLinks": [
+		{
+			"label": "Wine list",
+			"href": "/wine-list"
+		},
+		{
+			"label": "Team",
+			"href": "/team"
+		},
+		{
+			"label": "Gift cards",
+			"href": "/gift-cards"
+		},
+		{
+			"label": "Careers",
+			"href": "/careers"
+		},
+		{
+			"label": "Events",
+			"href": "/events"
+		},
+		{
+			"label": "Press",
+			"href": "/press"
+		}
+	],
+	"legalLinks": [
+		{
+			"label": "Legal",
+			"href": "/legal"
+		},
+		{
+			"label": "Instagram",
+			"href": "https://instagram.com"
+		},
+		{
+			"label": "Reservation policy",
+			"href": "/reservation-policy"
+		}
+	]
+}

@@ -1,5 +1,6 @@
 ---
 import restaurant from '../content/restaurant.json';
+import footerLinks from '../content/footer-links.json';
 
 interface FooterLink { label: string; href: string; }
 
@@ -13,19 +14,7 @@ interface Props {
 const {
   year = new Date().getFullYear(),
   symbol = '✦',
-  secondaryLinks = [
-    { label: 'Wine list',   href: '/wine-list' },
-    { label: 'Team',        href: '/team' },
-    { label: 'Gift cards',  href: '/gift-cards' },
-    { label: 'Careers',     href: '/careers' },
-    { label: 'Events',      href: '/events' },
-    { label: 'Press',       href: '/press' },
-  ],
-  legalLinks = [
-    { label: 'Legal',              href: '/legal' },
-    { label: 'Instagram',          href: 'https://instagram.com' },
-    { label: 'Reservation policy', href: '/reservation-policy' },
-  ],
+
 } = Astro.props;
 
 const addressLines = restaurant.address.split(',');
@@ -38,7 +27,7 @@ const addressLines = restaurant.address.split(',');
   </div>
 
   <nav class="footer-nav">
-    {secondaryLinks.map(({ label, href }) => (
+    {footerLinks.secondaryLinks.map(({ label, href }) => (
       <a href={href}>{label}</a>
     ))}
   </nav>
@@ -75,7 +64,7 @@ const addressLines = restaurant.address.split(',');
   <div class="footer-bottom">
     <span>© {year} {restaurant.name} Restaurant</span>
     <div class="footer-bottom-links">
-      {legalLinks.map(({ label, href }) => (
+      {footerLinks.legalLinks.map(({ label, href }) => (
         <a href={href}>{label}</a>
       ))}
     </div>

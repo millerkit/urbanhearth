@@ -1,10 +1,13 @@
 ---
 import restaurant from '../content/restaurant.json';
+import logo from '../assets/brand/UrbanHearth_Logo_BLACK_cropped.png';
 ---
 
 <div class="top-bar">
   <span class="address">{restaurant.address}</span>
-  <a href="/" class="wordmark">{restaurant.name}</a>
+  <a href="/" class="wordmark">
+    <img src={logo.src} alt={restaurant.name} class="wordmark-logo" />
+  </a>
   <div class="cta-wrap">
     <a href={restaurant.reservations.href} class="cta" target="_blank" rel="noopener">{restaurant.reservations.label}</a>
   </div>
@@ -34,14 +37,17 @@ import restaurant from '../content/restaurant.json';
   }
 
   .wordmark {
-    font-family: var(--serif),serif;
-    font-size: 22px;
-    font-weight: 300;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--ink);
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-decoration: none;
+  }
+
+  .wordmark-logo {
+    height: 26px;
+    width: auto;
+    display: block;
+    mix-blend-mode: multiply;
   }
 
   .cta-wrap {
