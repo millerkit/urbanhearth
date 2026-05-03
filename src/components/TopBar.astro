@@ -6,7 +6,18 @@ import logo from '../assets/brand/UrbanHearth_Logo_BLACK_cropped.png';
 <div class="top-bar">
   <div class="top-bar-left">
     <span class="address">{restaurant.address}</span>
-    <button class="menu-toggle" id="menu-toggle" aria-label="Open navigation menu" aria-expanded="false">Menu</button>
+    <button
+      class="menu-toggle"
+      id="menu-toggle"
+      aria-label="Open navigation menu"
+      aria-expanded="false"
+    >
+      <span class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+    </button>
   </div>
   <a href="/" class="wordmark">
     <img src={logo.src} alt={restaurant.name} class="wordmark-logo" />
@@ -45,17 +56,65 @@ import logo from '../assets/brand/UrbanHearth_Logo_BLACK_cropped.png';
   }
 
   .menu-toggle {
-    display: none;
-    font-family: var(--sans), sans-serif;
-    font-size: 10px;
-    font-weight: 300;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--ink);
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+      line-height: 0;
+
+      position: relative; /* required for z-index to work */
+      z-index: 100;       /* sits above the mobile menu */
+  }
+
+  .menu-toggle.is-open .hamburger span {
+      opacity: 0.85;
+  }
+
+  .menu-toggle:hover .hamburger span {
+      opacity: 0.6;
+      transform: scaleX(0.92);
+  }
+
+  /* Hamburger container */
+  .hamburger {
+      display: inline-flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 4px; /* more breathing room = more elegant */
+  }
+
+  /* Lines */
+  .hamburger span {
+      display: block;
+      width: 20px; /* slightly shorter */
+      height: 1px; /* thinner = more refined */
+      background-color: var(--ink);
+      transition: transform 0.25s ease, opacity 0.2s ease;
+      transform-origin: center;
+  }
+
+  /* Subtle hover effect */
+  .menu-toggle:hover .hamburger span {
+      opacity: 0.6;
+  }
+
+  .menu-toggle.is-open .hamburger span {
+      background-color: var(--ink);
+      opacity: 0.9;
+  }
+
+  /* OPEN STATE (add .is-open via JS) */
+  .menu-toggle.is-open .hamburger span:nth-child(1) {
+      transform: translateY(4px) rotate(45deg);
+  }
+
+  .menu-toggle.is-open .hamburger span:nth-child(2) {
+      opacity: 0;
+  }
+
+  .menu-toggle.is-open .hamburger span:nth-child(3) {
+      transform: translateY(-4px) rotate(-45deg);
   }
 
   .wordmark {
