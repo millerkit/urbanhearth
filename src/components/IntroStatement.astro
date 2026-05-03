@@ -1,42 +1,54 @@
 ---
-
 ---
+
 <section class="statement">
   <div class="statement-inner">
     <p class="statement-eyebrow section-eyebrow">Inman Square, Cambridge</p>
     <p class="statement-tags section-eyebrow">Locally sourced &middot; Globally inspired</p>
-    <p class="statement-text"><em>hearth.</em> The heart of a home — a place of warmth, family, and gathering, where the simplest things become the most enduring.</p>
+
+    <p class="statement-text">
+      <em>hearth.</em> The heart of a home — a place of warmth and gathering, where the simplest things endure.
+    </p>
+
+    <p class="statement-text">
+      Chef-owner Erin Miller presents a contemporary American menu rooted in New England’s farms and fisheries, shaped by global influence. Each plate is composed with care, honoring ingredient, craft, and the shared joy of the table.
+    </p>
   </div>
 </section>
 
 <style>
-  /* ── Statement ── */
-  .statement {
-      background: var(--warm-white);
-      border-bottom: 1px solid var(--border);
-      padding: 6rem 2rem;
-      text-align: center;
-  }
+    /* ── Statement ── */
+    .statement {
+        background: var(--warm-white);
+        border-bottom: 1px solid var(--border);
+        padding: clamp(3rem, 5vw, 4rem) 1.5rem;
+        text-align: center;
+    }
 
-  .statement-inner {
-      max-width: 560px;
-      margin: 0 auto;
-  }
+    .statement-inner {
+        max-width: clamp(560px, 65ch, 680px);
+        margin: 0 auto;
+    }
 
-  .statement-eyebrow {
-      margin-bottom: 2rem;
-  }
+    .statement-eyebrow {
+        margin-bottom: 0.75rem;
+    }
 
-  .statement-tags {
-      color: var(--ink-mid);
-      margin-bottom: 2rem;
-  }
+    .statement-tags {
+        color: var(--ink-mid);
+        margin-bottom: 1.5rem;
+    }
 
-  .statement-text {
-      font-family: var(--serif) serif;
-      font-size: clamp(1.25rem, 2.5vw, 1.6rem);
-      font-weight: 300;
-      line-height: 1.85;
-      color: var(--ink);
-  }
+    .statement-text {
+        font-family: var(--serif), serif;
+        font-size: clamp(1.2rem, 2.2vw, 1.5rem);
+        font-weight: 300;
+        line-height: 1.65;
+        color: var(--ink);
+        margin-bottom: 1.25rem;
+    }
+
+    .statement-text:last-child {
+        margin-bottom: 0;
+    }
 </style>
