@@ -1,5 +1,7 @@
 ---
 import links from '../content/nav-links.json';
+import restaurant from '../content/restaurant.json';
+import logo from '../assets/brand/UrbanHearth_Logo_BLACK_cropped.png';
 
 const currentPath = Astro.url.pathname;
 
@@ -9,6 +11,7 @@ function isActive(item: { href: string; children?: { href: string }[] }) {
 }
 ---
 
+<!-- Desktop nav -->
 <nav id="site-nav">
   {links.map((item) => (
     item.children ? (
@@ -37,7 +40,58 @@ function isActive(item: { href: string; children?: { href: string }[] }) {
   ))}
 </nav>
 
+<!-- Mobile overlay menu -->
+<div id="mobile-menu" aria-hidden="true" role="dialog" aria-label="Navigation menu">
+  <div class="mm-header">
+    <div></div>
+    <a href="/" class="mm-wordmark">
+      <img src={logo.src} alt={restaurant.name} class="mm-logo" />
+    </a>
+    <button id="menu-close" class="mm-close" aria-label="Close navigation menu">Close</button>
+  </div>
+
+  <nav class="mm-nav">
+    {links.map(item => (
+      <div class="mm-item">
+        <a href={item.href} class={`mm-link${isActive(item) ? ' active' : ''}`}>{item.label}</a>
+        {item.children && item.children.map(child => (
+          <a href={child.href} class={`mm-child${currentPath === child.href ? ' active' : ''}`}>{child.label}</a>
+        ))}
+      </div>
+    ))}
+  </nav>
+
+  <div class="mm-footer">
+    <a href={restaurant.reservations.href} class="mm-reserve">{restaurant.reservations.label}</a>
+  </div>
+</div>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const closeBtn = document.getElementById('menu-close');
+  const menu = document.getElementById('mobile-menu');
+
+  function openMenu() {
+    menu?.classList.add('is-open');
+    menu?.setAttribute('aria-hidden', 'false');
+    toggle?.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMenu() {
+    menu?.classList.remove('is-open');
+    menu?.setAttribute('aria-hidden', 'true');
+    toggle?.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+
+  toggle?.addEventListener('click', openMenu);
+  closeBtn?.addEventListener('click', closeMenu);
+  menu?.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+</script>
+
 <style is:global>
+  /* ── Desktop nav ── */
   #site-nav {
     position: fixed;
     top: 52px; left: 0; right: 0;
@@ -50,9 +104,7 @@ function isActive(item: { href: string; children?: { href: string }[] }) {
     border-bottom: 1px solid var(--border);
   }
 
-  #site-nav .nav-item {
-    position: relative;
-  }
+  #site-nav .nav-item { position: relative; }
 
   #site-nav .nav-link {
     font-family: var(--sans), sans-serif;
@@ -82,14 +134,11 @@ function isActive(item: { href: string; children?: { href: string }[] }) {
   }
 
   #site-nav .nav-link:hover::after,
-  #site-nav .nav-link.active::after {
-    transform: scaleX(1);
-  }
+  #site-nav .nav-link.active::after { transform: scaleX(1); }
 
   #site-nav .nav-link:hover { opacity: 0.6; }
   #site-nav .nav-link.active { opacity: 1; }
 
-  /* ── Caret ── */
   #site-nav .dropdown-caret {
     opacity: 0.4;
     transition: transform 0.2s ease;
@@ -98,11 +147,8 @@ function isActive(item: { href: string; children?: { href: string }[] }) {
     top: 1px;
   }
 
-  #site-nav .nav-item--dropdown:hover .dropdown-caret {
-    transform: rotate(180deg);
-  }
+  #site-nav .nav-item--dropdown:hover .dropdown-caret { transform: rotate(180deg); }
 
-  /* ── Dropdown — hidden by default ── */
   #site-nav .dropdown {
     position: absolute;
     top: calc(100% + 15px);
@@ -121,17 +167,13 @@ function isActive(item: { href: string; children?: { href: string }[] }) {
     z-index: 100;
   }
 
-  /* Bridge the gap so the hover isn't lost while moving the mouse down */
   #site-nav .dropdown::before {
     content: '';
     position: absolute;
-    top: -15px;
-    left: 0;
-    right: 0;
+    top: -15px; left: 0; right: 0;
     height: 15px;
   }
 
-  /* ── Reveal on hover ── */
   #site-nav .nav-item--dropdown:hover .dropdown {
     opacity: 1;
     visibility: visible;
@@ -140,7 +182,6 @@ function isActive(item: { href: string; children?: { href: string }[] }) {
     pointer-events: auto;
   }
 
-  /* ── Dropdown links ── */
   #site-nav .dropdown-link {
     font-family: var(--sans), sans-serif;
     font-size: 11px;
@@ -156,32 +197,141 @@ function isActive(item: { href: string; children?: { href: string }[] }) {
     display: block;
   }
 
-  #site-nav .dropdown-link:last-child {
-    border-bottom: none;
+  #site-nav .dropdown-link:last-child { border-bottom: none; }
+  #site-nav .dropdown-link:hover { background: var(--parchment); }
+  #site-nav .dropdown-link.active { background: var(--parchment); }
+
+  /* ── Mobile: hide desktop nav, reduce page offset ── */
+  @media (max-width: 700px) {
+    #site-nav { display: none; }
+    main > * { margin-top: 52px !important; }
   }
 
-  #site-nav .dropdown-link:hover {
-    background: var(--parchment);
-  }
-
-  #site-nav .dropdown-link.active {
-    background: var(--parchment);
-  }
+  /* ── Mobile overlay: hidden on desktop ── */
+  #mobile-menu { display: none; }
 
   @media (max-width: 700px) {
-    #site-nav {
-      gap: 1.4rem;
-      flex-wrap: wrap;
-      padding: 10px 1rem;
+    #mobile-menu {
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: var(--warm-white);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.25s ease, visibility 0s linear 0.25s;
+      overflow-y: auto;
     }
 
-    #site-nav .dropdown {
-      left: 0;
-      transform: translateX(0) translateY(-6px);
+    #mobile-menu.is-open {
+      opacity: 1;
+      visibility: visible;
+      transition: opacity 0.25s ease;
     }
 
-    #site-nav .nav-item--dropdown:hover .dropdown {
-      transform: translateX(0) translateY(0);
+    .mm-header {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      padding: 0 1.25rem;
+      height: 52px;
+      border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
     }
+
+    .mm-wordmark {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    .mm-logo {
+      height: 26px;
+      width: auto;
+      display: block;
+      mix-blend-mode: multiply;
+    }
+
+    .mm-close {
+      font-family: var(--sans), sans-serif;
+      font-size: 10px;
+      font-weight: 300;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      justify-self: end;
+    }
+
+    .mm-nav {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 2rem 1.75rem 1rem;
+    }
+
+    .mm-item { display: contents; }
+
+    .mm-link {
+      font-family: var(--sans), sans-serif;
+      font-size: 12px;
+      font-weight: 300;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+      padding: 1.1rem 0;
+      border-bottom: 1px solid var(--border);
+      display: block;
+      transition: opacity 0.2s;
+    }
+
+    .mm-link:first-of-type { border-top: 1px solid var(--border); }
+    .mm-link:hover { opacity: 0.5; }
+    .mm-link.active { opacity: 0.5; }
+
+    .mm-child {
+      font-family: var(--sans), sans-serif;
+      font-size: 11px;
+      font-weight: 300;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink-mid);
+      text-decoration: none;
+      padding: 0.75rem 0 0.75rem 1rem;
+      border-bottom: 1px solid var(--border);
+      display: block;
+      transition: opacity 0.2s;
+    }
+
+    .mm-child:hover { opacity: 0.5; }
+    .mm-child.active { opacity: 0.5; }
+
+    .mm-footer {
+      padding: 2rem 1.75rem;
+      flex-shrink: 0;
+    }
+
+    .mm-reserve {
+      display: block;
+      font-family: var(--sans), sans-serif;
+      font-size: 11px;
+      font-weight: 300;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+      background: var(--cream);
+      padding: 1.4rem 2rem;
+      text-align: center;
+      transition: opacity 0.2s;
+    }
+
+    .mm-reserve:hover { opacity: 0.6; }
   }
 </style>

@@ -6,7 +6,7 @@ import restaurant from '../content/restaurant.json';
 <Base title={`Reservations — ${restaurant.name}`} description="Reserve your table at Urban Hearth. Three distinct dining experiences in Cambridge, MA.">
   <div class="reservations">
 
-    <header class="res-header">
+    <header class="res-header page-header">
       <p class="section-eyebrow">Cambridge, MA</p>
       <h1>Reserve</h1>
       <p class="res-lead">Three distinct experiences, each with its own character and pace.</p>
@@ -186,16 +186,7 @@ import restaurant from '../content/restaurant.json';
     margin-bottom: 1.4rem;
   }
 
-  .res-header h1 {
-    font-family: var(--serif);
-    font-size: clamp(3rem, 6vw, 5rem);
-    font-weight: 300;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--ink);
-    line-height: 1;
-    margin-bottom: 1.5rem;
-  }
+  .res-header h1 { margin-bottom: 1.5rem; }
 
   .res-lead {
     font-family: var(--serif),serif;
@@ -241,7 +232,7 @@ import restaurant from '../content/restaurant.json';
   }
 
   .exp-number {
-    font-family: var(--sans);
+    font-family: var(--sans) sans-serif;
     font-size: 11px;
     font-weight: 300;
     letter-spacing: 0.2em;
@@ -255,7 +246,7 @@ import restaurant from '../content/restaurant.json';
   }
 
   .exp-title {
-    font-family: var(--serif);
+    font-family: var(--serif) serif;
     font-size: clamp(1.6rem, 2.2vw, 2.2rem);
     font-weight: 300;
     letter-spacing: 0.06em;
@@ -269,7 +260,7 @@ import restaurant from '../content/restaurant.json';
   }
 
   .exp-desc {
-    font-family: var(--serif);
+    font-family: var(--serif) serif;
     font-size: 17px;
     font-weight: 300;
     line-height: 1.85;
@@ -304,7 +295,7 @@ import restaurant from '../content/restaurant.json';
   }
 
   .exp-details dt {
-    font-family: var(--sans);
+    font-family: var(--sans) sans-serif;
     font-size: 10px;
     font-weight: 300;
     letter-spacing: 0.16em;
@@ -318,7 +309,7 @@ import restaurant from '../content/restaurant.json';
   }
 
   .exp-details dd {
-    font-family: var(--sans);
+    font-family: var(--sans) sans-serif;
     font-size: 13px;
     font-weight: 300;
     color: var(--ink);
@@ -338,7 +329,7 @@ import restaurant from '../content/restaurant.json';
   .exp-details dd a:hover { opacity: 0.6; }
 
   .exp-note {
-    font-family: var(--sans);
+    font-family: var(--sans) sans-serif;
     font-size: 12px;
     font-weight: 300;
     line-height: 1.75;
@@ -383,7 +374,7 @@ import restaurant from '../content/restaurant.json';
 
   /* ── Salon contact ── */
   .contact-line {
-    font-family: var(--serif);
+    font-family: var(--serif) serif;
     font-size: 24px;
     font-weight: 300;
     letter-spacing: 0.04em;
@@ -399,7 +390,7 @@ import restaurant from '../content/restaurant.json';
   .contact-line a:hover { opacity: 0.5; }
 
   .contact-or {
-    font-family: var(--sans);
+    font-family: var(--sans) sans-serif;
     font-size: 10px;
     font-weight: 300;
     letter-spacing: 0.18em;

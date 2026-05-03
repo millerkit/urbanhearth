@@ -5,6 +5,7 @@ import restaurant from '../content/restaurant.json';
 import g000 from '../assets/gallery/gallery-000.jpg';
 import g001 from '../assets/gallery/gallery-001.jpg';
 import g002 from '../assets/gallery/gallery-002.jpg';
+import g004 from '../assets/gallery/gallery-004.jpg';
 import g005 from '../assets/gallery/gallery-005.jpg';
 import g006 from '../assets/gallery/gallery-006.jpg';
 import g007 from '../assets/gallery/gallery-007.jpg';
@@ -32,6 +33,7 @@ const photos = [
   { src: food5.src, alt: 'Kitchen preparation', span: 'normal' },
   { src: g009.src, alt: 'Pasta in broth', span: 'normal' },
   { src: food6.src, alt: 'A course from the Chef\'s Counter', span: 'normal' },
+  { src: g004.src, alt: 'Foraging with the team', span: 'wide' },
   { src: g006.src, alt: 'New England coastline', span: 'normal' },
 ];
 ---
@@ -42,7 +44,7 @@ const photos = [
 >
   <div class="gallery-page">
 
-    <header class="gallery-header">
+    <header class="gallery-header page-header">
       <p class="section-eyebrow">Cambridge, MA</p>
       <h1>Gallery</h1>
     </header>
@@ -79,15 +81,6 @@ const photos = [
     margin-bottom: 1.4rem;
   }
 
-  .gallery-header h1 {
-    font-family: var(--serif);
-    font-size: clamp(3rem, 6vw, 5rem);
-    font-weight: 300;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--ink);
-    line-height: 1;
-  }
 
   /* ── Grid ── */
   .gallery-grid {

@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import restaurant from '../content/restaurant.json';
+import ReservationButton from '../components/ReservationButton.astro';
 import erinPhoto from '../assets/photos/erin.jpg';
 ---
 
@@ -71,7 +72,7 @@ import erinPhoto from '../assets/photos/erin.jpg';
           </div>
 
           <div class="chef-cta">
-            <a href={restaurant.reservations.href} class="text-cta">Reserve a table</a>
+            <ReservationButton label="Reserve a table" />
           </div>
 
         </div>
@@ -139,7 +140,7 @@ import erinPhoto from '../assets/photos/erin.jpg';
 
   /* ── Name ── */
   .chef-name {
-    font-family: var(--serif);
+    font-family: var(--serif) serif;
     font-size: clamp(2.8rem, 4.5vw, 4.2rem);
     font-weight: 300;
     letter-spacing: 0.08em;
@@ -150,7 +151,7 @@ import erinPhoto from '../assets/photos/erin.jpg';
 
   /* ── Roles ── */
   .chef-roles {
-    font-family: var(--sans);
+    font-family: var(--sans) sans-serif;
     font-size: 11px;
     font-weight: 300;
     letter-spacing: 0.18em;
@@ -177,7 +178,7 @@ import erinPhoto from '../assets/photos/erin.jpg';
   }
 
   .chef-bio p {
-    font-family: var(--serif);
+    font-family: var(--serif) serif;
     font-size: 18px;
     font-weight: 300;
     line-height: 1.85;
@@ -203,7 +204,7 @@ import erinPhoto from '../assets/photos/erin.jpg';
   }
 
   .accolade-year {
-    font-family: var(--sans);
+    font-family: var(--sans) sans-serif;
     font-size: 10px;
     font-weight: 300;
     letter-spacing: 0.14em;
@@ -211,7 +212,7 @@ import erinPhoto from '../assets/photos/erin.jpg';
   }
 
   .accolade-text {
-    font-family: var(--sans);
+    font-family: var(--sans) sans-serif;
     font-size: 13px;
     font-weight: 300;
     color: var(--ink);

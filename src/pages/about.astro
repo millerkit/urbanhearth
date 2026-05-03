@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import restaurant from '../content/restaurant.json';
+import RestaurantHours from '../components/RestaurantHours.astro';
 
 const farms = [
   { name: 'Kimball Fruit Farm', location: 'Haverhill, MA' },
@@ -22,7 +23,7 @@ const farms = [
 >
   <div class="about-page">
 
-    <header class="about-header">
+    <header class="about-header page-header">
       <p class="section-eyebrow">Cambridge, MA</p>
       <h1>About</h1>
     </header>
@@ -62,7 +63,7 @@ const farms = [
           </div>
           <div class="contact-block">
             <p class="contact-label section-eyebrow">Hours</p>
-            {restaurant.hours.map(h => <p class="contact-value">{h}</p>)}
+            <RestaurantHours class="contact-value" />
           </div>
           <div class="contact-block">
             <p class="contact-label section-eyebrow">Phone</p>
@@ -99,15 +100,6 @@ const farms = [
     margin-bottom: 1.4rem;
   }
 
-  .about-header h1 {
-    font-family: var(--serif);
-    font-size: clamp(3rem, 6vw, 5rem);
-    font-weight: 300;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--ink);
-    line-height: 1;
-  }
 
   .about-body {
     max-width: 860px;
@@ -126,7 +118,7 @@ const farms = [
   }
 
   .about-statement {
-    font-family: var(--serif);
+    font-family: var(--serif) serif;
     font-size: clamp(1.25rem, 2vw, 1.6rem);
     font-weight: 300;
     line-height: 1.8;
@@ -134,7 +126,7 @@ const farms = [
   }
 
   .about-section-title {
-    font-family: var(--sans);
+    font-family: var(--sans) sans-serif;
     font-size: 10px;
     font-weight: 300;
     letter-spacing: 0.24em;
@@ -144,7 +136,7 @@ const farms = [
   }
 
   .about-farms-intro {
-    font-family: var(--serif);
+    font-family: var(--serif) serif;
     font-size: 17px;
     font-weight: 300;
     line-height: 1.8;
@@ -172,14 +164,14 @@ const farms = [
   }
 
   .farm-name {
-    font-family: var(--sans);
+    font-family: var(--sans) sans-serif;
     font-size: 13px;
     font-weight: 300;
     color: var(--ink);
   }
 
   .farm-location {
-    font-family: var(--sans);
+    font-family: var(--sans) sans-serif;
     font-size: 11px;
     font-weight: 300;
     color: var(--ink-light);
@@ -198,7 +190,7 @@ const farms = [
   }
 
   .contact-value {
-    font-family: var(--sans);
+    font-family: var(--sans) sans-serif;
     font-size: 14px;
     font-weight: 300;
     color: var(--ink);

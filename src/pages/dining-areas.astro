@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import restaurant from '../content/restaurant.json';
+import ReservationButton from '../components/ReservationButton.astro';
 import diningRoom from '../assets/photos/DiningRoomRendering.jpeg';
 import chefsCounter from '../assets/photos/ChefsCounterRendering.png';
 import bar from '../assets/photos/BarRendering.jpeg';
@@ -75,7 +76,7 @@ const areas = [
 >
   <div class="dining-page">
 
-    <header class="dining-header">
+    <header class="dining-header page-header">
       <p class="section-eyebrow">Cambridge, MA</p>
       <h1>Dining Areas</h1>
       <p class="dining-lead">Three distinct experiences, each with its own character and pace.</p>
@@ -141,7 +142,7 @@ const areas = [
                     <a href={`mailto:${restaurant.privateDiningEmail}`} class="text-cta">{restaurant.privateDiningEmail}</a>
                   </div>
                 ) : (
-                  <a href={area.cta.href} class="text-cta">{area.cta.label}</a>
+                  <ReservationButton href={area.cta.href} label={area.cta.label} />
                 )}
               </div>
             </div>
@@ -172,16 +173,7 @@ const areas = [
     margin-bottom: 1.4rem;
   }
 
-  .dining-header h1 {
-    font-family: var(--serif);
-    font-size: clamp(3rem, 6vw, 5rem);
-    font-weight: 300;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--ink);
-    line-height: 1;
-    margin-bottom: 1.5rem;
-  }
+  .dining-header h1 { margin-bottom: 1.5rem; }
 
   .dining-lead {
     font-family: var(--serif), serif;
@@ -207,7 +199,7 @@ const areas = [
     align-items: center;
     gap: 0.7rem;
     padding: 1.1rem 2.5rem;
-    font-family: var(--sans);
+    font-family: var(--sans) sans-serif;
     font-size: 10px;
     font-weight: 300;
     letter-spacing: 0.18em;
@@ -267,7 +259,7 @@ const areas = [
   }
 
   .area-num {
-    font-family: var(--sans);
+    font-family: var(--sans) sans-serif;
     font-size: 11px;
     font-weight: 300;
     letter-spacing: 0.2em;
@@ -294,7 +286,7 @@ const areas = [
 
   /* ── Title & description ── */
   .area-title {
-    font-family: var(--serif);
+    font-family: var(--serif) serif;
     font-size: clamp(2rem, 3.5vw, 3rem);
     font-weight: 300;
     letter-spacing: 0.07em;
@@ -314,7 +306,7 @@ const areas = [
   }
 
   .area-desc p {
-    font-family: var(--serif);
+    font-family: var(--serif) serif;
     font-size: 18px;
     font-weight: 300;
     line-height: 1.85;
@@ -352,7 +344,7 @@ const areas = [
   }
 
   .area-details dt {
-    font-family: var(--sans);
+    font-family: var(--sans) sans-serif;
     font-size: 10px;
     font-weight: 300;
     letter-spacing: 0.16em;
@@ -366,7 +358,7 @@ const areas = [
   }
 
   .area-details dd {
-    font-family: var(--sans);
+    font-family: var(--sans) sans-serif;
     font-size: 13px;
     font-weight: 300;
     color: var(--ink);
@@ -405,7 +397,7 @@ const areas = [
   }
 
   .phone-num {
-    font-family: var(--serif);
+    font-family: var(--serif) serif;
     font-size: 22px;
     font-weight: 300;
     letter-spacing: 0.04em;
@@ -423,7 +415,7 @@ const areas = [
   }
 
   .phone-or {
-    font-family: var(--sans);
+    font-family: var(--sans) sans-serif;
     font-size: 10px;
     font-weight: 300;
     letter-spacing: 0.18em;

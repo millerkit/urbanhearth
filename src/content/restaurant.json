@@ -5,10 +5,11 @@
   "phone": "617 682 7295",
   "reservations": {
     "label": "Make a reservation",
+    "shortLabel": "Reserve",
     "href": "/reservations"
   },
   "hours": [
-    "Sunday – Saturday: 5:00 — 10:00 pm"
+    "Tuesday – Sunday: 5:00 — 10:00 pm"
   ],
   "privateDiningEmail": "events@urbanhearth.com"
 }

@@ -4,12 +4,15 @@ import logo from '../assets/brand/UrbanHearth_Logo_BLACK_cropped.png';
 ---
 
 <div class="top-bar">
-  <span class="address">{restaurant.address}</span>
+  <div class="top-bar-left">
+    <span class="address">{restaurant.address}</span>
+    <button class="menu-toggle" id="menu-toggle" aria-label="Open navigation menu" aria-expanded="false">Menu</button>
+  </div>
   <a href="/" class="wordmark">
     <img src={logo.src} alt={restaurant.name} class="wordmark-logo" />
   </a>
   <div class="cta-wrap">
-    <a href={restaurant.reservations.href} class="cta" target="_blank" rel="noopener">{restaurant.reservations.label}</a>
+    <a href={restaurant.reservations.href} class="cta" target="_blank" rel="noopener">{restaurant.reservations.shortLabel}</a>
   </div>
 </div>
 
@@ -27,6 +30,11 @@ import logo from '../assets/brand/UrbanHearth_Logo_BLACK_cropped.png';
     border-bottom: 1px solid var(--border);
   }
 
+  .top-bar-left {
+    display: flex;
+    align-items: center;
+  }
+
   .address {
     font-family: var(--sans),sans-serif;
     font-size: 10px;
@@ -34,6 +42,20 @@ import logo from '../assets/brand/UrbanHearth_Logo_BLACK_cropped.png';
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--ink);
+  }
+
+  .menu-toggle {
+    display: none;
+    font-family: var(--sans), sans-serif;
+    font-size: 10px;
+    font-weight: 300;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
   }
 
   .wordmark {
@@ -66,10 +88,13 @@ import logo from '../assets/brand/UrbanHearth_Logo_BLACK_cropped.png';
     border-bottom: 1px solid var(--ink);
     padding-bottom: 1px;
     transition: opacity 0.2s;
+    white-space: nowrap;
   }
   .cta:hover { opacity: 0.55; }
 
   @media (max-width: 700px) {
+    .top-bar { padding: 0 1.25rem; }
     .address { display: none; }
+    .menu-toggle { display: block; }
   }
 </style>

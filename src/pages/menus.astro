@@ -1,6 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
 import restaurant from '../content/restaurant.json';
+import RestaurantHours from '../components/RestaurantHours.astro';
+import ReservationButton from '../components/ReservationButton.astro';
 
 const sharedPlates = [
   {
@@ -87,7 +89,7 @@ const breads = [
 >
   <div class="menus-page">
 
-    <header class="menus-header">
+    <header class="menus-header page-header">
       <p class="section-eyebrow">Spring 2026</p>
       <h1>Our Menus</h1>
       <p class="menus-lead">Seasonal cooking, sourced from a close network of New England farms and fishermen.</p>
@@ -101,9 +103,10 @@ const breads = [
         <div class="menu-dining-room">
           <div class="dining-room-text">
             <p class="section-eyebrow">Dining Room</p>
-            <p class="dining-room-hours">Monday – Saturday, 5:00 – 10:00 pm. Walk-ins welcome; reservations recommended.</p>
+            <RestaurantHours class="dining-room-hours" />
+            <p class="dining-room-hours">Walk-ins welcome; reservations recommended.</p>
           </div>
-          <a href={`${restaurant.reservations.href}#dining-room`} class="text-cta">Reserve a table</a>
+          <ReservationButton href={`${restaurant.reservations.href}#dining-room`} label="Reserve a table" />
         </div>
 
         <section class="menu-section">
@@ -206,16 +209,7 @@ const breads = [
     margin-bottom: 1.4rem;
   }
 
-  .menus-header h1 {
-    font-family: var(--serif);
-    font-size: clamp(3rem, 6vw, 5rem);
-    font-weight: 300;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--ink);
-    line-height: 1;
-    margin-bottom: 1.5rem;
-  }
+  .menus-header h1 { margin-bottom: 1.5rem; }
 
   .menus-lead {
     font-family: var(--serif), serif;
@@ -252,7 +246,7 @@ const breads = [
   }
 
   .dining-room-hours {
-    font-family: var(--sans);
+    font-family: var(--sans),sans-serif;
     font-size: 13px;
     font-weight: 300;
     color: var(--ink-mid);
@@ -274,7 +268,7 @@ const breads = [
   }
 
   .menu-section-title {
-    font-family: var(--sans);
+    font-family: var(--sans) sans-serif;
     font-size: 10px;
     font-weight: 300;
     letter-spacing: 0.24em;
@@ -311,7 +305,7 @@ const breads = [
   }
 
   .dish-name {
-    font-family: var(--serif);
+    font-family: var(--serif) serif;
     font-size: 18px;
     font-weight: 300;
     letter-spacing: 0.02em;
@@ -320,7 +314,7 @@ const breads = [
   }
 
   .dish-price {
-    font-family: var(--sans);
+    font-family: var(--sans) sans-serif;
     font-size: 13px;
     font-weight: 300;
     color: var(--ink-mid);
@@ -329,7 +323,7 @@ const breads = [
   }
 
   .dish-desc {
-    font-family: var(--sans);
+    font-family: var(--sans) sans-serif;
     font-size: 12px;
     font-weight: 300;
     letter-spacing: 0.04em;
@@ -339,7 +333,7 @@ const breads = [
   }
 
   .dish-note {
-    font-family: var(--sans);
+    font-family: var(--sans) sans-serif;
     font-size: 11px;
     font-weight: 300;
     font-style: italic;
@@ -350,7 +344,7 @@ const breads = [
 
   /* ── Footer note ── */
   .menu-footer-note {
-    font-family: var(--sans);
+    font-family: var(--sans) sans-serif;
     font-size: 11px;
     font-weight: 300;
     font-style: italic;
@@ -386,7 +380,7 @@ const breads = [
   }
 
   .sidebar-price {
-    font-family: var(--serif);
+    font-family: var(--serif) serif;
     font-size: 2.4rem;
     font-weight: 300;
     color: var(--parchment);
@@ -395,7 +389,7 @@ const breads = [
   }
 
   .sidebar-price span {
-    font-family: var(--sans);
+    font-family: var(--sans) sans-serif;
     font-size: 12px;
     font-weight: 300;
     color: rgba(255, 255, 255, 0.4);
@@ -403,7 +397,7 @@ const breads = [
   }
 
   .sidebar-desc {
-    font-family: var(--serif);
+    font-family: var(--serif) serif;
     font-size: 15px;
     font-weight: 300;
     line-height: 1.8;
@@ -426,7 +420,7 @@ const breads = [
   }
 
   .sidebar-sub-label {
-    font-family: var(--sans);
+    font-family: var(--sans) sans-serif;
     font-size: 10px;
     font-weight: 300;
     letter-spacing: 0.16em;
@@ -435,7 +429,7 @@ const breads = [
   }
 
   .sidebar-sub-value {
-    font-family: var(--sans);
+    font-family: var(--sans) sans-serif;
     font-size: 13px;
     font-weight: 300;
     color: var(--parchment);
@@ -458,7 +452,7 @@ const breads = [
   }
 
   .course-label {
-    font-family: var(--sans);
+    font-family: var(--sans) sans-serif;
     font-size: 9px;
     font-weight: 300;
     letter-spacing: 0.12em;
@@ -470,7 +464,7 @@ const breads = [
   }
 
   .course-name {
-    font-family: var(--serif);
+    font-family: var(--serif) serif;
     font-size: 14px;
     font-weight: 300;
     color: var(--parchment);
@@ -479,7 +473,7 @@ const breads = [
   }
 
   .course-desc {
-    font-family: var(--sans);
+    font-family: var(--sans) sans-serif;
     font-size: 10px;
     font-weight: 300;
     letter-spacing: 0.06em;
@@ -490,7 +484,7 @@ const breads = [
   }
 
   .sidebar-note {
-    font-family: var(--sans);
+    font-family: var(--sans) sans-serif;
     font-size: 11px;
     font-weight: 300;
     font-style: italic;
@@ -501,7 +495,7 @@ const breads = [
 
   .sidebar-cta {
     display: inline-block;
-    font-family: var(--sans);
+    font-family: var(--sans) sans-serif;
     font-size: 11px;
     font-weight: 300;
     letter-spacing: 0.18em;
@@ -519,7 +513,7 @@ const breads = [
 
   /* ── Farms ── */
   .sidebar-farms-intro {
-    font-family: var(--sans);
+    font-family: var(--sans) sans-serif;
     font-size: 12px;
     font-weight: 300;
     color: var(--ink-mid);
@@ -533,7 +527,7 @@ const breads = [
   }
 
   .farms-list li {
-    font-family: var(--sans);
+    font-family: var(--sans) sans-serif;
     font-size: 12px;
     font-weight: 300;
     color: var(--ink);

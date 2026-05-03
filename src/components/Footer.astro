@@ -1,6 +1,7 @@
 ---
 import restaurant from '../content/restaurant.json';
 import footerLinks from '../content/footer-links.json';
+import RestaurantHours from './RestaurantHours.astro';
 
 interface FooterLink { label: string; href: string; }
 
@@ -45,11 +46,7 @@ const addressLines = restaurant.address.split(',');
 
     <div class="footer-col center">
       <p class="footer-col-title">Dining hours</p>
-      <p>
-        {restaurant.hours.map((line, i) => (
-          <>{line}{i < restaurant.hours.length - 1 ? <br /> : null}</>
-        ))}
-      </p>
+      <RestaurantHours />
     </div>
 
     <div class="footer-col right">
