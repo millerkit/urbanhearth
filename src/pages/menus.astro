@@ -98,7 +98,7 @@ const breads = [
     <div class="menus-layout">
 
       <!-- ── À la carte ── -->
-      <div class="menu-main">
+      <div class="menu-main sidebar-card--dark">
 
         <div class="menu-dining-room">
           <div class="dining-room-text">
@@ -215,7 +215,7 @@ const breads = [
     font-family: var(--serif), serif;
     font-size: 18px;
     font-weight: 300;
-    color: var(--ink-mid);
+    color: var(--ink);
     max-width: 460px;
     margin: 0 auto;
     line-height: 1.7;
@@ -224,10 +224,12 @@ const breads = [
   /* ── Two-column layout ── */
   .menus-layout {
     display: grid;
-    grid-template-columns: 3fr 2fr;
-    gap: 1px;
-    background: var(--border);
+    grid-template-columns: 1fr 1fr;
     align-items: start;
+    max-width: 1200px;
+    margin: 4rem auto;
+    padding: 0 2.5rem;
+    gap: 3rem;
   }
 
   /* ── Dining room banner ── */
@@ -256,7 +258,8 @@ const breads = [
   /* ── Main menu column ── */
   .menu-main {
     background: var(--warm-white);
-    padding: 4rem 3.5rem 4rem 4rem;
+    border: 1px solid var(--border);
+    padding: 3rem 3rem 3rem 3rem;
   }
 
   .menu-section {
@@ -358,17 +361,18 @@ const breads = [
   .menu-sidebar {
     display: flex;
     flex-direction: column;
-    gap: 1px;
-    background: var(--border);
+    gap: 2rem;
   }
 
   .sidebar-card {
     background: var(--warm-white);
+    border: 1px solid var(--border);
     padding: 2.5rem 2rem;
   }
 
   .sidebar-card--dark {
-    background: var(--midnight);
+    background: var(--parchment);
+    border-color: rgba(22, 34, 53, 0.13);
   }
 
   .sidebar-eyebrow {
@@ -376,37 +380,33 @@ const breads = [
   }
 
   .sidebar-card--dark .sidebar-eyebrow {
-    color: rgba(255, 255, 255, 0.4);
+    color: var(--charcoal);
   }
 
   .sidebar-price {
-    font-family: var(--serif) serif;
+    font-family: var(--serif), serif;
     font-size: 2.4rem;
     font-weight: 300;
-    color: var(--parchment);
+    color: var(--midnight);
     line-height: 1;
     margin-bottom: 1.2rem;
   }
 
   .sidebar-price span {
-    font-family: var(--sans) sans-serif;
+    font-family: var(--sans), sans-serif;
     font-size: 12px;
     font-weight: 300;
-    color: rgba(255, 255, 255, 0.4);
+    color: var(--charcoal);
     letter-spacing: 0.1em;
   }
 
   .sidebar-desc {
-    font-family: var(--serif) serif;
+    font-family: var(--serif), serif;
     font-size: 15px;
     font-weight: 300;
     line-height: 1.8;
-    color: var(--ink);
+    color: var(--midnight);
     margin-bottom: 1.5rem;
-  }
-
-  .sidebar-card--dark .sidebar-desc {
-    color: rgba(232, 227, 223, 0.75);
   }
 
   .sidebar-sub {
@@ -414,31 +414,31 @@ const breads = [
     justify-content: space-between;
     align-items: baseline;
     padding: 0.75rem 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.12);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    border-top: 1px solid rgba(22, 34, 53, 0.13);
+    border-bottom: 1px solid rgba(22, 34, 53, 0.13);
     margin-bottom: 1.2rem;
   }
 
   .sidebar-sub-label {
-    font-family: var(--sans) sans-serif;
+    font-family: var(--sans), sans-serif;
     font-size: 10px;
     font-weight: 300;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.38);
+    color: var(--charcoal);
   }
 
   .sidebar-sub-value {
-    font-family: var(--sans) sans-serif;
+    font-family: var(--sans), sans-serif;
     font-size: 13px;
     font-weight: 300;
-    color: var(--parchment);
+    color: var(--midnight);
   }
 
   /* ── Tasting courses ── */
   .tasting-courses {
     list-style: none;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(22, 34, 53, 0.13);
     margin-bottom: 1.5rem;
   }
 
@@ -448,15 +448,15 @@ const breads = [
     column-gap: 0.75rem;
     row-gap: 0.2rem;
     padding: 0.85rem 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(22, 34, 53, 0.13);
   }
 
   .course-label {
-    font-family: var(--sans) sans-serif;
+    font-family: var(--sans), sans-serif;
     font-size: 9px;
     font-weight: 300;
     letter-spacing: 0.12em;
-    color: rgba(255, 255, 255, 0.3);
+    color: var(--charcoal);
     text-transform: uppercase;
     padding-top: 0.2rem;
     grid-row: 1 / 3;
@@ -464,45 +464,45 @@ const breads = [
   }
 
   .course-name {
-    font-family: var(--serif) serif;
+    font-family: var(--serif), serif;
     font-size: 14px;
     font-weight: 300;
-    color: var(--parchment);
+    color: var(--midnight);
     letter-spacing: 0.03em;
     line-height: 1.3;
   }
 
   .course-desc {
-    font-family: var(--sans) sans-serif;
+    font-family: var(--sans), sans-serif;
     font-size: 10px;
     font-weight: 300;
     letter-spacing: 0.06em;
-    color: rgba(255, 255, 255, 0.35);
+    color: var(--charcoal);
     line-height: 1.5;
     text-transform: lowercase;
     grid-column: 2;
   }
 
   .sidebar-note {
-    font-family: var(--sans) sans-serif;
+    font-family: var(--sans), sans-serif;
     font-size: 11px;
     font-weight: 300;
     font-style: italic;
-    color: rgba(255, 255, 255, 0.3);
+    color: var(--charcoal);
     line-height: 1.7;
     margin-bottom: 1.8rem;
   }
 
   .sidebar-cta {
     display: inline-block;
-    font-family: var(--sans) sans-serif;
+    font-family: var(--sans), sans-serif;
     font-size: 11px;
     font-weight: 300;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--parchment);
+    color: var(--midnight);
     text-decoration: none;
-    border-bottom: 1px solid rgba(232, 227, 223, 0.4);
+    border-bottom: 1px solid rgba(22, 34, 53, 0.4);
     padding-bottom: 2px;
     transition: opacity 0.2s;
   }
@@ -545,20 +545,23 @@ const breads = [
   @media (max-width: 860px) {
     .menus-layout {
       grid-template-columns: 1fr;
+      margin: 2.5rem auto;
+      padding: 0 1.5rem;
+      gap: 2rem;
     }
 
     .menu-main {
-      padding: 3rem 2rem;
-    }
-
-    .menu-sidebar {
-      border-top: 1px solid var(--border);
+      padding: 2.5rem 2rem;
     }
   }
 
   @media (max-width: 500px) {
+    .menus-layout {
+      padding: 0 1rem;
+    }
+
     .menu-main {
-      padding: 2.5rem 1.5rem;
+      padding: 2rem 1.25rem;
     }
   }
 </style>
