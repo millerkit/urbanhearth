@@ -1,0 +1,81 @@
+{
+  "components": [
+    {
+      "name": "menu",
+      "display_name": "Menu",
+      "schema": {
+        "season": { "type": "text", "display_name": "Season (e.g. Spring 2026)" },
+        "sections": {
+          "type": "bloks",
+          "display_name": "Menu Sections",
+          "restrict_components": true,
+          "component_whitelist": ["menuSection"]
+        },
+        "chefsCounter": {
+          "type": "blok",
+          "display_name": "Chef's Counter",
+          "restrict_components": true,
+          "component_whitelist": ["chefsCounter"]
+        }
+      }
+    },
+    {
+      "name": "menuSection",
+      "display_name": "Menu Section",
+      "schema": {
+        "title": { "type": "text", "display_name": "Section Title" },
+        "items": {
+          "type": "bloks",
+          "display_name": "Dishes",
+          "restrict_components": true,
+          "component_whitelist": ["menuItem"]
+        }
+      }
+    },
+    {
+      "name": "menuItem",
+      "display_name": "Menu Item",
+      "schema": {
+        "name": { "type": "text", "display_name": "Dish Name" },
+        "price": { "type": "text", "display_name": "Price" },
+        "description": { "type": "text", "display_name": "Description" },
+        "note": { "type": "textarea", "display_name": "Additional Note" }
+      }
+    },
+    {
+      "name": "chefsCounter",
+      "display_name": "Chef's Counter",
+      "schema": {
+        "price": { "type": "text", "display_name": "Price per Person" },
+        "winePairing": { "type": "text", "display_name": "Wine Pairing Price" },
+        "courses": {
+          "type": "bloks",
+          "display_name": "Courses",
+          "restrict_components": true,
+          "component_whitelist": ["course"]
+        },
+        "note": { "type": "textarea", "display_name": "Reservation Note" }
+      }
+    },
+    {
+      "name": "course",
+      "display_name": "Tasting Course",
+      "schema": {
+        "label": { "type": "text", "display_name": "Roman Numeral Label" },
+        "name": { "type": "text", "display_name": "Course Name" },
+        "description": { "type": "text", "display_name": "Description" }
+      }
+    },
+    {
+      "name": "post",
+      "display_name": "Post",
+      "schema": {
+        "title": { "type": "text", "display_name": "Title" },
+        "publishedAt": { "type": "datetime", "display_name": "Published Date" },
+        "excerpt": { "type": "textarea", "display_name": "Excerpt" },
+        "coverImage": { "type": "asset", "display_name": "Cover Image", "filetypes": ["images"] },
+        "body": { "type": "richtext", "display_name": "Body" }
+      }
+    }
+  ]
+}

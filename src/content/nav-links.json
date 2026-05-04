@@ -2,7 +2,7 @@
 	{ "label": "The Restaurant", "href": "/" },
 	{ "label": "Dining Areas",   "href": "/dining-areas" },
 	{ "label": "Gallery",        "href": "/gallery" },
-	{ "label": "Happenings",     "href": "/blog" },
+	{ "label": "Happenings",     "href": "/happenings" },
 	{
 		"label": "About",
 		"href": "/about",

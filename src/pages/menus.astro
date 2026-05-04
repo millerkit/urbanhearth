@@ -4,84 +4,24 @@ import restaurant from '../content/restaurant.json';
 import RestaurantHours from '../components/RestaurantHours.astro';
 import ReservationButton from '../components/ReservationButton.astro';
 import PageHeader from '../components/PageHeader.astro';
+import ChefsCounter from '../components/ChefsCounter.astro';
+import { isStoryblokConfigured } from '../lib/storyblok';
+import { fetchMenu } from '../lib/storyblok-fetch';
+import { staticMenuSections } from '../content/static-menus.ts';
+import '../styles/menu-shared.css';
 
-const sharedPlates = [
-  {
-    name: 'Unicorn Oysters on the Half Shell',
-    price: '4 ea',
-    desc: 'Blueberry vinegar · long pepper mignonette',
-  },
-  {
-    name: 'New England Lamb Beignets',
-    price: '8 ea',
-    desc: 'Moroccan spiced lamb · lamb heart pastrami · spring herb salad',
-  },
-  {
-    name: 'Hake Crudo in Hibiscus Leche de Tigre',
-    price: '26',
-    desc: 'Crispy leek · pickled green strawberry · summer truffle',
-  },
-  {
-    name: 'Duck Liver Mousse',
-    price: '22',
-    desc: 'Blueberry mostarda · pickled radish · pistachio · rye cracker',
-  },
-  {
-    name: 'Vadouvan Carrot Brûlette',
-    price: '28',
-    desc: 'Savory & butter · sheep maldon · fried mushrooms',
-  },
-  {
-    name: 'Grilled Asparagus & Spring Forage Pistou',
-    price: '26',
-    desc: 'Cultured sheep\'s milk cheese · basil · fried capers',
-  },
-  {
-    name: 'Blistered Kale with Whipped Tahini',
-    price: '28',
-    desc: 'Friqule · sichuan sesame crisp · pickled apple · fermented chili',
-  },
-  {
-    name: 'Lovage Crème Brûlée with Sugar Snaps',
-    price: '30',
-    desc: 'Clothbound cheddar · rye soil · pea tendrils',
-  },
-  {
-    name: 'Juniper Rubbed Swordfish',
-    price: '42',
-    desc: 'Parsnip crème · blistered grape · tender herbs',
-  },
-  {
-    name: 'Chicken & Wild Mushrooms in Red Wine',
-    price: '44',
-    desc: 'Thomas Farm · pomelo preserve · pickled onion',
-  },
-];
+// ── Fetch from Storyblok (falls back to static if not connected) ──────────────
+let cmsMenu = null;
+if (isStoryblokConfigured) {
+  try {
+    cmsMenu = await fetchMenu();
+  } catch {
+    // fetch failed — static fallback in use
+  }
+}
 
-const breads = [
-  {
-    name: 'Warm Mediterranean Olives',
-    price: '8',
-    desc: 'Olive oil · preserved lemon · chili',
-  },
-  {
-    name: 'Big Buttermilk Biscuit',
-    price: '8',
-    desc: 'Smoked maple brown butter',
-  },
-  {
-    name: 'Grilled Sourdough Focaccia',
-    price: '8',
-    desc: 'Du lot spice · olive oil',
-  },
-  {
-    name: 'New England Nosh Board',
-    price: '29',
-    desc: 'A selection of local cheeses and charcuterie, served with crackers and crudités',
-    note: 'Cheeses: hardwood thyme (NH) · camembert (NY) · great hill blue (MA) · jasper hill cheddar (VT) · truffle manchego (VT) — Charcuterie: mortadella · prosciutto di parma · n\'duja',
-  },
-];
-
+const season   = cmsMenu?.season   ?? 'Spring 2026';
+const sections = cmsMenu?.sections ?? staticMenuSections;
 ---
 
 <Base
@@ -95,94 +35,42 @@ const breads = [
     <div class="menus-layout">
 
       <!-- ── À la carte ── -->
-      <div class="menu-main sidebar-card--dark">
+      <div class="menu-main menu-card">
 
         <div class="menu-dining-room">
           <div class="dining-room-text">
-            <p class="section-eyebrow">Dining Room</p>
+            <p class="menu-eyebrow">Dining Room</p>
             <RestaurantHours class="dining-room-hours" />
             <p class="dining-room-hours">Walk-ins welcome; reservations recommended.</p>
           </div>
           <ReservationButton href={`${restaurant.reservations.href}#dining-room`} label="Reserve a table" />
         </div>
 
-        <section class="menu-section">
-          <h2 class="menu-section-title">Shared Plates</h2>
-          <ul class="dish-list">
-            {sharedPlates.map(dish => (
-              <li class="dish">
-                <div class="dish-top">
-                  <span class="dish-name">{dish.name}</span>
-                  <span class="dish-price">{dish.price}</span>
-                </div>
-                <p class="dish-desc">{dish.desc}</p>
-              </li>
-            ))}
-          </ul>
-        </section>
+        {sections.map((section: { title: unknown; items: any[]; }) => (
+          <section class="menu-section">
+            <h2 class="menu-label menu-section-title">{section.title}</h2>
+            <ul class="dish-list">
+              {section.items.map(dish => (
+                <li class="dish">
+                  <div class="dish-top">
+                    <span class="dish-name">{dish.name}</span>
+                    <span class="dish-price">{dish.price}</span>
+                  </div>
+                  {dish.description && <p class="dish-desc">{dish.description}</p>}
+                  {dish.note        && <p class="menu-fine-print dish-note">{dish.note}</p>}
+                </li>
+              ))}
+            </ul>
+          </section>
+        ))}
 
-        <section class="menu-section">
-          <h2 class="menu-section-title">Breads &amp; Charcuterie</h2>
-          <ul class="dish-list">
-            {breads.map(dish => (
-              <li class="dish">
-                <div class="dish-top">
-                  <span class="dish-name">{dish.name}</span>
-                  <span class="dish-price">{dish.price}</span>
-                </div>
-                <p class="dish-desc">{dish.desc}</p>
-                {dish.note && <p class="dish-note">{dish.note}</p>}
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        <p class="menu-footer-note">Ask your server to see our dessert menu. Please inform your server of any dietary restrictions. A 20% gratuity is added for parties of six or more.</p>
+        <p class="menu-fine-print menu-footer-note">Ask your server to see our dessert menu. Please inform your server of any dietary restrictions. A 20% gratuity is added for parties of six or more.</p>
 
       </div>
 
-      <!-- ── Sidebar ── -->
+      <!-- ── Chef's Counter ── -->
       <aside class="menu-sidebar">
-
-        <div class="sidebar-card sidebar-card--dark">
-          <p class="sidebar-eyebrow section-eyebrow">Chef's Counter</p>
-          <div class="sidebar-price">$160 <span>per person</span></div>
-          <p class="sidebar-desc">A five-course interactive dining experience at our Chef's Counter. The menu changes nightly, shaped by what arrived that morning.</p>
-          <div class="sidebar-sub">
-            <span class="sidebar-sub-label">Wine pairing</span>
-            <span class="sidebar-sub-value">+$70 per person</span>
-          </div>
-          <ul class="tasting-courses">
-            <li class="tasting-course">
-              <span class="course-label">I</span>
-              <span class="course-name">Amuse-Bouche</span>
-            </li>
-            <li class="tasting-course">
-              <span class="course-label">II</span>
-              <span class="course-name">Crudo &amp; Garden</span>
-              <span class="course-desc">Raw or lightly cured fish · seasonal vegetable · cold pressed oil</span>
-            </li>
-            <li class="tasting-course">
-              <span class="course-label">III</span>
-              <span class="course-name">The Hearth Course</span>
-              <span class="course-desc">Wood-fired preparation · preserved element · fermented accent</span>
-            </li>
-            <li class="tasting-course">
-              <span class="course-label">IV</span>
-              <span class="course-name">Land &amp; Sea</span>
-              <span class="course-desc">Primary protein · root vegetable · foraged herb</span>
-            </li>
-            <li class="tasting-course">
-              <span class="course-label">V</span>
-              <span class="course-name">Sweets</span>
-              <span class="course-desc">Seasonal dessert · mignardises</span>
-            </li>
-          </ul>
-          <p class="sidebar-note">Advanced reservations required. As the menu changes nightly, we cannot guarantee accommodation of all dietary restrictions.</p>
-          <a href={`${restaurant.reservations.href}#chefs-counter`} class="sidebar-cta">Reserve your seat</a>
-        </div>
-
-
+        <ChefsCounter />
       </aside>
 
     </div>
@@ -194,7 +82,7 @@ const breads = [
     margin-top: 103px;
   }
 
-  /* ── Two-column layout ── */
+  /* ── Layout ── */
   .menus-layout {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -205,36 +93,31 @@ const breads = [
     gap: 3rem;
   }
 
-  /* ── Dining room banner ── */
+  /* ── Main card ── */
+  .menu-main {
+    padding: 2.5rem 3rem 3rem;
+  }
+
+  /* ── Dining room header ── */
   .menu-dining-room {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 2rem;
-    padding: 1.5rem 0 2rem;
+    padding: 0 0 2rem;
     margin-bottom: 2.5rem;
     border-bottom: 1px solid var(--border);
   }
 
-  .menu-dining-room .section-eyebrow {
-    margin-bottom: 0.5rem;
-  }
-
   .dining-room-hours {
-    font-family: var(--sans),sans-serif;
+    font-family: var(--sans), sans-serif;
     font-size: 13px;
     font-weight: 300;
     color: var(--ink-mid);
     line-height: 1.6;
   }
 
-  /* ── Main menu column ── */
-  .menu-main {
-    background: var(--warm-white);
-    border: 1px solid var(--border);
-    padding: 3rem 3rem 3rem 3rem;
-  }
-
+  /* ── Menu sections ── */
   .menu-section {
     margin-bottom: 3.5rem;
   }
@@ -244,12 +127,6 @@ const breads = [
   }
 
   .menu-section-title {
-    font-family: var(--sans) sans-serif;
-    font-size: 10px;
-    font-weight: 300;
-    letter-spacing: 0.24em;
-    text-transform: uppercase;
-    color: var(--ink-mid);
     margin-bottom: 1.5rem;
     padding-bottom: 1rem;
     border-bottom: 1px solid var(--border);
@@ -258,18 +135,11 @@ const breads = [
   /* ── Dish list ── */
   .dish-list {
     list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
   }
 
   .dish {
     padding: 1.25rem 0;
     border-bottom: 1px solid var(--border);
-  }
-
-  .dish:first-child {
-    border-top: none;
   }
 
   .dish-top {
@@ -280,238 +150,24 @@ const breads = [
     margin-bottom: 0.4rem;
   }
 
-  .dish-name {
-    font-family: var(--serif) serif;
-    font-size: 18px;
-    font-weight: 300;
-    letter-spacing: 0.02em;
-    color: var(--ink);
-    line-height: 1.3;
-  }
-
   .dish-price {
-    font-family: var(--sans) sans-serif;
-    font-size: 13px;
+    font-family: var(--sans), sans-serif;
+    font-size: 16px;
     font-weight: 300;
     color: var(--ink-mid);
     white-space: nowrap;
     flex-shrink: 0;
   }
 
-  .dish-desc {
-    font-family: var(--sans) sans-serif;
-    font-size: 12px;
-    font-weight: 300;
-    letter-spacing: 0.04em;
-    color: var(--ink-mid);
-    line-height: 1.6;
-    text-transform: lowercase;
-  }
-
   .dish-note {
-    font-family: var(--sans) sans-serif;
-    font-size: 11px;
-    font-weight: 300;
-    font-style: italic;
-    color: var(--ink-light);
-    line-height: 1.7;
     margin-top: 0.5rem;
   }
 
   /* ── Footer note ── */
   .menu-footer-note {
-    font-family: var(--sans) sans-serif;
-    font-size: 11px;
-    font-weight: 300;
-    font-style: italic;
-    color: var(--ink-light);
-    line-height: 1.7;
+    font-size: 12px;
     border-top: 1px solid var(--border);
     padding-top: 1.5rem;
-  }
-
-  /* ── Sidebar ── */
-  .menu-sidebar {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-  }
-
-  .sidebar-card {
-    background: var(--warm-white);
-    border: 1px solid var(--border);
-    padding: 2.5rem 2rem;
-  }
-
-  .sidebar-card--dark {
-    background: var(--parchment);
-    border-color: rgba(22, 34, 53, 0.13);
-  }
-
-  .sidebar-eyebrow {
-    margin-bottom: 1.2rem;
-  }
-
-  .sidebar-card--dark .sidebar-eyebrow {
-    color: var(--charcoal);
-  }
-
-  .sidebar-price {
-    font-family: var(--serif), serif;
-    font-size: 2.4rem;
-    font-weight: 300;
-    color: var(--midnight);
-    line-height: 1;
-    margin-bottom: 1.2rem;
-  }
-
-  .sidebar-price span {
-    font-family: var(--sans), sans-serif;
-    font-size: 12px;
-    font-weight: 300;
-    color: var(--charcoal);
-    letter-spacing: 0.1em;
-  }
-
-  .sidebar-desc {
-    font-family: var(--serif), serif;
-    font-size: 15px;
-    font-weight: 300;
-    line-height: 1.8;
-    color: var(--midnight);
-    margin-bottom: 1.5rem;
-  }
-
-  .sidebar-sub {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    padding: 0.75rem 0;
-    border-top: 1px solid rgba(22, 34, 53, 0.13);
-    border-bottom: 1px solid rgba(22, 34, 53, 0.13);
-    margin-bottom: 1.2rem;
-  }
-
-  .sidebar-sub-label {
-    font-family: var(--sans), sans-serif;
-    font-size: 10px;
-    font-weight: 300;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--charcoal);
-  }
-
-  .sidebar-sub-value {
-    font-family: var(--sans), sans-serif;
-    font-size: 13px;
-    font-weight: 300;
-    color: var(--midnight);
-  }
-
-  /* ── Tasting courses ── */
-  .tasting-courses {
-    list-style: none;
-    border-top: 1px solid rgba(22, 34, 53, 0.13);
-    margin-bottom: 1.5rem;
-  }
-
-  .tasting-course {
-    display: grid;
-    grid-template-columns: 1.4rem 1fr;
-    column-gap: 0.75rem;
-    row-gap: 0.2rem;
-    padding: 0.85rem 0;
-    border-bottom: 1px solid rgba(22, 34, 53, 0.13);
-  }
-
-  .course-label {
-    font-family: var(--sans), sans-serif;
-    font-size: 9px;
-    font-weight: 300;
-    letter-spacing: 0.12em;
-    color: var(--charcoal);
-    text-transform: uppercase;
-    padding-top: 0.2rem;
-    grid-row: 1 / 3;
-    align-self: start;
-  }
-
-  .course-name {
-    font-family: var(--serif), serif;
-    font-size: 14px;
-    font-weight: 300;
-    color: var(--midnight);
-    letter-spacing: 0.03em;
-    line-height: 1.3;
-  }
-
-  .course-desc {
-    font-family: var(--sans), sans-serif;
-    font-size: 10px;
-    font-weight: 300;
-    letter-spacing: 0.06em;
-    color: var(--charcoal);
-    line-height: 1.5;
-    text-transform: lowercase;
-    grid-column: 2;
-  }
-
-  .sidebar-note {
-    font-family: var(--sans), sans-serif;
-    font-size: 11px;
-    font-weight: 300;
-    font-style: italic;
-    color: var(--charcoal);
-    line-height: 1.7;
-    margin-bottom: 1.8rem;
-  }
-
-  .sidebar-cta {
-    display: inline-block;
-    font-family: var(--sans), sans-serif;
-    font-size: 11px;
-    font-weight: 300;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--midnight);
-    text-decoration: none;
-    border-bottom: 1px solid rgba(22, 34, 53, 0.4);
-    padding-bottom: 2px;
-    transition: opacity 0.2s;
-  }
-
-  .sidebar-cta:hover {
-    opacity: 0.6;
-  }
-
-  /* ── Farms ── */
-  .sidebar-farms-intro {
-    font-family: var(--sans) sans-serif;
-    font-size: 12px;
-    font-weight: 300;
-    color: var(--ink-mid);
-    line-height: 1.7;
-    margin-bottom: 1.2rem;
-  }
-
-  .farms-list {
-    list-style: none;
-    border-top: 1px solid var(--border);
-  }
-
-  .farms-list li {
-    font-family: var(--sans) sans-serif;
-    font-size: 12px;
-    font-weight: 300;
-    color: var(--ink);
-    padding: 0.6rem 0;
-    border-bottom: 1px solid var(--border);
-    letter-spacing: 0.04em;
-  }
-
-  /* ── Reserve card ── */
-  .sidebar-card--reserve .sidebar-desc {
-    margin-bottom: 1.5rem;
   }
 
   /* ── Responsive ── */

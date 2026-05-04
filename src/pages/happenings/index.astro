@@ -1,0 +1,155 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import restaurant from '../../content/restaurant.json';
+import { isStoryblokConfigured } from '../../lib/storyblok';
+import { fetchAllPosts } from '../../lib/storyblok-fetch';
+
+let posts: any[] = [];
+if (isStoryblokConfigured) {
+  try {
+    posts = await fetchAllPosts();
+  } catch {
+    // fetch failed
+  }
+}
+
+function formatDate(iso: string) {
+  return new Date(iso).toLocaleDateString('en-US', {
+    year: 'numeric', month: 'long', day: 'numeric',
+  });
+}
+---
+
+<Base
+  title={`Happenings — ${restaurant.name}`}
+  description="News, events, and stories from Urban Hearth."
+>
+  <div class="happenings-page">
+
+    <PageHeader title="Happenings" lead="News, events, and stories from the restaurant." />
+
+    <div class="posts-body">
+      {posts.length === 0 ? (
+        <p class="empty">No posts yet — check back soon.</p>
+      ) : (
+        <ul class="post-list">
+          {posts.map(post => (
+            <li class="post-item">
+              <a href={`/happenings/${post.slug}`} class="post-link">
+                {post.coverImage && (
+                  <div class="post-image-wrap">
+                    <img src={post.coverImage} alt={post.title} class="post-image" loading="lazy" />
+                  </div>
+                )}
+                <div class="post-text">
+                  {post.publishedAt && <p class="post-date section-eyebrow">{formatDate(post.publishedAt)}</p>}
+                  <h2 class="post-title">{post.title}</h2>
+                  {post.excerpt && <p class="post-excerpt">{post.excerpt}</p>}
+                </div>
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+
+  </div>
+</Base>
+
+<style>
+  .happenings-page {
+    margin-top: 103px;
+  }
+
+  .posts-body {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+  }
+
+  .empty {
+    font-family: var(--serif), serif;
+    font-size: 18px;
+    font-weight: 300;
+    color: var(--ink-mid);
+    text-align: center;
+    padding: 4rem 0;
+  }
+
+  .post-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .post-item {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .post-item:first-child {
+    border-top: 1px solid var(--border);
+  }
+
+  .post-link {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 2.5rem;
+    align-items: start;
+    padding: 2.5rem 0;
+    text-decoration: none;
+    color: inherit;
+    transition: opacity 0.2s;
+  }
+
+  .post-link:hover {
+    opacity: 0.7;
+  }
+
+  .post-link:not(:has(.post-image-wrap)) {
+    grid-template-columns: 1fr;
+  }
+
+  .post-image-wrap {
+    aspect-ratio: 3 / 2;
+    overflow: hidden;
+    background: var(--parchment);
+  }
+
+  .post-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .post-date {
+    margin-bottom: 0.75rem;
+  }
+
+  .post-title {
+    font-family: var(--serif), serif;
+    font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+    font-weight: 300;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+    line-height: 1.2;
+    margin-bottom: 0.9rem;
+  }
+
+  .post-excerpt {
+    font-family: var(--serif), serif;
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--ink-mid);
+    line-height: 1.75;
+  }
+
+  @media (max-width: 600px) {
+    .post-link {
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+  }
+</style>
