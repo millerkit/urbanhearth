@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import restaurant from '../content/restaurant.json';
+import PageHeader from '../components/PageHeader.astro';
 
 const team = [
   {
@@ -51,14 +52,11 @@ const team = [
 <Base title={`The Team — ${restaurant.name}`} description="Meet the people behind Urban Hearth — the chefs, managers, and front-of-house staff who bring the restaurant to life every night.">
   <div class="team-page">
 
-    <header class="team-header page-header">
-      <p class="section-eyebrow">Cambridge, MA</p>
-      <h1>The Team</h1>
-      <p class="team-lead">The people who make the restaurant what it is, every night.</p>
+    <PageHeader title="The Team" lead="The people who make the restaurant what it is, every night.">
       <p class="team-chef-link">
         Led by <a href="/chef">Erin Miller</a>, Executive Chef &amp; Owner.
       </p>
-    </header>
+    </PageHeader>
 
     <div class="team-grid">
       {team.map((member, i) => (
@@ -93,32 +91,6 @@ const team = [
 <style>
   .team-page {
     margin-top: 103px;
-  }
-
-  /* ── Page header ── */
-  .team-header {
-    text-align: center;
-    padding: 5rem 2rem 4rem;
-    border-bottom: 1px solid var(--border);
-    background: var(--warm-white);
-  }
-
-  .team-header .section-eyebrow {
-    margin-bottom: 1.4rem;
-  }
-
-  .team-header h1 {
-    margin-bottom: 1.5rem;
-  }
-
-  .team-lead {
-    font-family: var(--serif), serif;
-    font-size: 18px;
-    font-weight: 300;
-    color: var(--ink-mid);
-    max-width: 420px;
-    margin: 0 auto;
-    line-height: 1.7;
   }
 
   .team-chef-link {

@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import restaurant from '../content/restaurant.json';
 import ReservationButton from '../components/ReservationButton.astro';
+import PageHeader from '../components/PageHeader.astro';
 import diningRoom from '../assets/photos/DiningRoomRendering.jpeg';
 import chefsCounter from '../assets/photos/ChefsCounterRendering.png';
 import bar from '../assets/photos/BarRendering.jpeg';
@@ -76,11 +77,7 @@ const areas = [
 >
   <div class="dining-page">
 
-    <header class="dining-header page-header">
-      <p class="section-eyebrow">Cambridge, MA</p>
-      <h1>Dining Areas</h1>
-      <p class="dining-lead">Three distinct experiences, each with its own character and pace.</p>
-    </header>
+    <PageHeader title="Dining Areas" lead="Three distinct experiences, each with its own character and pace." />
 
     <nav class="area-nav" aria-label="Dining areas">
       {areas.map(a => (
@@ -155,30 +152,6 @@ const areas = [
 <style>
   .dining-page {
     margin-top: 103px;
-  }
-
-  /* ── Page header ── */
-  .dining-header {
-    text-align: center;
-    padding: 5rem 2rem 4rem;
-    border-bottom: 1px solid var(--border);
-    background: var(--warm-white);
-  }
-
-  .dining-header .section-eyebrow {
-    margin-bottom: 1.4rem;
-  }
-
-  .dining-header h1 { margin-bottom: 1.5rem; }
-
-  .dining-lead {
-    font-family: var(--serif), serif;
-    font-size: 18px;
-    font-weight: 300;
-    color: var(--ink-mid);
-    max-width: 420px;
-    margin: 0 auto;
-    line-height: 1.7;
   }
 
   /* ── Quick-nav ── */

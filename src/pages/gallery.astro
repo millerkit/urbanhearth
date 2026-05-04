@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import restaurant from '../content/restaurant.json';
+import PageHeader from '../components/PageHeader.astro';
 
 import g007 from '../assets/gallery/gallery-007.jpg';
 import food1 from '../assets/photos/food-photo-1.jpeg';
@@ -27,10 +28,7 @@ const photos = [
 >
   <div class="gallery-page">
 
-    <header class="gallery-header page-header">
-      <p class="section-eyebrow">Cambridge, MA</p>
-      <h1>Gallery</h1>
-    </header>
+    <PageHeader title="Gallery" />
 
     <div class="gallery-grid">
       {photos.map((photo, i) => (
@@ -51,19 +49,6 @@ const photos = [
   .gallery-page {
     margin-top: 103px;
   }
-
-  /* ── Header ── */
-  .gallery-header {
-    text-align: center;
-    padding: 5rem 2rem 4rem;
-    border-bottom: 1px solid var(--border);
-    background: var(--warm-white);
-  }
-
-  .gallery-header .section-eyebrow {
-    margin-bottom: 1.4rem;
-  }
-
 
   /* ── Grid ── */
   .gallery-grid {

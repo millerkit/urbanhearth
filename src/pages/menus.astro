@@ -3,6 +3,7 @@ import Base from '../layouts/Base.astro';
 import restaurant from '../content/restaurant.json';
 import RestaurantHours from '../components/RestaurantHours.astro';
 import ReservationButton from '../components/ReservationButton.astro';
+import PageHeader from '../components/PageHeader.astro';
 
 const sharedPlates = [
   {
@@ -89,11 +90,7 @@ const breads = [
 >
   <div class="menus-page">
 
-    <header class="menus-header page-header">
-      <p class="section-eyebrow">Spring 2026</p>
-      <h1>Our Menus</h1>
-      <p class="menus-lead">Seasonal cooking, sourced from a close network of New England farms and fishermen.</p>
-    </header>
+    <PageHeader eyebrow={season} title="Our Menus" lead="Seasonal cooking from New England farms and fishermen." />
 
     <div class="menus-layout">
 
@@ -195,30 +192,6 @@ const breads = [
 <style>
   .menus-page {
     margin-top: 103px;
-  }
-
-  /* ── Header ── */
-  .menus-header {
-    text-align: center;
-    padding: 5rem 2rem 4rem;
-    border-bottom: 1px solid var(--border);
-    background: var(--warm-white);
-  }
-
-  .menus-header .section-eyebrow {
-    margin-bottom: 1.4rem;
-  }
-
-  .menus-header h1 { margin-bottom: 1.5rem; }
-
-  .menus-lead {
-    font-family: var(--serif), serif;
-    font-size: 18px;
-    font-weight: 300;
-    color: var(--ink);
-    max-width: 460px;
-    margin: 0 auto;
-    line-height: 1.7;
   }
 
   /* ── Two-column layout ── */

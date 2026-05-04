@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import restaurant from '../content/restaurant.json';
 import RestaurantHours from '../components/RestaurantHours.astro';
+import PageHeader from '../components/PageHeader.astro';
 
 const farms = [
   { name: 'Kimball Fruit Farm', location: 'Haverhill, MA' },
@@ -23,10 +24,7 @@ const farms = [
 >
   <div class="about-page">
 
-    <header class="about-header page-header">
-      <p class="section-eyebrow">Cambridge, MA</p>
-      <h1>About</h1>
-    </header>
+    <PageHeader title="About" />
 
     <div class="about-body">
 
@@ -88,18 +86,6 @@ const farms = [
   .about-page {
     margin-top: 103px;
   }
-
-  .about-header {
-    text-align: center;
-    padding: 5rem 2rem 4rem;
-    border-bottom: 1px solid var(--border);
-    background: var(--warm-white);
-  }
-
-  .about-header .section-eyebrow {
-    margin-bottom: 1.4rem;
-  }
-
 
   .about-body {
     max-width: 860px;
