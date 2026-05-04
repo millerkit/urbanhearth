@@ -2,16 +2,7 @@
 import Base from '../layouts/Base.astro';
 import restaurant from '../content/restaurant.json';
 
-import g000 from '../assets/gallery/gallery-000.jpg';
-import g001 from '../assets/gallery/gallery-001.jpg';
-import g002 from '../assets/gallery/gallery-002.jpg';
-import g004 from '../assets/gallery/gallery-004.jpg';
-import g005 from '../assets/gallery/gallery-005.jpg';
-import g006 from '../assets/gallery/gallery-006.jpg';
 import g007 from '../assets/gallery/gallery-007.jpg';
-import g008 from '../assets/gallery/gallery-008.jpg';
-import g009 from '../assets/gallery/gallery-009.jpg';
-
 import food1 from '../assets/photos/food-photo-1.jpeg';
 import food2 from '../assets/photos/food-photo-2.jpeg';
 import food4 from '../assets/photos/food-photo-4.jpeg';
@@ -21,20 +12,12 @@ import food6 from '../assets/photos/food-photo-6.jpeg';
 // Layout spans: 'full' = spans all 3 cols, 'wide' = 2 cols, 'normal' = 1 col
 // Rows are implicit — browser fills gaps
 const photos = [
-  { src: g002.src, alt: 'The dining room, set for service', span: 'wide' },
-  { src: g000.src, alt: 'Foraging in New England', span: 'normal' },
   { src: food1.src, alt: 'Seasonal small plate', span: 'normal' },
-  { src: g001.src, alt: 'Finishing a dish at the pass', span: 'normal' },
   { src: food2.src, alt: 'From the kitchen', span: 'normal' },
-  { src: g007.src, alt: 'Dried botanicals', span: 'normal' },
   { src: food4.src, alt: 'Seasonal plate', span: 'normal' },
-  { src: g005.src, alt: 'Late summer fruit', span: 'normal' },
-  { src: g008.src, alt: 'Roasted bird with herbs and mushrooms', span: 'normal' },
   { src: food5.src, alt: 'Kitchen preparation', span: 'normal' },
-  { src: g009.src, alt: 'Pasta in broth', span: 'normal' },
   { src: food6.src, alt: 'A course from the Chef\'s Counter', span: 'normal' },
-  { src: g004.src, alt: 'Foraging with the team', span: 'wide' },
-  { src: g006.src, alt: 'New England coastline', span: 'normal' },
+  { src: g007.src, alt: 'Dried botanicals', span: 'normal' }
 ];
 ---
 
