@@ -1,9 +1,11 @@
 import { useStoryblokApi } from '@storyblok/astro';
 import { renderRichText } from '@storyblok/astro';
 
+const sbVersion = (import.meta.env.STORYBLOK_VERSION ?? (import.meta.env.DEV ? 'draft' : 'published')) as 'draft' | 'published';
+
 export async function fetchMenu() {
   const api = useStoryblokApi();
-  const { data } = await api.get('cdn/stories/menu', { version: 'published' });
+  const { data } = await api.get('cdn/stories/menu', { version: sbVersion });
   return data.story?.content ?? null;
 }
 

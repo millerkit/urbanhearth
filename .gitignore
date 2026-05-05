@@ -26,3 +26,5 @@ pnpm-debug.log*
 
 # Claude Code local config
 .claude/
+.storyblok
+.wrangler/

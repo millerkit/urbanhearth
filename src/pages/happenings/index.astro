@@ -22,7 +22,7 @@ function formatDate(iso: string) {
 ---
 
 <Base
-  title={`Happenings — ${restaurant.name}`}
+  title={`Happenings \u2014 ${restaurant.name}`}
   description="News, events, and stories from Urban Hearth."
 >
   <div class="happenings-page">
@@ -31,7 +31,7 @@ function formatDate(iso: string) {
 
     <div class="posts-body">
       {posts.length === 0 ? (
-        <p class="empty">No posts yet — check back soon.</p>
+        <p class="empty">No posts yet &mdash; check back soon.</p>
       ) : (
         <ul class="post-list">
           {posts.map(post => (

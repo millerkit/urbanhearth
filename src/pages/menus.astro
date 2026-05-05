@@ -10,13 +10,15 @@ import { fetchMenu } from '../lib/storyblok-fetch';
 import { staticMenuSections } from '../content/static-menus.ts';
 import '../styles/menu-shared.css';
 
-// ── Fetch from Storyblok (falls back to static if not connected) ──────────────
+// Fetch from Storyblok (falls back to static if not connected)
+console.log('[menus] isStoryblokConfigured:', isStoryblokConfigured);
 let cmsMenu = null;
 if (isStoryblokConfigured) {
   try {
     cmsMenu = await fetchMenu();
-  } catch {
-    // fetch failed — static fallback in use
+    console.log('[menus] cmsMenu:', JSON.stringify(cmsMenu));
+  } catch (e) {
+    console.error('[menus] fetch error:', e);
   }
 }
 
@@ -25,7 +27,7 @@ const sections = cmsMenu?.sections ?? staticMenuSections;
 ---
 
 <Base
-  title={`Our Menus — ${restaurant.name}`}
+  title={`Our Menus \u2014 ${restaurant.name}`}
   description="The Spring 2026 menu at Urban Hearth. Seasonal à la carte dining and a nightly five-course Chef's Tasting Menu."
 >
   <div class="menus-page">
