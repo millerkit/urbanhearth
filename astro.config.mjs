@@ -1,6 +1,5 @@
 // @ts-check
 import { storyblok } from '@storyblok/astro';
-import cloudflare from '@astrojs/cloudflare';
 import { defineConfig } from 'astro/config';
 import { readFileSync } from 'fs';
 
@@ -15,7 +14,6 @@ function getToken() {
 }
 
 const token = getToken();
-const isSSR = process.env.STORYBLOK_VERSION === 'draft';
 const integrations = [];
 
 if (token) {
@@ -31,8 +29,4 @@ if (token) {
   );
 }
 
-export default defineConfig({
-  output: isSSR ? 'server' : 'static',
-  adapter: isSSR ? cloudflare() : undefined,
-  integrations,
-});
+export default defineConfig({ integrations });
