@@ -24,10 +24,11 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Write .env.local for build
+        run: echo "STORYBLOK_TOKEN=${{ secrets.STORYBLOK_TOKEN }}" > .env.local
+
       - name: Build preview Worker
         run: pnpm build:preview
-        env:
-          STORYBLOK_TOKEN: ${{ secrets.STORYBLOK_TOKEN }}
 
       - name: Deploy to Cloudflare Workers
         run: pnpm wrangler deploy --config dist/server/wrangler.json
