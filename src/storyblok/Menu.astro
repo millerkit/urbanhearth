@@ -1,0 +1,72 @@
+---
+import { storyblokEditable, StoryblokComponent } from '@storyblok/astro';
+import RestaurantHours from '../components/RestaurantHours.astro';
+import ReservationButton from '../components/ReservationButton.astro';
+import restaurant from '../content/restaurant.json';
+
+interface Props {
+  blok: {
+    sections?: any[];
+    footer_note?: string;
+  };
+}
+
+const { blok } = Astro.props;
+---
+
+<div {...storyblokEditable(blok)} class="menu-card menu-main">
+
+  <div class="menu-dining-room">
+    <div class="dining-room-text">
+      <p class="menu-eyebrow">Dining Room</p>
+      <RestaurantHours class="dining-room-hours" />
+      <p class="dining-room-hours">Walk-ins welcome; reservations recommended.</p>
+    </div>
+    <ReservationButton href={`${restaurant.reservations.href}#dining-room`} label="Reserve a table" />
+  </div>
+
+  {blok.sections?.map((section: any) => (
+    <StoryblokComponent blok={section} />
+  ))}
+
+  <p class="menu-fine-print menu-footer-note">
+    {blok.footer_note ?? 'Ask your server to see our dessert menu. Please inform your server of any dietary restrictions. A 20% gratuity is added for parties of six or more.'}
+  </p>
+
+</div>
+
+<style>
+  .menu-main {
+    padding: 2.5rem 3rem 3rem;
+  }
+
+  .menu-dining-room {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: 0 0 2rem;
+    margin-bottom: 2.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .dining-room-hours {
+    font-family: var(--sans), sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--ink-mid);
+    line-height: 1.6;
+  }
+
+  .menu-footer-note {
+    font-size: 12px;
+    border-top: 1px solid var(--border);
+    padding-top: 1.5rem;
+  }
+
+  @media (max-width: 500px) {
+    .menu-main {
+      padding: 2rem 1.25rem;
+    }
+  }
+</style>

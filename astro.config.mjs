@@ -24,6 +24,9 @@ if (token) {
       components: {
         page: 'storyblok/Page',
         feature: 'storyblok/Feature',
+        menu: 'storyblok/Menu',
+        menu_section: 'storyblok/MenuSection',
+        menu_item: 'storyblok/MenuItem',
       },
     }),
   );
