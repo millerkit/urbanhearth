@@ -5,25 +5,22 @@ import RestaurantHours from '../components/RestaurantHours.astro';
 import ReservationButton from '../components/ReservationButton.astro';
 import PageHeader from '../components/PageHeader.astro';
 import ChefsCounter from '../components/ChefsCounter.astro';
+import { StoryblokComponent } from '@storyblok/astro';
 import { isStoryblokConfigured } from '../lib/storyblok';
 import { fetchMenu } from '../lib/storyblok-fetch';
 import { staticMenuSections } from '../content/static-menus.ts';
 import '../styles/menu-shared.css';
 
-// Fetch from Storyblok (falls back to static if not connected)
-console.log('[menus] isStoryblokConfigured:', isStoryblokConfigured);
-let cmsMenu = null;
+let menuBlok: any = null;
 if (isStoryblokConfigured) {
   try {
-    cmsMenu = await fetchMenu();
-    console.log('[menus] cmsMenu:', JSON.stringify(cmsMenu));
+    menuBlok = await fetchMenu();
   } catch (e) {
     console.error('[menus] fetch error:', e);
   }
 }
 
-const season   = cmsMenu?.season   ?? 'Spring 2026';
-const sections = cmsMenu?.sections ?? staticMenuSections;
+const season = menuBlok?.season ?? 'Spring 2026';
 ---
 
 <Base
@@ -37,38 +34,43 @@ const sections = cmsMenu?.sections ?? staticMenuSections;
     <div class="menus-layout">
 
       <!-- ── À la carte ── -->
-      <div class="menu-main menu-card">
+      {menuBlok
+        ? <StoryblokComponent blok={menuBlok} />
+        : (
+          <div class="menu-main menu-card">
 
-        <div class="menu-dining-room">
-          <div class="dining-room-text">
-            <p class="menu-eyebrow">Dining Room</p>
-            <RestaurantHours class="dining-room-hours" />
-            <p class="dining-room-hours">Walk-ins welcome; reservations recommended.</p>
+            <div class="menu-dining-room">
+              <div class="dining-room-text">
+                <p class="menu-eyebrow">Dining Room</p>
+                <RestaurantHours class="dining-room-hours" />
+                <p class="dining-room-hours">Walk-ins welcome; reservations recommended.</p>
+              </div>
+              <ReservationButton href={`${restaurant.reservations.href}#dining-room`} label="Reserve a table" />
+            </div>
+
+            {staticMenuSections.map((section) => (
+              <section class="menu-section">
+                <h2 class="menu-label menu-section-title">{section.title}</h2>
+                <ul class="dish-list">
+                  {section.items.map(dish => (
+                    <li class="dish">
+                      <div class="dish-top">
+                        <span class="dish-name">{dish.name}</span>
+                        <span class="dish-price">{dish.price}</span>
+                      </div>
+                      {dish.description && <p class="dish-desc">{dish.description}</p>}
+                      {dish.note        && <p class="menu-fine-print dish-note">{dish.note}</p>}
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            ))}
+
+            <p class="menu-fine-print menu-footer-note">Ask your server to see our dessert menu. Please inform your server of any dietary restrictions. A 20% gratuity is added for parties of six or more.</p>
+
           </div>
-          <ReservationButton href={`${restaurant.reservations.href}#dining-room`} label="Reserve a table" />
-        </div>
-
-        {sections.map((section: { title: unknown; items: any[]; }) => (
-          <section class="menu-section">
-            <h2 class="menu-label menu-section-title">{section.title}</h2>
-            <ul class="dish-list">
-              {section.items.map(dish => (
-                <li class="dish">
-                  <div class="dish-top">
-                    <span class="dish-name">{dish.name}</span>
-                    <span class="dish-price">{dish.price}</span>
-                  </div>
-                  {dish.description && <p class="dish-desc">{dish.description}</p>}
-                  {dish.note        && <p class="menu-fine-print dish-note">{dish.note}</p>}
-                </li>
-              ))}
-            </ul>
-          </section>
-        ))}
-
-        <p class="menu-fine-print menu-footer-note">Ask your server to see our dessert menu. Please inform your server of any dietary restrictions. A 20% gratuity is added for parties of six or more.</p>
-
-      </div>
+        )
+      }
 
       <!-- ── Chef's Counter ── -->
       <aside class="menu-sidebar">
