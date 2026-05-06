@@ -11,69 +11,90 @@ import { fetchMenu } from '../lib/storyblok-fetch';
 import { staticMenuSections } from '../content/static-menus.ts';
 import '../styles/menu-shared.css';
 
-
 let menuBlok: any = null;
+let usingFallback = false;
+
 if (isStoryblokConfigured) {
   try {
     menuBlok = await fetchMenu();
+    if (!menuBlok) usingFallback = true;
   } catch (e) {
-    console.error('[menus] fetch error:', e);
+    console.error('[menus] Storyblok fetch failed, showing sample menu:', e);
+    usingFallback = true;
   }
+} else {
+  usingFallback = true;
 }
 
 const season = menuBlok?.season ?? 'Spring 2026';
 ---
 
 <Base
-  title={`Our Menus \u2014 ${restaurant.name}`}
-  description="The Spring 2026 menu at Urban Hearth. Seasonal à la carte dining and a nightly five-course Chef's Tasting Menu."
+  title={`Our Menus — ${restaurant.name}`}
+  description={`The ${season} menu at Urban Hearth. Seasonal à la carte dining and a nightly five-course Chef's Tasting Menu.`}
 >
   <div class="menus-page">
 
     <PageHeader eyebrow={season} title="Our Menus" lead="Seasonal cooking from New England farms and fishermen." />
 
+    <p class="menu-accuracy-note">
+      Our menu evolves with the seasons. Items and prices are subject to change — please ask your server about today’s complete offerings.
+    </p>
+
     <div class="menus-layout">
 
       <!-- ── À la carte ── -->
-      {menuBlok
-        ? <StoryblokComponent blok={menuBlok} />
-        : (
-          <div class="menu-main menu-card">
+      <div class="menu-column">
 
-            <div class="menu-dining-room">
-              <div class="dining-room-text">
-                <p class="menu-eyebrow">Dining Room</p>
-                <RestaurantHours class="dining-room-hours" />
-                <p class="dining-room-hours">Walk-ins welcome; reservations recommended.</p>
-              </div>
-              <ReservationButton href={`${restaurant.reservations.href}#dining-room`} label="Reserve a table" />
-            </div>
-
-            {staticMenuSections.map((section) => (
-              <section class="menu-section">
-                <h2 class="menu-label menu-section-title">{section.title}</h2>
-                <ul class="dish-list">
-                  {section.items.map(dish => (
-                    <li class="dish">
-                      <div class="dish-top">
-                        <span class="dish-name">{dish.name}</span>
-                        <span class="dish-price">{dish.price}</span>
-                      </div>
-                      {dish.description && <p class="dish-desc">{dish.description}</p>}
-                      {dish.note        && <p class="menu-fine-print dish-note">{dish.note}</p>}
-                    </li>
-                  ))}
-                </ul>
-              </section>
-            ))}
-
-            <p class="menu-fine-print menu-footer-note">Ask your server to see our dessert menu. Please inform your server of any dietary restrictions. A 20% gratuity is added for parties of six or more.</p>
-
+        {usingFallback && (
+          <div class="sample-notice" role="alert">
+            <strong>Sample menu</strong> — We’re having trouble loading our current menu right now.
+            Items and prices shown below are for reference only and may not reflect today’s offerings.
+            Please ask your server for the current menu.
           </div>
-        )
-      }
+        )}
 
-      <!-- ── Chef's Counter ── -->
+        {menuBlok
+          ? <StoryblokComponent blok={menuBlok} />
+          : (
+            <div class={`menu-main menu-card${usingFallback ? ' is-sample' : ''}`}>
+
+              <div class="menu-dining-room">
+                <div class="dining-room-text">
+                  <p class="menu-eyebrow">Dining Room</p>
+                  <RestaurantHours class="dining-room-hours" />
+                  <p class="dining-room-hours">Walk-ins welcome; reservations recommended.</p>
+                </div>
+                <ReservationButton href={`${restaurant.reservations.href}#dining-room`} label="Reserve a table" />
+              </div>
+
+              {staticMenuSections.map((section) => (
+                <section class="menu-section">
+                  <h2 class="menu-label menu-section-title">{section.title}</h2>
+                  <ul class="dish-list">
+                    {section.items.map(dish => (
+                      <li class="dish">
+                        <div class="dish-top">
+                          <span class="dish-name">{dish.name}</span>
+                          <span class="dish-price">{dish.price}</span>
+                        </div>
+                        {dish.description && <p class="dish-desc">{dish.description}</p>}
+                        {dish.note        && <p class="menu-fine-print dish-note">{dish.note}</p>}
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              ))}
+
+              <p class="menu-fine-print menu-footer-note">Ask your server to see our dessert menu. Please inform your server of any dietary restrictions. A 20% gratuity is added for parties of six or more.</p>
+
+            </div>
+          )
+        }
+
+      </div>
+
+      <!-- ── Chef’s Counter ── -->
       <aside class="menu-sidebar">
         <ChefsCounter />
       </aside>
@@ -93,9 +114,58 @@ const season = menuBlok?.season ?? 'Spring 2026';
     grid-template-columns: 1fr 1fr;
     align-items: start;
     max-width: 1200px;
-    margin: 4rem auto;
+    margin: 2rem auto;
     padding: 0 2.5rem;
     gap: 3rem;
+  }
+
+  .menu-column {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  /* ── Sample-menu notice ── */
+  .sample-notice {
+    background: #fef9ec;
+    border: 1px solid #e8c84a;
+    border-left: 4px solid #c9a820;
+    border-radius: 4px;
+    padding: 0.85rem 1.1rem;
+    font-family: var(--sans), sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    color: #5c4a12;
+    line-height: 1.6;
+  }
+
+  .sample-notice strong {
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-size: 11px;
+  }
+
+  /* ── Watermark on the sample card ── */
+  .menu-card.is-sample {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .menu-card.is-sample::after {
+    content: 'SAMPLE';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-30deg);
+    font-family: var(--sans), sans-serif;
+    font-size: 6rem;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    color: rgba(0, 0, 0, 0.045);
+    pointer-events: none;
+    white-space: nowrap;
+    user-select: none;
   }
 
   /* ── Main card ── */
@@ -173,6 +243,20 @@ const season = menuBlok?.season ?? 'Spring 2026';
     font-size: 12px;
     border-top: 1px solid var(--border);
     padding-top: 1.5rem;
+  }
+
+  /* ── Menu accuracy note ── */
+  .menu-accuracy-note {
+    font-family: var(--sans), sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--ink-mid);
+    line-height: 1.6;
+    text-align: center;
+    max-width: 1200px;
+    margin: 1rem auto 0;
+    padding: 0 2.5rem 2rem;
   }
 
   /* ── Responsive ── */

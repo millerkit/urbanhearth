@@ -1,4 +1,8 @@
-// ── Static fallback (used until Storyblok is connected) ──────────────────────────
+// ── Sample / fallback menu ────────────────────────────────────────────────────────
+// Shown ONLY when the Storyblok API is unavailable or the token is not configured.
+// A visible warning banner and a "SAMPLE" watermark are rendered alongside this
+// data so visitors know it may not reflect today's actual menu.
+// The live menu is always sourced from Storyblok — do NOT silently swap this in.
 export const staticMenuSections = [
   {
     title: 'Shared Plates',
