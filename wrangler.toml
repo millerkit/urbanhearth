@@ -1,0 +1,10 @@
+name = "urbanhearth-preview"
+compatibility_date = "2025-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+# This file provides the base config that @astrojs/cloudflare merges into
+# dist/server/wrangler.json during the preview build.
+# Deploy the preview Worker with: pnpm deploy:preview
+#
+# The STORYBLOK_TOKEN secret must be set once per Worker:
+#   cd dist/server && wrangler secret put STORYBLOK_TOKEN

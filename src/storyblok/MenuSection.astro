@@ -1,5 +1,6 @@
 ---
-import { storyblokEditable, StoryblokComponent } from '@storyblok/astro';
+import { storyblokEditable } from '@storyblok/astro';
+import MenuItem from './MenuItem.astro';
 
 interface Props {
   blok: {
@@ -15,7 +16,7 @@ const { blok } = Astro.props;
   <h2 class="menu-label menu-section-title">{blok.title}</h2>
   <ul class="dish-list">
     {blok.items?.map((item: any) => (
-      <StoryblokComponent blok={item} />
+      <MenuItem blok={item} />
     ))}
   </ul>
 </section>

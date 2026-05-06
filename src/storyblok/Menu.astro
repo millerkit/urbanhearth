@@ -1,5 +1,6 @@
 ---
-import { storyblokEditable, StoryblokComponent } from '@storyblok/astro';
+import { storyblokEditable } from '@storyblok/astro';
+import MenuSection from './MenuSection.astro';
 import RestaurantHours from '../components/RestaurantHours.astro';
 import ReservationButton from '../components/ReservationButton.astro';
 import restaurant from '../content/restaurant.json';
@@ -26,7 +27,7 @@ const { blok } = Astro.props;
   </div>
 
   {blok.sections?.map((section: any) => (
-    <StoryblokComponent blok={section} />
+    <MenuSection blok={section} />
   ))}
 
   <p class="menu-fine-print menu-footer-note">

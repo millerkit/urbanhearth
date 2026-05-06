@@ -5,11 +5,12 @@ import RestaurantHours from '../components/RestaurantHours.astro';
 import ReservationButton from '../components/ReservationButton.astro';
 import PageHeader from '../components/PageHeader.astro';
 import ChefsCounter from '../components/ChefsCounter.astro';
-import { StoryblokComponent } from '@storyblok/astro';
+import StoryblokComponent from '@storyblok/astro/StoryblokComponent.astro';
 import { isStoryblokConfigured } from '../lib/storyblok';
 import { fetchMenu } from '../lib/storyblok-fetch';
 import { staticMenuSections } from '../content/static-menus.ts';
 import '../styles/menu-shared.css';
+
 
 let menuBlok: any = null;
 if (isStoryblokConfigured) {
