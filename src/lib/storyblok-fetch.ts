@@ -16,8 +16,8 @@ export async function fetchMenu() {
 export async function fetchAllPosts() {
   const api = useStoryblokApi();
   const { data } = await api.get('cdn/stories', {
-    version: 'published',
-    starts_with: 'happenings/',
+    version: sbVersion,
+    starts_with: 'blog/',
     sort_by: 'content.publishedAt:desc',
   });
   return (data.stories ?? []).map((s: any) => ({
@@ -31,7 +31,8 @@ export async function fetchAllPosts() {
 
 export async function fetchPostBySlug(slug: string) {
   const api = useStoryblokApi();
-  const { data } = await api.get(`cdn/stories/happenings/${slug}`, { version: 'published' });
+  const cv = sbVersion === 'draft' ? Date.now() : undefined;
+  const { data } = await api.get(`cdn/stories/blog/${slug}`, { version: sbVersion, cv });
   const c = data.story?.content;
   if (!c) return null;
   return {
@@ -46,8 +47,8 @@ export async function fetchPostBySlug(slug: string) {
 export async function fetchAllPostSlugs(): Promise<string[]> {
   const api = useStoryblokApi();
   const { data } = await api.get('cdn/stories', {
-    version: 'published',
-    starts_with: 'happenings/',
+    version: sbVersion,
+    starts_with: 'blog/',
     per_page: 100,
   });
   return (data.stories ?? []).map((s: any) => s.slug);

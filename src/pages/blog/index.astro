@@ -22,12 +22,12 @@ function formatDate(iso: string) {
 ---
 
 <Base
-  title={`Happenings \u2014 ${restaurant.name}`}
+  title={`Blog — ${restaurant.name}`}
   description="News, events, and stories from Urban Hearth."
 >
-  <div class="happenings-page">
+  <div class="blog-page">
 
-    <PageHeader title="Happenings" lead="News, events, and stories from the restaurant." />
+    <PageHeader title="Blog" lead="News, events, and stories from the restaurant." />
 
     <div class="posts-body">
       {posts.length === 0 ? (
@@ -36,7 +36,7 @@ function formatDate(iso: string) {
         <ul class="post-list">
           {posts.map(post => (
             <li class="post-item">
-              <a href={`/happenings/${post.slug}`} class="post-link">
+              <a href={`/blog/${post.slug}`} class="post-link">
                 {post.coverImage && (
                   <div class="post-image-wrap">
                     <img src={post.coverImage} alt={post.title} class="post-image" loading="lazy" />
@@ -58,7 +58,7 @@ function formatDate(iso: string) {
 </Base>
 
 <style>
-  .happenings-page {
+  .blog-page {
     margin-top: 103px;
   }
 

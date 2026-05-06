@@ -18,7 +18,7 @@ export async function getStaticPaths() {
 const { slug } = Astro.params;
 const post = isStoryblokConfigured ? await fetchPostBySlug(slug!) : null;
 
-if (!post) return Astro.redirect('/happenings');
+if (!post) return Astro.redirect('/blog');
 
 function formatDate(iso: string) {
   return new Date(iso).toLocaleDateString('en-US', {
@@ -28,7 +28,7 @@ function formatDate(iso: string) {
 ---
 
 <Base
-  title={`${post.title} \u2014 ${restaurant.name}`}
+  title={`${post.title} — ${restaurant.name}`}
   description={post.excerpt ?? `A post from Urban Hearth.`}
 >
   <div class="post-page">
@@ -48,7 +48,7 @@ function formatDate(iso: string) {
     <div class="post-body" set:html={post.body} />
 
     <div class="post-back">
-      <a href="/happenings" class="text-cta">← All happenings</a>
+      <a href="/blog" class="text-cta">← All posts</a>
     </div>
 
   </div>
@@ -142,6 +142,21 @@ function formatDate(iso: string) {
     margin: 2rem 0 0.75rem;
   }
 
+  .post-body :global(ul),
+  .post-body :global(ol) {
+    font-family: var(--serif), serif;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1.85;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+  }
+
+  .post-body :global(li) {
+    margin-bottom: 0.5rem;
+  }
+
   .post-body :global(blockquote) {
     border-left: 2px solid var(--border);
     padding-left: 1.5rem;
@@ -150,12 +165,17 @@ function formatDate(iso: string) {
     color: var(--ink-mid);
   }
 
+  .post-body :global(a) {
+    color: var(--ink);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
   /* ── Back link ── */
   .post-back {
     max-width: 680px;
     margin: 0 auto;
-    padding: 0 2rem 4rem;
+    padding: 2rem 2rem 4rem;
     border-top: 1px solid var(--border);
-    padding-top: 2rem;
   }
 </style>
