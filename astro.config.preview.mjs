@@ -5,6 +5,20 @@
 import { storyblok } from '@storyblok/astro';
 import cloudflare from '@astrojs/cloudflare';
 import { defineConfig } from 'astro/config';
+import { readFileSync } from 'fs';
+
+// Vite resolves the config file before loading .env files, so
+// process.env.STORYBLOK_TOKEN is not yet populated from .env.local at this
+// point. Read the file directly — the same approach used in astro.config.mjs.
+function getToken() {
+  if (process.env.STORYBLOK_TOKEN) return process.env.STORYBLOK_TOKEN;
+  try {
+    const content = readFileSync(new URL('.env.local', import.meta.url), 'utf-8');
+    return content.match(/^STORYBLOK_TOKEN=(.+)$/m)?.[1]?.trim() ?? '';
+  } catch {
+    return '';
+  }
+}
 
 export default defineConfig({
   output: 'server',
@@ -13,7 +27,7 @@ export default defineConfig({
   }),
   integrations: [
     storyblok({
-      accessToken: process.env.STORYBLOK_TOKEN,
+      accessToken: getToken(),
       apiOptions: { region: 'eu' },
       components: {
         menu: 'storyblok/Menu',
