@@ -3,13 +3,13 @@ import { renderRichText } from '@storyblok/astro';
 
 const sbVersion = (import.meta.env.STORYBLOK_VERSION ?? (import.meta.env.DEV ? 'draft' : 'published')) as 'draft' | 'published';
 
-// Draft fetches include cv:Date.now() to bypass Storyblok's CDN cache so
-// saves appear immediately without waiting for cache expiry.
-const draftOptions = sbVersion === 'draft' ? { cv: Date.now() } : {};
-
 export async function fetchMenu() {
   const api = useStoryblokApi();
-  const { data } = await api.get('cdn/stories/menu', { version: sbVersion, ...draftOptions });
+  // cv:Date.now() bypasses Storyblok's CDN cache per-request so saves appear
+  // immediately. Must be inside the function, not at module level, so it's
+  // fresh on every SSR request rather than frozen at Worker startup.
+  const cv = sbVersion === 'draft' ? Date.now() : undefined;
+  const { data } = await api.get('cdn/stories/menu', { version: sbVersion, cv });
   return data.story?.content ?? null;
 }
 

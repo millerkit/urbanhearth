@@ -17,8 +17,8 @@ export default defineConfig({
       apiOptions: { region: 'eu' },
       components: {
         menu: 'storyblok/Menu',
-        menu_section: 'storyblok/MenuSection',
-        menu_item: 'storyblok/MenuItem',
+        menuSection: 'storyblok/MenuSection',
+        menuItem: 'storyblok/MenuItem',
       },
     }),
   ],
