@@ -5,28 +5,28 @@ import RestaurantHours from '../components/RestaurantHours.astro';
 import ReservationButton from '../components/ReservationButton.astro';
 import PageHeader from '../components/PageHeader.astro';
 import ChefsCounter from '../components/ChefsCounter.astro';
-import StoryblokComponent from '@storyblok/astro/StoryblokComponent.astro';
-import { isStoryblokConfigured } from '../lib/storyblok';
-import { fetchMenu } from '../lib/storyblok-fetch';
+import Menu from '../components/Menu.astro';
+import { isSanityConfigured } from '../lib/sanity';
+import { fetchMenu } from '../lib/sanity-fetch';
 import { staticMenuSections } from '../content/static-menus.ts';
 import '../styles/menu-shared.css';
 
-let menuBlok: any = null;
+let menuData: any = null;
 let usingFallback = false;
 
-if (isStoryblokConfigured) {
+if (isSanityConfigured) {
   try {
-    menuBlok = await fetchMenu();
-    if (!menuBlok) usingFallback = true;
+    menuData = await fetchMenu();
+    if (!menuData) usingFallback = true;
   } catch (e) {
-    console.error('[menus] Storyblok fetch failed, showing sample menu:', e);
+    console.error('[menus] Sanity fetch failed, showing sample menu:', e);
     usingFallback = true;
   }
 } else {
   usingFallback = true;
 }
 
-const season = menuBlok?.season ?? 'Spring 2026';
+const season = menuData?.season ?? 'Spring 2026';
 ---
 
 <Base
@@ -54,8 +54,8 @@ const season = menuBlok?.season ?? 'Spring 2026';
           </div>
         )}
 
-        {menuBlok
-          ? <StoryblokComponent blok={menuBlok} />
+        {menuData
+          ? <Menu blok={menuData} />
           : (
             <div class={`menu-main menu-card${usingFallback ? ' is-sample' : ''}`}>
 

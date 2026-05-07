@@ -10,16 +10,24 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "build:preview": "STORYBLOK_VERSION=draft astro build --config astro.config.preview.mjs && node scripts/fix-preview-wrangler.mjs",
-    "deploy:preview": "pnpm build:preview && wrangler deploy --config dist/server/wrangler.json"
+    "build:preview": "SANITY_PREVIEW=true astro build --config astro.config.preview.mjs && node scripts/fix-preview-wrangler.mjs",
+    "deploy:preview": "pnpm build:preview && wrangler deploy --config dist/server/wrangler.json",
+    "sanity:dev": "sanity dev",
+    "sanity:deploy": "sanity deploy"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^13.3.1",
+    "@portabletext/to-html": "^5.0.2",
+    "@sanity/client": "^7.22.0",
     "@storyblok/astro": "^9.0.5",
     "astro": "^6.2.1",
-    "sharp": "^0.34.5"
+    "sharp": "^0.34.5",
+    "styled-components": "^6.4.1"
   },
   "devDependencies": {
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6",
+    "sanity": "^5.24.0",
     "wrangler": "^4.88.0"
   }
 }

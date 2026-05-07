@@ -1,11 +1,11 @@
 ---
 import Base from '../../layouts/Base.astro';
 import restaurant from '../../content/restaurant.json';
-import { isStoryblokConfigured } from '../../lib/storyblok';
-import { fetchPostBySlug, fetchAllPostSlugs } from '../../lib/storyblok-fetch';
+import { isSanityConfigured } from '../../lib/sanity';
+import { fetchPostBySlug, fetchAllPostSlugs } from '../../lib/sanity-fetch';
 
 export async function getStaticPaths() {
-  if (!isStoryblokConfigured) return [];
+  if (!isSanityConfigured) return [];
   let slugs: string[] = [];
   try {
     slugs = await fetchAllPostSlugs();
@@ -16,7 +16,7 @@ export async function getStaticPaths() {
 }
 
 const { slug } = Astro.params;
-const post = isStoryblokConfigured ? await fetchPostBySlug(slug!) : null;
+const post = isSanityConfigured ? await fetchPostBySlug(slug!) : null;
 
 if (!post) return Astro.redirect('/blog');
 

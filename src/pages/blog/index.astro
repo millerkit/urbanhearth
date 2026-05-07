@@ -2,11 +2,11 @@
 import Base from '../../layouts/Base.astro';
 import PageHeader from '../../components/PageHeader.astro';
 import restaurant from '../../content/restaurant.json';
-import { isStoryblokConfigured } from '../../lib/storyblok';
-import { fetchAllPosts } from '../../lib/storyblok-fetch';
+import { isSanityConfigured } from '../../lib/sanity';
+import { fetchAllPosts } from '../../lib/sanity-fetch';
 
 let posts: any[] = [];
-if (isStoryblokConfigured) {
+if (isSanityConfigured) {
   try {
     posts = await fetchAllPosts();
   } catch {
