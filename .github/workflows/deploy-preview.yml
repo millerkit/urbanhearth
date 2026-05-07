@@ -3,6 +3,9 @@ name: Deploy preview Worker
 on:
   repository_dispatch:
     types: [sanity-preview-deploy]
+  push:
+    branches: [main]
+  workflow_dispatch:
 
 concurrency:
   group: preview-deploy
