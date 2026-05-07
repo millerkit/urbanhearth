@@ -1,43 +1,36 @@
-# Astro Starter Kit: Minimal
+# Urban Hearth
+
+Restaurant website for Urban Hearth, built with Astro and Sanity.
+
+## Development
 
 ```sh
-pnpm create astro@latest -- --template minimal
+pnpm install       # Install dependencies
+pnpm dev           # Start local dev server at localhost:4321
+pnpm build         # Build production site to ./dist/
+pnpm sanity:dev    # Start Sanity Studio
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Environments
 
-## 🚀 Project Structure
+| Environment | URL | How it deploys |
+| :---------- | :-- | :------------- |
+| **Production** | `urbanhearth.pages.dev` | Cloudflare Pages — auto-deploys on push to `main` |
+| **Preview** | `urbanhearth-preview.kmillercc.workers.dev` | Cloudflare Worker — deploys via GitHub Actions on push to `main` |
 
-Inside of your Astro project, you'll see the following folders and files:
+**Production** is a static build (`astro.config.mjs`) that fetches Sanity content at build time.
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+**Preview** is an SSR build (`astro.config.preview.mjs`) that fetches Sanity draft content at request time. To deploy manually: `pnpm deploy:preview`.
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Environment Variables
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+### Production (Cloudflare Pages build settings)
+- `SANITY_PROJECT_ID` — Sanity project ID
+- `SANITY_DATASET` — `production`
+- `NODE_VERSION` — `22.15.0`
 
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+### Preview (GitHub Actions secrets)
+- `SANITY_PROJECT_ID`
+- `SANITY_API_TOKEN` — required for draft content access
+- `CLOUDFLARE_API_TOKEN`
+- `CLOUDFLARE_ACCOUNT_ID`
