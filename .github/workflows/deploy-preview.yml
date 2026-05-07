@@ -4,6 +4,10 @@ on:
   repository_dispatch:
     types: [sanity-preview-deploy]
 
+concurrency:
+  group: preview-deploy
+  cancel-in-progress: true
+
 jobs:
   deploy:
     name: Build and deploy preview Worker
