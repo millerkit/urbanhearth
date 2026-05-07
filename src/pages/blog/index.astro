@@ -6,11 +6,13 @@ import { isSanityConfigured } from '../../lib/sanity';
 import { fetchAllPosts } from '../../lib/sanity-fetch';
 
 let posts: any[] = [];
+let fetchError: string | null = null;
 if (isSanityConfigured) {
   try {
     posts = await fetchAllPosts();
-  } catch {
-    // fetch failed
+  } catch (e) {
+    fetchError = e instanceof Error ? e.message : String(e);
+    console.error('[blog] fetchAllPosts failed:', fetchError);
   }
 }
 
