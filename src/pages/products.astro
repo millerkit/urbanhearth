@@ -1,0 +1,326 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import AgeGate from '../components/AgeGate.astro';
+import restaurant from '../content/restaurant.json';
+import productPlaceholder from '../assets/photos/food-photo-1.jpeg';
+
+const categories = [
+  {
+    id: 'food',
+    number: '01',
+    label: 'From the Kitchen',
+    description: 'Dishes and staples made in our kitchen, ready to finish at home. The same ingredients, the same care — just a different table.',
+    products: [
+      { name: 'Buttermilk Biscuits', note: 'Frozen · dozen · bake from frozen',   price: '$18' },
+      { name: 'Short Rib Ragù',      note: 'Frozen · 32 oz · serves 4',            price: '$32' },
+      { name: 'Cultured Butter',     note: 'Refrigerated · 8 oz · salted & plain', price: '$14' },
+    ],
+  },
+  {
+    id: 'bottled-cocktails',
+    number: '02',
+    label: 'Bottled Cocktails',
+    description: 'Our bar program, bottled. Cocktails formulated and balanced for at-home serving — no special equipment required.',
+    products: [
+      { name: 'Negroni',           note: '375 ml · serves 3–4',   price: '$28' },
+      { name: 'Boulevardier',      note: '375 ml · serves 3–4',   price: '$30' },
+      { name: 'Old Fashioned',     note: '375 ml · serves 3–4',   price: '$32' },
+      { name: 'Mezcal Sour',       note: '375 ml · serves 3–4',   price: '$30' },
+    ],
+  },
+  {
+    id: 'bar-mixers',
+    number: '03',
+    label: 'Bar Mixers',
+    description: 'House-made syrups, shrubs, and mixers crafted in our kitchen with the same ingredients we use on the line.',
+    products: [
+      { name: 'House Grenadine',          note: '8 oz',   price: '$14' },
+      { name: 'Honey-Lavender Syrup',     note: '8 oz',   price: '$16' },
+      { name: 'Spiced Citrus Shrub',      note: '8 oz',   price: '$18' },
+      { name: 'Ginger-Cardamom Syrup',    note: '8 oz',   price: '$16' },
+    ],
+  },
+  {
+    id: 'non-alcoholic',
+    number: '04',
+    label: 'Non-Alcoholic',
+    description: 'Thoughtfully crafted zero-proof beverages — complex enough to stand on their own.',
+    products: [
+      { name: 'Sparkling Herb Tonic',     note: '750 ml',   price: '$12' },
+      { name: 'Shrub Soda Concentrate',   note: '12 oz',    price: '$16' },
+      { name: 'Cold Brew Mushroom Tea',   note: '16 oz',    price: '$14' },
+    ],
+  },
+];
+---
+
+<Base
+  title={`Products — ${restaurant.name}`}
+  description="Shop bottled cocktails, bar mixers, and non-alcoholic beverages from Urban Hearth's bar program."
+>
+  <AgeGate />
+
+  <div class="products-page">
+
+    <PageHeader
+      eyebrow="From Our Kitchen & Bar"
+      title="Shop"
+      lead="Take Urban Hearth home. Food, bottled cocktails, house mixers, and zero-proof drinks — all made in our kitchen."
+    />
+
+    <div class="shop-notice">
+      <p class="notice-text">Online ordering is opening soon. <a href={`mailto:${restaurant.privateDiningEmail}`} class="notice-link">Contact us</a> to place an order for pickup.</p>
+    </div>
+
+    {categories.map((cat, i) => (
+      <section class="category" id={cat.id}>
+
+        <div class="cat-header">
+          <span class="cat-num section-eyebrow">{cat.number}</span>
+          <h2 class="cat-title">{cat.label}</h2>
+          <p class="cat-desc">{cat.description}</p>
+        </div>
+
+        <div class="product-grid">
+          {cat.products.map(p => (
+            <div class="product-card">
+              <img src={productPlaceholder.src} alt="" class="product-image" loading="lazy" />
+              <div class="product-info">
+                <h3 class="product-name">{p.name}</h3>
+                <p class="product-note">{p.note}</p>
+              </div>
+              <div class="product-footer">
+                <span class="product-price">{p.price}</span>
+                <button class="product-cta" disabled aria-label={`Add ${p.name} to cart — coming soon`}>Coming Soon</button>
+              </div>
+            </div>
+          ))}
+        </div>
+
+      </section>
+    ))}
+
+    <section class="pickup-band">
+      <p class="section-eyebrow">Order Ahead</p>
+      <p class="pickup-text">All products are available for in-restaurant pickup during dining hours. Contact us to arrange an order.</p>
+      <a href={`mailto:${restaurant.privateDiningEmail}`} class="text-cta">Get in touch</a>
+    </section>
+
+  </div>
+</Base>
+
+<style>
+  .products-page {
+    margin-top: 103px;
+  }
+
+  /* ── Coming-soon notice ── */
+  .shop-notice {
+    background: var(--parchment);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 2rem;
+    text-align: center;
+  }
+
+  .notice-text {
+    font-family: var(--sans), sans-serif;
+    font-size: 12px;
+    font-weight: 300;
+    letter-spacing: 0.06em;
+    color: var(--ink-mid);
+  }
+
+  .notice-link {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(22, 34, 53, 0.3);
+    transition: opacity 0.2s;
+  }
+
+  .notice-link:hover {
+    opacity: 0.6;
+  }
+
+  /* ── Category section ── */
+  .category {
+    border-bottom: 1px solid var(--border);
+    padding: 4rem 2.5rem;
+  }
+
+  .cat-header {
+    max-width: 1100px;
+    margin: 0 auto 3rem;
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    grid-template-rows: auto auto;
+    column-gap: 1.5rem;
+    align-items: start;
+  }
+
+  .cat-num {
+    grid-row: 1 / 3;
+    padding-top: 5px;
+    color: var(--ink-light);
+  }
+
+  .cat-title {
+    font-family: var(--serif), serif;
+    font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+    font-weight: 300;
+    letter-spacing: 0.07em;
+    color: var(--ink);
+    line-height: 1.1;
+    margin-bottom: 0.75rem;
+  }
+
+  .cat-desc {
+    font-family: var(--serif), serif;
+    font-size: 17px;
+    font-weight: 300;
+    line-height: 1.75;
+    color: var(--ink-mid);
+    max-width: 560px;
+  }
+
+  /* ── Product grid ── */
+  .product-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .product-card {
+    background: var(--warm-white);
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .product-image {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    flex-shrink: 0;
+    background: var(--parchment);
+  }
+
+  .product-info {
+    padding: 1.25rem 1.25rem 0.75rem;
+    flex: 1;
+  }
+
+  .product-name {
+    font-family: var(--serif), serif;
+    font-size: 18px;
+    font-weight: 300;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+    line-height: 1.2;
+    margin-bottom: 0.4rem;
+  }
+
+  .product-note {
+    font-family: var(--sans), sans-serif;
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+  }
+
+  .product-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1.25rem 1.25rem;
+    gap: 1rem;
+  }
+
+  .product-price {
+    font-family: var(--sans), sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+  }
+
+  .product-cta {
+    font-family: var(--sans), sans-serif;
+    font-size: 10px;
+    font-weight: 300;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+    background: transparent;
+    border: 1px solid var(--border);
+    padding: 0.6rem 1rem;
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  /* ── Pickup band ── */
+  .pickup-band {
+    text-align: center;
+    padding: 5rem 2rem;
+    background: var(--warm-white);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  .pickup-text {
+    font-family: var(--serif), serif;
+    font-size: 18px;
+    font-weight: 300;
+    color: var(--ink);
+    max-width: 420px;
+    line-height: 1.75;
+    margin: 0;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 900px) {
+    .product-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 600px) {
+    .products-page {
+      margin-top: 60px;
+    }
+
+    .category {
+      padding: 3rem 1.5rem;
+    }
+
+    .cat-header {
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .cat-num {
+      grid-row: auto;
+    }
+
+    .product-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 400px) {
+    .product-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

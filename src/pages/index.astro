@@ -8,10 +8,37 @@ import ChefsCounterRendering from '../assets/photos/ChefsCounterRendering.png';
 import BarRendering from '../assets/photos/BarRendering.jpeg';
 import michelinSeal from '../assets/ui/michelin-selected.png';
 import jamesBeardSeal from '../assets/ui/james-beard-seal.png';
-import IntroStatement from '../components/IntroStatement.astro'
+import IntroStatement from '../components/IntroStatement.astro';
+import splashLogo from '../assets/brand/UrbanHearth_Logo_BLACK_cropped.png';
 ---
 
 <Base title="Urban Hearth — Cambridge, MA">
+  <Fragment slot="head">
+    <script is:inline>
+      (function () {
+        const KEY = 'uh_splash_ts';
+        const SEVEN_DAYS = 7 * 24 * 60 * 60 * 1000;
+        try {
+          const last = localStorage.getItem(KEY);
+          if (last && Date.now() - Number(last) < SEVEN_DAYS) {
+            const s = document.createElement('style');
+            s.textContent = '#splash{display:none!important}';
+            document.head.appendChild(s);
+          } else {
+            localStorage.setItem(KEY, String(Date.now()));
+          }
+        } catch (_) {}
+      })();
+    </script>
+  </Fragment>
+  <div id="splash" aria-hidden="true">
+    <img src={splashLogo.src} alt="Urban Hearth" class="splash-logo" />
+    <p class="splash-location">
+      <span>Inman Square</span>
+      <span>Cambridge, Massachusetts</span>
+    </p>
+  </div>
+
   <Hero src={DiningRoomRendering} />
 
   <IntroStatement/>
@@ -248,4 +275,65 @@ import IntroStatement from '../components/IntroStatement.astro'
       height: 72px;
     }
   }
+
 </style>
+
+<style is:global>
+  /* ── Splash overlay ── */
+  #splash {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: var(--parchment);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    animation: splash-out 0.6s ease 1.6s forwards;
+  }
+
+  #splash .splash-logo {
+    width: min(240px, 48vw);
+    height: auto;
+    animation: splash-logo-in 0.7s ease forwards;
+  }
+
+  #splash .splash-location {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+    margin-top: 2.75rem;
+    animation: splash-logo-in 0.7s ease 0.3s both;
+  }
+
+  #splash .splash-location span {
+    font-family: var(--sans), sans-serif;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--charcoal);
+  }
+
+  @keyframes splash-logo-in {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes splash-out {
+    from { opacity: 1; }
+    to   { opacity: 0; }
+  }
+</style>
+
+<script>
+  const splash = document.getElementById('splash');
+  if (splash) {
+    splash.addEventListener('animationend', (e) => {
+      if (e.animationName === 'splash-out') {
+        splash.remove();
+      }
+    });
+  }
+</script>
