@@ -1,0 +1,174 @@
+---
+import logo from '../assets/brand/UrbanHearth_Logo_BLACK_cropped.png';
+---
+
+<div id="age-gate" aria-modal="true" role="dialog" aria-label="Age verification">
+  <div class="ag-inner">
+    <img src={logo.src} alt="Urban Hearth" class="ag-logo" />
+    <p class="ag-eyebrow section-eyebrow">Age Verification</p>
+    <h2 class="ag-heading">You must be 21 or older to enter this page.</h2>
+    <p class="ag-subtext">Some of our products contain alcohol. Please confirm your age before continuing.</p>
+    <div class="ag-actions">
+      <button id="age-gate-yes" class="ag-btn ag-btn--yes">Yes, I'm 21 or older</button>
+      <button id="age-gate-no"  class="ag-btn ag-btn--no">No, take me back</button>
+    </div>
+    <p class="ag-legal">By entering, you confirm you are of legal drinking age in your jurisdiction. Urban Hearth complies with all applicable alcohol sales regulations.</p>
+  </div>
+</div>
+
+<div id="age-gate-blocked" aria-live="polite" hidden>
+  <div class="ag-inner">
+    <img src={logo.src} alt="Urban Hearth" class="ag-logo" />
+    <p class="ag-eyebrow section-eyebrow">Access Restricted</p>
+    <h2 class="ag-heading">You must be 21 or older to view this page.</h2>
+    <p class="ag-subtext">We're unable to show this content to visitors under 21. Visit our <a href="/" class="ag-link">main site</a> to explore the restaurant.</p>
+  </div>
+</div>
+
+<script>
+  const STORAGE_KEY = 'uh_age_verified';
+  const gate        = document.getElementById('age-gate');
+  const blocked     = document.getElementById('age-gate-blocked');
+
+  function showBlocked() {
+    gate?.setAttribute('hidden', '');
+    blocked?.removeAttribute('hidden');
+    document.body.style.overflow = '';
+  }
+
+  function dismiss() {
+    gate?.setAttribute('hidden', '');
+    document.body.style.overflow = '';
+  }
+
+  if (sessionStorage.getItem(STORAGE_KEY) === '1') {
+    dismiss();
+  } else {
+    gate?.removeAttribute('hidden');
+    document.body.style.overflow = 'hidden';
+  }
+
+  document.getElementById('age-gate-yes')?.addEventListener('click', () => {
+    sessionStorage.setItem(STORAGE_KEY, '1');
+    dismiss();
+  });
+
+  document.getElementById('age-gate-no')?.addEventListener('click', showBlocked);
+</script>
+
+<style>
+  #age-gate,
+  #age-gate-blocked {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: var(--midnight);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+
+  #age-gate[hidden],
+  #age-gate-blocked[hidden] {
+    display: none;
+  }
+
+  .ag-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 460px;
+    width: 100%;
+  }
+
+  .ag-logo {
+    height: 28px;
+    width: auto;
+    margin-bottom: 3rem;
+    filter: invert(1);
+    opacity: 0.85;
+  }
+
+  .ag-eyebrow {
+    color: rgba(232, 227, 223, 0.5);
+    margin-bottom: 1.25rem;
+  }
+
+  .ag-heading {
+    font-family: var(--serif), serif;
+    font-size: clamp(1.5rem, 3vw, 2.1rem);
+    font-weight: 300;
+    letter-spacing: 0.06em;
+    color: var(--parchment);
+    line-height: 1.25;
+    margin-bottom: 1.25rem;
+  }
+
+  .ag-subtext {
+    font-family: var(--sans), sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(232, 227, 223, 0.6);
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+  }
+
+  .ag-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    width: 100%;
+    max-width: 280px;
+    margin-bottom: 2.5rem;
+  }
+
+  .ag-btn {
+    font-family: var(--sans), sans-serif;
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: none;
+    padding: 1.15rem 2rem;
+    transition: opacity 0.2s;
+  }
+
+  .ag-btn:hover {
+    opacity: 0.75;
+  }
+
+  .ag-btn--yes {
+    background: var(--parchment);
+    color: var(--midnight);
+  }
+
+  .ag-btn--no {
+    background: transparent;
+    color: rgba(232, 227, 223, 0.5);
+    border: 1px solid rgba(232, 227, 223, 0.2);
+  }
+
+  .ag-legal {
+    font-family: var(--sans), sans-serif;
+    font-size: 10px;
+    font-weight: 300;
+    letter-spacing: 0.04em;
+    color: rgba(232, 227, 223, 0.3);
+    line-height: 1.7;
+    max-width: 380px;
+  }
+
+  .ag-link {
+    color: rgba(232, 227, 223, 0.6);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(232, 227, 223, 0.3);
+    transition: opacity 0.2s;
+  }
+
+  .ag-link:hover {
+    opacity: 0.6;
+  }
+</style>
