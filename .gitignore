@@ -26,8 +26,5 @@ pnpm-debug.log*
 
 # Claude Code local config
 .claude/
-.storyblok
+.sanity/
 .wrangler/
-
-# utility stuff, misc
-/storyblok-import/
