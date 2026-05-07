@@ -6,6 +6,6 @@ compatibility_flags = ["nodejs_compat"]
 # dist/server/wrangler.json during the preview build.
 # Deploy the preview Worker with: pnpm deploy:preview
 #
-# STORYBLOK_TOKEN is baked into the Worker bundle at build time — it does
+# SANITY_PROJECT_ID is baked into the Worker bundle at build time — it does
 # NOT need to be set as a Cloudflare runtime secret. The GitHub Actions
-# secret STORYBLOK_TOKEN supplies it during CI builds.
+# secret SANITY_PROJECT_ID supplies it during CI builds.

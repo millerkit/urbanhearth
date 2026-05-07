@@ -1,9 +1,8 @@
 name: Deploy preview Worker
 
 on:
-  push:
-    branches:
-      - main
+  repository_dispatch:
+    types: [sanity-preview-deploy]
 
 jobs:
   deploy:
@@ -24,13 +23,10 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Write .env.local for build
-        run: echo "STORYBLOK_TOKEN=${{ secrets.STORYBLOK_TOKEN }}" > .env.local
-
-      - name: Build preview Worker
-        run: pnpm build:preview
-
-      - name: Deploy to Cloudflare Workers
-        run: pnpm wrangler deploy --config dist/server/wrangler.json
+      - name: Build and deploy preview Worker
+        run: pnpm deploy:preview
         env:
+          SANITY_PROJECT_ID: ${{ secrets.SANITY_PROJECT_ID }}
+          SANITY_DATASET: production
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
