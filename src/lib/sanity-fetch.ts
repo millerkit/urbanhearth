@@ -12,6 +12,7 @@ const client = import.meta.env.SANITY_PROJECT_ID
       apiVersion: '2025-01-01',
       useCdn: !isPreview && !import.meta.env.DEV,
       perspective: isPreview ? 'previewDrafts' : 'published',
+      token: isPreview ? import.meta.env.SANITY_API_TOKEN : undefined,
     })
   : null;
 
