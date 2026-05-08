@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import ReservationButton from '../components/ReservationButton.astro';
+import restaurant from '../content/restaurant.json';
 
 import DiningRoomRendering from '../assets/photos/DiningRoomRendering.jpeg';
 import ChefsCounterRendering from '../assets/photos/ChefsCounterRendering.png';
@@ -10,10 +11,49 @@ import michelinSeal from '../assets/ui/michelin-selected.png';
 import jamesBeardSeal from '../assets/ui/james-beard-seal.png';
 import IntroStatement from '../components/IntroStatement.astro';
 import splashLogo from '../assets/brand/UrbanHearth_Logo_BLACK_cropped.png';
+
+const restaurantJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": restaurant.name,
+  "url": restaurant.url,
+  "telephone": restaurant.phone,
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "1281 Cambridge St",
+    "addressLocality": "Cambridge",
+    "addressRegion": "MA",
+    "postalCode": "02139",
+    "addressCountry": "US"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 42.3732,
+    "longitude": -71.0989
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+      "opens": "17:00",
+      "closes": "22:00"
+    }
+  ],
+  "servesCuisine": "New American",
+  "priceRange": "$$$",
+  "description": restaurant.tagline,
+  "hasMap": "https://maps.google.com/?q=1281+Cambridge+St+Cambridge+MA",
+  "sameAs": [
+    restaurant.url,
+    restaurant.social.facebook,
+    restaurant.social.instagram,
+  ]
+};
 ---
 
 <Base title="Urban Hearth — Cambridge, MA">
   <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(restaurantJsonLd)} />
     <script is:inline>
       (function () {
         const KEY = 'uh_splash_ts';
@@ -199,7 +239,7 @@ import splashLogo from '../assets/brand/UrbanHearth_Logo_BLACK_cropped.png';
 
   .teaser-desc {
     font-family: var(--serif) serif;
-    font-size: 16px;
+    font-size: var(--text-base);
     font-weight: 300;
     line-height: 1.75;
     color: var(--ink-mid);
@@ -223,7 +263,7 @@ import splashLogo from '../assets/brand/UrbanHearth_Logo_BLACK_cropped.png';
 
   .booking-tagline {
     font-family: var(--serif),serif;
-    font-size: 19px;
+    font-size: 1.1875rem;
     font-weight: 300;
     line-height: 1.75;
     color: var(--ink);

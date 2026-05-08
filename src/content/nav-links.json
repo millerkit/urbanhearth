@@ -38,6 +38,10 @@
 		"href": "/blog"
 	},
 	{
+		"label": "Private Events",
+		"href": "/privateevents"
+	},
+	{
 		"label": "Products",
 		"href": "/products"
 	}

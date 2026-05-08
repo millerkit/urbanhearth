@@ -25,12 +25,37 @@ function formatDate(iso: string) {
     year: 'numeric', month: 'long', day: 'numeric',
   });
 }
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? restaurant.url).href;
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": post.title,
+  "description": post.excerpt ?? undefined,
+  "datePublished": post.publishedAt ?? undefined,
+  "image": post.coverImage ?? undefined,
+  "url": canonicalURL,
+  "author": {
+    "@type": "Organization",
+    "name": restaurant.name,
+    "url": restaurant.url,
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": restaurant.name,
+    "url": restaurant.url,
+  },
+};
 ---
 
 <Base
   title={`${post.title} — ${restaurant.name}`}
   description={post.excerpt ?? `A post from Urban Hearth.`}
+  ogImage={post.coverImage ?? undefined}
+  ogType="article"
 >
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(articleJsonLd)} />
   <div class="post-page">
 
     <div class="post-header">
@@ -84,9 +109,9 @@ function formatDate(iso: string) {
 
   .post-excerpt {
     font-family: var(--serif), serif;
-    font-size: 18px;
+    font-size: var(--text-md);
     font-weight: 300;
-    color: var(--ink-mid);
+    color: var(--ink);
     max-width: 540px;
     margin: 0 auto;
     line-height: 1.7;
@@ -102,7 +127,9 @@ function formatDate(iso: string) {
   .post-cover img {
     width: 100%;
     height: auto;
+    aspect-ratio: 3 / 2;
     display: block;
+    object-fit: cover;
   }
 
   /* ── Body ── */
@@ -114,7 +141,7 @@ function formatDate(iso: string) {
 
   .post-body :global(p) {
     font-family: var(--serif), serif;
-    font-size: 18px;
+    font-size: var(--text-md);
     font-weight: 300;
     line-height: 1.85;
     color: var(--ink);
@@ -143,7 +170,7 @@ function formatDate(iso: string) {
   .post-body :global(ul),
   .post-body :global(ol) {
     font-family: var(--serif), serif;
-    font-size: 18px;
+    font-size: var(--text-md);
     font-weight: 300;
     line-height: 1.85;
     color: var(--ink);

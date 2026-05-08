@@ -1,15 +1,20 @@
 {
-  "name": "Urban Hearth",
-  "tagline": "A quiet refuge from the city. Seasonal cooking and unhurried hospitality in Inman Square Cambridge.",
-  "address": "1281 Cambridge St, Cambridge, MA 02139",
-  "phone": "617 682 7295",
-  "reservations": {
-    "label": "Make a reservation",
-    "shortLabel": "Reserve",
-    "href": "/reservations"
-  },
-  "hours": [
-    "Tuesday – Sunday: 5:00 — 10:00 pm"
-  ],
-  "privateDiningEmail": "events@urbanhearth.com"
+	"name": "Urban Hearth",
+	"url": "https://www.urbanhearth.net",
+	"tagline": "A quiet refuge from the city. Seasonal cooking and unhurried hospitality in Inman Square Cambridge.",
+	"address": "1281 Cambridge St, Cambridge, MA 02139",
+	"phone": "617 682 7295",
+	"reservations": {
+		"label": "Make a reservation",
+		"shortLabel": "Reserve",
+		"href": "/reservations"
+	},
+	"hours": [
+		"Tuesday – Sunday: 5:00 — 10:00 pm"
+	],
+	"privateDiningEmail": "info@urbanhearth.com",
+	"social": {
+		"facebook": "https://www.facebook.com/urbanhearthcambridge",
+		"instagram": "https://www.instagram.com/urban_hearth"
+	}
 }
