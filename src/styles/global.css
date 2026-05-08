@@ -12,14 +12,21 @@
   --warm-white: #F4F1EE;         /* page bg; slightly lighter than parchment */
   --ink: #162235;                /* = midnight; body text, headings */
   --ink-mid: #706F6D;            /* = charcoal; secondary text */
-  --ink-light: #A9A8A6;          /* muted/tertiary text */
+  --ink-light: #706F6D;          /* alias to charcoal — #A9A8A6 was too low-contrast */
   --border: rgba(22, 34, 53, 0.1);
   --serif: 'Cormorant Garamond', Georgia, serif;   /* Cardinal Classic Short substitute */
   --sans: 'DM Sans', sans-serif;                   /* Basic Commercial substitute */
   --display: 'Outfit', sans-serif;                 /* Contax Sans substitute — headlines only */
+
+  /* Type scale */
+  --text-fine:  11px;      /* nav chrome, CTAs, decorative separators */
+  --text-label: 12px;      /* section eyebrows, column headers, meta labels */
+  --text-sm:    0.875rem;  /* secondary body, descriptions — 14px @ 16px base */
+  --text-base:  1rem;      /* standard body, list items — 16px */
+  --text-md:    1.125rem;  /* comfortable reading paragraphs — 18px */
 }
 
-html { font-size: 16px; scroll-behavior: smooth; }
+html { font-size: 100%; scroll-behavior: smooth; }
 
 body {
   background: var(--warm-white);
@@ -31,7 +38,7 @@ body {
 /* Shared utility classes */
 .section-eyebrow {
   font-family: var(--sans), sans-serif;
-  font-size: 11px;
+  font-size: var(--text-label);
   font-weight: 300;
   letter-spacing: 0.22em;
   text-transform: uppercase;
