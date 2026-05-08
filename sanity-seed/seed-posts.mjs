@@ -12,6 +12,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { randomUUID } from 'node:crypto'
+import { Readable } from 'node:stream'
 import { createClient } from '@sanity/client'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
@@ -39,7 +40,7 @@ const posts = JSON.parse(fs.readFileSync(path.join(__dirname, 'posts.json'), 'ut
 
 const uploadedImages = new Map()
 
-async function uploadImage(filePath, label) {
+async function uploadImage(filePath) {
   if (uploadedImages.has(filePath)) return uploadedImages.get(filePath)
 
   const absPath = path.join(__dirname, filePath)
@@ -52,6 +53,23 @@ async function uploadImage(filePath, label) {
   console.log(`  Uploading image: ${filename}`)
   const asset = await client.assets.upload('image', fs.createReadStream(absPath), { filename })
   uploadedImages.set(filePath, asset._id)
+  return asset._id
+}
+
+async function uploadImageFromUrl(url) {
+  if (uploadedImages.has(url)) return uploadedImages.get(url)
+
+  const filename = new URL(url).pathname.split('/').pop()?.split('~')[0] || 'image.jpg'
+  console.log(`  Uploading from URL: ${filename}`)
+  const res = await fetch(url)
+  if (!res.ok) {
+    console.warn(`  Failed to fetch image URL: ${url}`)
+    return null
+  }
+  const contentType = res.headers.get('content-type') || 'image/jpeg'
+  const stream = Readable.fromWeb(res.body)
+  const asset = await client.assets.upload('image', stream, { filename, contentType })
+  uploadedImages.set(url, asset._id)
   return asset._id
 }
 
@@ -81,7 +99,9 @@ async function buildBody(nodes) {
     } else if (node.type === 'bullet_list') {
       for (const item of node.items) blocks.push(bulletBlock(item))
     } else if (node.type === 'image') {
-      const assetId = await uploadImage(node.file, node.alt)
+      const assetId = node.url
+        ? await uploadImageFromUrl(node.url)
+        : await uploadImage(node.file)
       if (assetId) {
         blocks.push({
           _type: 'image',
@@ -100,7 +120,11 @@ async function buildBody(nodes) {
 for (const post of posts) {
   console.log(`\nProcessing: ${post.name}`)
 
-  const coverAssetId = await uploadImage(post.coverImage)
+  const coverAssetId = post.coverImageUrl
+    ? await uploadImageFromUrl(post.coverImageUrl)
+    : post.coverImage
+      ? await uploadImage(post.coverImage)
+      : null
   const body = await buildBody(post.body ?? [])
 
   const doc = {

@@ -6,15 +6,15 @@ import { isSanityConfigured } from '../../lib/sanity';
 import { fetchAllPosts } from '../../lib/sanity-fetch';
 
 let posts: any[] = [];
-let fetchError: string | null = null;
+let totalPages = 1;
 if (isSanityConfigured) {
   try {
-    posts = await fetchAllPosts();
+    ({ posts, totalPages } = await fetchAllPosts(1, 10));
   } catch (e) {
-    fetchError = e instanceof Error ? e.message : String(e);
-    console.error('[blog] fetchAllPosts failed:', fetchError);
+    console.error('[blog] fetchAllPosts failed:', e instanceof Error ? e.message : String(e));
   }
 }
+const page = 1;
 
 function formatDate(iso: string) {
   return new Date(iso).toLocaleDateString('en-US', {
@@ -53,6 +53,12 @@ function formatDate(iso: string) {
             </li>
           ))}
         </ul>
+      )}
+      {totalPages > 1 && (
+        <div class="pagination">
+          <span class="page-indicator">Page {page} of {totalPages}</span>
+          <a href={`/blog/2`} class="text-cta">Older &rarr;</a>
+        </div>
       )}
     </div>
 
@@ -146,6 +152,22 @@ function formatDate(iso: string) {
     font-weight: 300;
     color: var(--ink);
     line-height: 1.75;
+  }
+
+  .pagination {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2.5rem 0 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .page-indicator {
+    font-family: var(--sans), sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
   }
 
   @media (max-width: 600px) {

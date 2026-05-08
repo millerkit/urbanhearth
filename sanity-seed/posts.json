@@ -2,66 +2,2012 @@
   {
     "name": "Celebrate Your Graduation with an Unforgettable Meal at Urban Hearth",
     "slug": "celebrate-your-graduation-with-an-unforgettable-meal-at-urban-hearth",
-    "publishedAt": "2026-03-19T15:40:11.882Z",
-    "excerpt": "This May, elevate your graduation dinner with an evening at Urban Hearth, Cambridge's beloved Michelin recommended farm-to-table dining destination.",
-    "coverImage": "images/graduation-cover.jpeg",
+    "publishedAt": "2026-03-19T00:00:00.000Z",
+    "excerpt": "Graduation season in Greater Boston brings families together to celebrate accomplishments. Urban Hearth, a Michelin-recommended farm-to-table restaurant in Cambridge, offers an ideal venue for marking this significant milestone with refined cuisine and warm hospitality.",
+    "coverImageUrl": "https://static.wixstatic.com/media/178366_f9cac2b90b9a403686f527b6cfe584b0~mv2.jpeg",
     "body": [
-      { "type": "paragraph", "text": "Graduation season in Greater Boston is electric, campuses buzzing, families gathering, and a well-earned sense of accomplishment in the air. This deserves to be celebrated in a truly special way. This May, elevate your graduation dinner with an evening at Urban Hearth, Cambridge's beloved Michelin recommended farm-to-table dining destination." },
-      { "type": "heading2", "text": "A Dining Experience Worth Celebrating" },
-      { "type": "paragraph", "text": "At Urban Hearth, every detail is designed to make your celebration memorable. The restaurant blends refined technique with a warm, welcoming atmosphere. Our space is perfect for gathering with family, friends, and mentors who helped you reach this moment." },
-      { "type": "paragraph", "text": "Expect:" },
-      { "type": "bullet_list", "items": [
-        "A seasonal, ever-evolving menu highlighting the best local ingredients",
-        "Thoughtful, creative dishes that feel both elevated and comforting",
-        "An intimate setting with unbeatable hospitality that turns dinner into an experience, not just a reservation"
-      ]},
-      { "type": "paragraph", "text": "Whether you're planning a celebratory dinner after commencement or hosting loved ones visiting from out of town, Urban Hearth offers a setting that feels both special and personal." },
-      { "type": "heading2", "text": "Perfect for Graduation Gatherings" },
-      { "type": "paragraph", "text": "Graduation celebrations come in all sizes and Urban Hearth is ready for them all:" },
-      { "type": "bullet_list", "items": [
-        "Parties of 5 or less: simply book through OpenTable.",
-        "Parties of 6 or more: please reach out to us via email at info@urbanhearth.net to book.",
-        "Chef's Counter Seats: get a front row seat at the culinary show and indulge in Chef Erin Miller's 5 course chef's counter tasting menu. The Chef's Counter seats at 5:45 or 8:15 nightly. Parties of up to 4 can book here. But book now because these seats are always the first to go."
-      ]},
-      { "type": "paragraph", "text": "Whatever the size of your group, Urban Hearth is a place where a simple dinner turns into a lasting memory. Exactly what a graduation celebration should be." },
-      { "type": "heading2", "text": "Booking tips" },
-      { "type": "bullet_list", "items": [
-        "Remember to note any dietary restrictions in the reservation notes and don't forget to add that you're celebrating a graduation for a special experience.",
-        "Book early! Graduation weekends in Cambridge and Boston are among the busiest of the year. Families travel in, reservations fill quickly, and the best tables are claimed well in advance, especially in intimate spaces like ours.",
-        "Call us if you have any special requests or requirements. We're always happy to assist. 617-682-7295."
-      ]},
-      { "type": "heading2", "text": "Make It a Night to Remember" },
-      { "type": "paragraph", "text": "Graduation is more than a ceremony. It's the culmination of years of dedication, growth, and achievement. It deserves a setting that reflects that significance." },
-      { "type": "paragraph", "text": "At Urban Hearth, you'll find more than a meal, you'll find a place to pause, reflect, and celebrate what's next." },
-      { "type": "paragraph", "text": "Reserve your table today and give your graduate a celebration they'll never forget." }
+      {
+        "type": "heading2",
+        "text": "A Dining Experience Worth Celebrating"
+      },
+      {
+        "type": "paragraph",
+        "text": "At Urban Hearth, every detail is designed to make your celebration memorable. The restaurant blends refined technique with a warm, welcoming atmosphere. Our space is perfect for gathering with family, friends, and mentors who helped you reach this moment."
+      },
+      {
+        "type": "paragraph",
+        "text": "Expect:"
+      },
+      {
+        "type": "bullet_list",
+        "items": [
+          "A seasonal, ever-evolving menu highlighting the best local ingredients",
+          "Thoughtful, creative dishes that feel both elevated and comforting",
+          "An intimate setting with unbeatable hospitality that turns dinner into an experience, not just a reservation"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Whether you're planning a celebratory dinner after commencement or hosting loved ones visiting from out of town, Urban Hearth offers a setting that feels both special and personal."
+      },
+      {
+        "type": "heading2",
+        "text": "Perfect for Graduation Gatherings"
+      },
+      {
+        "type": "paragraph",
+        "text": "Graduation celebrations come in all sizes and Urban Hearth is ready for them all:"
+      },
+      {
+        "type": "bullet_list",
+        "items": [
+          "Parties of 5 or less: simply book through OpenTable.",
+          "Parties of 6 or more: please reach out to us via email at info@urbanhearth.net to book.",
+          "Chef's Counter Seats: get a front row seat at the culinary show and indulge in Chef Erin Miller's 5 course chef's counter tasting menu. The Chef's Counter seats at 5:45 or 8:15 nightly. Parties of up to 4 can book here. But book now because these seats are always the first to go."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Whatever the size of your group, Urban Hearth is a place where a simple dinner turns into a lasting memory. Exactly what a graduation celebration should be."
+      },
+      {
+        "type": "heading2",
+        "text": "Booking tips"
+      },
+      {
+        "type": "bullet_list",
+        "items": [
+          "Remember to note any dietary restrictions in the reservation notes and don't forget to add that you're celebrating a graduation for a special experience.",
+          "Book early! Graduation weekends in Cambridge and Boston are among the busiest of the year. Families travel in, reservations fill quickly, and the best tables are claimed well in advance, especially in intimate spaces like ours.",
+          "Call us if you have any special requests or requirements. We're always happy to assist. 617-682-7295."
+        ]
+      },
+      {
+        "type": "heading2",
+        "text": "Make It a Night to Remember"
+      },
+      {
+        "type": "paragraph",
+        "text": "Graduation is more than a ceremony. It's the culmination of years of dedication, growth, and achievement. It deserves a setting that reflects that significance."
+      },
+      {
+        "type": "paragraph",
+        "text": "At Urban Hearth, you'll find more than a meal, you'll find a place to pause, reflect, and celebrate what's next."
+      }
     ]
   },
   {
     "name": "100 Mile Dinner with Chef Erin Miller of Urban Hearth and Chef Avery Buck of May Day",
     "slug": "100-mile-dinner-with-chef-erin-miller-of-urban-hearth-and-chef-avery-buck-of-may-day",
-    "publishedAt": "2026-01-15T17:35:25.698Z",
-    "excerpt": "Join us for the 4th annual 100-Mile Dinner with Chef Erin Miller of Urban Hearth and Chef Avery Buck of May Day in Burlington, VT.",
-    "coverImage": "images/100-mile-cover.jpg",
+    "publishedAt": "2026-01-15T00:00:00.000Z",
+    "excerpt": "Urban Hearth partners with James Beard nominated Chef Avery Buck of May Day in Burlington, VT for the 4th annual 100-Mile Dinner, featuring New England's winter bounty sourced within a 100-mile radius.",
+    "coverImageUrl": "https://static.wixstatic.com/media/178366_02d0ec7d71b549f6b46611156503e69d~mv2.jpg",
     "body": [
-      { "type": "paragraph", "text": "In the deep, dark cold of New England winter, the craving for fresh vibrant flavors can seem like a distant dream. Just as your tastebuds slip off into a winter slumber, dreaming of tantalizing green spring and spicy red summer, Urban Hearth has a mid winter treat for you. We're teaming up with James Beard nominated Chef Avery Buck of May Day in Burlington, VT to produce this year's 4th annual 100-Mile Dinner. It promises to awaken even the sleepiest of senses as we employ all of our culinary talents and tricks to craft New England's winter bounty, all sourced from within a 100-mile radius." },
-      { "type": "paragraph", "text": "Our chef team will be digging deep into cold storage, leveraging hydroponics, utilizing preserved foods, and exploring the bounty of local greenhouses to create dishes that are both creative and memorable. From the rich meats and seafood of the region to the innovative use of local and foraged ingredients, every course promises to be a masterclass in culinary ingenuity. The 100-Mile Dinner promises to be a night of culinary innovation, community spirit, and delicious flavors that will leave you warm and satisfied, even on the coldest of winter nights." },
-      { "type": "image", "file": "images/100-mile-mayday.png", "alt": "May Day in Burlington, VT" },
-      { "type": "paragraph", "text": "And this year we are taking it on the road! The first 100 Mile dinner will take place on Tuesday, February 24, 2026 at Urban Hearth, 2263 Massachusetts Ave, Cambridge. Then Chef Erin and her team will be taking a road trip to Burlington, VT to host the dinner in late summer/early fall at May Day. This is the first year we are doing this and our teams are so excited to watch this event evolve. Pre-paid tickets are priced at $95 per person (plus tax and gratuity) and guests can choose an optional beverage pairing featuring New England sourced wines and spirits, along with cocktails and mocktails created with locally sourced ingredients." },
-      { "type": "paragraph", "text": "Update! The first dinner booked so quickly we've added a second date. Now you can join us on Wed, Feb 25 for our 100 Mile Dinner." },
-      { "type": "paragraph", "text": "Reservations are now live, so book your spot quickly, as this event is sure to sell out fast!" }
+      {
+        "type": "paragraph",
+        "text": "In the deep, dark cold of New England winter, the craving for fresh vibrant flavors can seem like a distant dream. Just as your tastebuds slip off into a winter slumber, dreaming of tantalizing green spring and spicy red summer, Urban Hearth has a mid winter treat for you. We're teaming up with James Beard nominated Chef Avery Buck of May Day in Burlington, VT to produce this year's 4th annual 100-Mile Dinner. It promises to awaken even the sleepiest of senses as we employ all of our culinary talents and tricks to craft New England's winter bounty, all sourced from within a 100-mile radius."
+      },
+      {
+        "type": "paragraph",
+        "text": "Our chef team will be digging deep into cold storage, leveraging hydroponics, utilizing preserved foods, and exploring the bounty of local greenhouses to create dishes that are both creative and memorable. From the rich meats and seafood of the region to the innovative use of local and foraged ingredients, every course promises to be a masterclass in culinary ingenuity. The 100-Mile Dinner promises to be a night of culinary innovation, community spirit, and delicious flavors that will leave you warm and satisfied, even on the coldest of winter nights."
+      },
+      {
+        "type": "paragraph",
+        "text": "And this year we are taking it on the road! The first 100 Mile dinner will take place on Tuesday, February 24, 2026 at Urban Hearth, 2263 Massachusetts Ave, Cambridge. Then Chef Erin and her team will be taking a road trip to Burlington, VT to host the dinner in late summer/early fall at May Day. This is the first year we are doing this and our teams are so excited to watch this event evolve. Pre-paid tickets are priced at $95 per person (plus tax and gratuity) and guests can choose an optional beverage pairing featuring New England sourced wines and spirits, along with cocktails and mocktails created with locally sourced ingredients."
+      },
+      {
+        "type": "paragraph",
+        "text": "Update! The first dinner booked so quickly we've added a second date. Now you can join us on Wed, Feb 25 for our 100 Mile Dinner."
+      },
+      {
+        "type": "paragraph",
+        "text": "Reservations are now live, so book your spot quickly, as this event is sure to sell out fast!"
+      }
     ]
   },
   {
     "name": "Valentine's Day Chef's Tasting at Urban Hearth",
     "slug": "valentine-s-day-chef-s-tasting-at-urban-hearth",
-    "publishedAt": "2026-01-08T17:28:30.000Z",
-    "excerpt": "Celebrate with Michelin Guide Recommended restaurant Urban Hearth for our Chef's Tasting Menu on Valentine's Day.",
-    "coverImage": "images/valentines-cover.jpg",
+    "publishedAt": "2026-01-08T00:00:00.000Z",
+    "excerpt": "Experience Chef Erin Miller's \"exquisite 5-course Chef's Tasting menu\" on Valentine's Day at Urban Hearth in Cambridge. This special evening welcomes all guests, including solo diners celebrating self-love.",
+    "coverImageUrl": "https://static.wixstatic.com/media/178366_673dfc0d18384cf3863a2f5e4748058d~mv2.jpg",
     "body": [
-      { "type": "paragraph", "text": "Want to celebrate with your special person at the most date-worthy restaurant in Cambridge this Valentine's Day? Indulge in James Beard Nominated Chef Erin Miller's exquisite 5-course Chef's Tasting menu. Typically reserved for a select few at our exclusive chef's counter, this exceptional dining experience will be available to all guests in the dining room for one rare evening." },
-      { "type": "paragraph", "text": "Urban Hearth has been and will always be a queer friendly restaurant. We celebrate love in all forms. We are also delighted to host single guests on Valentine's Day at our Chef's Counter because we believe self love is the most important love of all. So if you are single and want to treat yourself, we are here for you!" },
-      { "type": "paragraph", "text": "Add a thoughtfully curated wine pairing to level up your experience. We will offer additions to the menu, along with some other delightful surprises throughout the evening. We can accommodate vegetarian, pescatarian, gluten free, shellfish free, preferences and certain dietary restrictions. Feel free to reach out at info@urbanhearth.net for any questions." },
-      { "type": "paragraph", "text": "Reservations are required. Seats are pre-paid (including tax, gratuity and kitchen fee) and non-refundable. If a cancellation occurs, guests will receive a credit to use at Urban Hearth at a later date." }
+      {
+        "type": "paragraph",
+        "text": "Want to celebrate with your special person at the most date-worthy restaurant in Cambridge this Valentine's Day? Indulge in James Beard Nominated Chef Erin Miller's exquisite 5-course Chef's Tasting menu. Typically reserved for a select few at our exclusive chef's counter, this exceptional dining experience will be available to all guests in the dining room for one rare evening."
+      },
+      {
+        "type": "paragraph",
+        "text": "Urban Hearth has been and will always be a queer friendly restaurant. We celebrate love in all forms. We are also delighted to host single guests on Valentine's Day at our Chef's Counter because we believe self love is the most important love of all. So if you are single and want to treat yourself, we are here for you!"
+      },
+      {
+        "type": "paragraph",
+        "text": "Add a thoughtfully curated wine pairing to level up your experience. We will offer additions to the menu, along with some other delightful surprises throughout the evening. We can accommodate vegetarian, pescatarian, gluten free, shellfish free, preferences and certain dietary restrictions. Feel free to reach out at info@urbanhearth.net for any questions."
+      },
+      {
+        "type": "paragraph",
+        "text": "Reservations are required. Seats are pre-paid (including tax, gratuity and kitchen fee) and non-refundable. If a cancellation occurs, guests will receive a credit to use at Urban Hearth at a later date."
+      }
+    ]
+  },
+  {
+    "name": "Help Us Build the New Urban Hearth",
+    "slug": "help-us-build-the-new-urban-hearth",
+    "publishedAt": "2025-12-17T00:00:00.000Z",
+    "excerpt": "Urban Hearth announces its expansion to Inman Square in 2026 and invites the community to participate through a Stake House campaign. The restaurant is redefining growth by involving guests in the expansion journey beyond traditional dining.",
+    "coverImageUrl": "https://static.wixstatic.com/media/178366_3c0d45f1bce7426da4d15f9b0e1e4df5~mv2.png",
+    "body": [
+      {
+        "type": "heading2",
+        "text": "Something Big Is Happening in the Restaurant Community and We Want You to Be Part of It"
+      },
+      {
+        "type": "paragraph",
+        "text": "The way restaurants grow is changing. And for the first time, guests are being invited into the process, not just at the table, but into what comes next."
+      },
+      {
+        "type": "paragraph",
+        "text": "At Urban Hearth, community has always been at the center of everything we do. It shapes how we cook, how we host, and how we think about the future. As we prepare for our next chapter, we are opening the door a little wider and inviting you to step inside."
+      },
+      {
+        "type": "heading2",
+        "text": "A New Chapter, Built the Same Way We Always Have"
+      },
+      {
+        "type": "paragraph",
+        "text": "In 2026, Urban Hearth will move to a larger home in Inman Square, allowing us to welcome more guests while preserving the warmth and connection that define the experience. It is an exciting step forward, and one we have approached with care."
+      },
+      {
+        "type": "paragraph",
+        "text": "Rather than following a traditional, behind-the-scenes path, we have decided to grow in a way that reflects our values. Openly. Thoughtfully. Both with the community that has supported us from the beginning and including the many people who are just discovering us now."
+      },
+      {
+        "type": "paragraph",
+        "text": "To help make that possible, we partnered with Stake House, a new platform designed to support independent restaurants through community participation and experience-driven opportunities. For us, it is simply an extension of how we already operate."
+      },
+      {
+        "type": "heading2",
+        "text": "Why We Are Doing This Differently"
+      },
+      {
+        "type": "paragraph",
+        "text": "Independent restaurants face real challenges when it comes to growth. Rising costs, limited access to capital, and funding models that rarely align with hospitality values make expansion difficult."
+      },
+      {
+        "type": "paragraph",
+        "text": "This approach offers a different path. One that allows guests to engage beyond a reservation, connect more deeply with the story, and participate in a way that feels meaningful rather than transactional."
+      },
+      {
+        "type": "paragraph",
+        "text": "For us, inviting our community into this process is not a marketing move. It is a reflection of trust and shared ownership of what Urban Hearth represents."
+      },
+      {
+        "type": "heading2",
+        "text": "What This Means for You"
+      },
+      {
+        "type": "paragraph",
+        "text": "Our campaign offers unique, one-time experiences tied to the next chapter of Urban Hearth, including early access to the new space and opportunities to connect more closely with the kitchen and the team."
+      },
+      {
+        "type": "paragraph",
+        "text": "Whether you have been dining with us for years or are discovering Urban Hearth for the first time, this is an invitation to be part of something that extends beyond a single meal."
+      },
+      {
+        "type": "heading2",
+        "text": "Join Us"
+      },
+      {
+        "type": "paragraph",
+        "text": "Our Stake House campaign is live now and open to anyone who wants to support the future of Urban Hearth and independent restaurants like it. This offer is only for a limited time, so check it out!"
+      },
+      {
+        "type": "paragraph",
+        "text": "Explore the opportunities here: https://www.investstakehouse.com/opportunities/urban-hearth"
+      }
+    ]
+  },
+  {
+    "name": "Introducing a hand Foraged Spice Blend from Urban Hearth and Curio Spice Co",
+    "slug": "introducing-a-hand-foraged-spice-blend-from-urban-hearth-and-curio-spice-co",
+    "publishedAt": "2025-12-16T00:00:00.000Z",
+    "excerpt": "Spices shape the soul of every dish, but few blends capture the essence of nature quite like the new collaboration between Urban Hearth and Curio Spice Co. This small batch, hand foraged spice blend offers fresh, authentic taste bringing wild flavors straight to your kitchen.",
+    "coverImageUrl": "https://static.wixstatic.com/media/178366_3c2eb37b200743df9feb9d6141c2e1f5~mv2.jpeg",
+    "body": [
+      {
+        "type": "paragraph",
+        "text": "Spices shape the soul of every dish, but few blends capture the essence of nature quite like the new collaboration between Urban Hearth and Curio Spice Co. This small batch, short run, hand foraged spice blend, crafted by Chef Erin Miller, offers a fresh, authentic taste that brings wild flavors straight to your kitchen. Available now in our online shop, this blend invites you to explore the rich, earthy notes of ingredients gathered by hand from local New England landscapes."
+      },
+      {
+        "type": "heading2",
+        "text": "The Collaboration Behind the Blend"
+      },
+      {
+        "type": "paragraph",
+        "text": "Urban Hearth and our neighbors at Curio Spice Co both share a passion for quality and authenticity. Urban Hearth is known for our dedication to seasonal, locally inspired cuisine, while Curio Spice Co specializes in crafting small-batch, thoughtfully sourced spice blends. Together, we have created a product that reflects our shared values and culinary expertise."
+      },
+      {
+        "type": "paragraph",
+        "text": "Unlike conventional spices sourced from large-scale farms or factories, hand foraged spices come directly from nature's untouched corners. Hand foraging supports sustainable practices. By harvesting both native and invasive wild ingredients responsibly, it encourages biodiversity, discourages invasiveness and respects the environment. This means every pinch of the blend carries not only exceptional taste but also a story of care and connection to the land."
+      },
+      {
+        "type": "heading2",
+        "text": "Ingredients That Tell a Story"
+      },
+      {
+        "type": "paragraph",
+        "text": "The spice blend features hand foraged native and invasive species:"
+      },
+      {
+        "type": "bullet_list",
+        "items": [
+          "Wild Autumn Olive an invasive species of shrub with bright red, tart berries",
+          "Wild Sumac a native tree offering a tangy, lemony note and full of vitamin C",
+          "Wild Mushrooms hand foraged and dried native mushrooms provide an earthy, umami note",
+          "Seaweed foraged straight from New England's abundant beaches adds a vegetal and briny pop",
+          "Wild Juniper contributes an earthy, piney fragrance that rounds out the blend"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "These ingredients reflect the local environment where they were gathered, giving the blend a sense of place and seasonality."
+      },
+      {
+        "type": "heading2",
+        "text": "How to Use the Forager's Spice Blend"
+      },
+      {
+        "type": "paragraph",
+        "text": "This versatile blend works well in many recipes. Here are some ideas to get started:"
+      },
+      {
+        "type": "bullet_list",
+        "items": [
+          "Roasted Vegetables: Toss your favorite root vegetables with olive oil and a generous sprinkle of the blend before roasting. The spices enhance natural sweetness and add complexity. Especially good with mushrooms.",
+          "Grilled Meats: Rub the blend onto chicken, beef, or lamb for a flavorful crust that seals in juices.",
+          "Soups and Stews: Stir a spoonful into broths to deepen the flavor and add herbal notes.",
+          "Salad Dressings: Mix with olive oil and lemon juice for a bright, aromatic dressing."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "The blend's balance of flavors makes it easy to experiment and discover new favorites."
+      },
+      {
+        "type": "heading2",
+        "text": "Purchase with a Purpose"
+      },
+      {
+        "type": "paragraph",
+        "text": "At Urban Hearth we believe that good, nutritious food should be accessible to everyone in our community. So we're proud to announce that $1 of each purchase of our Forager's Blend will be given to our friends at Community Cooks, a local non profit who identify human service agencies in need of food support for their clients, recruit and connect volunteers to meet those needs, and coordinate 90+ cooking teams, each providing a monthly meal to an assigned local partner agency. We encourage all purchasers to consider a larger donation to their cause, which you can learn about on their donation page."
+      },
+      {
+        "type": "paragraph",
+        "text": "There are only 100 jars of this small batch spice blend. Visit our online shop to order before they are all claimed."
+      }
+    ]
+  },
+  {
+    "name": "Holiday Market: gifts and essentials to make spirits bright this holiday season",
+    "slug": "holiday-market-gifts-and-essentials-to-make-spirits-bright-this-holiday-season",
+    "publishedAt": "2025-12-05T00:00:00.000Z",
+    "excerpt": "Urban Hearth presents a curated Holiday Market featuring baked goods, refrigerator staples, meal supplements, and handcrafted cocktails. The offering aims to simplify holiday preparations while adding festive spirit to celebrations.",
+    "coverImageUrl": "https://static.wixstatic.com/media/178366_ba1c1ca483ad4a408c99afb04b73a88a~mv2.png",
+    "body": [
+      {
+        "type": "paragraph",
+        "text": "Sometimes it feels like just getting through the holiday season is more of a chore than something to celebrate, but that's where we come in. Urban Hearth is here to help make your spirits bright with our Holiday Market! Choose baked goods, refrigerator door staples, meal supplements and handcrafted cocktails to save you time and sprinkle a little holiday spirit into your season."
+      },
+      {
+        "type": "heading2",
+        "text": "Baked Goods:"
+      },
+      {
+        "type": "bullet_list",
+        "items": [
+          "Big buttermilk biscuits, frozen or baked",
+          "Sourdough rye crackers"
+        ]
+      },
+      {
+        "type": "heading2",
+        "text": "Refrigerator door essentials:"
+      },
+      {
+        "type": "bullet_list",
+        "items": [
+          "smoked maple miso butter",
+          "bread & butter pickles",
+          "fermented hot sauce"
+        ]
+      },
+      {
+        "type": "heading2",
+        "text": "Meal Supplements:"
+      },
+      {
+        "type": "bullet_list",
+        "items": [
+          "Beet and dill salmon gravlox",
+          "Blueberry mostarda"
+        ]
+      },
+      {
+        "type": "heading2",
+        "text": "Fun Things and Host Gifts:"
+      },
+      {
+        "type": "bullet_list",
+        "items": [
+          "Mushroom cocktail syrup",
+          "Candied black trumpet mushrooms",
+          "½ pint or pint spiced apple butter",
+          "Our special forager's spice blend!"
+        ]
+      },
+      {
+        "type": "heading2",
+        "text": "Bar essentials:"
+      },
+      {
+        "type": "bullet_list",
+        "items": [
+          "Apple Bourbon Punch",
+          "Gluhwein",
+          "Aged Eggnog",
+          "Apple shrub"
+        ]
+      },
+      {
+        "type": "heading2",
+        "text": "Important Notes:"
+      },
+      {
+        "type": "paragraph",
+        "text": "We are offering pickup only. Orders can be picked up at Urban Hearth from 1pm-5pm on Sat Dec 20. Please remember to specify your timing when ordering. Deadline for ordering is Friday Dec 19 at 12pm."
+      }
+    ]
+  },
+  {
+    "name": "Nordic Popup: Greatest Hits",
+    "slug": "nordic-popup-greatest-hits",
+    "publishedAt": "2025-11-30T00:00:00.000Z",
+    "excerpt": "Urban Hearth is hosting another Nordic culinary experience on December 14 from 1-4pm featuring chef Emily Taylor's signature dishes. \"Delicious dark rye based breads and housemade butter, along with baked goods, savory items and more\" will be available, with many offerings open for pre-order.",
+    "coverImageUrl": "https://static.wixstatic.com/media/178366_0d8af9522d0841d5bd7e121769404c34~mv2.jpg",
+    "body": [
+      {
+        "type": "paragraph",
+        "text": "After the great successes of our Nordic food popups with Emily Taylor last year, we've decided to schedule another Sunday afternoon Nordic feast on Sunday, Dec 14 from 1pm-4pm. This time, Nordic cook and dear friend Emily will be whipping up her greatest hits. As with all the Nordic Popups, you can enjoy delicious dark rye based breads and housemade butter, along with baked goods, savory items and more! And many items are available for pre-order to guarantee a taste of Nordic fare!"
+      },
+      {
+        "type": "image",
+        "url": "https://static.wixstatic.com/media/178366_0d8af9522d0841d5bd7e121769404c34~mv2.jpg",
+        "alt": "Some of Emily's delicious rye bread and butter"
+      },
+      {
+        "type": "image",
+        "url": "https://static.wixstatic.com/media/178366_c8b48aba6df24f2297e6e2ce28a0ba3b~mv2.jpeg",
+        "alt": "Scotch cured gravlox from our Swedish popup."
+      },
+      {
+        "type": "image",
+        "url": "https://static.wixstatic.com/media/178366_5573f840cfa84611b4f427e053cc13ae~mv2.jpg",
+        "alt": "Chef Emily whipping up her Swedish Meatballs in the Kitchen!"
+      },
+      {
+        "type": "paragraph",
+        "text": "Since you all loved her bread so much, we've decided to make small loaves for purchase so you can take a little bit of Nordic flavor home with you, along with so many other items. Since we want to make sure all of you get a taste of Nordic fare, we decided to do a special pre-order this time. Pre-orders are available for pickup on Sunday, Dec 14 from 1-4pm. Order now, or take your chances and walk in day of. We will have some seating available but it is first come first serve!"
+      },
+      {
+        "type": "heading2",
+        "text": "Available for Pre-Order:"
+      },
+      {
+        "type": "bullet_list",
+        "items": [
+          "Salmon Gravlox on Rye with Dill and Mustard Sauce",
+          "Swedish Meatballs in Gravy with Lingonberry Jam",
+          "Vegetarian Nordic Split Pea Soup",
+          "Kardemummabullar Cardamom Buns",
+          "Ginger Cookies",
+          "Rye Bread Loaves for takeout"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Urban Hearth has won a Michelin Recommendation",
+    "slug": "urban-hearth-has-won-a-michelin-recommendation",
+    "publishedAt": "2025-11-19T00:00:00.000Z",
+    "excerpt": "Chef Erin Miller and Urban Hearth were honored at a ceremony in Philadelphia where the restaurant was announced as a Michelin Recommended Restaurant in the first official Boston Michelin Guide to the Northeast.",
+    "coverImageUrl": "https://static.wixstatic.com/media/178366_321e19afcb724a18a4ee95da2711d39b~mv2.jpeg",
+    "body": [
+      {
+        "type": "paragraph",
+        "text": "Yesterday evening, Chef Erin Miller and Urban Hearth were honored at a ceremony in Philadelphia where it was announced that we will be included in the first official Boston Michelin Guide to the Northeast as a Michelin Recommended Restaurant."
+      },
+      {
+        "type": "heading2",
+        "text": "A note from Chef:"
+      },
+      {
+        "type": "paragraph",
+        "text": "This moment feels surreal. For years, our little team at Urban Hearth has poured our hearts into redefining what fine dining in Boston can be, rooted not in pretense or performance, but in craft, authentic connections, and the stories of the people and landscapes that sustain us. I am endlessly inspired by my team's dedication, imagination, and the rich diversity of backgrounds and lived experiences they bring to our kitchen and dining room. Their passion and authenticity shape everything we do, and I am profoundly proud of the care and intention they put into every detail."
+      },
+      {
+        "type": "paragraph",
+        "text": "For a small, woman-led restaurant to receive this recognition is deeply meaningful. It also shines a long-overdue light on the independent restaurant community across Greater Boston, especially in Cambridge and Somerville, where creativity, artistry, and genuine hospitality thrive every day. For these voices and visions to be seen on an international stage feels extraordinary. I am deeply honored, grateful, and more committed than ever to nurturing the craft, curiosity, love, and hospitality that is at the core of Urban Hearth. Thank you for this honor."
+      },
+      {
+        "type": "paragraph",
+        "text": "- Erin Miller"
+      },
+      {
+        "type": "paragraph",
+        "text": "Thank you to the Urban Hearth community for showing up for us and trusting us for all of our 9 years in business and all our years to come."
+      },
+      {
+        "type": "paragraph",
+        "text": "Come celebrate this win with us soon and be sure to reserve in advance because we are gonna be busy!"
+      }
+    ]
+  },
+  {
+    "name": "Ring in the New Year with Urban Hearth!",
+    "slug": "ring-in-the-new-year-with-urban-hearth",
+    "publishedAt": "2025-11-08T00:00:00.000Z",
+    "excerpt": "Join Urban Hearth for their final New Year's Eve celebration at their Mass Ave location before relocating to Inman Square. This exclusive evening features Chef Erin's five-course farm-to-table tasting menu with optional wine pairings and complimentary bubbles for toasting.",
+    "coverImageUrl": "https://static.wixstatic.com/media/178366_416131902d754e34843a8aad655ffa0f~mv2.jpeg",
+    "body": [
+      {
+        "type": "paragraph",
+        "text": "Join us for an unforgettable evening as we bid a heartfelt farewell to our beloved Mass Ave home before we move to vibrant Inman Square! This will be our final New Year's Eve in this space, and we're planning the ultimate send-off — a night filled with food, wine, laughter, and community."
+      },
+      {
+        "type": "heading2",
+        "text": "The Experience:"
+      },
+      {
+        "type": "paragraph",
+        "text": "Chef Erin and her team will craft a five-course Farm-to-Table chef's tasting menu, celebrating local flavors and the joy of the season. Enjoy optional wine pairings, signature cocktails and mocktails, and a complimentary glass of bubbles to toast to new beginnings — plus a few magical surprises along the way."
+      },
+      {
+        "type": "paragraph",
+        "text": "We're offering two seatings so you can celebrate your way:"
+      },
+      {
+        "type": "bullet_list",
+        "items": [
+          "5:00 PM – For the early birds",
+          "7:30 PM – For those heading off to a second celebration"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "This experience is $190 per person, prepaid. We can accommodate some dietary restrictions — please call or message us with questions."
+      },
+      {
+        "type": "heading2",
+        "text": "Cancellation Policy:"
+      },
+      {
+        "type": "paragraph",
+        "text": "24 hours' notice required. Late cancellations are subject to a $190 per person fee. Seats are non-refundable but may be used as credit toward a future Urban Hearth experience."
+      },
+      {
+        "type": "paragraph",
+        "text": "Let's make our last night on Mass Ave one to remember. We can't wait to celebrate with you!"
+      }
+    ]
+  },
+  {
+    "name": "Thanksgiving Takeout: essentials for your celebration of thanks",
+    "slug": "thanksgiving-takeout-biscuits-cocktails",
+    "publishedAt": "2025-11-03T00:00:00.000Z",
+    "excerpt": "Urban Hearth offers a Thanksgiving takeout menu featuring baked goods, refrigerator essentials, meal supplements, and handcrafted cocktails to enhance your holiday celebration.",
+    "coverImageUrl": "https://static.wixstatic.com/media/178366_86aeb662f72f4180aa14192637951d3d~mv2.jpeg",
+    "body": [
+      {
+        "type": "paragraph",
+        "text": "After a whirlwind fall season, Thanksgiving is just around the corner and Urban Hearth is here to help with our Thanksgiving takeout menu! Choose baked goods, refrigerator door staples, meal supplements and handcrafted cocktails to save you time and add that something special to your celebration of thanks."
+      },
+      {
+        "type": "heading2",
+        "text": "Baked Goods:"
+      },
+      {
+        "type": "bullet_list",
+        "items": [
+          "Big buttermilk biscuits, frozen or baked",
+          "Cinnamon apple pound cake, half or whole",
+          "Sourdough rye crackers"
+        ]
+      },
+      {
+        "type": "heading2",
+        "text": "Refrigerator door essentials:"
+      },
+      {
+        "type": "bullet_list",
+        "items": [
+          "smoked maple miso butter",
+          "cranberry sauce",
+          "bread & butter pickles",
+          "fermented hot sauce",
+          "rosemary peppercorn turkey gravy",
+          "Turkey brine kit with herbs and salt"
+        ]
+      },
+      {
+        "type": "heading2",
+        "text": "Meal Supplements:"
+      },
+      {
+        "type": "bullet_list",
+        "items": [
+          "Beet and dill salmon gravlox",
+          "Duck liver pate with blueberry mostarda"
+        ]
+      },
+      {
+        "type": "heading2",
+        "text": "Fun Things and Host Gifts:"
+      },
+      {
+        "type": "bullet_list",
+        "items": [
+          "Mushroom cocktail syrup",
+          "Candied black trumpet mushrooms",
+          "½ pint or pint spiced apple butter"
+        ]
+      },
+      {
+        "type": "heading2",
+        "text": "Bar essentials:"
+      },
+      {
+        "type": "bullet_list",
+        "items": [
+          "Apple Bourbon Punch",
+          "Gluhwein",
+          "Aged Eggnog",
+          "Apple shrub"
+        ]
+      },
+      {
+        "type": "heading2",
+        "text": "Important Notes:"
+      },
+      {
+        "type": "bullet_list",
+        "items": [
+          "We are offering pickup only.",
+          "Orders can be picked up at Urban Hearth from 1pm-6pm on Tue, Nov 25 or Wed, Nov 26.",
+          "Please remember to specify your timing when ordering.",
+          "Deadline for ordering is Sunday, Nov 23 at midnight."
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Urban Hearth's commitment to fight food insecurity in MA",
+    "slug": "urban-hearth-s-commitment-to-fight-food-insecurity-in-ma",
+    "publishedAt": "2025-10-31T00:00:00.000Z",
+    "excerpt": "At Urban Hearth, management believes quality nutrition should be accessible to all community members. Chef Erin applies this philosophy throughout relationships with local farmers, staff, and neighbors. The restaurant has compiled a resource list of regional food rescue organizations.",
+    "coverImageUrl": "https://static.wixstatic.com/media/178366_55771fd4a7474c778f37a0e5f80cfbc1~mv2.jpeg",
+    "body": [
+      {
+        "type": "paragraph",
+        "text": "At Urban Hearth we believe that good, nutritious food should be accessible to everyone in our community. Chef Erin has been guided by a simple concept; that there is much to be learned and joy to be had when we gather around the table together. She diligently applies this philosophy beyond the dining table to her relationships with local farmers and producers, her team and her neighborhood community alike; bringing responsibility and care towards every step in the food system."
+      },
+      {
+        "type": "paragraph",
+        "text": "We have compiled this list of food rescues in our area to help inform our community on ways to support the efforts these organizations are taking to fight hunger."
+      },
+      {
+        "type": "heading2",
+        "text": "The Greater Boston Food Bank"
+      },
+      {
+        "type": "paragraph",
+        "text": "GBFB is the largest hunger-relief organization in New England and among the largest food banks in the country. Last year, they distributed 117 million pounds of nutritious food to people who struggle to have enough to eat. They are committed to increasing food distribution to provide three meals a day to every person in need in Eastern Massachusetts while supporting healthy lives and healthy communities. This is something that is near and dear to us at Urban Hearth."
+      },
+      {
+        "type": "heading2",
+        "text": "Spoonfuls Food Rescue"
+      },
+      {
+        "type": "paragraph",
+        "text": "Spoonfuls is the largest food recovery operation of its kind in New England. Their mission is to facilitate the recovery and distribution of healthy, fresh food that would otherwise be discarded. The Spoonfuls team works to efficiently deliver this food directly to those organizations where it can have the greatest impact and to address the health, environmental, and economic effects of wasted food on our community."
+      },
+      {
+        "type": "heading2",
+        "text": "Food for Free"
+      },
+      {
+        "type": "paragraph",
+        "text": "Food Rescue is the heart of Food For Free's work. Our Logistics Specialists pick up nutritious food that would otherwise be thrown away from establishments like grocery stores and wholesale distributors and redistribute it to partner locations serving food-insecure individuals—homeless shelters, community food pantries, and more. This program prioritizes whole foods, focusing on fresh fruits and vegetables, proteins, and prepared meals. Through this program they provide neighbors with good nutrition and dignity while helping reduce food waste. Many recipient partners transform this food into community meals, directly supporting people experiencing homelessness and food insecurity."
+      },
+      {
+        "type": "heading2",
+        "text": "Community Cooks"
+      },
+      {
+        "type": "paragraph",
+        "text": "For more than three decades, Community Cooks has invested in building trusting partnerships that connect caring volunteers, the human services sector, businesses, civic groups, schools, and faith-based institutions to form a dynamic, growing community with a common goal: to feed our neighbors in need and increase their ability to thrive. They identify human service agencies in need of food support for their clients, recruit and connect volunteers to meet those needs, and coordinate 90+ cooking teams, each providing a monthly meal to an assigned local partner agency."
+      },
+      {
+        "type": "heading2",
+        "text": "List of food pantries in Cambridge:"
+      },
+      {
+        "type": "bullet_list",
+        "items": [
+          "Central Square Food Pantry",
+          "East End House",
+          "Helping Hands Food Pantry",
+          "Margaret Fuller House",
+          "Elnora Food Pantry",
+          "Cambridge Community Fridge"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "And if you are reading this in need of support or food, please visit the MA State info page."
+      }
+    ]
+  },
+  {
+    "name": "We have big news - Urban Hearth is moving...",
+    "slug": "we-have-big-news-urban-hearth-is-moving",
+    "publishedAt": "2025-10-29T00:00:00.000Z",
+    "excerpt": "The Cambridge restaurant's 24-seat space is relocating to a larger venue at 1281 Cambridge Street in Inman Square, the former Bukowski bar site. The expansion will feature expanded seating, a full bar, and a chef's counter while maintaining the restaurant's commitment to hyper-local, seasonally driven cuisine.",
+    "coverImageUrl": "https://static.wixstatic.com/media/178366_10f93b35bf3a482c99191f7eaddb7ead~mv2.png",
+    "body": [
+      {
+        "type": "paragraph",
+        "text": "The team has been developing this expansion for over a year. Their current 24-seat North Cambridge restaurant has reached capacity as demand continues to grow, making it increasingly difficult to accommodate all interested diners."
+      },
+      {
+        "type": "paragraph",
+        "text": "The new location at 1281 Cambridge Street will blend sophistication with warmth, offering intimate table seating alongside Chef Erin Miller's \"trademark hyper-local and seasonally driven menu,\" an expanded six-seat chef's counter, full-service bar with seating, and a salon area for casual meals and gatherings."
+      },
+      {
+        "type": "paragraph",
+        "text": "During construction at the Inman Square site, operations will continue at the current Massachusetts Avenue location. Plans include maintaining the current space as a secondary concept after the new location opens."
+      },
+      {
+        "type": "paragraph",
+        "text": "The team assures guests the new space will maintain the \"warm, welcoming, intimate, experience\" they're known for while improving functionality. The current location will serve its final holiday season before the transition."
+      },
+      {
+        "type": "paragraph",
+        "text": "New Year's Eve plans will be announced the following week, and the team encourages guests to book holiday reservations promptly given the significance of this final season at the Mass Ave location."
+      }
+    ]
+  },
+  {
+    "name": "Harvest Hoopla: a Fall Party in North Cambridge",
+    "slug": "harvest-hoopla-a-fall-party-in-north-cambridge",
+    "publishedAt": "2025-10-08T00:00:00.000Z",
+    "excerpt": "Urban Hearth hosts a fall celebration on their patio during the NoCa Blocks Harvest Hoopla on October 18 from noon to 4pm, featuring Nordic-inspired cuisine from Chef Emily.",
+    "coverImageUrl": "https://static.wixstatic.com/media/178366_483a6005afce488ab9f204f58d9b6d29~mv2.jpg",
+    "body": [
+      {
+        "type": "paragraph",
+        "text": "Do we detect a crispness in the air? Perhaps the scent of pumpkin spice? That's right! It's time for our NoCa Blocks Fall Stroll! We are hosting a Fall Party on our patio during the Harvest Hoopla with our neighbors at NoCa Blocks on Saturday, October 18 from 12-4pm. Chef Emily will be back to work her cozy nordic inspired popup magic."
+      },
+      {
+        "type": "heading2",
+        "text": "Fall Party Menu:"
+      },
+      {
+        "type": "bullet_list",
+        "items": [
+          "big pot of vegetarian butternut soup, option for crispy ham topper",
+          "creamy mashed potatoes with choice of pork meatballs in gravy or mushrooms in vegetarian gravy",
+          "crusty bread and butter",
+          "delicious spice cake with whipped cream cheese"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Plus we will have hot cider, mulled wine, our famous biscuits, cookies and more! We'll be running a cider tasting contest at each participating location and Pemberton Farms will be hosting a ton of family friendly activities, plus a fun raffle for a chance to win a basket full of goods and prizes from all of us. The Hoopla goes until 5pm, but our patio party will wrap up by 4pm so come early before we sell out!"
+      },
+      {
+        "type": "paragraph",
+        "text": "Patio party will be weather permitting. If it rains, we'll be hosting inside. We'll have cozy heaters and blankets for a cooler day, plus hot beverages to keep your hands warm! Order at the counter. Seating is first come, first serve and seat yourself."
+      }
+    ]
+  },
+  {
+    "name": "Mushroom Dinner with Tyler Akabane on Oct 21 & 22",
+    "slug": "mushroom-dinner-with-tyler-akabane-on-oct-21-22",
+    "publishedAt": "2025-09-03T00:00:00.000Z",
+    "excerpt": "Join Urban Hearth during peak mushroom foraging season for \"a fungi-filled fall evening\" with Chef Erin Miller and Tyler Akabane of Mushrooms For My Friends. This \"4 course culinary adventure\" features \"mushrooms hand foraged from the forests of New England.\"",
+    "coverImageUrl": "https://static.wixstatic.com/media/178366_e9e25cdf02f5409f9d29750a606ef51f~mv2.jpg",
+    "body": [
+      {
+        "type": "paragraph",
+        "text": "There is one seasonal ingredient that perfectly captures the essence of Fall and it is without a doubt mushrooms. As the seasons change, so too does the bounty of the forest floor. For those who revel in the thrill of foraging, there's no greater pleasure than crafting a meal from wild mushrooms gathered straight from the woods. James Beard nominee Chef Erin Miller has a passion for foraging and using foraged ingredients. For Chef, there's nothing more exciting than discovering a forest glade full of chanterelles, an experience she recently had out in the wilds of New England. And now you get to benefit from this discovery!"
+      },
+      {
+        "type": "paragraph",
+        "text": "On Tuesday, Oct 21 & Wednesday, October 22, 2025, Chef Erin is preparing an immersive dining experience at Urban Hearth that honors the changing seasons and connects you to nature's rhythm through the use of Fall's most quintessential ingredient, wild foraged mushrooms. This Mushroom Dinner will be a 4 course culinary adventure, featuring mushrooms hand foraged from the forests of New England by Chef Erin and Tyler Akabane, founder of Mushrooms for my Friends and The Mushroom Shop."
+      },
+      {
+        "type": "paragraph",
+        "text": "Tyler is a seasoned mushroom forager and mycophile (lover of all things fungi). His hobby of going on foraging excursions drew him to start Mushrooms for my Friends, which started as a guided educational foraging tour along with special educational events about foraging and fungi. From there the company branched out into mushroom distribution, specializing in sourcing wild foraged mushrooms and delivering them to chefs throughout the New England area. Now, along with his guided foraging tours, he also has a brick and mortar shop in Somerville, MA bursting with fantastic fungi, which you need to go to if you haven't already because it's adorable."
+      },
+      {
+        "type": "paragraph",
+        "text": "Tyler will be on hand to talk about foraging techniques, applications, and other mushroomy goodness while you dine. Seating includes the four course dinner, tax, and 20% gratuity. Beverage pairings, special courses, take home treats and other add ons will be available for purchase onsite. Note, tickets are transferable but not refundable. Please share any dietary restrictions in your booking. Not all restrictions can be accommodated. And if you are allergic to mushrooms, this might not be the event for you!"
+      },
+      {
+        "type": "paragraph",
+        "text": "Update: Tuesday's Dinner is sold out. We do have limited space on Wed. Please reach out to us at info@urbanhearth.net to book."
+      }
+    ]
+  },
+  {
+    "name": "Our James Beard Moment - Abby Taylor",
+    "slug": "our-james-beard-moment-abby-taylor",
+    "publishedAt": "2025-07-02T00:00:00.000Z",
+    "excerpt": "When the chef received nomination for a James Beard Award for Best Chef Northeast, the team rallied together to make the Chicago event a shared experience. Through community generosity, the entire Urban Hearth team traveled to witness culinary excellence and industry recognition.",
+    "coverImageUrl": "https://static.wixstatic.com/media/178366_416131902d754e34843a8aad655ffa0f~mv2.jpeg",
+    "body": [
+      {
+        "type": "paragraph",
+        "text": "When Chef was nominated for a James Beard Award for Best Chef Northeast, she turned to me and said \"This is a team win. We need to figure out a way to bring the whole team along. They need to be there.\" and I wholeheartedly agreed. The James Beard Awards are basically our industry's version of the Oscars. There's a red carpet. There's media coverage. There's hosts with opening monologues. There's tiny little envelopes being ripped open, names being called out, and dreams coming true on stage."
+      },
+      {
+        "type": "paragraph",
+        "text": "It's really the only opportunity most of us have in this industry to be in a room completely full of folks who are the best of the best in food, beverage and hospitality. So we put the word out to our community and in just a few days we were able to fund the entire trip to Chicago for our team and their partners thanks to the generosity of a few of our most beloved regular guests."
+      },
+      {
+        "type": "paragraph",
+        "text": "We arrived in Chicago on Sunday afternoon, refreshed ourselves and headed out to the Sunday Hangout at Cafe Yaya, where we all ate our weight in hot honey buttered fried chicken. Then Chef and I booked it over to the Chicago Cocktail Classic, a showcase of award winning bartenders, hosted by the famous Chicago based tiki bar, Three Dots and a Dash. There we were met with sip after sip from bar after bar of some of the best cocktail creators in the country. We got to say hi to the owner of Panda & Sons, who Chef had visited the last time she was in Edinburgh. We ended our cocktail crawl with our dear friends from Merai, who were serving up a larb insipred cocktail that tasted like toasted rice, citrus, cilantro and perfection."
+      },
+      {
+        "type": "paragraph",
+        "text": "From there, things got a little... hazy... Chef and I walked through a bustling street fair near Fulton Market and noshed on some much needed tacos. Then we met up with the crew and ended up at a bar takeover where there were a lot of complimentary negronis and a lot of tiny squeaking rubber chickens. You know, the usual end to a service industry party. Then we all headed back to the house and hopped in the hot tub before getting our beauty sleep."
+      },
+      {
+        "type": "paragraph",
+        "text": "The next day we made breakfast together and had a few hours of free time. So we all headed to Millennium Park to check out \"The Bean\" and see Lake Michigan. It was smoking hot but an absolutely picturesque Chicago summer day. The outdoor public art in Chicago is world class. Beautiful walking trails, gorgeous and gigantic public artworks like the Cloud Gate by Anish Kapoor and the Buckingham Fountain. Not to mention the enormity of the lake. It feels like an ocean, complete with boat docks and seagulls!"
+      },
+      {
+        "type": "paragraph",
+        "text": "Then we hit up a very cute bbq joint near the house and had to head back to get ourselves cleaned up for the main event. Note, if you go to Chicago, get the bbq! We were so impressed by the absolute mountain of deliciousness we were served at Smoke Daddy! Get the Taste of the Daddy platter. You will not be disappointed. Trust us... we're chefs!"
+      },
+      {
+        "type": "paragraph",
+        "text": "What an honor it was to be in a room with so many talented names in our industry. We witnessed so many dreams coming true and so many doors of opportunity being opened for our industry. This year the awards showcased our immigrant community, who are the life blood of our industry. Our story could not be told without them. Our whole team were so honored to have witnessed so many immigrant stories at the awards and to see the true power of what we can do together in this industry. Chicago really turns out for the James Beard Awards. Honestly, after being In Chicago and witnessing the strength of our industry there, I'm of the opinion there is no better city in the US to host this event. The hospitality in Chicago is unbeatable."
+      },
+      {
+        "type": "paragraph",
+        "text": "While none of us Bostonians took home a Beard medal, we could not be more honored to stand alongside so many talented, passionate pioneers in our Boston community, especially these two incredible people, Chef Cassie of Sarma, who was up for Outstanding Chef and Boong of Merai Bar who was up for Best New Bar. Their devotion to craft and nurturing our Boston community inspires us to strive for excellence every single day. Just being in the Lyric Opera House with so many leaders in our industry was the most inspiring moment of all of our culinary careers. Thanks to all those who helped us get to Chicago and supported us throughout this journey. We have a feeling it won't be the last time we head to the awards."
+      },
+      {
+        "type": "image",
+        "url": "https://static.wixstatic.com/media/178366_cd468022019a4a7a8aadb124027cbfca~mv2.jpeg",
+        "alt": "Emily and Abby at the Cloud Gate"
+      },
+      {
+        "type": "image",
+        "url": "https://static.wixstatic.com/media/178366_0ecee7acda1c4445823f7e845f82bceb~mv2.jpeg",
+        "alt": "Enjoying the shores of Lake Michigan"
+      },
+      {
+        "type": "image",
+        "url": "https://static.wixstatic.com/media/178366_bd89e96d10b94b9d84cf765bd5228fc7~mv2.jpeg",
+        "alt": "Chef's Red Carpet Moment with her husband, Kit Miller"
+      },
+      {
+        "type": "image",
+        "url": "https://static.wixstatic.com/media/178366_f0dbcc226fbf445486d4b56511c20e2d~mv2.jpeg",
+        "alt": "The Urban Hearth Team - James Beard Awards 2025"
+      },
+      {
+        "type": "image",
+        "url": "https://static.wixstatic.com/media/178366_e64b720e69e04107bcb7f765c3b25ff7~mv2.jpeg",
+        "alt": ""
+      }
+    ]
+  },
+  {
+    "name": "Crab Feast Returns to Notch Brewing in Brighton on June 22",
+    "slug": "crab-feast-returns-to-notch-brewing-in-brighton-on-june-22",
+    "publishedAt": "2025-05-09T00:00:00.000Z",
+    "excerpt": "\"Join Urban Hearth at Notch Brewing for a Mid-Atlantic inspired Chesapeake Steamed Crab Feast at the spacious Notch Biergarten in Brighton!\" Chef Erin Miller hosts this summertime celebration inspired by cherished family memories from Virginia's Tidewater region.",
+    "coverImageUrl": "https://static.wixstatic.com/media/178366_3b60f0808e1442788d2ae1d5b860da40~mv2.jpg",
+    "body": [
+      {
+        "type": "paragraph",
+        "text": "Chef Erin Miller's thoughtful and creative cuisine celebrates the bounty of New England farms and fisheries. But at the root of every dish, you will find inspiration that draws on her memories as a child in Virginia, her family roots in the South and fascinating heritage drawing on traditions from Eastern Europe and Sicily that have made an indelible impression on her family story."
+      },
+      {
+        "type": "paragraph",
+        "text": "This summer, she wants to share a very special food memory. Her favorite summertime tradition is gathering around the table, beer in hand, to feast on steamed crabs. Messy, spicy and joyful, this communal meal has been at the center of summertime gatherings in her family for generations. Erin has deep family ties to the Tidewater region of Virginia, having spent every summer at her grandmother's home on the Rappahannock river. Those summer afternoons often ended with newspapers spread on the porch table, a cooler full of cold drinks and steamed crabs. The stories and laughter shared around this table still ring out decades later and the taste of sweet steamed crab is a taste memory that she longs for when the mercury starts to rise."
+      },
+      {
+        "type": "paragraph",
+        "text": "Join Chef Erin, her Urban Hearth team, and our friends at Notch Brewing in Brighton as we get our hands dirty, tell some stories, laugh a lot, and enjoy this quintessential summer feast. Crab Feast 2024 will be hosted at the spacious Notch Biergarten in Brighton on Sunday, June 22 starting at 2pm! Enjoy steamed crabs and all the fixings, along with ice cold beer provided by Notch Brewing. Select your time slot from 2pm, 4pm, or 6pm. Add extra crab or other options to your ticket as well! Notch beer will be on tap along with non-alcoholic options, oysters from Rocky Neck, and more!"
+      },
+      {
+        "type": "paragraph",
+        "text": "Great celebration for Father's Day!"
+      },
+      {
+        "type": "paragraph",
+        "text": "Note: This event is happening at Notch Brewing at the Charles River Speedway 525 Western Ave, Brighton, MA 02135. Tickets are non refundable, but can be transferred via email."
+      },
+      {
+        "type": "paragraph",
+        "text": "PRE ORDER IS NOW CLOSED. We will have some crab for sale on site but we suggest getting here early if you want guaranteed crab!"
+      }
+    ]
+  },
+  {
+    "name": "Supporting the Greater Boston Food Bank with Taste of the Food Bank",
+    "slug": "supporting-the-greater-boston-food-bank-with-taste-of-the-food-bank",
+    "publishedAt": "2025-04-16T00:00:00.000Z",
+    "excerpt": "Urban Hearth partners with the Greater Boston Food Bank for their Taste of the Food Bank event on May 8th at the Yawkey Distribution Center, celebrating the organization's mission to provide nutritious food to those in need.",
+    "body": [
+      {
+        "type": "paragraph",
+        "text": "At Urban Hearth we believe that good, nutritious food should be accessible to everyone in our community. That is why we are teaming up with the Greater Boston Food Bank for their Taste of the Food Bank event on May 8th at the Yawkey Distribution Center."
+      },
+      {
+        "type": "paragraph",
+        "text": "GBFB is the largest hunger-relief organization in New England and among the largest food banks in the country. Last year, they distributed 117 million pounds of nutritious food to people who struggle to have enough to eat. They are committed to increasing food distribution to provide three meals a day to every person in need in Eastern Massachusetts while supporting healthy lives and healthy communities. This is something that is near and dear to us at Urban Hearth."
+      },
+      {
+        "type": "paragraph",
+        "text": "Boston culinary icons Jody Adams and Steve DiFillippo have curated a lineup of the region's top restaurants, mixologists, and rising stars, drawing from the area's most notable chefs, brewers, wine purveyors, and spirit vendors to bring us an unforgettable evening."
+      },
+      {
+        "type": "paragraph",
+        "text": "The Greater Boston Food Bank's Yawkey Distribution Center—which powers the largest hunger-relief network in New England—will serve as the backdrop for Taste of the Food Bank. Experience the city's most authentic and diverse flavors alongside over 400 business and community leaders, foodies, philanthropists, and local influencers."
+      },
+      {
+        "type": "paragraph",
+        "text": "Taste of the Food Bank will include a live auction featuring the best in the local food scene, brand activations, and immersive live entertainment. More than just a party, this event celebrates GBFB's essential role as the engine that drives our hunger relief system in Eastern Massachusetts. We are so proud to be involved alongside many of our neighboring restaurants. We hope to see some of you there!"
+      }
+    ]
+  },
+  {
+    "name": "Supporting Spoonfuls at Ultimate Tailgate",
+    "slug": "supporting-spoonfuls-at-ultimate-tailgate",
+    "publishedAt": "2025-04-16T00:00:00.000Z",
+    "excerpt": "Urban Hearth announces a partnership with Spoonfuls Food Recovery, the largest food rescue operation in New England. The restaurant will participate in Spoonfuls' Ultimate Tailgate event to celebrate their 15th anniversary and support food security initiatives.",
+    "coverImageUrl": "https://static.wixstatic.com/media/178366_15b834f30e474494a93d3945cab6c670~mv2.jpg",
+    "body": [
+      {
+        "type": "paragraph",
+        "text": "Chef Erin has been guided by a simple concept; that there is much to be learned and joy to be had when we gather around the table together. She diligently applies this philosophy beyond the dining table to her relationships with local farmers and producers, her team and her neighborhood community alike; bringing responsibility and care towards every step in the food system. That is why we are so proud to announce an ongoing partnership with Spoonfuls Food Recovery."
+      },
+      {
+        "type": "paragraph",
+        "text": "Spoonfuls is the largest food recovery operation of its kind in New England. Their mission is to facilitate the recovery and distribution of healthy, fresh food that would otherwise be discarded. The Spoonfuls team works to efficiently deliver this food directly to those organizations where it can have the greatest impact and to address the health, environmental, and economic effects of wasted food on our community."
+      },
+      {
+        "type": "image",
+        "url": "https://static.wixstatic.com/media/178366_15b834f30e474494a93d3945cab6c670~mv2.jpg",
+        "alt": "The Spoonfuls delivery team"
+      },
+      {
+        "type": "paragraph",
+        "text": "This year, Spoonfuls is hosting their annual Ultimate Tailgate at Roadrunner to celebrate their 15th year as a food rescue. Urban Hearth will be there in the VIP area serving up the tastiest bites for the best of all reasons, raising funds to provide food security to the Boston area. We'll be joining a stellar list of all the best restaurants in our area so definitely join us at the event of the season."
+      }
+    ]
+  },
+  {
+    "name": "Chef Erin Miller of Urban Hearth is a James Beard Award Finalist",
+    "slug": "chef-erin-miller-of-urban-hearth-is-a-james-beard-award-finalist",
+    "publishedAt": "2025-04-04T00:00:00.000Z",
+    "excerpt": "Chef Erin Miller has been selected as a finalist for a James Beard Foundation award for Best Chef, Northeast. \"We are so incredibly honored and excited to announce\" this recognition alongside other Massachusetts chefs competing at the awards in Chicago.",
+    "coverImageUrl": "https://static.wixstatic.com/media/178366_35e9fb3b1dfb465bafa51c75a2b4fdf0~mv2.jpg",
+    "body": [
+      {
+        "type": "paragraph",
+        "text": "We are so incredibly honored and excited to announce that our own Chef Erin Miller has been selected as a finalist for a James Beard Foundation award for Best Chef, Northeast. We had some very talented competition in MA and this is a huge honor for Chef and our entire team."
+      },
+      {
+        "type": "paragraph",
+        "text": "Chef Erin isn't the only chef representing MA at the awards. Our neighbor Chef Cassie Piuma of Sarma in Somerville has been nominated for Outstanding Chef and our friends at Merai in Brookline have been nominated in the Best New Bar category. We are so thrilled to be headed to Chicago this year with them, representing the food and beverage of MA."
+      },
+      {
+        "type": "paragraph",
+        "text": "In the meantime we'll keep on doing what we we do best, serving our community with warmth, hospitality, and commitment to excellence. Come celebrate with us!"
+      }
+    ]
+  },
+  {
+    "name": "Mother's Day 3 Course Prix Fixe Dinner at Urban Hearth",
+    "slug": "mother-s-day-3-course-prix-fixe-dinner-at-urban-hearth",
+    "publishedAt": "2025-03-20T00:00:00.000Z",
+    "excerpt": "Celebrate Mother's Day on Sunday, May 11, with a special three-course dining experience at Urban Hearth. Chef Erin Miller invites you to enjoy spring flavors, complimentary bubbles, and optional wine pairings in a family-friendly atmosphere.",
+    "coverImageUrl": "https://static.wixstatic.com/media/178366_08e095eb7310496f8c0bfcdf6d4d4b93~mv2.jpg",
+    "body": [
+      {
+        "type": "paragraph",
+        "text": "Mother's Day is a beautiful opportunity to celebrate the extraordinary women in our lives. This year, elevate your Mother's Day celebration by treating mom to a special dining experience with Urban Hearth. Join us on Sunday, May 11, for an unforgettable Mother's Day 3 Course Prix Fixe Dinner, highlighting the vibrant flavors of the spring season."
+      },
+      {
+        "type": "image",
+        "url": "https://static.wixstatic.com/media/178366_08e095eb7310496f8c0bfcdf6d4d4b93~mv2.jpg",
+        "alt": "Chef Erin with her son Nate, exploring a wine cellar"
+      },
+      {
+        "type": "paragraph",
+        "text": "Chef Erin Miller looks forward to celebrating mothering and motherhood with you... and your mom. Mother's Day prix fixe menu featuring a choice of appetizer, entree, dessert, and a complimentary glass of bubbles. Enjoy an optional wine pairing or zero-proof progression to accompany your meal. Kids are welcome to this dining event. A special menu will be provided just for them. The menu will be revealed in May 1."
+      },
+      {
+        "type": "heading2",
+        "text": "Reservation Information"
+      },
+      {
+        "type": "paragraph",
+        "text": "Advanced reservations are required."
+      },
+      {
+        "type": "bullet_list",
+        "items": [
+          "Adult Prix Fixe: $95 3-course prix fixe paid in advance, plus tax, gratuity, and kitchen appreciation fee",
+          "Kid's Seat: $45, includes a choice of 3 items from our kid's menu plus ice cream!"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Reservations can be made through OpenTable. Cancellations will be refunded via a credit to UH for future use. Don't miss the chance to show Mom just how special she is. Treat her to a meal that she truly deserves!"
+      }
+    ]
+  },
+  {
+    "name": "Chef Erin Miller of Urban Hearth is a James Beard Award Semifinalist",
+    "slug": "chef-erin-miller-of-urban-hearth-is-a-james-beard-award-semifinalist",
+    "publishedAt": "2025-01-23T00:00:00.000Z",
+    "excerpt": "Urban Hearth announces that Chef Erin Miller has been selected as a semifinalist for a James Beard Foundation award for Best Chef, Northeast. The restaurant celebrates this recognition as validation of its commitment to neighborhood hospitality and culinary excellence.",
+    "coverImageUrl": "https://static.wixstatic.com/media/178366_35e9fb3b1dfb465bafa51c75a2b4fdf0~mv2.jpg",
+    "body": [
+      {
+        "type": "paragraph",
+        "text": "We are so incredibly honored and excited to announce that our own Chef Erin Miller has been selected as a semifinalist for a James Beard Foundation award for Best Chef, Northeast, along with 7 other MA based chefs. We are very happy to see some friends and neighbors on this list as well, like our friends at Talulla in Cambridge who are celebrating their second nomination."
+      },
+      {
+        "type": "paragraph",
+        "text": "It's not an easy achievement to make this list, especially for a small, neighborhood restaurant like Urban Hearth, but as Chef put it in an interview with Maya Shavit of Boston.com \"There's kind of an intimacy that we can achieve in our hospitality, the dining experience as a whole, that maybe bigger cities don't have as much. We are part of the fabric of the neighborhood.\" That sentiment is reflected in the JBF code of ethics, which is used to select the nominees each year."
+      },
+      {
+        "type": "paragraph",
+        "text": "The mission of the James Beard Awards is to \"recognize exceptional talent and achievement in the culinary arts, hospitality, media, and broader food system, as well as a demonstrated commitment to equity, community, sustainability, and a culture where all can thrive.\" Our team has been striving for excellence with every plate we serve, every interaction we have with our guests, every trip to the farmers market to source local and sustainable produce, every time that we make use of a whole ingredient instead of letting most of it go to waste. It is so rewarding to see that commitment to excellence being recognized on a national level."
+      },
+      {
+        "type": "paragraph",
+        "text": "This is a team win and would not have been possible without the devotion and effort of our whole team, from our prep cooks for their long hours every day and tireless commitment to upholding our quality standards, to our sous chefs, Rebecca and Gabriel, whose creative force and consistent devotion to craft are the heart and soul of Urban Hearth, to our front of house team who study wine and ingredients in their off hours to make sure they are telling the true story of our food, and especially our porter team, without whom we would not have the ability to serve hospitality at such a high level in such a tiny space. Thank you to the James Beard Foundation for this great honor. Thank you to the Urban Hearth community for showing up for us and trusting us for all of our 8 years in business and all our years to come."
+      },
+      {
+        "type": "paragraph",
+        "text": "The final selection will be announced on April 2. In the meantime we'll keep on doing what we we do best, serving our community with warmth, hospitality, and commitment to excellence. Come celebrate with us!"
+      }
+    ]
+  },
+  {
+    "name": "Chef Erin Miller to participate in the James Beard Foundation: Taste America Event on Feb 6",
+    "slug": "chef-erin-miller-to-participate-in-the-james-beard-foundation-taste-america-event-on-feb-6",
+    "publishedAt": "2025-01-17T00:00:00.000Z",
+    "excerpt": "Urban Hearth's Chef Erin Miller will participate in the James Beard Foundation's Taste America event on February 6 at The State Room in Boston. This national gathering features \"America's finest chefs and changemakers\" collaborating to showcase culinary excellence.",
+    "coverImageUrl": "https://static.wixstatic.com/media/178366_051bcfc8b9a54efb8a0857fbe5eeb63d~mv2.jpg",
+    "body": [
+      {
+        "type": "paragraph",
+        "text": "We are so thrilled to announce that our own Chef Erin Miller will be participating in the James Beard Foundation: Taste American Event on Feb 6 at The State Room in Boston. This national level tasting event features America's finest chefs and changemakers coming together in 20 markets across the United States to represent a shared mission of \"Good Food for Good\"."
+      },
+      {
+        "type": "paragraph",
+        "text": "This cohort, known as the TasteTwenty, is collaborating throughout the year at chef dinners and walk-around tastings, spotlighting the breadth and unity of culinary creativity across the nation. Each market will showcase the centrality of American food culture and celebrate diverse communities, leading the way to a future culinary industry where all can thrive."
+      },
+      {
+        "type": "paragraph",
+        "text": "The walk-around tasting at the epic State Room, located atop one of Boston's iconic skyscrapers, will be an exciting gathering of chefs from the New England culinary community, featuring food stations by TasteTwenty chef Cassie Piuma of Sarma, our friend Conor Dennehy of Talulla, our own Chef Erin Miller and many other notable local chefs. Each station's offering will reflect the chef's signature style and highlight the uniqueness of their restaurant and community. The tasting will also have beverage stations and other activations from national and local sponsors."
+      },
+      {
+        "type": "paragraph",
+        "text": "This will be a night to remember. Come join us!"
+      }
+    ]
+  },
+  {
+    "name": "100 Mile Dinner: with Urban Hearth & Mahaniyom",
+    "slug": "100-mile-dinner-with-urban-hearth-mahaniyom",
+    "publishedAt": "2025-01-13T00:00:00.000Z",
+    "excerpt": "Urban Hearth teams up with Mahaniyom and Merai for the third annual 100-Mile Dinner on February 25 & 26. Chef Erin Miller and Chef Song Thanaphon Authaiphan create a 4-course menu blending Thai and American Southern flavors using ingredients sourced within 100 miles.",
+    "coverImageUrl": "https://static.wixstatic.com/media/178366_bd327964bf094259b47ac27a451367ff~mv2.png",
+    "body": [
+      {
+        "type": "paragraph",
+        "text": "In the deep, dark cold of New England winter, the craving for fresh vibrant flavors can seem like a distant dream. Just as your tastebuds slip off into a winter slumber, dreaming of tantalizing green spring and spicy red summer, Urban Hearth has a mid winter treat for you. We're teaming up with our friends from Mahaniyom and Merai to produce this year's 100-Mile Dinner on Feb 25 & 26. It promises to awaken even the sleepiest of senses as we employ all of our culinary talents and tricks to craft New England's winter bounty into an exotically spiced, warm and fragrant multi-course tasting menu that sings with flavors of New England, Thailand, and the American South, all sourced from within a 100-mile radius."
+      },
+      {
+        "type": "paragraph",
+        "text": "Join us for the 3rd annual 100-Mile Dinner, a unique and thrilling culinary challenge that will warm your heart and tantalize your taste buds. This year, Chef Erin Miller of Urban Hearth is teaming up with the talented Chef Song Thanaphon Authaiphan of Mahaniyom and Merai to create a spectacular 4-course menu that blends the bold flavors of his native Thailand with the comforting essence of her roots in the American South."
+      },
+      {
+        "type": "paragraph",
+        "text": "In the depths of the cold season, when fresh produce is scarce, and the unique ingredients of Thai cookery are non-existent on the local scene, our chefs are rising to the challenge. They will be digging deep into cold storage, leveraging hydroponics, utilizing preserved foods, and exploring the bounty of local greenhouses to create dishes that are both creative and memorable. From the rich meats and seafood of the region to the innovative use of local ingredients, every course promises to be a masterclass in culinary ingenuity."
+      },
+      {
+        "type": "paragraph",
+        "text": "Don't miss this unique opportunity to experience the best of both worlds in a single, unforgettable evening. The 100-Mile Dinner promises to be a night of culinary innovation, community spirit, and delicious flavors that will leave you warm and satisfied, even on the coldest of winter nights. Reservations are now live, so book your spot quickly, as this event is sure to sell out fast! The dinner will take place at Urban Hearth, 2263 Massachusetts Ave, Cambridge, on Tuesday, February 25, 2025 and Wed, Feb 26 starting from 5-10pm, with tickets priced at $90 per person and an optional beverage pairing featuring New England wines and spirits."
+      },
+      {
+        "type": "paragraph",
+        "text": "Note: This event has been very popular and we may be fully booked. If you don't see a table, please email info@urbanhearth.net with your name, size of party, and preferred times for this event and we will contact you if anything opens up."
+      }
+    ]
+  },
+  {
+    "name": "A Valentine's Day Chef's Tasting Menu Celebrating Love in Every Form",
+    "slug": "a-valentine-s-day-chef-s-tasting-menu-celebrating-joy-in-every-form",
+    "publishedAt": "2025-01-09T00:00:00.000Z",
+    "excerpt": "Valentine's Day can celebrate all forms of love—romantic, familial, and communal. Urban Hearth invites guests to join Chef Erin Miller's exclusive 5-course tasting menu on February 14, available to all diners for this special evening.",
+    "coverImageUrl": "https://static.wixstatic.com/media/178366_a98ce79bf2c54153a4433ff7e9814660~mv2.png",
+    "body": [
+      {
+        "type": "paragraph",
+        "text": "Valentine's Day often centers around romantic love, but this year, let's change that perspective. Imagine celebrating all the love that brings joy into our lives—love for friends, family, and community. Valentine's Day can be a celebration of love that encompasses all relationships, not just romantic ones. Let's embrace togetherness and relish the beauty of love, laughter, and shared stories—while enjoying a delightful meal together. Whether you bring along a partner, friend or family member, or plan to dine solo, we invite you to join us on Friday, Feb 14 for a dinner celebrating joy and togetherness."
+      },
+      {
+        "type": "paragraph",
+        "text": "Indulge in Chef Erin Miller's exquisite 5-course Chef's Tasting menu, awarded Best Chef's Counter Experience 2024 by Boston Magazine. Typically reserved for a select few at our exclusive chef's counter, this exceptional dining experience will be available to all guests in the dining room for one special evening."
+      },
+      {
+        "type": "paragraph",
+        "text": "Add a thoughtfully curated wine pairing or mocktail pairing to level up your experience. We will offer additions to the menu, along with some other delightful surprises throughout the evening. We are also happy to accommodate vegetarian preferences and certain dietary restrictions. Should you have any questions, feel free to reach out at info@urbanhearth.net. We highly recommend making a reservation to secure your place for this special experience."
+      }
+    ]
+  },
+  {
+    "name": "Nordic Popup: Norway",
+    "slug": "nordic-food-popup-norway",
+    "publishedAt": "2025-01-06T00:00:00.000Z",
+    "excerpt": "Urban Hearth is hosting another Nordic food popup focused on traditional Norwegian cuisine on Sunday, January 19 from 12pm-4pm. Expect dark rye breads, brunost cheese, and seafood-forward dishes reflecting Norway's maritime heritage.",
+    "coverImageUrl": "https://static.wixstatic.com/media/178366_0d8af9522d0841d5bd7e121769404c34~mv2.jpg",
+    "body": [
+      {
+        "type": "paragraph",
+        "text": "After the great successes of our two most recent Nordic food popups with Emily Taylor, we've decided to schedule another Sunday afternoon nordic feast on Sunday, January 19 from 12pm-4pm. This time we will be focused on traditional Norwegian foods. As with all the Nordic Popups, you can enjoy delicious dark rye based breads and housemade butter, along with a Norwegian cheese called brunost, which tastes like cheesy caramel!"
+      },
+      {
+        "type": "paragraph",
+        "text": "As a seafaring culture, dishes from Norway tend to have a focus on fish so expect to see dishes like smoked herring in a tangy mustard sauce, along with a delightfully creamy fish stew, perfect for keeping bellies warm during the cold months."
+      },
+      {
+        "type": "paragraph",
+        "text": "For dessert Chef Emily will be offering a sweet rice pudding and perhaps a waffle or two, since no Norwegian meal is complete without a waffle."
+      },
+      {
+        "type": "paragraph",
+        "text": "Since you all loved her bread so much, we've decided to make small loaves for purchase so you can take a little bit of Nordic flavor home with you!"
+      },
+      {
+        "type": "paragraph",
+        "text": "Join us on Jan 19 at Urban Hearth for Nordic Popup: Norway with Chef Emily!"
+      }
+    ]
+  },
+  {
+    "name": "Reflections on New Year's Eve from our GM",
+    "slug": "reflections-on-new-year-s-eve-from-our-gm",
+    "publishedAt": "2025-01-02T00:00:00.000Z",
+    "excerpt": "General Manager Abby Taylor reflects on Urban Hearth's New Year's Eve service, describing the multi-day preparation process, staffing challenges, and the heartwarming kindness of guests despite operational delays.",
+    "coverImageUrl": "https://static.wixstatic.com/media/178366_619bc45885784e9f8c6671cf6337a744~mv2.jpg",
+    "body": [
+      {
+        "type": "paragraph",
+        "text": "By Abby Taylor, General Manager of Urban Hearth"
+      },
+      {
+        "type": "paragraph",
+        "text": "Prepping for this New Year's Eve experience was a multi day process. During the week leading up to NYE... you know, that no-mans-land of juggling work, visits with far away friends and family, and holiday parties between Christmas and New Years where you feel like your whole body has been transformed into a lump of butter and cheese... I started on some of the ingredients for our bar program and worked on our menu design and wine pairings. I spent Monday taking down our holiday decorations and hanging sparkly tissue paper lanterns on the ceiling, which somehow took nearly 3 hours and many trips up and down a ladder, along with batching out our mocktails for the non alcoholic pairing."
+      },
+      {
+        "type": "paragraph",
+        "text": "This pairing was a challenge for me specifically since I'm not a trained mixologist, but the feedback I got from all three of our chefs and from guests was all wonderful and I'm really proud of it. Proud that we took elements from our culinary menu to create a true beverage/food pairing and especially proud that we offered something completely bespoke, special and different for our alcohol free guests that isn't just expensive juice and soda and involved a lot of care and thought in its curation."
+      },
+      {
+        "type": "image",
+        "url": "https://static.wixstatic.com/media/178366_619bc45885784e9f8c6671cf6337a744~mv2.jpg",
+        "alt": "The New Year's Eve Tasting Menu"
+      },
+      {
+        "type": "paragraph",
+        "text": "Tuesday I went in, set up the bar, pulling our regular offerings out and stocking up New Year's wines, beer and batching cocktails/mocktails. I unboxed extra wine and champagne glasses, printed and folded menus with extra inserts of a secret toast that one of our regulars had written to our team/chef, finished our floor plan, and went through the menu with our team before racing home to change into a sparkly outfit and walk the dog... oh and taking as many deep breaths as I possibly could before heading back, sprinkling glitter on the sidewalk, starting our playlist, and just like that... the doors were open."
+      },
+      {
+        "type": "image",
+        "url": "https://static.wixstatic.com/media/178366_4049666021e244179228c201830582e6~mv2.jpg",
+        "alt": "The secret toast. (yes, chef cried when she read it, thanks Patty & Sue)"
+      },
+      {
+        "type": "paragraph",
+        "text": "It took us about an hour to really set into a service groove and there were some delays that caused a backup. We realized 3 crucial tables weren't going to turn in time and we were looking at a 30-45 min delay for some parties to wait (outside in the cold). That's when the GM and Chef take a deep breath and head outside with a fist full of flutes and start pouring complimentary champagne while entertaining guests with a combination conversation/comedy routine. Smiles and laughs were shared and hearts were warmed, despite the cold."
+      },
+      {
+        "type": "paragraph",
+        "text": "Somehow, against all odds, we were able to seat everyone eventually and somehow, against even more odds, everyone was so kind, gracious and patient with us. The parties that waited the longest out in the cold ended up leaving us the nicest, kindest reviews on OpenTable. Guests kept heading over to the kitchen to give them all high praise and huge thanks. I received many hugs and kisses from extremely pleased guests. We were blown away at the response from old and new guests alike."
+      },
+      {
+        "type": "image",
+        "url": "https://static.wixstatic.com/media/178366_33f4d9e80df547ad9d7d76785c7449f2~mv2.jpg",
+        "alt": "One of the very kind reviews. Thanks, Brian!"
+      },
+      {
+        "type": "paragraph",
+        "text": "At one point one table, a couple who had gotten married at UH a few months prior and are huge fans of us (they come every other week with a new guest), started chatting with another couple who were joining us for the first time and they were comparing favorite dishes and drinks and I actually said out loud to them \"see... this is my favorite dish... what's happening right here... this is the good stuff\" and I wasn't just saying it. It's my favorite thing about my job to watch new friendships being forged over food."
+      },
+      {
+        "type": "paragraph",
+        "text": "Somehow, despite all the division and tension of our current social/political status, despite all the stress and overwhelm of the holiday season, despite it all... people came out with kindness in their hearts and openness in their minds. People shared their joy with us, despite the fear, their hope for the new year to come, despite the hard road ahead."
+      },
+      {
+        "type": "paragraph",
+        "text": "I don't really know how to describe the exhaustion that one feels after pulling off a night like this. It's like a combination body and soul exhaustion. I fused myself to the couch for the first 4 hours of my 2025, making IG reel recaps, sipping a latte, with a puppy on my lap. Then I peeled myself off the couch, put on a fluffy rainbow unicorn onesie for adults and went to watch dumb movies and eat Chinese takeout with friends."
+      },
+      {
+        "type": "image",
+        "url": "https://static.wixstatic.com/media/178366_025aee392b914cff8802011cfad35caf~mv2.jpeg",
+        "alt": "All the \"glam\" I could muster..."
+      },
+      {
+        "type": "paragraph",
+        "text": "With our plans of expanding into a larger space, I'm not sure where we will be on NYE 2026. This New Year's Eve might have been the last one for us in this tiny 24 seat restaurant. And if it is? What a way to end it. Happy 2025, friends. I'm feeling weirdly optimistic about it, or at the very least, not as bad as I expected. ❤"
+      }
+    ]
+  },
+  {
+    "name": "To-Go Gifts at Urban Hearth",
+    "slug": "to-go-gifts-at-the-urban-hearth-holiday-market",
+    "publishedAt": "2024-11-22T00:00:00.000Z",
+    "excerpt": "Urban Hearth celebrates their 8th holiday season with a marketplace of packaged treats. While elaborate to-go meals aren't available this year, customers can reserve buttermilk biscuits, jams, pickles, and bottled cocktails for pickup between December 18-21.",
+    "coverImageUrl": "https://static.wixstatic.com/media/178366_b5d6700042a7436f825b3f1a6c9b6764~mv2.jpeg",
+    "body": [
+      {
+        "type": "paragraph",
+        "text": "We are so grateful to be able to celebrate our 8th holiday season with all of you! We've been so busy at the restaurant that we haven't been able to offer any elaborate to-go meals this year, but don't worry, you'll still get to celebrate with Urban Hearth this season."
+      },
+      {
+        "type": "heading2",
+        "text": "December Holidays:"
+      },
+      {
+        "type": "paragraph",
+        "text": "This year we have created a marketplace full of holiday cheer. We've packaged up some of our favorite treats including:"
+      },
+      {
+        "type": "bullet_list",
+        "items": [
+          "Big Buttermilk Biscuits, either frozen or baked",
+          "Jams & Spreads",
+          "House pickles & olives",
+          "Bottled cocktails including Apple Bourbon Punch, Eggnog, Glühwein and our Black Walnut Nocino"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "To reserve your holiday items for pickup, visit our online shop. Pickup dates are Wed, 12/18 - Sat, 12/21 from 4pm-6pm."
+      },
+      {
+        "type": "paragraph",
+        "text": "We are so thrilled to share another holiday season with all of you. Wishing all of you the best this holiday season and in 2025! Speaking of which, you can celebrate the New Year with us too!"
+      }
+    ]
+  },
+  {
+    "name": "New Year's Eve with Urban Hearth",
+    "slug": "new-year-s-eve-with-urban-hearth",
+    "publishedAt": "2024-11-20T00:00:00.000Z",
+    "excerpt": "Ring in 2025 at Urban Hearth for an evening featuring Chef Erin Miller's award-winning 5-course farm-to-table tasting menu. This seasonal offering celebrates regional bounty sourced from local farms, fisheries, and New England forests and shores.",
+    "coverImageUrl": "https://static.wixstatic.com/media/178366_66df7062bdbc461a8ca5ed7d6380d401~mv2.jpg",
+    "body": [
+      {
+        "type": "paragraph",
+        "text": "Ring in 2025 with us at Urban Hearth for a very special evening of food, wine and togetherness. Enjoy Chef Erin Miller's award winning 5 course Farm to Table chef's tasting menu, voted Best of Boston Best Chef's Counter in 2024 by Boston Magazine. This is a seasonal menu of ingredients celebrating the bounty of our region and sourced from local farms and fisheries, including some foraged ingredients from the forests, fields and shores of New England. This menu is not to be missed and our team is delighted to bring it to you in celebration of our new year ahead."
+      },
+      {
+        "type": "paragraph",
+        "text": "Pair your New Year's Eve experience with an optional wine pairing or mocktail pairing, or choose from our curated selection of sparkling wines and champagnes to toast to the year ahead."
+      },
+      {
+        "type": "paragraph",
+        "text": "A complimentary glass of bubbles is included in your experience, along with some lovely surprises. We can accommodate vegetarians and some dietary restrictions. Please remember to leave a note in your booking regarding any restrictions and call or message us directly for questions."
+      },
+      {
+        "type": "paragraph",
+        "text": "Tasting: $160 per person\nWine pairing: $80\nMocktail pairing: $40"
+      },
+      {
+        "type": "paragraph",
+        "text": "Cancellation policy: 24 hours notice is required for all cancellations or guest will be subject to a $160 per person fee. This fee is refundable via a gift card to use at a later visit."
+      }
+    ]
+  },
+  {
+    "name": "A Taste of Boston with Dining Playbook",
+    "slug": "a-taste-of-boston-with-dining-playbook",
+    "publishedAt": "2024-10-26T00:00:00.000Z",
+    "excerpt": "Chef Erin Miller's buttermilk biscuits have been featured in \"A Taste of Boston,\" a cookbook by Dining Playbook creators Billy Costa and Jenny Johnson. The collection showcases recipes from 60 of Boston's most acclaimed chefs, with a foreword by Mark Wahlberg.",
+    "coverImageUrl": "https://static.wixstatic.com/media/178366_8639ef0645654d558186584fc762de56~mv2.jpg",
+    "body": [
+      {
+        "type": "paragraph",
+        "text": "If you've ever enjoyed one of Chef Erin Miller's famous buttermilk biscuits and wondered how she makes them, well we have great news! We've been included in A Taste of Boston, a cookbook by Dining Playbook's Billy Costa and Jenny Johnson. This book is filled with recipes from Boston's most legendary chefs including Chef Erin Miller's recipe for big buttermilk biscuits with apple butter, along with a forward from Boston's own Mark Wahlberg. We are so honored to be included alongside 60 of the greatest chefs in Boston."
+      },
+      {
+        "type": "paragraph",
+        "text": "\"A Taste of Boston is a palate-pleasing celebration of one of the country's culinary capitals. With food and dining television and radio hosts Billy Costa and Jenny Johnson as your guides, get to know the personalities behind the plates and indulge in the special recipe that makes Boston one of the tastiest cities in the world. Whether you're a Bostonian, a home cook, or planning a visit to Beantown, this book is the perfect guide for finding your next favorite meal.\""
+      },
+      {
+        "type": "paragraph",
+        "text": "Purchase the book here to read our recipe along with so many other amazing recipes from Boston's greatest chefs!"
+      }
+    ]
+  },
+  {
+    "name": "Join Urban Hearth for a Fall Patio Party",
+    "slug": "join-urban-hearth-for-a-fall-patio-party",
+    "publishedAt": "2024-10-26T00:00:00.000Z",
+    "excerpt": "Urban Hearth invites guests to \"Say a fond farewell to patio season\" on Saturday, November 9 from noon to 4pm, featuring seasonal barbecue and beverages as part of the NoCa Fall Stroll.",
+    "coverImageUrl": "https://static.wixstatic.com/media/178366_4507fbdb05c74fa1a65f43e9d58c9062~mv2.png",
+    "body": [
+      {
+        "type": "paragraph",
+        "text": "Say a fond farewell to patio season with us on Saturday, Nov 9 from 12-4pm for a Fall Patio Party. In conjunction with the NoCa Fall Stroll, we will be open early for snacks and libations on the patio. Chef Erin will be creating some seasonal bbq delights like smoked pork and veggies and we'll have a keg of Notch Beer, along with hot cider, ghluwein and other cozy snacks and drinks to keep you toasty warm! Cross your fingers for warm, sunny weather as we will cancel the event if it rains. No reservations needed, first come first serve! Our patio will close the following week so this will be your last chance to enjoy outdoor dining at Urban Hearth for the season."
+      }
+    ]
+  },
+  {
+    "name": "Nordic Pop-up Lunches at Urban Hearth",
+    "slug": "nordic-pop-up-lunches-at-urban-hearth",
+    "publishedAt": "2024-10-05T00:00:00.000Z",
+    "excerpt": "Urban Hearth is hosting Nordic-themed pop-up lunches in partnership with Chef Emily Taylor through the winter months. \"Think cozy loaves of bread, warm and hearty soups, and traditional sweet pastries, along with hot beverages and ice cold aquavit.\"",
+    "coverImageUrl": "https://static.wixstatic.com/media/178366_e68b63a08a4c4d0a951928a4c5f40413~mv2.jpg",
+    "body": [
+      {
+        "type": "paragraph",
+        "text": "Urban Hearth is partnering with Chef Emily Taylor to feature Nordic foods through the cold months. The pop-ups will run from 12pm - 6pm and are first come first serve, no reservations required. Items are available for in-house enjoyment or to take away."
+      },
+      {
+        "type": "heading2",
+        "text": "Dec 1: Iceland"
+      },
+      {
+        "type": "paragraph",
+        "text": "Starting off Dec 1 with traditional Icelandic foods. A hearty lamb and potato soup called Kjötsúpa, one of the staples of Icelandic cooking. This will be served with steamed geyser bread and butter, cardamom donuts and other cozy treats to warm your heart and soul."
+      },
+      {
+        "type": "heading2",
+        "text": "Dec 15: Sweden"
+      },
+      {
+        "type": "paragraph",
+        "text": "On Dec 15 Swedish foods will be featured. A yellow split pea soup alongside a few open face sandwiches to keep you full while doing your holiday shopping. Emily's Kardemummabullar (swedish cardamom buns) are NOT to be missed and will feature fresh ground Curio cardamom."
+      },
+      {
+        "type": "heading2",
+        "text": "Urban Hearth Holiday Market"
+      },
+      {
+        "type": "paragraph",
+        "text": "A market will be set up alongside the Nordic pop-ups with a variety of gifts and goods including baked goods like famous biscuits, bottled cocktails like house nocino and gluhwein to toast to the holidays."
+      },
+      {
+        "type": "paragraph",
+        "text": "Emily fell in love with Nordic foods while backpacking across Scandinavia. Since then she has been recreating tastes and feelings from those cozy northern locations. Normally she is a massage therapist, doula, coach and healer, so expect healing energy to work its way into the food."
+      }
+    ]
+  },
+  {
+    "name": "Private Dining for the Holidays with Urban Hearth",
+    "slug": "private-dining-for-the-holidays-with-urban-hearth",
+    "publishedAt": "2024-09-25T00:00:00.000Z",
+    "excerpt": "As autumn arrives, Urban Hearth invites you to celebrate the holidays through private dining. The restaurant offers two options: an exclusive 24-seat private dining room or catered service at your home, both featuring customized menus and dedicated hospitality.",
+    "coverImageUrl": "https://static.wixstatic.com/media/178366_cfb8ba80a62348dd83e147e8cb0bd20f~mv2.jpg",
+    "body": [
+      {
+        "type": "paragraph",
+        "text": "As the air gets chilly and autumn sets in, your mind might start to linger on thoughts of festive gatherings, traditional dishes, and cherished moments at the table with loved ones. While the traditional holiday dinner at home is a wonderful way to celebrate, consider the added magic of a private dining experience with Urban Hearth. We offer two options for private dining; a beautiful private dining experience in our 24 seat dining room, or a catered dining experience in your home."
+      },
+      {
+        "type": "heading2",
+        "text": "Private Dining at Urban Hearth"
+      },
+      {
+        "type": "paragraph",
+        "text": "Our dining room is yours for the evening, complete with personalized and dedicated service, a customized menu that allows you to incorporate seasonal favorites, dietary preferences and unique culinary experiences. Whether you prefer a formal multi-course meal or a casual buffet, you can curate a menu that reflects your tastes and those of your guests. A private dining setting creates an exclusive environment that fosters connection. With only your guests in attendance, you can enjoy the comfort of meaningful conversations without the distractions of a bustling restaurant."
+      },
+      {
+        "type": "heading2",
+        "text": "Let Urban Hearth Come to You!"
+      },
+      {
+        "type": "paragraph",
+        "text": "Let us handle your holiday gathering in the privacy and intimacy of your own home. We offer catering packages including a chef team, dedicated servers, a bespoke menu, bar services and more. From the moment they arrive, you and your guests will be treated to exceptional hospitality, allowing you to relax and enjoy the occasion."
+      },
+      {
+        "type": "paragraph",
+        "text": "Book a private dinner for you and yours this holiday season, either at your home with one of our catering offerings, or in our dining room. Learn more through the link below, but don't wait too long as we are filling up fast!"
+      }
+    ]
+  },
+  {
+    "name": "November Pop-ups with Chef Kat Bayle of Shirley",
+    "slug": "november-pop-ups-with-chef-kat-bayle-of-shirley",
+    "publishedAt": "2024-09-25T00:00:00.000Z",
+    "excerpt": "Urban Hearth partners with Chef Katherine Bayle from Shirley in Davis Square for a kitchen takeover featuring a 4-course farm-to-table meal on two Sundays in November, 11/3 and 11/10.",
+    "coverImageUrl": "https://static.wixstatic.com/media/178366_9ef0cd8a44dd41c69cf5d0fb692dfcbd~mv2.jpg",
+    "body": [
+      {
+        "type": "paragraph",
+        "text": "Thanks to the success of our last pop-up with Chef Katherine Bayle, we've partnered again with our friend and neighbor from Shirley in Davis Square, for a kitchen takeover. Join her and our front of house team for a 4 course farm-to-table meal created by Chef Kat at Urban Hearth on two Sundays in November, 11/3 and 11/10."
+      },
+      {
+        "type": "heading2",
+        "text": "More about Chef Kat"
+      },
+      {
+        "type": "paragraph",
+        "text": "Prior to opening Shirley, she worked as sous chef at local Field and Vine and before that developed her farm to table chops + bread skills in numerous San Francisco fine dining restaurants (Octavia, Slanted Door) and a few in Europe (Hisa Franko (Slovenia) Ellsworth (Paris), Asador Extebarri (Spain)) as well. We are huge fans of her bakery and cafe in Davis and we recommend stopping by there if you are thinking of coming to the pop-ups and haven't met her yet. She's a delight!"
+      },
+      {
+        "type": "heading2",
+        "text": "Pricing"
+      },
+      {
+        "type": "paragraph",
+        "text": "$85 ticket includes 3 courses and dessert. Tax and tip are additional. Beverage not included."
+      },
+      {
+        "type": "heading2",
+        "text": "Menu"
+      },
+      {
+        "type": "bullet_list",
+        "items": [
+          "New England Fall salad | squash, melted leek & tiny precious native pear | local cheese",
+          "Caviar Vibes | potato flatbreads | creamy dressing | smoked trout roe + more fun",
+          "Featherbrook Farms Roast chicken | the works",
+          "Boozy Apple Cake"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Menu subject to changes due to nature's fall time whims. No modifications. Shellfish and gluten allergy, vegetarianism can be accommodated if requested in reservation notes."
+      },
+      {
+        "type": "heading2",
+        "text": "Cancellation Policy"
+      },
+      {
+        "type": "paragraph",
+        "text": "A full refund can be given for cancellations made one week or more prior to the event. For those made after a partial refund of $40 will be made."
+      }
+    ]
+  },
+  {
+    "name": "Foraged & Found",
+    "slug": "foraged-found",
+    "publishedAt": "2024-08-28T00:00:00.000Z",
+    "excerpt": "Chef Erin celebrates autumn with a special menu featuring locally foraged New England ingredients running September 24–28, with proceeds supporting the Herb Lyceum.",
+    "coverImageUrl": "https://static.wixstatic.com/media/178366_5253ec4ca8e14832995985a7363357ca~mv2.jpeg",
+    "body": [
+      {
+        "type": "heading2",
+        "text": "An autumn celebration of hunting wild & forgotten foods"
+      },
+      {
+        "type": "paragraph",
+        "text": "September 24 - 28"
+      },
+      {
+        "type": "image",
+        "url": "https://static.wixstatic.com/media/178366_5253ec4ca8e14832995985a7363357ca~mv2.jpeg",
+        "alt": "hen of the woods growing on a tree"
+      },
+      {
+        "type": "paragraph",
+        "text": "Yes, the beaches are beautiful and ski season is a thrill, but we would argue that there's no better time to live in New England than in the Fall. Summer is often the go to season of abundance, but there's a wealth of wonders growing in our fields and forests, if you know what to look for. Chef Erin has been foraging up a storm to bring you a special menu of hyper local delights, sourced from the fields, forests and shores of New England including autumn olives, mushrooms, greens, sea vegetables, rosehip, nuts, herbs and more."
+      },
+      {
+        "type": "image",
+        "url": "https://static.wixstatic.com/media/178366_fa8a12514c6f4a9abe7cd3aa73fad51d~mv2.jpeg",
+        "alt": "Chef Erin Miller forage for autumn olives"
+      },
+      {
+        "type": "paragraph",
+        "text": "We'll be running this special menu alongside our a la carte menu. And we'll have a list of fall cocktail specials including foraged ingredients like elderflower wine and Chef's famous foraged black walnut nocino."
+      },
+      {
+        "type": "heading3",
+        "text": "FORAGING FOR A CAUSE"
+      },
+      {
+        "type": "paragraph",
+        "text": "Now there is even more incentive to join us. We will be donating a percentage of our sales to help support the team at the Herb Lyceum, which was destroyed in a fire earlier this month. Our friend, Chef Will Gilson, his family, his team, and his community are all devastated by the tragic loss of one of the most charming farm to table dining spaces in MA. They are running a GoFundMe to help with rebuilding efforts. Even if you can't join us for our Foraged and Found Fundraiser week, please consider donating."
+      },
+      {
+        "type": "paragraph",
+        "text": "Reservations aren't required, but we recommend securing your spot in this week long celebration of foraged foods. Just make a note in your reservation if you wish to participate, along with any dietary restrictions you may have. The event is running from Tuesday, Sept 24 to Saturday, Sept 28."
+      }
+    ]
+  },
+  {
+    "name": "Mushroom Dinner with Tyler Akabane on Oct 8 & 9",
+    "slug": "mushroom-dinner-with-tyler-akabane-on-oct-9",
+    "publishedAt": "2024-08-22T00:00:00.000Z",
+    "excerpt": "Urban Hearth hosts a special fungi-focused evening during peak mushroom season featuring Chef Erin Miller and Tyler Akabane of Mushrooms For My Friends, offering a 4-course culinary adventure centered around wild foraged mushrooms from New England forests.",
+    "coverImageUrl": "https://static.wixstatic.com/media/178366_6ed3fddd1098440cb6a8d5779caea8ce~mv2.jpg",
+    "body": [
+      {
+        "type": "paragraph",
+        "text": "There is one seasonal ingredient that perfectly captures the essence of Fall and it is without a doubt mushrooms. As the seasons change, so too does the bounty of the forest floor. For those who revel in the thrill of foraging, there's no greater pleasure than crafting a meal from wild mushrooms gathered straight from the woods. Chef Erin Miller has a passion for foraging and using foraged ingredients. For Chef, there's nothing more exciting than discovering a forest glade full of chanterelles, an experience she recently had out in the wilds of New England. And now you get to benefit from this discovery!"
+      },
+      {
+        "type": "paragraph",
+        "text": "On Tuesday, Oct 8th & Wednesday, October 9th, Chef Erin is preparing an immersive dining experience at Urban Hearth that honors the changing seasons and connects you to nature's rhythm through the use of Fall's most quintessential ingredient, wild foraged mushrooms. This Mushroom Dinner will be a 4 course culinary adventure, featuring mushrooms hand foraged from the forests of New England by Chef Erin and Tyler Akabane, founder of Mushrooms for my Friends and The Mushroom Shop."
+      },
+      {
+        "type": "paragraph",
+        "text": "Tyler is a seasoned mushroom forager and mycophile (lover of all things fungi). His hobby of going on foraging excursions drew him to start Mushrooms for my Friends, which started as a guided educational foraging tour along with special educational events about foraging and fungi. From there the company branched out into mushroom distribution, specializing in sourcing wild foraged mushrooms and delivering them to chefs throughout the New England area. Now, along with his guided foraging tours, he also has a brick and mortar shop in Somerville, MA bursting with fantastic fungi, which you need to go to if you haven't already because it's adorable."
+      },
+      {
+        "type": "paragraph",
+        "text": "Tyler will be on hand to talk about foraging techniques, applications, and other mushroomy goodness while you dine. Seating includes the four course dinner, tax, 5% kitchen appreciation and 20% gratuity. Beverage pairings, special courses, take home treats and other add ons will be available for purchase onsite. Please share any dietary restrictions in your booking. Not all restrictions can be accommodated. And if you are allergic to mushrooms, this might not be the event for you!"
+      }
+    ]
+  },
+  {
+    "name": "Outstanding in the Field 2024",
+    "slug": "outstanding-in-the-field-2024",
+    "publishedAt": "2024-08-20T00:00:00.000Z",
+    "excerpt": "Urban Hearth collaborated with Outstanding in the Field for their second year, hosting 190 guests at Weir River Farm in Hingham for an elegant outdoor farm-to-table dining experience.",
+    "coverImageUrl": "https://static.wixstatic.com/media/178366_ca5f88bfe95c40d59741838db8426631~mv2.jpg",
+    "body": [
+      {
+        "type": "paragraph",
+        "text": "The team secured another beautiful New England summer evening for their second year collaborating with Outstanding in the Field founder Jim Denevan."
+      },
+      {
+        "type": "paragraph",
+        "text": "This year's event took place at Weir River Farm in Hingham, Massachusetts, a Trustees property featuring woodland trails, golden fields with wildflowers, and panoramic views of the ocean and Boston skyline from Turkey Hill."
+      },
+      {
+        "type": "paragraph",
+        "text": "Under green tents, the team prepared an authentic farm-to-table experience for 190 guests, smoking local vegetables, fish, and duck over their wood fire grill. Five New England oyster farms, including Unicorn Oyster Farm, shucked oysters during the opening reception."
+      },
+      {
+        "type": "paragraph",
+        "text": "As the pink sunset appeared and an almost-full moon rose, servers plated family-style dinners and poured paired wines from Martha Stoumen, hand-selected by Julia Bailey of Olmstead Wines."
+      },
+      {
+        "type": "paragraph",
+        "text": "During the closing ceremony, Chef Erin Miller spoke about the restaurant's commitment to local sourcing and building community through food and hospitality, receiving applause from the entire table."
+      },
+      {
+        "type": "paragraph",
+        "text": "The Urban Hearth chef team included Gabriel, Erin, Rebecca, and Luisana."
+      }
+    ]
+  },
+  {
+    "name": "While we're outstanding in the field... Shirley's taking over!",
+    "slug": "while-we-re-outstanding-in-the-field-shirley-s-taking-over",
+    "publishedAt": "2024-07-30T00:00:00.000Z",
+    "excerpt": "Urban Hearth announces a kitchen takeover by Chef Katherine Bayle of Shirley Cafe on August 17 while the restaurant's team participates in Outstanding In the Field. \"Chef Kat has hosted Le Gran Aioli dinners at Cobble and popup dinner experiences at Gray's Hall.\"",
+    "coverImageUrl": "https://static.wixstatic.com/media/178366_4d788f61eeb64c9b8d253f102729b3b2~mv2.jpg",
+    "body": [
+      {
+        "type": "paragraph",
+        "text": "Urban Hearth is partnering with Shirley Cafe Chef Kat Bayle for a kitchen takeover on Saturday, August 17. While Chef Erin, Abby and the kitchen team cook at Outstanding In the Field, the restaurant will host a special evening with Chef Katherine Bayle."
+      },
+      {
+        "type": "paragraph",
+        "text": "Chef Kat named her restaurant after her 102-year-old grandmother, Shirley. She has hosted Le Gran Aioli dinners at Cobble, popup dinner experiences at Gray's Hall, and was formerly a chef at Field & Vine."
+      },
+      {
+        "type": "paragraph",
+        "text": "Guests will enjoy a 4-course farm-to-table meal created by Chef Kat at Urban Hearth. She has prepared a pescatarian menu with vegetarian and gluten-free options available."
+      },
+      {
+        "type": "paragraph",
+        "text": "The restaurant expects this special takeover event to sell out quickly. Reservations can be made through OpenTable."
+      },
+      {
+        "type": "image",
+        "url": "https://static.wixstatic.com/media/178366_9ef0cd8a44dd41c69cf5d0fb692dfcbd~mv2.jpg",
+        "alt": "Chef Kat at her station at Shirley"
+      }
+    ]
+  },
+  {
+    "name": "Foraging with Chef",
+    "slug": "foraging-with-chef",
+    "publishedAt": "2024-07-12T00:00:00.000Z",
+    "excerpt": "A spontaneous coffee outing transforms into a foraging adventure at Fresh Pond, where the chef and author hunt for green black walnuts among meadows and cottonwood fluff.",
+    "coverImageUrl": "https://static.wixstatic.com/media/178366_7c52cf993b7846ccb7044c9d12329c28~mv2.jpeg",
+    "body": [
+      {
+        "type": "paragraph",
+        "text": "Sometimes when you meet up with Chef for a morning coffee meeting, you may suddenly find yourself knee deep in weeds, covered in cottonwood fluffs, burrs, and sweat, picking green black walnuts in the wilds of Fresh Pond."
+      },
+      {
+        "type": "paragraph",
+        "text": "\"Meet me for coffee this morning at La Saison?\" she texts, knowing I cannot resist my favorite bakery in Cambridge. Perhaps I should have known... there were hints... we were only a few blocks away from Fresh Pond after all. I'm on my way out the door when I get another text \"Actually... \" (here we go...) \"let's take our coffee to go, I need to get some nuts.\""
+      },
+      {
+        "type": "paragraph",
+        "text": "Fifteen minutes and only a few delicious sips of coffee later, I find myself picking cottonwood fluffs out of my hair and dodging thorns in the meadows of Fresh Pond. The black walnuts are still green and hard to spot, tucked away behind stretching, overlapping green leaves. The leaves and nuts have a very distinct vegetal smell that was mildly intoxicating... or maybe it was just the heat. Either way we slowly filled two bags full."
+      },
+      {
+        "type": "image",
+        "url": "https://static.wixstatic.com/media/178366_9eed39617aa14d39a1ca0d5980922b0c~mv2.jpeg",
+        "alt": "Can you spot the walnuts??"
+      },
+      {
+        "type": "paragraph",
+        "text": "Chef keeps at it long after I've given up and retreated to the comfort of a cold stone bench with my coffee. Finally after some urging from her very itchy and sweaty companion, she emerges from the wild with her precious cargo, a proud smile upon her face. I admit that I, too, was proud of my contribution, despite the collection of burrs I discovered on my dress."
+      },
+      {
+        "type": "image",
+        "url": "https://static.wixstatic.com/media/178366_6f5761bc6adf45f9874b55629f1bb004~mv2.jpeg",
+        "alt": "Can you spot the Chef?"
+      },
+      {
+        "type": "image",
+        "url": "https://static.wixstatic.com/media/178366_480f2491967a4994833d301541bb8621~mv2.jpeg",
+        "alt": ""
+      },
+      {
+        "type": "paragraph",
+        "text": "These beautiful babies are destined to be aged into deliciously nutty nocino amaro, which we will be bottling up for sale in the fall. If you've never had it, well I've heard it's a delicious, nutty amaro perfect for blending with bourbon in cocktails or just sipping on. But sadly, reader, I'm allergic to walnuts!!! So you'll just have to try it for yourself!"
+      },
+      {
+        "type": "paragraph",
+        "text": "-Abby Taylor, General Manager (and very itchy person) at Urban Hearth"
+      }
+    ]
+  },
+  {
+    "name": "We're Best of Boston Winners!",
+    "slug": "we-re-best-of-boston-winners",
+    "publishedAt": "2024-07-12T00:00:00.000Z",
+    "excerpt": "Urban Hearth earned \"Boston Magazine's Best of Boston 2024, Best Chef's Counter Experience.\" The intimate counter seats only four guests with two nightly seatings at 5:45pm or 8:15pm, featuring Chef Erin Miller's bespoke menu crafted from local ingredients.",
+    "coverImageUrl": "https://static.wixstatic.com/media/178366_ed5d935dc5d347828a34e2295c7857be~mv2.png",
+    "body": [
+      {
+        "type": "paragraph",
+        "text": "We are so proud to have been awarded Boston Magazine's Best of Boston 2024, Best Chef's Counter Experience. This experience serves as a creative playground for Chef Erin Miller, using unique, local ingredients to create an unforgettable bespoke menu. Since there's only 4 seats at our counter and only 2 seatings per night at 5:45pm or 8:15pm, we book out a few weeks in advance for this experience. Reach out if you can't find your preferred spot and we will see what we can do."
+      },
+      {
+        "type": "paragraph",
+        "text": "Click the link below to book."
+      },
+      {
+        "type": "paragraph",
+        "text": "And if you are headed to the Best of Boston 50th Anniversary Soirée on Wed, July 17th, we will see you there! If you haven't gotten tickets yet, use our special code: BESTOF15 for 15% off tickets to the party."
+      }
+    ]
+  },
+  {
+    "name": "Crab Feast at Notch Brewing in Brighton on June 29",
+    "slug": "crab-feast-at-notch-brewing-in-brighton",
+    "publishedAt": "2024-05-28T00:00:00.000Z",
+    "excerpt": "Join Urban Hearth at Notch Brewing for a Mid-Atlantic inspired Chesapeake Steamed Crab Feast at the spacious Notch Biergarten in Brighton, featuring Chef Erin Miller's culinary celebration of regional traditions.",
+    "coverImageUrl": "https://static.wixstatic.com/media/178366_8951d777cb5242f8aebb9f24bef85d35~mv2.jpeg",
+    "body": [
+      {
+        "type": "heading2",
+        "text": "Join Urban Hearth at Notch Brewing for a Mid-Atlantic inspired Chesapeake Steamed Crab Feast at the spacious Notch Biergarten in Brighton!"
+      },
+      {
+        "type": "paragraph",
+        "text": "Chef Erin Miller's thoughtful and creative cuisine celebrates the bounty of New England farms and fisheries. But at the root of every dish, you will find inspiration that draws on her memories as a child in Virginia, her family roots in the South and fascinating heritage drawing on traditions from Eastern Europe and Sicily that have made an indelible impression on her family story."
+      },
+      {
+        "type": "paragraph",
+        "text": "This summer, she wants to share a very special food memory. Her favorite summertime tradition is gathering around the table, beer in hand, to feast on steamed crabs. Messy, spicy and joyful, this communal meal has been at the center of summertime gatherings in her family for generations. Erin has deep family ties to the Tidewater region of Virginia, having spent every summer at her grandmother's home on the Rappahannock river. Those summer afternoons often ended with newspapers spread on the porch table, a cooler full of cold drinks and steamed crabs. The stories and laughter shared around this table still ring out decades later and the taste of sweet steamed crab is a taste memory that she longs for when the mercury starts to rise."
+      },
+      {
+        "type": "paragraph",
+        "text": "Join Chef Erin, her Urban Hearth team, and our friends at Notch Brewing in Brighton as we get our hands dirty, tell some stories, laugh a lot, and enjoy this quintessential summer feast. Crab Feast 2024 will be hosted at the spacious Notch Biergarten in Brighton on Saturday, June 29 starting at 2pm! Enjoy steamed crabs and all the fixings along with ice cold beer provided by Notch Brewing. Select your time slot from 2pm, 4pm, or 6pm. Add extra crab or other options to your ticket as well! Notch beer will be on tap along with non-alcoholic options, oysters from Rocky Neck, and more!"
+      },
+      {
+        "type": "paragraph",
+        "text": "Great celebration for Father's Day!"
+      },
+      {
+        "type": "paragraph",
+        "text": "Note: This event is happening at Notch Brewing at the Charles River Speedway 525 Western Ave, Brighton, MA 02135."
+      },
+      {
+        "type": "paragraph",
+        "text": "Online ordering is now closed, but we will have some crab available for purchase at the event. We suggest arriving earlier in the day rather than later if you really want crab!"
+      }
+    ]
+  },
+  {
+    "name": "Martha Stewart Magazine: Why Sumac Deserves a Place in Your Spice Rack",
+    "slug": "martha-stewart-magazine-why-sumac-deserves-a-place-in-your-spice-rack",
+    "publishedAt": "2024-03-15T00:00:00.000Z",
+    "excerpt": "This Middle Eastern spice offers an \"earthy-tart flavor and deep red hue\" that can enhance your seasoning collection. Chef Erin Miller of Urban Hearth contributed expertise to this Martha Stewart Magazine article about sumac's culinary applications and proper usage techniques.",
+    "coverImageUrl": "https://static.wixstatic.com/media/178366_7a2710610ce447778c3ab93a2ca32508~mv2.jpg",
+    "body": [
+      {
+        "type": "paragraph",
+        "text": "If sumac isn't already a staple in your pantry, you should consider adding it. This Middle Eastern spice will elevate your seasoning game, thanks to its earthy-tart flavor and deep red hue. But as with all flavoring ingredients, it's worth learning how to use sumac properly to get the most out of it. We spoke to chefs to learn what sumac is, what it tastes like, and its most common culinary uses."
+      },
+      {
+        "type": "heading2",
+        "text": "What Is Sumac?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Sumac is a spice harvested from the berries of the sumac shrub (which is different from its relative, poison sumac), says Stephanie Michalak White, EdD, chef instructor and director of education at Auguste Escoffier School of Culinary Arts. Specifically, the term sumac comes fromthe word summaq, which means dark red in Arabic, says Erin Miller, executive chef and owner of Urban Hearth, a farm-to-table restaurant in Cambridge, Mass. The shrub is native to the Middle East, Mediterranean, and parts of southern Europe, says Miller. However, it naturally grows around the world, including North America, says White."
+      },
+      {
+        "type": "heading2",
+        "text": "The Flavor"
+      },
+      {
+        "type": "paragraph",
+        "text": "Sumac spice is made from the dark red outer coating of sumac berries. The berries themselves are quite tasteless, but the coating is astringent, and the spice has a similar flavor profile. It's tangy and tart with lemon-like notes, says White. Sumac can also be described as floral and earthy, according to Miller."
+      },
+      {
+        "type": "heading2",
+        "text": "How Sumac Is Used"
+      },
+      {
+        "type": "paragraph",
+        "text": "\"Sumac is an essential spice in Middle Eastern and North African cookery,\" says Miller. It's a staple component of za'atar, a versatile Middle Eastern spice blend that might include za'atar itself, a green herb, along with sumac, oregano, thyme, sesame seeds, cumin, and/or coriander. And, says Miller, sumac is also the primary flavoring ingredient in fattoush salad (a pita bread salad)."
+      },
+      {
+        "type": "paragraph",
+        "text": "Beyond specific preparations, sumac is used in marinades, vinaigrettes, and rubs for meat and vegetables, says Miller. \"It also provides a bright lift in dishes with fats like olive oil, Greek yogurt, and tahini,\" notes White. The spice can even be infused in hot water to make tea, she adds."
+      },
+      {
+        "type": "heading2",
+        "text": "Sumac in Your Cooking"
+      },
+      {
+        "type": "paragraph",
+        "text": "If you're unsure how to use sumac in your cooking, consider dishes that can benefit from citrus ingredients, such as lemon zest, suggests White. The sumac won't replace citrus perfectly, as it's a unique spice, but it does have similar flavor profiles to lemon juice and vinegar. With that in mind, \"if you're making a dish with sumac, adjust the level of acidity from other ingredients,\" recommends White."
+      },
+      {
+        "type": "heading2",
+        "text": "Where to Buy"
+      },
+      {
+        "type": "paragraph",
+        "text": "Sumac is available at specialty stores and gourmet groceries, says Miller. \"If you live in a community with a Middle Easter, Armenian, or Turkish grocery store, you [can] find it by the kilo and at a much better price,\" she adds. Another option is to harvest sumac if you live in an area where it grows—but be sure to do this with a seasoned forager to avoid misidentifying the plant, says White."
+      },
+      {
+        "type": "heading2",
+        "text": "Sumac Substitutes"
+      },
+      {
+        "type": "paragraph",
+        "text": "If a recipe calls for sumac but you don't have the spice on hand, lemon zest is the best alternative, says White. You can also use za'atar seasoning, as it includes sumac in the blend. Other options include hibiscus leaf tea, lemon juice, and pomegranate sauce (which might work best for liquid preparations, like marinades), though they still aren't one-to-one substitutions, notes Miller."
+      }
+    ]
+  },
+  {
+    "name": "An Evening with Marzae Wines & Curio Spice Co on May 29",
+    "slug": "an-evening-with-marzae-wines-curio-spice-co-on-april-11",
+    "publishedAt": "2024-03-06T00:00:00.000Z",
+    "excerpt": "Urban Hearth hosts a wine dinner featuring Marzae Wines and Curio Spice Co on May 29, showcasing New England-sourced wines, vermouths, and locally inspired ingredients. A special collaborative vermouth launches exclusively at this event.",
+    "coverImageUrl": "https://static.wixstatic.com/media/178366_a6528128fbf845a99285f3c8b2d1fda5~mv2.jpg",
+    "body": [
+      {
+        "type": "paragraph",
+        "text": "We're hosting Marzae Wine and Curio Spice Co for a wine dinner on May 29 (rescheduled from April 11) filled with local wines, vermouths and locally sourced ingredients. Marzae Wines and Vermouths are sourced from New England grown grapes and fruits and are inspired by the local flora of New England. They've partnered with Curio Spice for a special vermouth which will be launched exclusively at this event."
+      },
+      {
+        "type": "paragraph",
+        "text": "Be sure to mention you'd like to partake in the wine dinner when making your reservation."
+      },
+      {
+        "type": "paragraph",
+        "text": "3 course prix fixe menu is $85 per person. $45 for the optional wine/vermouth pairing."
+      }
+    ]
+  },
+  {
+    "name": "Les Lunes Wine Dinner",
+    "slug": "les-lunes-wine-dinner",
+    "publishedAt": "2024-03-01T00:00:00.000Z",
+    "excerpt": "Urban Hearth has partnered with Olmstead Wine Co to bring the winemakers of Les Lunes Wines from Richmond, CA, for a special evening of wine and food on April 3.",
+    "coverImageUrl": "https://static.wixstatic.com/media/178366_15597154fba14ea59e4b45133c907313~mv2.png",
+    "body": [
+      {
+        "type": "paragraph",
+        "text": "Urban Hearth has partnered with Olmstead Wine Co to bring the winemakers of Les Lunes Wines from Richmond, CA, to you for a special evening of wine and food!"
+      },
+      {
+        "type": "paragraph",
+        "text": "If you love California wines and natural wines, you couldn't find a more perfect pairing. Winemakers Shaunt Oungoulian and Diego Roig have been making wine as naturally as possible for over 10 years. They currently source from multiple California based vineyards but are slowly converting to growing their own grapes. With the support of Olmstead Wine Co, the duo is making the trek to Cambridge, MA to share their love of winemaking with you all on Wed, April 3 for a wine dinner."
+      },
+      {
+        "type": "paragraph",
+        "text": "Shaunt will be at your table, pouring pairings for each course and discussing their processes and methodology with two seatings at 6pm and 8:15pm."
+      },
+      {
+        "type": "paragraph",
+        "text": "3 course prix fixe is $85 per person. Optional 3 course wine pairing is $45 per person. Wines will also be available by the glass or bottle."
+      }
+    ]
+  },
+  {
+    "name": "The 100 Mile Dinner is Back!",
+    "slug": "the-100-mile-dinner-is-back",
+    "publishedAt": "2024-01-15T00:00:00.000Z",
+    "excerpt": "Urban Hearth is bringing back its farm-to-table celebration dinner on February 27, featuring Chef Erin Miller collaborating with Chef Will Gilson to create a four-course menu sourced entirely within 100 miles.",
+    "coverImageUrl": "https://static.wixstatic.com/media/178366_c9467dfba40b44f08b68c297bca62a1e~mv2.png",
+    "body": [
+      {
+        "type": "paragraph",
+        "text": "We had such great success with our first dinner with the wonderful and talented Chef Jason Bond that we've decided to bring it back on Tuesday, Feb 27 with a new collaboration. This year Chef Erin Miller will be teaming up with Chef Will Gilson (Puritan & Co, The Lexington, etc) to serve up an outstanding meal sourced entirely from within 100 miles of the restaurant."
+      },
+      {
+        "type": "paragraph",
+        "text": "In the deep cold of New England winter, longing for fresh local produce is a common sentiment. But there's a bounty of excellent local produce, meats and seafood to be enjoyed, all within easy reach, if you know where to look. Join two of Boston's lauded farm-to-table chefs for a dinner celebrating the bounty of New England winter on a hyper-local scale."
+      },
+      {
+        "type": "paragraph",
+        "text": "The experience will include a 4 course collaborative tasting menu. optional beverage pairing featuring cocktails, spirits and brews from the same radius. Reservations are live so book your spot asap as this will sell out fast."
+      }
+    ]
+  },
+  {
+    "name": "Bagel vs Biscuit Throwdown with The Grateful Bagel!",
+    "slug": "bagel-vs-biscuit-throwdown-with-the-grateful-bagel",
+    "publishedAt": "2024-01-04T00:00:00.000Z",
+    "excerpt": "Urban Hearth hosts a breakfast sandwich competition on two Saturdays in January, featuring NY/NJ style bagels from Chef Darren Sylvin and buttermilk biscuits from Chef Erin.",
+    "coverImageUrl": "https://static.wixstatic.com/media/178366_e7047e109ff4426b9056bda4e86414ee~mv2.jpg",
+    "body": [
+      {
+        "type": "heading3",
+        "text": "Bagel or Biscuit - which builds a better breakfast sandwich?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Cast your vote on two Saturdays in January, 1/13 or 1/20, 9am - 1pm when Urban Hearth hosts The Grateful Bagel for the Biscuit vs Bagel Showdown! Chef Darren Sylvin will bring his amazing NY/NJ style bagels and Chef Erin brings on her buttermilk biscuit game. Which sandwiches will win the day? Come enjoy a breakfast sandwich or two, plus brunch cocktails, spiked cocoa and more! Help us settle the score. Check out the menu..."
+      },
+      {
+        "type": "heading3",
+        "text": "Assorted Bagels with schmeres"
+      },
+      {
+        "type": "heading3",
+        "text": "Buttermilk Biscuits with butter and Jam"
+      },
+      {
+        "type": "heading3",
+        "text": "Bagel Sandwiches"
+      },
+      {
+        "type": "bullet_list",
+        "items": [
+          "Smoked salmon reuben | lacto-fermented beets | spicy onion and carrot slaw | dill havarti | beet greens",
+          "Feta whip | tomato confit | garlicky rapini | fermented hot sauce | microgreens"
+        ]
+      },
+      {
+        "type": "heading3",
+        "text": "Biscuit Sandwiches"
+      },
+      {
+        "type": "bullet_list",
+        "items": [
+          "House cured bacon onion jam | fried egg | mustard frills | chevre",
+          "Chorizo roasted sweet potatoes | avocado | fried egg optional | spinach"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "You can preorder biscuits either baked or frozen from our online shop for pickup on either 1/13 or 1/20. Just make sure you select the date and time of your preorder before confirming."
+      },
+      {
+        "type": "paragraph",
+        "text": "We'll see you at the throwdown!"
+      }
+    ]
+  },
+  {
+    "name": "December Holidays with Urban Hearth",
+    "slug": "december-holidays-with-urban-hearth",
+    "publishedAt": "2023-12-11T00:00:00.000Z",
+    "excerpt": "\"It's hard not to get overwhelmed by the hustle and bustle of the holiday season.\" Urban Hearth offers festive solutions including a Hanukkah Prix Fixe dinner, holiday baked goods to-go, and a New Year's Eve Chef's Tasting Menu.",
+    "coverImageUrl": "https://static.wixstatic.com/media/178366_b3c95a91fe4b464291bc72d3d53a5b8f~mv2.jpg",
+    "body": [
+      {
+        "type": "paragraph",
+        "text": "It's hard not to get overwhelmed by the hustle and bustle of the holiday season. Don't worry, Urban Hearth is here to help with baked goods, special menus and dinners to go!"
+      },
+      {
+        "type": "heading3",
+        "text": "In House Hanukkah Prix Fixe"
+      },
+      {
+        "type": "paragraph",
+        "text": "We'll be offering our Hanukkah Prix Fix celebrating the festival of lights in house as a multi-course Prix Fixe option for $90 per person, plus an optional wine pairing for $45, so get your reservations on the books asap to take part! Don't forget to specify in your reservation that you'd like to take part in the Hanukkah Prix Fixe."
+      },
+      {
+        "type": "heading3",
+        "text": "Holiday Goods To-Go"
+      },
+      {
+        "type": "paragraph",
+        "text": "We're offering a delicious array of baked goods, jams, butters, hot sauce and cocktails to take home or to give as gifts to your loved ones in person at our Bake Sale on Saturday, Dec 16 from 12-4pm. We'll also be running a gift card special. Spend $200 on gift cards and you'll receive a $20 voucher to spend on yourself!"
+      },
+      {
+        "type": "paragraph",
+        "text": "If you can't make it to the bake sale, we're offering pickups from 4pm-6pm on Tues, Dec 12 - Friday, Dec 22 through our website. Babka, Stollen, and Biscotti are on the list, along with 32oz bottles of our Aged Eggnog and Glühwein, our take on mulled wine, to make your season bright!"
+      },
+      {
+        "type": "paragraph",
+        "text": "Be sure to specify what date and time you'd like from the top of the order screen before finishing your order."
+      },
+      {
+        "type": "heading3",
+        "text": "New Year's Eve Chef's Tasting Menu"
+      },
+      {
+        "type": "paragraph",
+        "text": "We're extending our Chef's Counter Menu to the whole dining room on New Year's Eve this year! Each reservation includes a complimentary glass of bubbles, along with a 5 course menu of surprises. Reservations are almost booked up so if you don't want to miss out, be sure to get your seats asap!"
+      },
+      {
+        "type": "heading3",
+        "text": "One last thing..."
+      },
+      {
+        "type": "paragraph",
+        "text": "Thank you for all your continued support and kindness. It is an honor to be a part of this community. We are so grateful to all of you! We hope to see your shining faces at Urban Hearth this holiday season and in 2024."
+      },
+      {
+        "type": "paragraph",
+        "text": "- Chef Erin & Your Friends at Urban Hearth"
+      }
+    ]
+  },
+  {
+    "name": "Thanksgiving Takeout is Back!",
+    "slug": "thanksgiving-takeout-is-back",
+    "publishedAt": "2023-10-18T00:00:00.000Z",
+    "excerpt": "Urban Hearth is bringing back its full Thanksgiving Dinner to-go meals available in portions for 2, 4, or 6 people. Dinners feature roasted turkey, all traditional sides, vegetarian options, house-made pies, and handcrafted cocktails for holiday pickup.",
+    "coverImageUrl": "https://static.wixstatic.com/media/178366_cf3e2b77d3fa486a8d05ba68611e62e9~mv2.jpg",
+    "body": [
+      {
+        "type": "paragraph",
+        "text": "After a whirlwind fall season, Thanksgiving is just around the corner. The restaurant is excited to offer full Thanksgiving Dinner to-go meals. Choose from dinner for 2, 4 or 6 including turkey and all the sides, with vegetarian options, all generously portioned to include leftovers along with delicious house made pies and handcrafted cocktails to save you time and add that something special to your celebration of thanks."
+      },
+      {
+        "type": "paragraph",
+        "text": "Dinner will include \"Sage and Cider-Brined Roasted Turkey Breast with Confit Turkey Leg\", \"Peppercorn Giblet Gravy\", \"Fennel, Apple, & Challah Bread Stuffing\", \"Mulled Wine Cranberry Conserve\", \"Colcannon\" made with mashed potatoes, kale, leeks and thyme, \"Roasted Broccoli & Wild Mushrooms\", \"Roasted Beets & Radicchio\". For dessert, offerings include hand made \"classic Spiced Pumpkin\" pie, \"Maple Pecan\" pie and \"Apple Ginger Crumb\" pie. Any of these pies can be made gluten free upon request. All food will come fully cooked and packed cold for reheating when desired, with detailed heating instructions included."
+      },
+      {
+        "type": "paragraph",
+        "text": "For those looking to enhance their holiday, the restaurant offers an assortment of to-go cocktails. Each 32oz batched cocktail bottle contains 8 servings. Options include \"Spiced Apple Bourbon Punch\", a creamy \"Pumpkin Spice Espresso Martini\", or \"Glühwein\", a German mulled wine ready to heat and serve."
+      },
+      {
+        "type": "heading2",
+        "text": "Important Notes"
+      },
+      {
+        "type": "bullet_list",
+        "items": [
+          "Pickup only; no delivery this year.",
+          "Pickup times available 12pm-4pm on Wednesday, November 22.",
+          "Specify preferred timing when ordering.",
+          "Order deadline moved to Friday, November 17 at 9pm (from Sunday, November 19) due to overwhelming demand."
+        ]
+      }
+    ]
+  },
+  {
+    "name": "It's Foraging Season",
+    "slug": "it-s-foraging-season",
+    "publishedAt": "2023-10-05T00:00:00.000Z",
+    "excerpt": "Fall offers abundant foraging opportunities throughout New England. Chef Erin sources wild foods from local fields, forests, and shores, transforming invasive species and native plants into distinctive culinary creations featured on the restaurant's seasonal menus.",
+    "coverImageUrl": "https://static.wixstatic.com/media/178366_2b86463311df4696869edbb7d3dd55fe~mv2.jpeg",
+    "body": [
+      {
+        "type": "heading3",
+        "text": "Yes, the beaches are beautiful and ski season is a thrill, but we would argue that there's no better time to live in New England than in the Fall."
+      },
+      {
+        "type": "paragraph",
+        "text": "Summer is often the go to season of abundance, but there's a wealth of wonders growing in our fields and forests, if you know what to look for."
+      },
+      {
+        "type": "paragraph",
+        "text": "Chef Erin has been foraging for years, collecting food sourced from the fields, forests and shores of New England, some of which can be found right outside your door, even in the city. Crabapple, blackberry, raspberry, and other fruits are the most common berries and fruits to be found in the fields and forests of New England. Elderberry trees lend flowers in the spring and berries in the early fall. There are some less commonly known but delicious fruit bearing trees in our forests as well. Elaeagnus umbellata, the autumn olive, is one of them. Indigenous to eastern Asia, it is a hardy, aggressive, invasive species becoming a troublesome shrub in New England as it takes over habitat for native shrubs."
+      },
+      {
+        "type": "image",
+        "url": "https://static.wixstatic.com/media/178366_3b23b2c9a5444715acdf4d67dcfcb4a1~mv2.jpg",
+        "alt": ""
+      },
+      {
+        "type": "paragraph",
+        "text": "One of the best ways to tackle an invasive species, other than destroying all the plants, is to turn them into a food source. As their name suggests, these shrubs fruit with small, bright red berries in the early fall. The flavor is similar to a lingonberry, sweet, sour and a little vegetal. We use the berries in a house mostarda, an Italian style sauce made from mustard seed and candied fruit. This serves as a beautiful compliment to rich ragu or meat sauces, like the lamb ragu we use in our fall pasta dish."
+      },
+      {
+        "type": "paragraph",
+        "text": "Black walnuts are another of Chef's favorite forages in the fall. These majestic native trees are prized for their beautiful, dark, hardwood, but also as an abundant food source. The baseball sized fruits are cracked open to reveal a black pit. Once cured and dried for a few weeks, we soak ours in neutral spirits, along with spices and turn it into black walnut nocino, a gorgeous amaro with a rich black color."
+      },
+      {
+        "type": "image",
+        "url": "https://static.wixstatic.com/media/178366_712d8c3938934b779c4cf66491e4c9b4~mv2.jpg",
+        "alt": ""
+      },
+      {
+        "type": "paragraph",
+        "text": "Mushrooms are abundant in the fall months, but are very intimidating to most novice foragers due to their less desirable qualities (poisoning, inducing hallucination, or sometimes even death!). Chef has a few varieties that she feels confident foraging for, such as hedgehogs, black trumpets, morels, chanterelles or chicken and hen of the woods, but recommends bringing a seasoned forager along with you on mushroom hunting sessions."
+      },
+      {
+        "type": "paragraph",
+        "text": "You'll see many foraged ingredients featured in our fall a la carte and cocktail menu this year. Come say hi and partake in the bountiful foraged foods of New England!"
+      }
+    ]
+  },
+  {
+    "name": "Outstanding in the Field at Moose Hill Farm, 2023",
+    "slug": "outstanding-in-the-field-at-moose-hill-farm-2023",
+    "publishedAt": "2023-08-31T00:00:00.000Z",
+    "excerpt": "Urban Hearth catered an outdoor dining experience for over 130 guests at Moose Hill Farm in Sharon, MA. Chef Erin described it as \"one of the best professional experiences in her career.\" The team prepared an elaborate multi-course meal using only wood and propane grills.",
+    "coverImageUrl": "https://static.wixstatic.com/media/178366_a555e546a1724ad79491d434653cf393~mv2.jpg",
+    "body": [
+      {
+        "type": "paragraph",
+        "text": "On a perfect August evening in late summer the restaurant was invited to cook for over 130 guests in a beautiful field at Moose Hill Farm in Sharon, MA with roving event company, Outstanding in the Field. The experience proved to be exceptionally memorable for the culinary team."
+      },
+      {
+        "type": "paragraph",
+        "text": "Summer months were spent developing the menu for this unique challenge. Working without electricity, refrigeration, or conventional kitchen facilities required extensive advance preparation. The team relied on a wood grill and small propane grill for cooking, with most ingredients prepared ahead and transported in coolers."
+      },
+      {
+        "type": "paragraph",
+        "text": "The evening commenced with beer from Notch Brewing and wine from Wild Child/Rebel Rebel, accompanied by passed hors d'oeuvres served beneath the farmhouse."
+      },
+      {
+        "type": "paragraph",
+        "text": "The bluefish pate on crunchy toast featured herb salad and foraged goldenrod sourced from the surrounding field."
+      },
+      {
+        "type": "paragraph",
+        "text": "While guests toured the farm, the kitchen team completed preparations for the first course: a charcuterie board showcasing smoked lamb bacon, melon, whipped feta, and signature buttermilk biscuits."
+      },
+      {
+        "type": "paragraph",
+        "text": "Once seated, diners began with roasted beets accompanied by charred greens, basil pistou, candied walnuts, and creamy burrata."
+      },
+      {
+        "type": "paragraph",
+        "text": "The subsequent course featured cornmeal encrusted skate wing with grilled green bean and corn succotash, finished with cherry tomato conserva. This dish required firing up the grill with hot oil pans for frying."
+      },
+      {
+        "type": "paragraph",
+        "text": "The meal concluded with beef tongue and brisket skewers served alongside duck fat roasted carrots and foraged blackberry barbecue glaze."
+      },
+      {
+        "type": "paragraph",
+        "text": "Dessert consisted of earl grey chiffon cake paired with wine poached pears, dark chocolate, and whipped cream."
+      },
+      {
+        "type": "paragraph",
+        "text": "The team expressed gratitude to their staff, the Outstanding in the Field organization, and all attendees for making the day exceptional."
+      }
     ]
   }
 ]
