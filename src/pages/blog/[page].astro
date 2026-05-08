@@ -5,14 +5,26 @@ import restaurant from '../../content/restaurant.json';
 import { isSanityConfigured } from '../../lib/sanity';
 import { fetchAllPosts } from '../../lib/sanity-fetch';
 
+export async function getStaticPaths() {
+  if (!isSanityConfigured) return [];
+  try {
+    const { totalPages } = await fetchAllPosts(1, 10);
+    return Array.from({ length: Math.max(0, totalPages - 1) }, (_, i) => ({
+      params: { page: String(i + 2) },
+    }));
+  } catch {
+    return [];
+  }
+}
+
+const page = parseInt(Astro.params.page);
 let posts: any[] = [];
-let fetchError: string | null = null;
+let totalPages = 1;
 if (isSanityConfigured) {
   try {
-    posts = await fetchAllPosts();
+    ({ posts, totalPages } = await fetchAllPosts(page, 10));
   } catch (e) {
-    fetchError = e instanceof Error ? e.message : String(e);
-    console.error('[blog] fetchAllPosts failed:', fetchError);
+    console.error(`[blog/${page}] fetchAllPosts failed:`, e instanceof Error ? e.message : String(e));
   }
 }
 
@@ -21,10 +33,13 @@ function formatDate(iso: string) {
     year: 'numeric', month: 'long', day: 'numeric',
   });
 }
+
+const prevHref = page === 2 ? '/blog' : `/blog/${page - 1}`;
+const nextHref = `/blog/${page + 1}`;
 ---
 
 <Base
-  title={`Blog — ${restaurant.name}`}
+  title={`Blog — Page ${page} — ${restaurant.name}`}
   description="News, events, and stories from Urban Hearth."
 >
   <div class="blog-page">
@@ -33,7 +48,7 @@ function formatDate(iso: string) {
 
     <div class="posts-body">
       {posts.length === 0 ? (
-        <p class="empty">No posts yet &mdash; check back soon.</p>
+        <p class="empty">No posts found.</p>
       ) : (
         <ul class="post-list">
           {posts.map(post => (
@@ -54,6 +69,12 @@ function formatDate(iso: string) {
           ))}
         </ul>
       )}
+      <div class="pagination">
+        <a href={prevHref} class="text-cta">&larr; Newer</a>
+        <span class="page-indicator">Page {page} of {totalPages}</span>
+        {page < totalPages && <a href={nextHref} class="text-cta">Older &rarr;</a>}
+        {page >= totalPages && <span />}
+      </div>
     </div>
 
   </div>
@@ -146,6 +167,22 @@ function formatDate(iso: string) {
     font-weight: 300;
     color: var(--ink);
     line-height: 1.75;
+  }
+
+  .pagination {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2.5rem 0 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .page-indicator {
+    font-family: var(--sans), sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
   }
 
   @media (max-width: 600px) {

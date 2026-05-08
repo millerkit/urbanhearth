@@ -30,17 +30,25 @@ export async function fetchMenu() {
   `);
 }
 
-export async function fetchAllPosts() {
-  const posts = await client!.fetch(`
-    *[_type == "blog_post"] | order(publishedAt desc){
-      title,
-      "slug": slug.current,
-      publishedAt,
-      excerpt,
-      "coverImage": coverImage.asset->url
-    }
-  `);
-  return posts ?? [];
+export async function fetchAllPosts(page = 1, perPage = 10) {
+  const start = (page - 1) * perPage;
+  const end = start + perPage - 1;
+  const [posts, total] = await Promise.all([
+    client!.fetch(`
+      *[_type == "blog_post"] | order(publishedAt desc) [${start}..${end}]{
+        title,
+        "slug": slug.current,
+        publishedAt,
+        excerpt,
+        "coverImage": coverImage.asset->url
+      }
+    `),
+    client!.fetch(`count(*[_type == "blog_post"])`),
+  ]);
+  return {
+    posts: (posts ?? []) as any[],
+    totalPages: Math.ceil((total ?? 0) / perPage),
+  };
 }
 
 export async function fetchPostBySlug(slug: string) {
@@ -65,7 +73,9 @@ export async function fetchPostBySlug(slug: string) {
           components: {
             types: {
               image: ({ value }: any) =>
-                `<img src="${value.url ?? ''}" alt="${value.alt ?? ''}" />`,
+                value.caption
+                  ? `<figure><img src="${value.url ?? ''}" alt="${value.alt ?? ''}" /><figcaption>${value.caption}</figcaption></figure>`
+                  : `<img src="${value.url ?? ''}" alt="${value.alt ?? ''}" />`,
             },
           },
         })
