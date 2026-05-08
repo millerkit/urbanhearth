@@ -1,0 +1,648 @@
+---
+import Base from '../layouts/Base.astro'
+import PageHeader from '../components/PageHeader.astro'
+import restaurant from '../content/restaurant.json'
+import { isSanityConfigured } from '../lib/sanity'
+import { fetchPrivateEventPackages } from '../lib/sanity-fetch'
+
+type Detail = { label: string; value: string }
+
+type Package = {
+  eyebrow: string
+  title: string
+  description: string
+  details: Detail[]
+  note?: string
+  dark?: boolean
+  cream?: boolean
+}
+
+const staticPackages: Package[] = [
+  {
+    eyebrow: 'Full Buyout',
+    title: 'Make It Yours',
+    description:
+      'Reserve the entire restaurant for your celebration. We\'ll tailor the evening around your guests — custom menus, curated beverages, and service at your pace.',
+    details: [
+      { label: 'Availability', value: 'Tuesday – Sunday' },
+      { label: 'Capacity', value: 'Up to 52 seated' },
+      { label: 'Min. (Tue–Thu)', value: '$4,000' },
+      { label: 'Min. (Fri–Sun)', value: '$5,000' },
+      { label: 'Deposit', value: '50% to confirm' }
+    ],
+    note: 'Minimums exclude tax, gratuity, and coordination fees. We\'ll work with you on menus, dietary needs, and beverage program.',
+    dark: true
+  },
+  {
+    eyebrow: 'Groups up to 12',
+    title: 'Large Party',
+    description:
+      'Book a section of the dining room for your group. Choose from à la carte service or a custom 3–5 course prix fixe menu.',
+    details: [
+      { label: 'Per person', value: '$85 minimum (excl. tax & gratuity)' },
+      { label: 'Availability', value: 'Tuesday – Saturday' },
+      { label: 'Seatings', value: '5:00–7:00 pm or 8:00–10:00 pm' },
+      { label: 'Cancellation', value: '7 days\' notice for parties of 8+' }
+    ],
+    note: 'A credit card is required to secure the reservation. Late cancellations for parties of 8 or more are subject to a $50 per guest fee.'
+  },
+]
+
+let packages: Package[] = staticPackages
+
+if (isSanityConfigured) {
+  try {
+    const fetched = await fetchPrivateEventPackages()
+    if (fetched?.length) packages = fetched
+  } catch (e) {
+    console.error('Failed to fetch private event packages from Sanity:', e)
+  }
+}
+---
+
+<Base
+  title={ `Private Events — ${ restaurant.name }` }
+  description="Host your next event at Urban Hearth — full buyouts, large party reservations, and bespoke offsite catering in Cambridge, MA."
+>
+  <div class="private-events">
+
+    <PageHeader
+      eyebrow=""
+      title="Private Events"
+      lead="From intimate dinners to full restaurant buyouts, Urban Hearth is designed for gatherings that matter."
+    />
+
+    <div class="packages-row">
+
+      <!-- Package cards -->
+      <div class="packages-pair">
+        { packages.map((pkg, i) => (
+          <div class={ `package${ pkg.dark ? ' package--dark' : pkg.cream ? ' package--cream' : '' }` }>
+            <div class="pkg-top">
+              <div class="pkg-label">
+                <span class="pkg-number">{ String(i + 1).padStart(2, '0') }</span>
+                <span class="section-eyebrow">{ pkg.eyebrow }</span>
+              </div>
+              <h2 class="pkg-title">{ pkg.title }</h2>
+              <p class="pkg-desc">{ pkg.description }</p>
+              <dl class="pkg-details">
+                { pkg.details.map(d => (
+                  <div>
+                    <dt>{ d.label }</dt>
+                    <dd>{ d.value }</dd>
+                  </div>
+                )) }
+              </dl>
+              { pkg.note && <p class="pkg-note">{ pkg.note }</p> }
+            </div>
+          </div>
+        )) }
+      </div>
+
+      <!-- Inquiry form -->
+      <div class="package package--form">
+        <div class="pkg-label">
+          <span class="pkg-number">03</span>
+          <span class="section-eyebrow">Inquire</span>
+        </div>
+        <h2 class="pkg-title">Plan Your Event</h2>
+        <form
+          id="inquiry-form"
+          action="https://formspree.io/f/YOUR_FORM_ID"
+          method="POST"
+          class="pkg-form"
+        >
+          <input type="hidden" name="_subject" value="Private Event Inquiry — Urban Hearth" />
+
+          <div class="form-row form-row--two">
+            <div class="form-field">
+              <label for="first-name">First name</label>
+              <input type="text" id="first-name" name="first_name" required />
+            </div>
+            <div class="form-field">
+              <label for="last-name">Last name</label>
+              <input type="text" id="last-name" name="last_name" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-field">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required />
+            </div>
+          </div>
+
+          <div class="form-row form-row--two">
+            <div class="form-field">
+              <label for="event-type">Event type</label>
+              <select id="event-type" name="event_type" required>
+                <option value="" disabled selected></option>
+                <option value="Full Buyout">Full Buyout</option>
+                <option value="Large Party">Large Party</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label for="guests">Guests</label>
+              <input type="text" id="guests" name="guests" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-field">
+              <label for="date">Preferred date(s)</label>
+              <input type="text" id="date" name="preferred_date" placeholder="e.g. Saturday evenings in March" />
+            </div>
+          </div>
+
+          <div class="form-row form-row--grow">
+            <div class="form-field">
+              <label for="message">Tell us about your event</label>
+              <textarea id="message" name="message"></textarea>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="form-submit">Send Inquiry</button>
+          </div>
+        </form>
+
+        <div class="form-success" hidden>
+          <p class="section-eyebrow">Received</p>
+          <p class="form-success-msg">
+            Thank you — we'll be in touch within one business day.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="capacity-bar">
+      <div class="capacity-item">
+        <span class="capacity-value">26</span>
+        <span class="capacity-label">Indoor seated</span>
+      </div>
+      <div class="capacity-divider" aria-hidden="true"></div>
+      <div class="capacity-item">
+        <span class="capacity-value">26</span>
+        <span class="capacity-label">Outdoor seated (seasonal)</span>
+      </div>
+      <div class="capacity-divider" aria-hidden="true"></div>
+      <div class="capacity-item">
+        <span class="capacity-value">36</span>
+        <span class="capacity-label">Cocktail reception</span>
+      </div>
+    </div>
+
+  </div>
+</Base>
+
+<script is:inline>
+  (function () {
+    var form = document.getElementById('inquiry-form');
+    if (!form) return;
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      var btn = form.querySelector('button[type="submit"]');
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+      try {
+        var res = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { Accept: 'application/json' },
+        });
+        if (res.ok) {
+          form.hidden = true;
+          document.querySelector('.form-success').hidden = false;
+        } else {
+          btn.disabled = false;
+          btn.textContent = 'Send Inquiry';
+          alert('Something went wrong. Please email us directly at ' + form.dataset.email);
+        }
+      } catch (_) {
+        btn.disabled = false;
+        btn.textContent = 'Send Inquiry';
+      }
+    });
+  })();
+</script>
+
+<style>
+    .private-events {
+        margin-top: 103px;
+    }
+
+    /* ── Layout row ── */
+    .packages-row {
+        display: flex;
+        align-items: stretch;
+        gap: 3rem;
+        max-width: 1380px;
+        margin: 0 auto;
+        padding: 0 2rem 0;
+        border-bottom: 1px solid var(--border);
+    }
+
+    /* Package card pair */
+    .packages-pair {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1px;
+        background: var(--border);
+        border: 1px solid var(--border);
+        flex: 2;
+        min-width: 0;
+        align-self: stretch;
+    }
+
+    .package {
+        background: var(--warm-white);
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        padding: 3rem 2rem 2.5rem;
+    }
+
+    .package--dark {
+        background: var(--midnight);
+    }
+
+    .package--cream {
+        background: var(--cream);
+    }
+
+    .pkg-top {
+        flex: 1;
+    }
+
+    .pkg-label {
+        display: flex;
+        align-items: center;
+        gap: 1.2rem;
+        margin-bottom: 2rem;
+    }
+
+    .pkg-number {
+        font-family: var(--sans), sans-serif;
+        font-size: 11px;
+        font-weight: 300;
+        letter-spacing: 0.2em;
+        color: var(--ink-light);
+        flex-shrink: 0;
+    }
+
+    .package--dark .pkg-number,
+    .package--dark .section-eyebrow {
+        color: rgba(255, 255, 255, 0.4);
+    }
+
+    .pkg-title {
+        font-family: var(--serif), serif;
+        font-size: clamp(1.6rem, 2.2vw, 2.2rem);
+        font-weight: 300;
+        letter-spacing: 0.06em;
+        color: var(--ink);
+        line-height: 1.1;
+        margin-bottom: 1.4rem;
+    }
+
+    .package--dark .pkg-title {
+        color: var(--parchment);
+    }
+
+    .pkg-desc {
+        font-family: var(--serif), serif;
+        font-size: 1.0625rem;
+        font-weight: 300;
+        line-height: 1.85;
+        color: var(--ink);
+        margin-bottom: 2rem;
+    }
+
+    .package--dark .pkg-desc {
+        color: rgba(232, 227, 223, 0.8);
+    }
+
+    /* ── Details list ── */
+    .pkg-details {
+        border-top: 1px solid var(--border);
+        margin-bottom: 0;
+    }
+
+    .package--dark .pkg-details {
+        border-top-color: rgba(255, 255, 255, 0.12);
+    }
+
+    .pkg-details > div {
+        display: grid;
+        grid-template-columns: 110px 1fr;
+        gap: 0.75rem;
+        padding: 0.75rem 0;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .package--dark .pkg-details > div {
+        border-bottom-color: rgba(255, 255, 255, 0.12);
+    }
+
+    .pkg-details dt {
+        font-family: var(--sans), sans-serif;
+        font-size: var(--text-label);
+        font-weight: 300;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--ink-mid);
+        padding-top: 2px;
+    }
+
+    .package--dark .pkg-details dt {
+        color: rgba(255, 255, 255, 0.38);
+    }
+
+    .pkg-details dd {
+        font-family: var(--sans), sans-serif;
+        font-size: var(--text-sm);
+        font-weight: 300;
+        color: var(--ink);
+        line-height: 1.5;
+    }
+
+    .package--dark .pkg-details dd {
+        color: var(--parchment);
+    }
+
+    .pkg-note {
+        font-family: var(--sans), sans-serif;
+        font-size: 12px;
+        font-weight: 300;
+        line-height: 1.75;
+        font-style: italic;
+        color: var(--ink-mid);
+        margin-top: 1.5rem;
+    }
+
+    .package--dark .pkg-note {
+        color: rgba(255, 255, 255, 0.32);
+    }
+
+    /* ── Form card ── */
+    .package--form {
+        background: var(--cream);
+        flex: 1.4;
+        border: 1px solid var(--border);
+        align-self: stretch;
+    }
+
+    .package--form .pkg-label,
+    .package--form .pkg-title {
+        justify-content: center;
+        text-align: center;
+    }
+
+    .package--form .form-actions {
+        text-align: center;
+    }
+
+    .pkg-form {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        margin-top: 1.5rem;
+    }
+
+    .form-row--grow {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-row--grow .form-field {
+        flex: 1;
+    }
+
+    .form-row--grow .form-field textarea {
+        flex: 1;
+        resize: none;
+        min-height: 80px;
+    }
+
+    /* ── Capacity bar ── */
+    .capacity-bar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0;
+        padding: 3rem 2rem;
+        border-bottom: 1px solid var(--border);
+        background: var(--warm-white);
+    }
+
+    .capacity-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0 3.5rem;
+    }
+
+    .capacity-value {
+        font-family: var(--serif), serif;
+        font-size: clamp(2.2rem, 4vw, 3.2rem);
+        font-weight: 300;
+        color: var(--ink);
+        letter-spacing: 0.04em;
+        line-height: 1;
+    }
+
+    .capacity-label {
+        font-family: var(--sans), sans-serif;
+        font-size: var(--text-label);
+        font-weight: 300;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--ink-mid);
+    }
+
+    .capacity-divider {
+        width: 1px;
+        height: 60px;
+        background: var(--border);
+        flex-shrink: 0;
+    }
+
+    /* ── Form ── */
+    .form-row {
+        margin-bottom: 1.5rem;
+    }
+
+    .form-row--two {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.25rem;
+    }
+
+    .form-field {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .form-field label {
+        font-family: var(--sans), sans-serif;
+        font-size: var(--text-label);
+        font-weight: 300;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--ink-mid);
+    }
+
+    .form-optional {
+        letter-spacing: 0;
+        text-transform: none;
+        font-size: 10px;
+        color: var(--ink-light);
+    }
+
+    .form-field input,
+    .form-field select,
+    .form-field textarea {
+        font-family: var(--sans), sans-serif;
+        font-size: var(--text-sm);
+        font-weight: 300;
+        color: var(--ink);
+        background: transparent;
+        border: none;
+        border-bottom: 1px solid var(--border);
+        padding: 0.5rem 0;
+        outline: none;
+        width: 100%;
+        transition: border-color 0.2s;
+        -webkit-appearance: none;
+        appearance: none;
+    }
+
+    .form-field select {
+        cursor: pointer;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23162235' stroke-width='1' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 2px center;
+        padding-right: 1.5rem;
+    }
+
+    .form-field textarea {
+        resize: vertical;
+        line-height: 1.7;
+    }
+
+    .form-field input:focus,
+    .form-field select:focus,
+    .form-field textarea:focus {
+        border-bottom-color: var(--ink);
+    }
+
+    .form-field input::placeholder,
+    .form-field textarea::placeholder {
+        color: var(--ink-light);
+        font-style: italic;
+    }
+
+    .form-actions {
+        margin-top: 2rem;
+    }
+
+    .form-submit {
+        font-family: var(--sans), sans-serif;
+        font-size: var(--text-label);
+        font-weight: 400;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--parchment);
+        background: var(--midnight);
+        border: none;
+        padding: 0.9rem 2rem;
+        cursor: pointer;
+        transition: opacity 0.2s;
+    }
+
+    .form-submit:hover {
+        opacity: 0.8;
+    }
+
+    .form-submit:disabled {
+        opacity: 0.5;
+        cursor: default;
+    }
+
+    .form-success {
+        padding: 2rem 0;
+    }
+
+    .form-success .section-eyebrow {
+        margin-bottom: 1rem;
+    }
+
+    .form-success-msg {
+        font-family: var(--serif), serif;
+        font-size: 1.1rem;
+        font-weight: 300;
+        line-height: 1.8;
+        color: var(--ink);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 860px) {
+        .packages-row {
+            flex-direction: column;
+            gap: 2rem;
+            padding: 0;
+        }
+
+        .packages-pair {
+            border-left: none;
+            border-right: none;
+        }
+
+        .package--form {
+            border-left: none;
+            border-right: none;
+            border-top: 1px solid var(--border);
+        }
+
+        .pkg-form {
+            flex: none;
+        }
+
+        .form-row--grow .form-field textarea {
+            min-height: 120px;
+        }
+
+        .capacity-bar {
+            flex-wrap: wrap;
+            row-gap: 2rem;
+        }
+
+        .capacity-item {
+            padding: 0 2rem;
+        }
+    }
+
+    @media (max-width: 500px) {
+        .package {
+            padding: 2.5rem 1.5rem 2rem;
+        }
+
+        .form-row--two {
+            grid-template-columns: 1fr;
+        }
+
+        .capacity-divider {
+            display: none;
+        }
+
+        .capacity-bar {
+            flex-direction: column;
+            gap: 2rem;
+        }
+    }
+</style>

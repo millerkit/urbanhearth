@@ -107,7 +107,7 @@ import PageHeader from '../components/PageHeader.astro'
       </div>
 
       <!-- 03 · The Salon -->
-      <div class="experience" id="salon">
+      <div class="experience experience--cream" id="salon">
         <div class="exp-top">
           <div class="exp-label">
             <span class="exp-number">03</span>
@@ -183,6 +183,10 @@ import PageHeader from '../components/PageHeader.astro'
         gap: 1px;
         background: var(--border);
         border-bottom: 1px solid var(--border);
+        max-width: 1380px;
+        margin: 0 auto;
+        border-left: 1px solid var(--border);
+        border-right: 1px solid var(--border);
     }
 
     .experience {
@@ -195,6 +199,10 @@ import PageHeader from '../components/PageHeader.astro'
 
     .experience--dark {
         background: var(--midnight);
+    }
+
+    .experience--cream {
+        background: var(--cream);
     }
 
     /* ── Card top (grows to fill) ── */

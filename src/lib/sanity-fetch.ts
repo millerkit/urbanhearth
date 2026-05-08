@@ -79,3 +79,19 @@ export async function fetchAllPostSlugs(): Promise<string[]> {
   );
   return slugs ?? [];
 }
+
+export async function fetchPrivateEventPackages() {
+  const packages = await client!.fetch(`
+    *[_type == "private_event_package"] | order(order asc){
+      _id,
+      order,
+      eyebrow,
+      title,
+      description,
+      details[]{ label, value },
+      note,
+      dark
+    }
+  `);
+  return packages ?? [];
+}
