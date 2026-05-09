@@ -4,55 +4,93 @@ import PageHeader from '../components/PageHeader.astro';
 import AgeGate from '../components/AgeGate.astro';
 import restaurant from '../content/restaurant.json';
 import productPlaceholder from '../assets/photos/food-photo-1.jpeg';
+import { isSanityConfigured } from '../lib/sanity';
+import { fetchAllProducts } from '../lib/sanity-fetch';
 
-const categories = [
+const CATEGORY_META: Record<string, { label: string; description: string }> = {
+  kitchen:        { label: 'From the Kitchen',  description: 'Dishes and staples made in our kitchen, ready to finish at home. The same ingredients, the same care — just a different table.' },
+  cocktails:      { label: 'Bottled Cocktails', description: 'Our bar program, bottled. Cocktails formulated and balanced for at-home serving — no special equipment required.' },
+  mixers:         { label: 'Bar Mixers',        description: 'House-made syrups, shrubs, and mixers crafted in our kitchen with the same ingredients we use on the line.' },
+  'non-alcoholic':{ label: 'Non-Alcoholic',     description: 'Thoughtfully crafted zero-proof beverages — complex enough to stand on their own.' },
+  other:          { label: 'Other',             description: '' },
+};
+
+const CATEGORY_ORDER = ['kitchen', 'cocktails', 'mixers', 'non-alcoholic', 'other'];
+
+// Hardcoded fallback — shown when Sanity has no products yet
+const FALLBACK_CATEGORIES = [
   {
     id: 'food',
-    number: '01',
     label: 'From the Kitchen',
     description: 'Dishes and staples made in our kitchen, ready to finish at home. The same ingredients, the same care — just a different table.',
     products: [
-      { name: 'Buttermilk Biscuits', note: 'Frozen · dozen · bake from frozen',   price: '$18' },
-      { name: 'Short Rib Ragù',      note: 'Frozen · 32 oz · serves 4',            price: '$32' },
-      { name: 'Cultured Butter',     note: 'Refrigerated · 8 oz · salted & plain', price: '$14' },
+      { name: 'Buttermilk Biscuits', description: 'Frozen · dozen · bake from frozen',   price: 18, available: false, slug: null, image: null },
+      { name: 'Short Rib Ragù',      description: 'Frozen · 32 oz · serves 4',            price: 32, available: false, slug: null, image: null },
+      { name: 'Cultured Butter',     description: 'Refrigerated · 8 oz · salted & plain', price: 14, available: false, slug: null, image: null },
     ],
   },
   {
     id: 'bottled-cocktails',
-    number: '02',
     label: 'Bottled Cocktails',
     description: 'Our bar program, bottled. Cocktails formulated and balanced for at-home serving — no special equipment required.',
     products: [
-      { name: 'Negroni',           note: '375 ml · serves 3–4',   price: '$28' },
-      { name: 'Boulevardier',      note: '375 ml · serves 3–4',   price: '$30' },
-      { name: 'Old Fashioned',     note: '375 ml · serves 3–4',   price: '$32' },
-      { name: 'Mezcal Sour',       note: '375 ml · serves 3–4',   price: '$30' },
+      { name: 'Negroni',       description: '375 ml · serves 3–4', price: 28, available: false, slug: null, image: null },
+      { name: 'Boulevardier',  description: '375 ml · serves 3–4', price: 30, available: false, slug: null, image: null },
+      { name: 'Old Fashioned', description: '375 ml · serves 3–4', price: 32, available: false, slug: null, image: null },
+      { name: 'Mezcal Sour',   description: '375 ml · serves 3–4', price: 30, available: false, slug: null, image: null },
     ],
   },
   {
     id: 'bar-mixers',
-    number: '03',
     label: 'Bar Mixers',
     description: 'House-made syrups, shrubs, and mixers crafted in our kitchen with the same ingredients we use on the line.',
     products: [
-      { name: 'House Grenadine',          note: '8 oz',   price: '$14' },
-      { name: 'Honey-Lavender Syrup',     note: '8 oz',   price: '$16' },
-      { name: 'Spiced Citrus Shrub',      note: '8 oz',   price: '$18' },
-      { name: 'Ginger-Cardamom Syrup',    note: '8 oz',   price: '$16' },
+      { name: 'House Grenadine',       description: '8 oz', price: 14, available: false, slug: null, image: null },
+      { name: 'Honey-Lavender Syrup',  description: '8 oz', price: 16, available: false, slug: null, image: null },
+      { name: 'Spiced Citrus Shrub',   description: '8 oz', price: 18, available: false, slug: null, image: null },
+      { name: 'Ginger-Cardamom Syrup', description: '8 oz', price: 16, available: false, slug: null, image: null },
     ],
   },
   {
     id: 'non-alcoholic',
-    number: '04',
     label: 'Non-Alcoholic',
     description: 'Thoughtfully crafted zero-proof beverages — complex enough to stand on their own.',
     products: [
-      { name: 'Sparkling Herb Tonic',     note: '750 ml',   price: '$12' },
-      { name: 'Shrub Soda Concentrate',   note: '12 oz',    price: '$16' },
-      { name: 'Cold Brew Mushroom Tea',   note: '16 oz',    price: '$14' },
+      { name: 'Sparkling Herb Tonic',   description: '750 ml', price: 12, available: false, slug: null, image: null },
+      { name: 'Shrub Soda Concentrate', description: '12 oz',  price: 16, available: false, slug: null, image: null },
+      { name: 'Cold Brew Mushroom Tea', description: '16 oz',  price: 14, available: false, slug: null, image: null },
     ],
   },
 ];
+
+let categories = FALLBACK_CATEGORIES;
+let fromSanity = false;
+
+if (isSanityConfigured) {
+  try {
+    const products = await fetchAllProducts();
+    if (products.length > 0) {
+      // Group by category in the defined display order
+      const grouped = new Map<string, any[]>();
+      for (const p of products) {
+        const key = p.category ?? 'other';
+        if (!grouped.has(key)) grouped.set(key, []);
+        grouped.get(key)!.push(p);
+      }
+      categories = CATEGORY_ORDER
+        .filter(k => grouped.has(k))
+        .map(k => ({
+          id: k,
+          label: CATEGORY_META[k]?.label ?? k,
+          description: CATEGORY_META[k]?.description ?? '',
+          products: grouped.get(k)!,
+        }));
+      fromSanity = true;
+    }
+  } catch {
+    // fall back to hardcoded
+  }
+}
 ---
 
 <Base
@@ -69,30 +107,43 @@ const categories = [
       lead="Take Urban Hearth home. Food, bottled cocktails, house mixers, and zero-proof drinks — all made in our kitchen."
     />
 
-    <div class="shop-notice">
-      <p class="notice-text">Online ordering is opening soon. <a href={`mailto:${restaurant.privateDiningEmail}`} class="notice-link">Contact us</a> to place an order for pickup.</p>
-    </div>
+    {!fromSanity && (
+      <div class="shop-notice">
+        <p class="notice-text">Online ordering is opening soon. <a href={`mailto:${restaurant.privateDiningEmail}`} class="notice-link">Contact us</a> to place an order for pickup.</p>
+      </div>
+    )}
 
     {categories.map((cat, i) => (
       <section class="category" id={cat.id}>
 
         <div class="cat-header">
-          <span class="cat-num section-eyebrow">{cat.number}</span>
+          <span class="cat-num section-eyebrow">{String(i + 1).padStart(2, '0')}</span>
           <h2 class="cat-title">{cat.label}</h2>
           <p class="cat-desc">{cat.description}</p>
         </div>
 
         <div class="product-grid">
-          {cat.products.map(p => (
-            <div class="product-card">
-              <img src={productPlaceholder.src} alt="" class="product-image" loading="lazy" />
+          {cat.products.map((p: any) => (
+            <div class={`product-card${p.available === false ? ' product-card--unavailable' : ''}`}>
+              <div class="product-image-wrap">
+                {p.image
+                  ? <img src={p.image} alt={p.name} class="product-image" loading="lazy" />
+                  : <img src={productPlaceholder.src} alt="" class="product-image" loading="lazy" />
+                }
+                {p.available === false && fromSanity && (
+                  <span class="out-of-stock-badge">Out of stock</span>
+                )}
+              </div>
               <div class="product-info">
                 <h3 class="product-name">{p.name}</h3>
-                <p class="product-note">{p.note}</p>
+                {p.description && <p class="product-note">{p.description}</p>}
               </div>
               <div class="product-footer">
-                <span class="product-price">{p.price}</span>
-                <button class="product-cta" disabled aria-label={`Add ${p.name} to cart — coming soon`}>Coming Soon</button>
+                <span class="product-price">${typeof p.price === 'number' ? p.price.toFixed(2) : p.price}</span>
+                {p.slug
+                  ? <a href={`/product/${p.slug}`} class="product-cta">View</a>
+                  : <button class="product-cta" disabled aria-label={`${p.name} — coming soon`}>Coming Soon</button>
+                }
               </div>
             </div>
           ))}
@@ -198,8 +249,17 @@ const categories = [
     background: var(--warm-white);
     display: flex;
     flex-direction: column;
-    padding: 0;
     overflow: hidden;
+  }
+
+  .product-card--unavailable {
+    opacity: 0.65;
+  }
+
+  /* ── Product image ── */
+  .product-image-wrap {
+    position: relative;
+    flex-shrink: 0;
   }
 
   .product-image {
@@ -208,10 +268,24 @@ const categories = [
     object-fit: cover;
     object-position: center;
     display: block;
-    flex-shrink: 0;
     background: var(--parchment);
   }
 
+  .out-of-stock-badge {
+    position: absolute;
+    bottom: 0.75rem;
+    left: 0.75rem;
+    font-family: var(--sans), sans-serif;
+    font-size: 10px;
+    font-weight: 300;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--warm-white);
+    background: rgba(22, 34, 53, 0.72);
+    padding: 0.3rem 0.6rem;
+  }
+
+  /* ── Product info ── */
   .product-info {
     padding: 1.25rem 1.25rem 0.75rem;
     flex: 1;
@@ -236,6 +310,7 @@ const categories = [
     color: var(--ink-light);
   }
 
+  /* ── Product footer ── */
   .product-footer {
     display: flex;
     align-items: center;
@@ -262,6 +337,16 @@ const categories = [
     background: transparent;
     border: 1px solid var(--border);
     padding: 0.6rem 1rem;
+    text-decoration: none;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  a.product-cta:hover {
+    color: var(--ink);
+    border-color: rgba(22, 34, 53, 0.4);
+  }
+
+  button.product-cta {
     cursor: not-allowed;
     opacity: 0.6;
   }

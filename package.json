@@ -13,7 +13,8 @@
     "build:preview": "SANITY_PREVIEW=true astro build --config astro.config.preview.mjs && node scripts/fix-preview-wrangler.mjs",
     "deploy:preview": "pnpm build:preview && wrangler deploy --config dist/server/wrangler.json",
     "sanity:dev": "sanity dev",
-    "sanity:deploy": "sanity deploy"
+    "sanity:deploy": "sanity deploy",
+    "sync:toast": "node --env-file=.env.local scripts/sync-toast.mjs"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^13.3.1",

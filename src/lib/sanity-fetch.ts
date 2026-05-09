@@ -90,6 +90,55 @@ export async function fetchAllPostSlugs(): Promise<string[]> {
   return slugs ?? [];
 }
 
+export async function fetchAllProducts() {
+  const products = await client!.fetch(`
+    *[_type == "product"] | order(name asc){
+      name,
+      "slug": slug.current,
+      category,
+      price,
+      description,
+      available,
+      "image": image.asset->url
+    }
+  `);
+  return (products ?? []) as any[];
+}
+
+export async function fetchProductBySlug(slug: string) {
+  const product = await client!.fetch(
+    `*[_type == "product" && slug.current == $slug][0]{
+      name,
+      "slug": slug.current,
+      category,
+      price,
+      description,
+      longDescription[]{
+        ...
+      },
+      available,
+      "image": image.asset->url,
+      modifierGroups[]{
+        name, toastGuid, minSelections, maxSelections,
+        modifiers[]{ name, price, toastGuid }
+      }
+    }`,
+    { slug }
+  );
+  if (!product) return null;
+  return {
+    ...product,
+    longDescriptionHtml: product.longDescription
+      ? toHTML(product.longDescription)
+      : '',
+  };
+}
+
+export async function fetchAllProductSlugs(): Promise<string[]> {
+  const slugs = await client!.fetch(`*[_type == "product"].slug.current`);
+  return slugs ?? [];
+}
+
 export async function fetchPrivateEventPackages() {
   const packages = await client!.fetch(`
     *[_type == "private_event_package"] | order(order asc){

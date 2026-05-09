@@ -1,0 +1,361 @@
+---
+import Base from '../../layouts/Base.astro';
+import restaurant from '../../content/restaurant.json';
+import { isSanityConfigured } from '../../lib/sanity';
+import { fetchProductBySlug, fetchAllProductSlugs } from '../../lib/sanity-fetch';
+
+export async function getStaticPaths() {
+  if (!isSanityConfigured) return [];
+  let slugs: string[] = [];
+  try {
+    slugs = await fetchAllProductSlugs();
+  } catch {
+    // fetch failed
+  }
+  return slugs.map(slug => ({ params: { slug } }));
+}
+
+const { slug } = Astro.params;
+const product = isSanityConfigured ? await fetchProductBySlug(slug!) : null;
+
+if (!product) return Astro.redirect('/products');
+
+const CATEGORY_LABELS: Record<string, string> = {
+  kitchen:          'From the Kitchen',
+  cocktails:        'Bottled Cocktails',
+  mixers:           'Bar Mixers',
+  'non-alcoholic':  'Non-Alcoholic',
+  other:            'Other',
+};
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? restaurant.url).href;
+
+const productJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": product.name,
+  "description": product.description ?? undefined,
+  "image": product.image ?? undefined,
+  "url": canonicalURL,
+  "offers": {
+    "@type": "Offer",
+    "price": product.price,
+    "priceCurrency": "USD",
+    "availability": product.available
+      ? "https://schema.org/InStock"
+      : "https://schema.org/OutOfStock",
+    "seller": {
+      "@type": "Restaurant",
+      "name": restaurant.name,
+      "url": restaurant.url,
+    },
+  },
+};
+---
+
+<Base
+  title={`${product.name} — ${restaurant.name}`}
+  description={product.description ?? `A product from Urban Hearth.`}
+  ogImage={product.image ?? undefined}
+>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(productJsonLd)} />
+
+  <div class="product-page">
+
+    <div class="product-header">
+      {product.category && (
+        <p class="section-eyebrow">{CATEGORY_LABELS[product.category] ?? product.category}</p>
+      )}
+      <h1>{product.name}</h1>
+      <p class="product-price">${product.price.toFixed(2)}</p>
+    </div>
+
+    <div class="product-layout">
+
+      <div class="product-image-col">
+        {product.image
+          ? <img src={product.image} alt={product.name} class="product-image" />
+          : <div class="product-image-placeholder" aria-hidden="true" />
+        }
+      </div>
+
+      <div class="product-detail-col">
+
+        {product.description && (
+          <p class="product-short-desc">{product.description}</p>
+        )}
+
+        {product.longDescriptionHtml && (
+          <div class="product-long-desc" set:html={product.longDescriptionHtml} />
+        )}
+
+        {product.modifierGroups && product.modifierGroups.length > 0 && (
+          <div class="modifier-groups">
+            {product.modifierGroups.map((group: any) => (
+              <div class="modifier-group">
+                <p class="modifier-group-label section-eyebrow">{group.name}</p>
+                <ul class="modifier-list">
+                  {group.modifiers.map((m: any) => (
+                    <li class="modifier-item">
+                      <span class="modifier-name">{m.name}</span>
+                      {m.price > 0 && (
+                        <span class="modifier-price">+${m.price.toFixed(2)}</span>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        )}
+
+        <div class="product-actions">
+          {product.available
+            ? (
+              <button class="add-to-cart" disabled aria-label="Add to cart — coming soon">
+                Add to Cart — Coming Soon
+              </button>
+            )
+            : (
+              <button class="add-to-cart add-to-cart--unavailable" disabled aria-label="Out of stock">
+                Out of Stock
+              </button>
+            )
+          }
+          <p class="pickup-note">Available for in-restaurant pickup. <a href={`mailto:${restaurant.privateDiningEmail}`}>Contact us</a> to arrange an order.</p>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="product-back">
+      <a href="/products" class="text-cta">← Back to Shop</a>
+    </div>
+
+  </div>
+</Base>
+
+<style>
+  .product-page {
+    margin-top: 103px;
+  }
+
+  /* ── Header ── */
+  .product-header {
+    text-align: center;
+    padding: 3.5rem 2rem 2.5rem;
+    border-bottom: 1px solid var(--border);
+    background: var(--warm-white);
+  }
+
+  .product-header .section-eyebrow {
+    margin-bottom: 1rem;
+  }
+
+  .product-header h1 {
+    font-family: var(--serif), serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 300;
+    letter-spacing: 0.05em;
+    color: var(--ink);
+    line-height: 1.15;
+    max-width: 760px;
+    margin: 0 auto 1rem;
+  }
+
+  .product-price {
+    font-family: var(--sans), sans-serif;
+    font-size: 1.0625rem;
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    color: var(--ink-mid);
+  }
+
+  /* ── Two-column layout ── */
+  .product-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    max-width: 1100px;
+    margin: 0 auto;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* ── Image column ── */
+  .product-image-col {
+    border-right: 1px solid var(--border);
+  }
+
+  .product-image {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+
+  .product-image-placeholder {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    background: var(--parchment);
+  }
+
+  /* ── Detail column ── */
+  .product-detail-col {
+    padding: 3rem 3rem 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .product-short-desc {
+    font-family: var(--serif), serif;
+    font-size: var(--text-md);
+    font-weight: 300;
+    line-height: 1.75;
+    color: var(--ink);
+  }
+
+  /* ── Long description (portable text) ── */
+  .product-long-desc :global(p) {
+    font-family: var(--serif), serif;
+    font-size: var(--text-md);
+    font-weight: 300;
+    line-height: 1.85;
+    color: var(--ink);
+    margin-bottom: 1.25rem;
+  }
+
+  .product-long-desc :global(h2) {
+    font-family: var(--serif), serif;
+    font-size: 1.3rem;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+    color: var(--ink);
+    margin: 1.5rem 0 0.75rem;
+  }
+
+  .product-long-desc :global(strong) {
+    font-weight: 400;
+  }
+
+  /* ── Modifier groups ── */
+  .modifier-groups {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .modifier-group-label {
+    margin-bottom: 0.75rem;
+  }
+
+  .modifier-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .modifier-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: var(--sans), sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+  }
+
+  .modifier-price {
+    color: var(--ink-mid);
+    font-size: 12px;
+  }
+
+  /* ── Actions ── */
+  .product-actions {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .add-to-cart {
+    width: 100%;
+    font-family: var(--sans), sans-serif;
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--warm-white);
+    background: var(--ink);
+    border: 1px solid var(--ink);
+    padding: 1.1rem 2rem;
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  .add-to-cart--unavailable {
+    background: transparent;
+    color: var(--ink-mid);
+    border-color: var(--border);
+  }
+
+  .pickup-note {
+    font-family: var(--sans), sans-serif;
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+    color: var(--ink-mid);
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  .pickup-note a {
+    color: var(--ink);
+    text-underline-offset: 3px;
+  }
+
+  /* ── Back link ── */
+  .product-back {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2rem 2.5rem 4rem;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 780px) {
+    .product-layout {
+      grid-template-columns: 1fr;
+    }
+
+    .product-image-col {
+      border-right: none;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .product-image,
+    .product-image-placeholder {
+      aspect-ratio: 4 / 3;
+    }
+
+    .product-detail-col {
+      padding: 2.5rem 1.5rem;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .product-page {
+      margin-top: 60px;
+    }
+
+    .product-back {
+      padding: 2rem 1.5rem 3rem;
+    }
+  }
+</style>
