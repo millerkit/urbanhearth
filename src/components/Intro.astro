@@ -1,6 +1,5 @@
 ---
-import restaurant from '../content/restaurant.json';
-import ReservationButton from './ReservationButton.astro';
+import ReservationButton from "./ReservationButton.astro";
 
 interface Props {
   eyebrow?: string;
@@ -8,11 +7,11 @@ interface Props {
 }
 
 const {
-  eyebrow = 'The Restaurant',
+  eyebrow = "The Restaurant",
   paragraphs = [
-    'Urban Hearth is a quiet refuge from the city — a place where seasonal cooking meets unhurried hospitality.',
-    'Set across two floors overlooking the harbor, our kitchen works with a close network of New England farmers and fishermen to craft a menu that changes with the week\'s best produce.',
-    'Everything is made in-house: the bread, the charcuterie, the preserves. Unpretentious but considered. Warm but precise.',
+    "Urban Hearth is a quiet refuge from the city — a place where seasonal cooking meets unhurried hospitality.",
+    "Set across two floors overlooking the harbor, our kitchen works with a close network of New England farmers and fishermen to craft a menu that changes with the week's best produce.",
+    "Everything is made in-house: the bread, the charcuterie, the preserves. Unpretentious but considered. Warm but precise.",
   ],
 } = Astro.props;
 ---
@@ -20,7 +19,7 @@ const {
 <section class="intro">
   <p class="section-eyebrow">{eyebrow}</p>
   <div class="intro-body">
-    {paragraphs.map(text => <p>{text}</p>)}
+    {paragraphs.map((text) => <p>{text}</p>)}
     <div class="intro-cta"><ReservationButton /></div>
   </div>
 </section>
@@ -44,7 +43,7 @@ const {
   }
 
   .intro-body p {
-    font-family: var(--serif),serif;
+    font-family: var(--serif), serif;
     font-size: 1.1875rem;
     font-weight: 300;
     line-height: 1.85;
@@ -52,7 +51,11 @@ const {
     margin-bottom: 1.4rem;
   }
 
-  .intro-body p:last-of-type { margin-bottom: 0; }
+  .intro-body p:last-of-type {
+    margin-bottom: 0;
+  }
 
-  .intro-cta { margin-top: 2.5rem; }
+  .intro-cta {
+    margin-top: 2.5rem;
+  }
 </style>

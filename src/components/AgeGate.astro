@@ -1,18 +1,34 @@
 ---
-import logo from '../assets/brand/UrbanHearth_Logo_BLACK_cropped.png';
+import logo from "../assets/brand/UrbanHearth_Logo_BLACK_cropped.png";
 ---
 
-<div id="age-gate" aria-modal="true" role="dialog" aria-label="Age verification">
+<div
+  id="age-gate"
+  aria-modal="true"
+  role="dialog"
+  aria-label="Age verification"
+>
   <div class="ag-inner">
     <img src={logo.src} alt="Urban Hearth" class="ag-logo" />
     <p class="ag-eyebrow section-eyebrow">Age Verification</p>
     <h2 class="ag-heading">You must be 21 or older to enter this page.</h2>
-    <p class="ag-subtext">Some of our products contain alcohol. Please confirm your age before continuing.</p>
+    <p class="ag-subtext">
+      Some of our products contain alcohol. Please confirm your age before
+      continuing.
+    </p>
     <div class="ag-actions">
-      <button id="age-gate-yes" class="ag-btn ag-btn--yes">Yes, I'm 21 or older</button>
-      <button id="age-gate-no"  class="ag-btn ag-btn--no">No, take me back</button>
+      <button id="age-gate-yes" class="ag-btn ag-btn--yes"
+        >Yes, I'm 21 or older</button
+      >
+      <button id="age-gate-no" class="ag-btn ag-btn--no"
+        >No, take me back</button
+      >
     </div>
-    <p class="ag-legal">By entering, you confirm you are of legal drinking age in your jurisdiction. Urban Hearth complies with all applicable alcohol sales regulations.</p>
+    <p class="ag-legal">
+      By entering, you confirm you are of legal drinking age in your
+      jurisdiction. Urban Hearth complies with all applicable alcohol sales
+      regulations.
+    </p>
   </div>
 </div>
 
@@ -21,39 +37,46 @@ import logo from '../assets/brand/UrbanHearth_Logo_BLACK_cropped.png';
     <img src={logo.src} alt="Urban Hearth" class="ag-logo" />
     <p class="ag-eyebrow section-eyebrow">Access Restricted</p>
     <h2 class="ag-heading">You must be 21 or older to view this page.</h2>
-    <p class="ag-subtext">We're unable to show this content to visitors under 21. Visit our <a href="/" class="ag-link">main site</a> to explore the restaurant.</p>
+    <p class="ag-subtext">
+      We're unable to show this content to visitors under 21. Visit our <a
+        href="/"
+        class="ag-link">main site</a
+      > to explore the restaurant.
+    </p>
   </div>
 </div>
 
 <script>
-  const STORAGE_KEY = 'uh_age_verified';
-  const gate        = document.getElementById('age-gate');
-  const blocked     = document.getElementById('age-gate-blocked');
+  const STORAGE_KEY = "uh_age_verified";
+  const gate = document.getElementById("age-gate");
+  const blocked = document.getElementById("age-gate-blocked");
 
   function showBlocked() {
-    gate?.setAttribute('hidden', '');
-    blocked?.removeAttribute('hidden');
-    document.body.style.overflow = '';
+    gate?.setAttribute("hidden", "");
+    blocked?.removeAttribute("hidden");
+    document.body.style.overflow = "";
   }
 
   function dismiss() {
-    gate?.setAttribute('hidden', '');
-    document.body.style.overflow = '';
+    gate?.setAttribute("hidden", "");
+    document.body.style.overflow = "";
   }
 
-  if (sessionStorage.getItem(STORAGE_KEY) === '1') {
+  if (sessionStorage.getItem(STORAGE_KEY) === "1") {
     dismiss();
   } else {
-    gate?.removeAttribute('hidden');
-    document.body.style.overflow = 'hidden';
+    gate?.removeAttribute("hidden");
+    document.body.style.overflow = "hidden";
   }
 
-  document.getElementById('age-gate-yes')?.addEventListener('click', () => {
-    sessionStorage.setItem(STORAGE_KEY, '1');
+  document.getElementById("age-gate-yes")?.addEventListener("click", () => {
+    sessionStorage.setItem(STORAGE_KEY, "1");
     dismiss();
   });
 
-  document.getElementById('age-gate-no')?.addEventListener('click', showBlocked);
+  document
+    .getElementById("age-gate-no")
+    ?.addEventListener("click", showBlocked);
 </script>
 
 <style>

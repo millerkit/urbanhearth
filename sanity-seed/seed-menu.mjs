@@ -10,64 +10,68 @@
  * The menu is created/replaced as a singleton document with _id "menu".
  */
 
-import fs from 'node:fs'
-import path from 'node:path'
-import { fileURLToPath } from 'node:url'
-import { randomUUID } from 'node:crypto'
-import { createClient } from '@sanity/client'
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import { randomUUID } from "node:crypto";
+import { createClient } from "@sanity/client";
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url))
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-const PROJECT_ID = process.env.SANITY_PROJECT_ID
-const TOKEN      = process.env.SANITY_TOKEN
-const DATASET    = process.env.SANITY_DATASET ?? 'production'
+const PROJECT_ID = process.env.SANITY_PROJECT_ID;
+const TOKEN = process.env.SANITY_TOKEN;
+const DATASET = process.env.SANITY_DATASET ?? "production";
 
 if (!PROJECT_ID || !TOKEN) {
-  console.error('Missing SANITY_PROJECT_ID or SANITY_TOKEN')
-  process.exit(1)
+  console.error("Missing SANITY_PROJECT_ID or SANITY_TOKEN");
+  process.exit(1);
 }
 
-const menuPath = path.join(__dirname, 'menu.json')
+const menuPath = path.join(__dirname, "menu.json");
 if (!fs.existsSync(menuPath)) {
-  console.error('menu.json not found. Run extract-menu.mjs first to generate it from a PDF.')
-  process.exit(1)
+  console.error(
+    "menu.json not found. Run extract-menu.mjs first to generate it from a PDF.",
+  );
+  process.exit(1);
 }
 
 const client = createClient({
   projectId: PROJECT_ID,
   dataset: DATASET,
-  apiVersion: '2025-01-01',
+  apiVersion: "2025-01-01",
   token: TOKEN,
   useCdn: false,
-})
+});
 
-const menu = JSON.parse(fs.readFileSync(menuPath, 'utf8'))
+const menu = JSON.parse(fs.readFileSync(menuPath, "utf8"));
 
-const sections = (menu.sections ?? []).map(section => ({
-  _type: 'menuSection',
+const sections = (menu.sections ?? []).map((section) => ({
+  _type: "menuSection",
   _key: randomUUID(),
   title: section.title,
-  items: (section.items ?? []).map(item => ({
-    _type: 'menuItem',
+  items: (section.items ?? []).map((item) => ({
+    _type: "menuItem",
     _key: randomUUID(),
     name: item.name,
-    price: item.price ?? '',
-    description: item.description ?? '',
-    note: item.note ?? '',
+    price: item.price ?? "",
+    description: item.description ?? "",
+    note: item.note ?? "",
   })),
-}))
+}));
 
 const doc = {
-  _id: 'menu',
-  _type: 'menu',
-  season: menu.name ?? menu.season ?? '',
-  footer_note: menu.footer_note ?? '',
+  _id: "menu",
+  _type: "menu",
+  season: menu.name ?? menu.season ?? "",
+  footer_note: menu.footer_note ?? "",
   sections,
-}
+};
 
-console.log(`Seeding menu: ${doc.season}`)
-console.log(`  ${sections.length} sections, ${sections.reduce((n, s) => n + s.items.length, 0)} items`)
+console.log(`Seeding menu: ${doc.season}`);
+console.log(
+  `  ${sections.length} sections, ${sections.reduce((n, s) => n + s.items.length, 0)} items`,
+);
 
-await client.createOrReplace(doc)
+await client.createOrReplace(doc);
 
-console.log('Done.')
+console.log("Done.");

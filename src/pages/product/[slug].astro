@@ -1,8 +1,11 @@
 ---
-import Base from '../../layouts/Base.astro';
-import restaurant from '../../content/restaurant.json';
-import { isSanityConfigured } from '../../lib/sanity';
-import { fetchProductBySlug, fetchAllProductSlugs } from '../../lib/sanity-fetch';
+import restaurant from "../../content/restaurant.json";
+import Base from "../../layouts/Base.astro";
+import { isSanityConfigured } from "../../lib/sanity";
+import {
+  fetchProductBySlug,
+  fetchAllProductSlugs,
+} from "../../lib/sanity-fetch";
 
 export async function getStaticPaths() {
   if (!isSanityConfigured) return [];
@@ -12,42 +15,43 @@ export async function getStaticPaths() {
   } catch {
     // fetch failed
   }
-  return slugs.map(slug => ({ params: { slug } }));
+  return slugs.map((slug) => ({ params: { slug } }));
 }
 
 const { slug } = Astro.params;
 const product = isSanityConfigured ? await fetchProductBySlug(slug!) : null;
 
-if (!product) return Astro.redirect('/products');
+if (!product) return Astro.redirect("/products");
 
 const CATEGORY_LABELS: Record<string, string> = {
-  kitchen:          'From the Kitchen',
-  cocktails:        'Bottled Cocktails',
-  mixers:           'Bar Mixers',
-  'non-alcoholic':  'Non-Alcoholic',
-  other:            'Other',
+  kitchen: "From the Kitchen",
+  cocktails: "Bottled Cocktails",
+  mixers: "Bar Mixers",
+  "non-alcoholic": "Non-Alcoholic",
+  other: "Other",
 };
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? restaurant.url).href;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? restaurant.url)
+  .href;
 
 const productJsonLd = {
   "@context": "https://schema.org",
   "@type": "Product",
-  "name": product.name,
-  "description": product.description ?? undefined,
-  "image": product.image ?? undefined,
-  "url": canonicalURL,
-  "offers": {
+  name: product.name,
+  description: product.description ?? undefined,
+  image: product.image ?? undefined,
+  url: canonicalURL,
+  offers: {
     "@type": "Offer",
-    "price": product.price,
-    "priceCurrency": "USD",
-    "availability": product.available
+    price: product.price,
+    priceCurrency: "USD",
+    availability: product.available
       ? "https://schema.org/InStock"
       : "https://schema.org/OutOfStock",
-    "seller": {
+    seller: {
       "@type": "Restaurant",
-      "name": restaurant.name,
-      "url": restaurant.url,
+      name: restaurant.name,
+      url: restaurant.url,
     },
   },
 };
@@ -58,81 +62,110 @@ const productJsonLd = {
   description={product.description ?? `A product from Urban Hearth.`}
   ogImage={product.image ?? undefined}
 >
-  <script slot="head" type="application/ld+json" set:html={JSON.stringify(productJsonLd)} />
+  <script
+    slot="head"
+    type="application/ld+json"
+    set:html={JSON.stringify(productJsonLd)}
+  />
 
   <div class="product-page">
-
     <div class="product-header">
-      {product.category && (
-        <p class="section-eyebrow">{CATEGORY_LABELS[product.category] ?? product.category}</p>
-      )}
+      {
+        product.category && (
+          <p class="section-eyebrow">
+            {CATEGORY_LABELS[product.category] ?? product.category}
+          </p>
+        )
+      }
       <h1>{product.name}</h1>
       <p class="product-price">${product.price.toFixed(2)}</p>
     </div>
 
     <div class="product-layout">
-
       <div class="product-image-col">
-        {product.image
-          ? <img src={product.image} alt={product.name} class="product-image" />
-          : <div class="product-image-placeholder" aria-hidden="true" />
+        {
+          product.image ? (
+            <img src={product.image} alt={product.name} class="product-image" />
+          ) : (
+            <div class="product-image-placeholder" aria-hidden="true" />
+          )
         }
       </div>
 
       <div class="product-detail-col">
+        {
+          product.description && (
+            <p class="product-short-desc">{product.description}</p>
+          )
+        }
 
-        {product.description && (
-          <p class="product-short-desc">{product.description}</p>
-        )}
+        {
+          product.longDescriptionHtml && (
+            <div
+              class="product-long-desc"
+              set:html={product.longDescriptionHtml}
+            />
+          )
+        }
 
-        {product.longDescriptionHtml && (
-          <div class="product-long-desc" set:html={product.longDescriptionHtml} />
-        )}
-
-        {product.modifierGroups && product.modifierGroups.length > 0 && (
-          <div class="modifier-groups">
-            {product.modifierGroups.map((group: any) => (
-              <div class="modifier-group">
-                <p class="modifier-group-label section-eyebrow">{group.name}</p>
-                <ul class="modifier-list">
-                  {group.modifiers.map((m: any) => (
-                    <li class="modifier-item">
-                      <span class="modifier-name">{m.name}</span>
-                      {m.price > 0 && (
-                        <span class="modifier-price">+${m.price.toFixed(2)}</span>
-                      )}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        )}
+        {
+          product.modifierGroups && product.modifierGroups.length > 0 && (
+            <div class="modifier-groups">
+              {product.modifierGroups.map((group: any) => (
+                <div class="modifier-group">
+                  <p class="modifier-group-label section-eyebrow">
+                    {group.name}
+                  </p>
+                  <ul class="modifier-list">
+                    {group.modifiers.map((m: any) => (
+                      <li class="modifier-item">
+                        <span class="modifier-name">{m.name}</span>
+                        {m.price > 0 && (
+                          <span class="modifier-price">
+                            +${m.price.toFixed(2)}
+                          </span>
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          )
+        }
 
         <div class="product-actions">
-          {product.available
-            ? (
-              <button class="add-to-cart" disabled aria-label="Add to cart — coming soon">
+          {
+            product.available ? (
+              <button
+                class="add-to-cart"
+                disabled
+                aria-label="Add to cart — coming soon"
+              >
                 Add to Cart — Coming Soon
               </button>
-            )
-            : (
-              <button class="add-to-cart add-to-cart--unavailable" disabled aria-label="Out of stock">
+            ) : (
+              <button
+                class="add-to-cart add-to-cart--unavailable"
+                disabled
+                aria-label="Out of stock"
+              >
                 Out of Stock
               </button>
             )
           }
-          <p class="pickup-note">Available for in-restaurant pickup. <a href={`mailto:${restaurant.privateDiningEmail}`}>Contact us</a> to arrange an order.</p>
+          <p class="pickup-note">
+            Available for in-restaurant pickup. <a
+              href={`mailto:${restaurant.privateDiningEmail}`}>Contact us</a
+            > to arrange an order.
+          </p>
         </div>
-
       </div>
-
     </div>
 
     <div class="product-back">
       <a href="/products" class="text-cta">← Back to Shop</a>
     </div>
-
   </div>
 </Base>
 

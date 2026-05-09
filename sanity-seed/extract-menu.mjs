@@ -8,21 +8,23 @@
  * No packages required beyond Node 22 built-ins.
  */
 
-import fs from 'node:fs';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const API_KEY = process.env.ANTHROPIC_API_KEY;
 if (!API_KEY) {
-  console.error('Error: ANTHROPIC_API_KEY is not set');
+  console.error("Error: ANTHROPIC_API_KEY is not set");
   process.exit(1);
 }
 
 const pdfPath = process.argv[2];
 if (!pdfPath) {
-  console.error('Usage: node storyblok-import/extract-menu.mjs path/to/menu.pdf');
+  console.error(
+    "Usage: node storyblok-import/extract-menu.mjs path/to/menu.pdf",
+  );
   process.exit(1);
 }
 
@@ -33,7 +35,7 @@ if (!fs.existsSync(absPath)) {
 }
 
 console.log(`Reading ${path.basename(absPath)}...`);
-const base64 = fs.readFileSync(absPath).toString('base64');
+const base64 = fs.readFileSync(absPath).toString("base64");
 
 const SYSTEM = `You extract restaurant menu data from PDFs into structured JSON.
 Output ONLY valid JSON — no markdown fences, no commentary, no trailing text.
@@ -66,30 +68,34 @@ Rules:
 - If no footer note is present, use an empty string
 - Output only the JSON object`;
 
-console.log('Sending to Claude API...');
+console.log("Sending to Claude API...");
 
-const response = await fetch('https://api.anthropic.com/v1/messages', {
-  method: 'POST',
+const response = await fetch("https://api.anthropic.com/v1/messages", {
+  method: "POST",
   headers: {
-    'x-api-key': API_KEY,
-    'anthropic-version': '2023-06-01',
-    'content-type': 'application/json',
+    "x-api-key": API_KEY,
+    "anthropic-version": "2023-06-01",
+    "content-type": "application/json",
   },
   body: JSON.stringify({
-    model: 'claude-sonnet-4-6',
+    model: "claude-sonnet-4-6",
     max_tokens: 8096,
     system: SYSTEM,
     messages: [
       {
-        role: 'user',
+        role: "user",
         content: [
           {
-            type: 'document',
-            source: { type: 'base64', media_type: 'application/pdf', data: base64 },
+            type: "document",
+            source: {
+              type: "base64",
+              media_type: "application/pdf",
+              data: base64,
+            },
           },
           {
-            type: 'text',
-            text: 'Extract all menu sections and items from this PDF into the JSON format described.',
+            type: "text",
+            text: "Extract all menu sections and items from this PDF into the JSON format described.",
           },
         ],
       },
@@ -103,22 +109,29 @@ if (!response.ok) {
 }
 
 const result = await response.json();
-const raw = result.content?.[0]?.text?.trim() ?? '';
+const raw = result.content?.[0]?.text?.trim() ?? "";
 
 let menu;
 try {
   menu = JSON.parse(raw);
 } catch {
-  console.error('Claude returned non-JSON. Raw output saved to menu-raw.txt for inspection.');
-  fs.writeFileSync(path.join(__dirname, 'menu-raw.txt'), raw);
+  console.error(
+    "Claude returned non-JSON. Raw output saved to menu-raw.txt for inspection.",
+  );
+  fs.writeFileSync(path.join(__dirname, "menu-raw.txt"), raw);
   process.exit(1);
 }
 
-const outPath = path.join(__dirname, 'menu.json');
+const outPath = path.join(__dirname, "menu.json");
 fs.writeFileSync(outPath, JSON.stringify(menu, null, 2));
 
-const itemCount = (menu.sections ?? []).reduce((n, s) => n + (s.items?.length ?? 0), 0);
+const itemCount = (menu.sections ?? []).reduce(
+  (n, s) => n + (s.items?.length ?? 0),
+  0,
+);
 console.log(`\n✓ Wrote ${outPath}`);
 console.log(`  ${menu.sections?.length ?? 0} sections, ${itemCount} items`);
-console.log('\nReview menu.json, then run:');
-console.log('  SANITY_PROJECT_ID=xxx SANITY_TOKEN=xxx node sanity-seed/seed-menu.mjs');
+console.log("\nReview menu.json, then run:");
+console.log(
+  "  SANITY_PROJECT_ID=xxx SANITY_TOKEN=xxx node sanity-seed/seed-menu.mjs",
+);

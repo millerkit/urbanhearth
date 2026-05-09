@@ -327,10 +327,7 @@
       },
       {
         "type": "bullet_list",
-        "items": [
-          "Beet and dill salmon gravlox",
-          "Blueberry mostarda"
-        ]
+        "items": ["Beet and dill salmon gravlox", "Blueberry mostarda"]
       },
       {
         "type": "heading2",

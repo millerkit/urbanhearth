@@ -1,8 +1,8 @@
 ---
-import Base from '../../layouts/Base.astro';
-import restaurant from '../../content/restaurant.json';
-import { isSanityConfigured } from '../../lib/sanity';
-import { fetchPostBySlug, fetchAllPostSlugs } from '../../lib/sanity-fetch';
+import restaurant from "../../content/restaurant.json";
+import Base from "../../layouts/Base.astro";
+import { isSanityConfigured } from "../../lib/sanity";
+import { fetchPostBySlug, fetchAllPostSlugs } from "../../lib/sanity-fetch";
 
 export async function getStaticPaths() {
   if (!isSanityConfigured) return [];
@@ -12,39 +12,42 @@ export async function getStaticPaths() {
   } catch {
     // fetch failed
   }
-  return slugs.map(slug => ({ params: { slug } }));
+  return slugs.map((slug) => ({ params: { slug } }));
 }
 
 const { slug } = Astro.params;
 const post = isSanityConfigured ? await fetchPostBySlug(slug!) : null;
 
-if (!post) return Astro.redirect('/blog');
+if (!post) return Astro.redirect("/blog");
 
 function formatDate(iso: string) {
-  return new Date(iso).toLocaleDateString('en-US', {
-    year: 'numeric', month: 'long', day: 'numeric',
+  return new Date(iso).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
   });
 }
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? restaurant.url).href;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? restaurant.url)
+  .href;
 
 const articleJsonLd = {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": post.title,
-  "description": post.excerpt ?? undefined,
-  "datePublished": post.publishedAt ?? undefined,
-  "image": post.coverImage ?? undefined,
-  "url": canonicalURL,
-  "author": {
+  headline: post.title,
+  description: post.excerpt ?? undefined,
+  datePublished: post.publishedAt ?? undefined,
+  image: post.coverImage ?? undefined,
+  url: canonicalURL,
+  author: {
     "@type": "Organization",
-    "name": restaurant.name,
-    "url": restaurant.url,
+    name: restaurant.name,
+    url: restaurant.url,
   },
-  "publisher": {
+  publisher: {
     "@type": "Organization",
-    "name": restaurant.name,
-    "url": restaurant.url,
+    name: restaurant.name,
+    url: restaurant.url,
   },
 };
 ---
@@ -55,27 +58,37 @@ const articleJsonLd = {
   ogImage={post.coverImage ?? undefined}
   ogType="article"
 >
-  <script slot="head" type="application/ld+json" set:html={JSON.stringify(articleJsonLd)} />
+  <script
+    slot="head"
+    type="application/ld+json"
+    set:html={JSON.stringify(articleJsonLd)}
+  />
   <div class="post-page">
-
     <div class="post-header">
-      {post.publishedAt && <p class="section-eyebrow post-date">{formatDate(post.publishedAt)}</p>}
+      {
+        post.publishedAt && (
+          <p class="section-eyebrow post-date">
+            {formatDate(post.publishedAt)}
+          </p>
+        )
+      }
       <h1>{post.title}</h1>
       {post.excerpt && <p class="post-excerpt">{post.excerpt}</p>}
     </div>
 
-    {post.coverImage && (
-      <div class="post-cover">
-        <img src={post.coverImage} alt={post.title} />
-      </div>
-    )}
+    {
+      post.coverImage && (
+        <div class="post-cover">
+          <img src={post.coverImage} alt={post.title} />
+        </div>
+      )
+    }
 
     <div class="post-body" set:html={post.body} />
 
     <div class="post-back">
       <a href="/blog" class="text-cta">← All posts</a>
     </div>
-
   </div>
 </Base>
 

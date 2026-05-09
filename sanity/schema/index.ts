@@ -1,5 +1,5 @@
-import { blogPost } from './blogPost'
-import { menuTypes } from './menu'
-import { product } from './product'
+import { blogPost } from "./blogPost";
+import { menuTypes } from "./menu";
+import { product } from "./product";
 
-export const schemaTypes = [blogPost, ...menuTypes, product]
+export const schemaTypes = [blogPost, ...menuTypes, product];

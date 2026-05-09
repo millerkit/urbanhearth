@@ -13,10 +13,10 @@ pnpm sanity:dev    # Start Sanity Studio
 
 ## Environments
 
-| Environment | URL | How it deploys |
-| :---------- | :-- | :------------- |
-| **Production** | `urbanhearth.pages.dev` | Cloudflare Pages — auto-deploys on push to `main` |
-| **Preview** | `urbanhearth-preview.kmillercc.workers.dev` | Cloudflare Worker — deploys via GitHub Actions on push to `main` |
+| Environment    | URL                                         | How it deploys                                                   |
+| :------------- | :------------------------------------------ | :--------------------------------------------------------------- |
+| **Production** | `urbanhearth.pages.dev`                     | Cloudflare Pages — auto-deploys on push to `main`                |
+| **Preview**    | `urbanhearth-preview.kmillercc.workers.dev` | Cloudflare Worker — deploys via GitHub Actions on push to `main` |
 
 **Production** is a static build (`astro.config.mjs`) that fetches Sanity content at build time.
 
@@ -25,11 +25,13 @@ pnpm sanity:dev    # Start Sanity Studio
 ## Environment Variables
 
 ### Production (Cloudflare Pages build settings)
+
 - `SANITY_PROJECT_ID` — Sanity project ID
 - `SANITY_DATASET` — `production`
 - `NODE_VERSION` — `22.15.0`
 
 ### Preview (GitHub Actions secrets)
+
 - `SANITY_PROJECT_ID`
 - `SANITY_API_TOKEN` — required for draft content access
 - `CLOUDFLARE_API_TOKEN`

@@ -1,5 +1,5 @@
 ---
-import MenuItem from './MenuItem.astro';
+import MenuItem from "./MenuItem.astro";
 
 interface Props {
   blok: {
@@ -14,9 +14,7 @@ const { blok } = Astro.props;
 <section class="menu-section">
   <h2 class="menu-label menu-section-title">{blok.title}</h2>
   <ul class="dish-list">
-    {blok.items?.map((item: any) => (
-      <MenuItem blok={item} />
-    ))}
+    {blok.items?.map((item: any) => <MenuItem blok={item} />)}
   </ul>
 </section>
 

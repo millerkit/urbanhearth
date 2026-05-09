@@ -14,7 +14,11 @@
     "deploy:preview": "pnpm build:preview && wrangler deploy --config dist/server/wrangler.json",
     "sanity:dev": "sanity dev",
     "sanity:deploy": "sanity deploy",
-    "sync:toast": "node --env-file=.env.local scripts/sync-toast.mjs"
+    "sync:toast": "node --env-file=.env.local scripts/sync-toast.mjs",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "prepare": "git config core.hooksPath .githooks"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^13.3.1",
@@ -26,6 +30,11 @@
     "styled-components": "^6.4.1"
   },
   "devDependencies": {
+    "@typescript-eslint/parser": "^8.59.2",
+    "eslint": "^10.3.0",
+    "eslint-plugin-astro": "^1.7.0",
+    "prettier": "3.8.3",
+    "prettier-plugin-astro": "0.14.1",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
     "sanity": "^5.24.0",

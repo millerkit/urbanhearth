@@ -1,48 +1,48 @@
 [
-	{
-		"label": "Dining Areas",
-		"href": "/dining-areas"
-	},
-	{
-		"label": "Reservations",
-		"href": "/reservations"
-	},
-	{
-		"label": "Our Menus",
-		"href": "/menus"
-	},
-	{
-		"label": "About",
-		"href": "/about",
-		"children": [
-			{
-				"label": "Chef Erin Miller",
-				"href": "/chef"
-			},
-			{
-				"label": "Staff",
-				"href": "/team"
-			},
-			{
-				"label": "Our Story",
-				"href": "/about"
-			}
-		]
-	},
-	{
-		"label": "Gallery",
-		"href": "/gallery"
-	},
-	{
-		"label": "Happenings",
-		"href": "/blog"
-	},
-	{
-		"label": "Private Events",
-		"href": "/privateevents"
-	},
-	{
-		"label": "Products",
-		"href": "/products"
-	}
+  {
+    "label": "Dining Areas",
+    "href": "/dining-areas"
+  },
+  {
+    "label": "Reservations",
+    "href": "/reservations"
+  },
+  {
+    "label": "Our Menus",
+    "href": "/menus"
+  },
+  {
+    "label": "About",
+    "href": "/about",
+    "children": [
+      {
+        "label": "Chef Erin Miller",
+        "href": "/chef"
+      },
+      {
+        "label": "Staff",
+        "href": "/team"
+      },
+      {
+        "label": "Our Story",
+        "href": "/about"
+      }
+    ]
+  },
+  {
+    "label": "Gallery",
+    "href": "/gallery"
+  },
+  {
+    "label": "Happenings",
+    "href": "/blog"
+  },
+  {
+    "label": "Private Events",
+    "href": "/privateevents"
+  },
+  {
+    "label": "Products",
+    "href": "/products"
+  }
 ]

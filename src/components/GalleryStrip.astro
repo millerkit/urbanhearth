@@ -1,6 +1,6 @@
 ---
-import { Image } from 'astro:assets';
-import type { ImageMetadata } from 'astro';
+import type { ImageMetadata } from "astro";
+import { Image } from "astro:assets";
 
 interface GalleryImage {
   src: ImageMetadata;
@@ -16,19 +16,27 @@ interface Props {
 
 const { images, placeholderCount = 4 } = Astro.props;
 
-const cells = images ?? Array.from({ length: placeholderCount }, (_, i) => ({ src: '', alt: '', _placeholder: true, _index: i }));
+const cells =
+  images ??
+  Array.from({ length: placeholderCount }, (_, i) => ({
+    src: "",
+    alt: "",
+    _placeholder: true,
+    _index: i,
+  }));
 ---
 
 <section class="gallery-section">
   <div class="gallery-strip">
-    {cells.map((cell: any) => (
-      <div class="gallery-cell">
-        {cell.src
-          ? <Image src={cell.src} alt={cell.alt} loading="lazy" />
-          : null
-        }
-      </div>
-    ))}
+    {
+      cells.map((cell: any) => (
+        <div class="gallery-cell">
+          {cell.src ? (
+            <Image src={cell.src} alt={cell.alt} loading="lazy" />
+          ) : null}
+        </div>
+      ))
+    }
   </div>
 </section>
 
@@ -55,15 +63,20 @@ const cells = images ?? Array.from({ length: placeholderCount }, (_, i) => ({ sr
   }
 
   .gallery-cell img {
-    width: 100%; height: 100%;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
     display: block;
     transition: transform 0.6s ease;
   }
 
-  .gallery-cell:hover img { transform: scale(1.04); }
+  .gallery-cell:hover img {
+    transform: scale(1.04);
+  }
 
   @media (max-width: 700px) {
-    .gallery-strip { grid-template-columns: 1fr; }
+    .gallery-strip {
+      grid-template-columns: 1fr;
+    }
   }
 </style>

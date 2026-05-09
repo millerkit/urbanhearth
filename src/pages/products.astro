@@ -1,64 +1,188 @@
 ---
-import Base from '../layouts/Base.astro';
-import PageHeader from '../components/PageHeader.astro';
-import AgeGate from '../components/AgeGate.astro';
-import restaurant from '../content/restaurant.json';
-import productPlaceholder from '../assets/photos/food-photo-1.jpeg';
-import { isSanityConfigured } from '../lib/sanity';
-import { fetchAllProducts } from '../lib/sanity-fetch';
+import restaurant from "../content/restaurant.json";
+import productPlaceholder from "../assets/photos/food-photo-1.jpeg";
+import { isSanityConfigured } from "../lib/sanity";
+import { fetchAllProducts } from "../lib/sanity-fetch";
+import Base from "../layouts/Base.astro";
+import AgeGate from "../components/AgeGate.astro";
+import PageHeader from "../components/PageHeader.astro";
 
 const CATEGORY_META: Record<string, { label: string; description: string }> = {
-  kitchen:        { label: 'From the Kitchen',  description: 'Dishes and staples made in our kitchen, ready to finish at home. The same ingredients, the same care — just a different table.' },
-  cocktails:      { label: 'Bottled Cocktails', description: 'Our bar program, bottled. Cocktails formulated and balanced for at-home serving — no special equipment required.' },
-  mixers:         { label: 'Bar Mixers',        description: 'House-made syrups, shrubs, and mixers crafted in our kitchen with the same ingredients we use on the line.' },
-  'non-alcoholic':{ label: 'Non-Alcoholic',     description: 'Thoughtfully crafted zero-proof beverages — complex enough to stand on their own.' },
-  other:          { label: 'Other',             description: '' },
+  kitchen: {
+    label: "From the Kitchen",
+    description:
+      "Dishes and staples made in our kitchen, ready to finish at home. The same ingredients, the same care — just a different table.",
+  },
+  cocktails: {
+    label: "Bottled Cocktails",
+    description:
+      "Our bar program, bottled. Cocktails formulated and balanced for at-home serving — no special equipment required.",
+  },
+  mixers: {
+    label: "Bar Mixers",
+    description:
+      "House-made syrups, shrubs, and mixers crafted in our kitchen with the same ingredients we use on the line.",
+  },
+  "non-alcoholic": {
+    label: "Non-Alcoholic",
+    description:
+      "Thoughtfully crafted zero-proof beverages — complex enough to stand on their own.",
+  },
+  other: { label: "Other", description: "" },
 };
 
-const CATEGORY_ORDER = ['kitchen', 'cocktails', 'mixers', 'non-alcoholic', 'other'];
+const CATEGORY_ORDER = [
+  "kitchen",
+  "cocktails",
+  "mixers",
+  "non-alcoholic",
+  "other",
+];
 
 // Hardcoded fallback — shown when Sanity has no products yet
 const FALLBACK_CATEGORIES = [
   {
-    id: 'food',
-    label: 'From the Kitchen',
-    description: 'Dishes and staples made in our kitchen, ready to finish at home. The same ingredients, the same care — just a different table.',
+    id: "food",
+    label: "From the Kitchen",
+    description:
+      "Dishes and staples made in our kitchen, ready to finish at home. The same ingredients, the same care — just a different table.",
     products: [
-      { name: 'Buttermilk Biscuits', description: 'Frozen · dozen · bake from frozen',   price: 18, available: false, slug: null, image: null },
-      { name: 'Short Rib Ragù',      description: 'Frozen · 32 oz · serves 4',            price: 32, available: false, slug: null, image: null },
-      { name: 'Cultured Butter',     description: 'Refrigerated · 8 oz · salted & plain', price: 14, available: false, slug: null, image: null },
+      {
+        name: "Buttermilk Biscuits",
+        description: "Frozen · dozen · bake from frozen",
+        price: 18,
+        available: false,
+        slug: null,
+        image: null,
+      },
+      {
+        name: "Short Rib Ragù",
+        description: "Frozen · 32 oz · serves 4",
+        price: 32,
+        available: false,
+        slug: null,
+        image: null,
+      },
+      {
+        name: "Cultured Butter",
+        description: "Refrigerated · 8 oz · salted & plain",
+        price: 14,
+        available: false,
+        slug: null,
+        image: null,
+      },
     ],
   },
   {
-    id: 'bottled-cocktails',
-    label: 'Bottled Cocktails',
-    description: 'Our bar program, bottled. Cocktails formulated and balanced for at-home serving — no special equipment required.',
+    id: "bottled-cocktails",
+    label: "Bottled Cocktails",
+    description:
+      "Our bar program, bottled. Cocktails formulated and balanced for at-home serving — no special equipment required.",
     products: [
-      { name: 'Negroni',       description: '375 ml · serves 3–4', price: 28, available: false, slug: null, image: null },
-      { name: 'Boulevardier',  description: '375 ml · serves 3–4', price: 30, available: false, slug: null, image: null },
-      { name: 'Old Fashioned', description: '375 ml · serves 3–4', price: 32, available: false, slug: null, image: null },
-      { name: 'Mezcal Sour',   description: '375 ml · serves 3–4', price: 30, available: false, slug: null, image: null },
+      {
+        name: "Negroni",
+        description: "375 ml · serves 3–4",
+        price: 28,
+        available: false,
+        slug: null,
+        image: null,
+      },
+      {
+        name: "Boulevardier",
+        description: "375 ml · serves 3–4",
+        price: 30,
+        available: false,
+        slug: null,
+        image: null,
+      },
+      {
+        name: "Old Fashioned",
+        description: "375 ml · serves 3–4",
+        price: 32,
+        available: false,
+        slug: null,
+        image: null,
+      },
+      {
+        name: "Mezcal Sour",
+        description: "375 ml · serves 3–4",
+        price: 30,
+        available: false,
+        slug: null,
+        image: null,
+      },
     ],
   },
   {
-    id: 'bar-mixers',
-    label: 'Bar Mixers',
-    description: 'House-made syrups, shrubs, and mixers crafted in our kitchen with the same ingredients we use on the line.',
+    id: "bar-mixers",
+    label: "Bar Mixers",
+    description:
+      "House-made syrups, shrubs, and mixers crafted in our kitchen with the same ingredients we use on the line.",
     products: [
-      { name: 'House Grenadine',       description: '8 oz', price: 14, available: false, slug: null, image: null },
-      { name: 'Honey-Lavender Syrup',  description: '8 oz', price: 16, available: false, slug: null, image: null },
-      { name: 'Spiced Citrus Shrub',   description: '8 oz', price: 18, available: false, slug: null, image: null },
-      { name: 'Ginger-Cardamom Syrup', description: '8 oz', price: 16, available: false, slug: null, image: null },
+      {
+        name: "House Grenadine",
+        description: "8 oz",
+        price: 14,
+        available: false,
+        slug: null,
+        image: null,
+      },
+      {
+        name: "Honey-Lavender Syrup",
+        description: "8 oz",
+        price: 16,
+        available: false,
+        slug: null,
+        image: null,
+      },
+      {
+        name: "Spiced Citrus Shrub",
+        description: "8 oz",
+        price: 18,
+        available: false,
+        slug: null,
+        image: null,
+      },
+      {
+        name: "Ginger-Cardamom Syrup",
+        description: "8 oz",
+        price: 16,
+        available: false,
+        slug: null,
+        image: null,
+      },
     ],
   },
   {
-    id: 'non-alcoholic',
-    label: 'Non-Alcoholic',
-    description: 'Thoughtfully crafted zero-proof beverages — complex enough to stand on their own.',
+    id: "non-alcoholic",
+    label: "Non-Alcoholic",
+    description:
+      "Thoughtfully crafted zero-proof beverages — complex enough to stand on their own.",
     products: [
-      { name: 'Sparkling Herb Tonic',   description: '750 ml', price: 12, available: false, slug: null, image: null },
-      { name: 'Shrub Soda Concentrate', description: '12 oz',  price: 16, available: false, slug: null, image: null },
-      { name: 'Cold Brew Mushroom Tea', description: '16 oz',  price: 14, available: false, slug: null, image: null },
+      {
+        name: "Sparkling Herb Tonic",
+        description: "750 ml",
+        price: 12,
+        available: false,
+        slug: null,
+        image: null,
+      },
+      {
+        name: "Shrub Soda Concentrate",
+        description: "12 oz",
+        price: 16,
+        available: false,
+        slug: null,
+        image: null,
+      },
+      {
+        name: "Cold Brew Mushroom Tea",
+        description: "16 oz",
+        price: 14,
+        available: false,
+        slug: null,
+        image: null,
+      },
     ],
   },
 ];
@@ -73,18 +197,16 @@ if (isSanityConfigured) {
       // Group by category in the defined display order
       const grouped = new Map<string, any[]>();
       for (const p of products) {
-        const key = p.category ?? 'other';
+        const key = p.category ?? "other";
         if (!grouped.has(key)) grouped.set(key, []);
         grouped.get(key)!.push(p);
       }
-      categories = CATEGORY_ORDER
-        .filter(k => grouped.has(k))
-        .map(k => ({
-          id: k,
-          label: CATEGORY_META[k]?.label ?? k,
-          description: CATEGORY_META[k]?.description ?? '',
-          products: grouped.get(k)!,
-        }));
+      categories = CATEGORY_ORDER.filter((k) => grouped.has(k)).map((k) => ({
+        id: k,
+        label: CATEGORY_META[k]?.label ?? k,
+        description: CATEGORY_META[k]?.description ?? "",
+        products: grouped.get(k)!,
+      }));
       fromSanity = true;
     }
   } catch {
@@ -100,64 +222,105 @@ if (isSanityConfigured) {
   <AgeGate />
 
   <div class="products-page">
-
     <PageHeader
       eyebrow="From Our Kitchen & Bar"
       title="Shop"
       lead="Take Urban Hearth home. Food, bottled cocktails, house mixers, and zero-proof drinks — all made in our kitchen."
     />
 
-    {!fromSanity && (
-      <div class="shop-notice">
-        <p class="notice-text">Online ordering is opening soon. <a href={`mailto:${restaurant.privateDiningEmail}`} class="notice-link">Contact us</a> to place an order for pickup.</p>
-      </div>
-    )}
-
-    {categories.map((cat, i) => (
-      <section class="category" id={cat.id}>
-
-        <div class="cat-header">
-          <span class="cat-num section-eyebrow">{String(i + 1).padStart(2, '0')}</span>
-          <h2 class="cat-title">{cat.label}</h2>
-          <p class="cat-desc">{cat.description}</p>
+    {
+      !fromSanity && (
+        <div class="shop-notice">
+          <p class="notice-text">
+            Online ordering is opening soon.{" "}
+            <a
+              href={`mailto:${restaurant.privateDiningEmail}`}
+              class="notice-link"
+            >
+              Contact us
+            </a>{" "}
+            to place an order for pickup.
+          </p>
         </div>
+      )
+    }
 
-        <div class="product-grid">
-          {cat.products.map((p: any) => (
-            <div class={`product-card${p.available === false ? ' product-card--unavailable' : ''}`}>
-              <div class="product-image-wrap">
-                {p.image
-                  ? <img src={p.image} alt={p.name} class="product-image" loading="lazy" />
-                  : <img src={productPlaceholder.src} alt="" class="product-image" loading="lazy" />
-                }
-                {p.available === false && fromSanity && (
-                  <span class="out-of-stock-badge">Out of stock</span>
-                )}
-              </div>
-              <div class="product-info">
-                <h3 class="product-name">{p.name}</h3>
-                {p.description && <p class="product-note">{p.description}</p>}
-              </div>
-              <div class="product-footer">
-                <span class="product-price">${typeof p.price === 'number' ? p.price.toFixed(2) : p.price}</span>
-                {p.slug
-                  ? <a href={`/product/${p.slug}`} class="product-cta">View</a>
-                  : <button class="product-cta" disabled aria-label={`${p.name} — coming soon`}>Coming Soon</button>
-                }
-              </div>
-            </div>
-          ))}
-        </div>
+    {
+      categories.map((cat, i) => (
+        <section class="category" id={cat.id}>
+          <div class="cat-header">
+            <span class="cat-num section-eyebrow">
+              {String(i + 1).padStart(2, "0")}
+            </span>
+            <h2 class="cat-title">{cat.label}</h2>
+            <p class="cat-desc">{cat.description}</p>
+          </div>
 
-      </section>
-    ))}
+          <div class="product-grid">
+            {cat.products.map((p: any) => (
+              <div
+                class={`product-card${p.available === false ? " product-card--unavailable" : ""}`}
+              >
+                <div class="product-image-wrap">
+                  {p.image ? (
+                    <img
+                      src={p.image}
+                      alt={p.name}
+                      class="product-image"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <img
+                      src={productPlaceholder.src}
+                      alt=""
+                      class="product-image"
+                      loading="lazy"
+                    />
+                  )}
+                  {p.available === false && fromSanity && (
+                    <span class="out-of-stock-badge">Out of stock</span>
+                  )}
+                </div>
+                <div class="product-info">
+                  <h3 class="product-name">{p.name}</h3>
+                  {p.description && <p class="product-note">{p.description}</p>}
+                </div>
+                <div class="product-footer">
+                  <span class="product-price">
+                    $
+                    {typeof p.price === "number" ? p.price.toFixed(2) : p.price}
+                  </span>
+                  {p.slug ? (
+                    <a href={`/product/${p.slug}`} class="product-cta">
+                      View
+                    </a>
+                  ) : (
+                    <button
+                      class="product-cta"
+                      disabled
+                      aria-label={`${p.name} — coming soon`}
+                    >
+                      Coming Soon
+                    </button>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      ))
+    }
 
     <section class="pickup-band">
       <p class="section-eyebrow">Order Ahead</p>
-      <p class="pickup-text">All products are available for in-restaurant pickup during dining hours. Contact us to arrange an order.</p>
-      <a href={`mailto:${restaurant.privateDiningEmail}`} class="text-cta">Get in touch</a>
+      <p class="pickup-text">
+        All products are available for in-restaurant pickup during dining hours.
+        Contact us to arrange an order.
+      </p>
+      <a href={`mailto:${restaurant.privateDiningEmail}`} class="text-cta"
+        >Get in touch</a
+      >
     </section>
-
   </div>
 </Base>
 
@@ -338,7 +501,9 @@ if (isSanityConfigured) {
     border: 1px solid var(--border);
     padding: 0.6rem 1rem;
     text-decoration: none;
-    transition: color 0.2s, border-color 0.2s;
+    transition:
+      color 0.2s,
+      border-color 0.2s;
   }
 
   a.product-cta:hover {

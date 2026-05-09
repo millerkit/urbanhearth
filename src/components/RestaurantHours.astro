@@ -1,5 +1,5 @@
 ---
-import restaurant from '../content/restaurant.json';
+import restaurant from "../content/restaurant.json";
 
 interface Props {
   class?: string;
@@ -7,4 +7,5 @@ interface Props {
 
 const { class: className } = Astro.props;
 ---
-{restaurant.hours.map(line => <p class={className}>{line}</p>)}
+
+{restaurant.hours.map((line) => <p class={className}>{line}</p>)}

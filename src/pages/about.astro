@@ -1,20 +1,20 @@
 ---
-import Base from '../layouts/Base.astro';
-import restaurant from '../content/restaurant.json';
-import RestaurantHours from '../components/RestaurantHours.astro';
-import PageHeader from '../components/PageHeader.astro';
+import restaurant from "../content/restaurant.json";
+import Base from "../layouts/Base.astro";
+import PageHeader from "../components/PageHeader.astro";
+import RestaurantHours from "../components/RestaurantHours.astro";
 
 const farms = [
-  { name: 'Kimball Fruit Farm', location: 'Haverhill, MA' },
-  { name: "D'Ancello Farm", location: 'New Hampshire' },
-  { name: 'Red Lite Farm', location: 'Massachusetts' },
-  { name: "Nab's Farm", location: 'Massachusetts' },
-  { name: 'Kitchen Garden Farm', location: 'Sunderland, MA' },
-  { name: 'La Belle Farm', location: 'New York' },
-  { name: 'Boogy Meadow Farm', location: 'New Hampshire' },
-  { name: 'Manna Greens', location: 'Massachusetts' },
-  { name: 'The Mushroom Shop', location: 'New England' },
-  { name: 'Fat Moon Farms', location: 'Groton, MA' },
+  { name: "Kimball Fruit Farm", location: "Haverhill, MA" },
+  { name: "D'Ancello Farm", location: "New Hampshire" },
+  { name: "Red Lite Farm", location: "Massachusetts" },
+  { name: "Nab's Farm", location: "Massachusetts" },
+  { name: "Kitchen Garden Farm", location: "Sunderland, MA" },
+  { name: "La Belle Farm", location: "New York" },
+  { name: "Boogy Meadow Farm", location: "New Hampshire" },
+  { name: "Manna Greens", location: "Massachusetts" },
+  { name: "The Mushroom Shop", location: "New England" },
+  { name: "Fat Moon Farms", location: "Groton, MA" },
 ];
 ---
 
@@ -23,32 +23,33 @@ const farms = [
   description="Urban Hearth is a woman-owned restaurant in Inman Square, Cambridge. Seasonal cooking rooted in New England."
 >
   <div class="about-page">
-
     <PageHeader title="About" />
 
     <div class="about-body">
-
       <section class="about-section about-section--intro">
         <p class="about-statement">
-          Urban Hearth is a woman-owned restaurant in Inman Square, Cambridge. We cook seasonal food,
-          sourced from a close network of New England farmers, fishermen, and foragers. The dining room
-          has been open since 2016.
+          Urban Hearth is a woman-owned restaurant in Inman Square, Cambridge.
+          We cook seasonal food, sourced from a close network of New England
+          farmers, fishermen, and foragers. The dining room has been open since
+          2016.
         </p>
       </section>
 
       <section class="about-section">
         <h2 class="about-section-title">Our Farms</h2>
         <p class="about-farms-intro">
-          Our menu is shaped by the people who grow and raise the food. These are the farms and producers
-          we work with most closely.
+          Our menu is shaped by the people who grow and raise the food. These
+          are the farms and producers we work with most closely.
         </p>
         <ul class="farms-grid">
-          {farms.map(farm => (
-            <li class="farm-item">
-              <span class="farm-name">{farm.name}</span>
-              <span class="farm-location">{farm.location}</span>
-            </li>
-          ))}
+          {
+            farms.map((farm) => (
+              <li class="farm-item">
+                <span class="farm-name">{farm.name}</span>
+                <span class="farm-location">{farm.location}</span>
+              </li>
+            ))
+          }
         </ul>
       </section>
 
@@ -66,18 +67,21 @@ const farms = [
           <div class="contact-block">
             <p class="contact-label section-eyebrow">Phone</p>
             <p class="contact-value">
-              <a href={`tel:${restaurant.phone.replace(/\s/g, '')}`}>{restaurant.phone}</a>
+              <a href={`tel:${restaurant.phone.replace(/\s/g, "")}`}
+                >{restaurant.phone}</a
+              >
             </p>
           </div>
           <div class="contact-block">
             <p class="contact-label section-eyebrow">Private Dining</p>
             <p class="contact-value">
-              <a href={`mailto:${restaurant.privateDiningEmail}`}>{restaurant.privateDiningEmail}</a>
+              <a href={`mailto:${restaurant.privateDiningEmail}`}
+                >{restaurant.privateDiningEmail}</a
+              >
             </p>
           </div>
         </div>
       </section>
-
     </div>
   </div>
 </Base>

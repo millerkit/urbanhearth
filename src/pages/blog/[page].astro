@@ -1,9 +1,9 @@
 ---
-import Base from '../../layouts/Base.astro';
-import PageHeader from '../../components/PageHeader.astro';
-import restaurant from '../../content/restaurant.json';
-import { isSanityConfigured } from '../../lib/sanity';
-import { fetchAllPosts } from '../../lib/sanity-fetch';
+import PageHeader from "../../components/PageHeader.astro";
+import restaurant from "../../content/restaurant.json";
+import Base from "../../layouts/Base.astro";
+import { isSanityConfigured } from "../../lib/sanity";
+import { fetchAllPosts } from "../../lib/sanity-fetch";
 
 export async function getStaticPaths() {
   if (!isSanityConfigured) return [];
@@ -24,17 +24,22 @@ if (isSanityConfigured) {
   try {
     ({ posts, totalPages } = await fetchAllPosts(page, 10));
   } catch (e) {
-    console.error(`[blog/${page}] fetchAllPosts failed:`, e instanceof Error ? e.message : String(e));
+    console.error(
+      `[blog/${page}] fetchAllPosts failed:`,
+      e instanceof Error ? e.message : String(e),
+    );
   }
 }
 
 function formatDate(iso: string) {
-  return new Date(iso).toLocaleDateString('en-US', {
-    year: 'numeric', month: 'long', day: 'numeric',
+  return new Date(iso).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
   });
 }
 
-const prevHref = page === 2 ? '/blog' : `/blog/${page - 1}`;
+const prevHref = page === 2 ? "/blog" : `/blog/${page - 1}`;
 const nextHref = `/blog/${page + 1}`;
 ---
 
@@ -43,40 +48,58 @@ const nextHref = `/blog/${page + 1}`;
   description="News, events, and stories from Urban Hearth."
 >
   <div class="blog-page">
-
-    <PageHeader title="Blog" lead="News, events, and stories from the restaurant." />
+    <PageHeader
+      title="Blog"
+      lead="News, events, and stories from the restaurant."
+    />
 
     <div class="posts-body">
-      {posts.length === 0 ? (
-        <p class="empty">No posts found.</p>
-      ) : (
-        <ul class="post-list">
-          {posts.map(post => (
-            <li class="post-item">
-              <a href={`/post/${post.slug}`} class="post-link">
-                {post.coverImage && (
-                  <div class="post-image-wrap">
-                    <img src={post.coverImage} alt={post.title} class="post-image" loading="lazy" />
+      {
+        posts.length === 0 ? (
+          <p class="empty">No posts found.</p>
+        ) : (
+          <ul class="post-list">
+            {posts.map((post) => (
+              <li class="post-item">
+                <a href={`/post/${post.slug}`} class="post-link">
+                  {post.coverImage && (
+                    <div class="post-image-wrap">
+                      <img
+                        src={post.coverImage}
+                        alt={post.title}
+                        class="post-image"
+                        loading="lazy"
+                      />
+                    </div>
+                  )}
+                  <div class="post-text">
+                    {post.publishedAt && (
+                      <p class="post-date section-eyebrow">
+                        {formatDate(post.publishedAt)}
+                      </p>
+                    )}
+                    <h2 class="post-title">{post.title}</h2>
+                    {post.excerpt && <p class="post-excerpt">{post.excerpt}</p>}
                   </div>
-                )}
-                <div class="post-text">
-                  {post.publishedAt && <p class="post-date section-eyebrow">{formatDate(post.publishedAt)}</p>}
-                  <h2 class="post-title">{post.title}</h2>
-                  {post.excerpt && <p class="post-excerpt">{post.excerpt}</p>}
-                </div>
-              </a>
-            </li>
-          ))}
-        </ul>
-      )}
+                </a>
+              </li>
+            ))}
+          </ul>
+        )
+      }
       <div class="pagination">
         <a href={prevHref} class="text-cta">&larr; Newer</a>
         <span class="page-indicator">Page {page} of {totalPages}</span>
-        {page < totalPages && <a href={nextHref} class="text-cta">Older &rarr;</a>}
+        {
+          page < totalPages && (
+            <a href={nextHref} class="text-cta">
+              Older &rarr;
+            </a>
+          )
+        }
         {page >= totalPages && <span />}
       </div>
     </div>
-
   </div>
 </Base>
 

@@ -1,9 +1,12 @@
 ---
-import restaurant from '../content/restaurant.json';
-import footerLinks from '../content/footer-links.json';
-import RestaurantHours from './RestaurantHours.astro';
+import restaurant from "../content/restaurant.json";
+import footerLinks from "../content/footer-links.json";
+import RestaurantHours from "./RestaurantHours.astro";
 
-interface FooterLink { label: string; href: string; }
+interface FooterLink {
+  label: string;
+  href: string;
+}
 
 interface Props {
   year?: number;
@@ -12,13 +15,9 @@ interface Props {
   legalLinks?: FooterLink[];
 }
 
-const {
-  year = new Date().getFullYear(),
-  symbol = '✦',
+const { year = new Date().getFullYear(), symbol = "✦" } = Astro.props;
 
-} = Astro.props;
-
-const addressLines = restaurant.address.split(',');
+const addressLines = restaurant.address.split(",");
 ---
 
 <footer>
@@ -28,18 +27,25 @@ const addressLines = restaurant.address.split(',');
   </div>
 
   <nav class="footer-nav">
-    {footerLinks.secondaryLinks.map(({ label, href }) => (
-      <a href={href}>{label}</a>
-    ))}
+    {
+      footerLinks.secondaryLinks.map(({ label, href }) => (
+        <a href={href}>{label}</a>
+      ))
+    }
   </nav>
 
   <div class="footer-info">
     <div class="footer-col">
       <p class="footer-col-title">Contact</p>
       <address>
-        {addressLines.map((line, i) => (
-          <>{line.trim()}{i < addressLines.length - 1 ? <br /> : null}</>
-        ))}
+        {
+          addressLines.map((line, i) => (
+            <>
+              {line.trim()}
+              {i < addressLines.length - 1 ? <br /> : null}
+            </>
+          ))
+        }
         <br />T: {restaurant.phone}
       </address>
     </div>
@@ -53,7 +59,9 @@ const addressLines = restaurant.address.split(',');
       <p class="footer-col-title">Private dining</p>
       <p>
         Available for groups of 10–40<br />
-        <a href={`mailto:${restaurant.privateDiningEmail}`} class="footer-email">{restaurant.privateDiningEmail}</a>
+        <a href={`mailto:${restaurant.privateDiningEmail}`} class="footer-email"
+          >{restaurant.privateDiningEmail}</a
+        >
       </p>
     </div>
   </div>
@@ -61,9 +69,11 @@ const addressLines = restaurant.address.split(',');
   <div class="footer-bottom">
     <span>© {year} {restaurant.name} Restaurant</span>
     <div class="footer-bottom-links">
-      {footerLinks.legalLinks.map(({ label, href }) => (
-        <a href={href}>{label}</a>
-      ))}
+      {
+        footerLinks.legalLinks.map(({ label, href }) => (
+          <a href={href}>{label}</a>
+        ))
+      }
     </div>
   </div>
 </footer>
@@ -89,7 +99,7 @@ const addressLines = restaurant.address.split(',');
   }
 
   .year {
-    font-family: var(--sans),sans-serif;
+    font-family: var(--sans), sans-serif;
     font-size: 10px;
     letter-spacing: 0.14em;
     color: var(--ink-light);
@@ -105,7 +115,7 @@ const addressLines = restaurant.address.split(',');
   }
 
   .footer-nav a {
-    font-family: var(--sans),sans-serif;
+    font-family: var(--sans), sans-serif;
     font-size: 10px;
     font-weight: 300;
     letter-spacing: 0.18em;
@@ -114,7 +124,9 @@ const addressLines = restaurant.address.split(',');
     text-decoration: none;
     transition: opacity 0.2s;
   }
-  .footer-nav a:hover { opacity: 0.5; }
+  .footer-nav a:hover {
+    opacity: 0.5;
+  }
 
   .footer-info {
     display: grid;
@@ -124,7 +136,7 @@ const addressLines = restaurant.address.split(',');
   }
 
   .footer-col-title {
-    font-family: var(--sans),sans-serif;
+    font-family: var(--sans), sans-serif;
     font-size: 10px;
     font-weight: 300;
     letter-spacing: 0.22em;
@@ -135,7 +147,7 @@ const addressLines = restaurant.address.split(',');
 
   .footer-col p,
   .footer-col address {
-    font-family: var(--sans),sans-serif;
+    font-family: var(--sans), sans-serif;
     font-size: 13px;
     font-weight: 300;
     line-height: 1.8;
@@ -150,10 +162,16 @@ const addressLines = restaurant.address.split(',');
     border-bottom: 1px solid var(--border);
     transition: opacity 0.2s;
   }
-  .footer-email:hover { opacity: 0.6; }
+  .footer-email:hover {
+    opacity: 0.6;
+  }
 
-  .footer-col.center { text-align: center; }
-  .footer-col.right  { text-align: right; }
+  .footer-col.center {
+    text-align: center;
+  }
+  .footer-col.right {
+    text-align: right;
+  }
 
   .footer-bottom {
     background: var(--midnight);
@@ -166,12 +184,12 @@ const addressLines = restaurant.address.split(',');
   }
 
   .footer-bottom span {
-    font-family: var(--sans),sans-serif;
+    font-family: var(--sans), sans-serif;
     font-size: 10px;
     font-weight: 300;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.5);
+    color: rgba(255, 255, 255, 0.5);
   }
 
   .footer-bottom-links {
@@ -180,16 +198,18 @@ const addressLines = restaurant.address.split(',');
   }
 
   .footer-bottom-links a {
-    font-family: var(--sans),sans-serif;
+    font-family: var(--sans), sans-serif;
     font-size: 10px;
     font-weight: 300;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.5);
+    color: rgba(255, 255, 255, 0.5);
     text-decoration: none;
     transition: color 0.2s;
   }
-  .footer-bottom-links a:hover { color: rgba(255,255,255,0.8); }
+  .footer-bottom-links a:hover {
+    color: rgba(255, 255, 255, 0.8);
+  }
 
   @media (max-width: 700px) {
     .footer-info {
@@ -197,6 +217,8 @@ const addressLines = restaurant.address.split(',');
       gap: 2rem;
     }
     .footer-col.right,
-    .footer-col.center { text-align: left; }
+    .footer-col.center {
+      text-align: left;
+    }
   }
 </style>

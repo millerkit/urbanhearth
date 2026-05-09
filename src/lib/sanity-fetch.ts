@@ -1,17 +1,17 @@
-import { createClient } from '@sanity/client';
-import { toHTML } from '@portabletext/to-html';
+import { createClient } from "@sanity/client";
+import { toHTML } from "@portabletext/to-html";
 
-const isPreview = import.meta.env.SANITY_PREVIEW === 'true';
+const isPreview = import.meta.env.SANITY_PREVIEW === "true";
 
 // Client is only created when projectId is available; the isSanityConfigured
 // guard in each page prevents calls when it isn't.
 const client = import.meta.env.SANITY_PROJECT_ID
   ? createClient({
       projectId: import.meta.env.SANITY_PROJECT_ID,
-      dataset: import.meta.env.SANITY_DATASET ?? 'production',
-      apiVersion: '2025-01-01',
+      dataset: import.meta.env.SANITY_DATASET ?? "production",
+      apiVersion: "2025-01-01",
       useCdn: !isPreview && !import.meta.env.DEV,
-      perspective: isPreview ? 'previewDrafts' : 'published',
+      perspective: isPreview ? "previewDrafts" : "published",
       token: isPreview ? import.meta.env.SANITY_API_TOKEN : undefined,
     })
   : null;
@@ -63,7 +63,7 @@ export async function fetchPostBySlug(slug: string) {
         _type == "image" => { ..., "url": asset->url }
       }
     }`,
-    { slug }
+    { slug },
   );
   if (!post) return null;
   return {
@@ -74,19 +74,17 @@ export async function fetchPostBySlug(slug: string) {
             types: {
               image: ({ value }: any) =>
                 value.caption
-                  ? `<figure><img src="${value.url ?? ''}" alt="${value.alt ?? ''}" /><figcaption>${value.caption}</figcaption></figure>`
-                  : `<img src="${value.url ?? ''}" alt="${value.alt ?? ''}" />`,
+                  ? `<figure><img src="${value.url ?? ""}" alt="${value.alt ?? ""}" /><figcaption>${value.caption}</figcaption></figure>`
+                  : `<img src="${value.url ?? ""}" alt="${value.alt ?? ""}" />`,
             },
           },
         })
-      : '',
+      : "",
   };
 }
 
 export async function fetchAllPostSlugs(): Promise<string[]> {
-  const slugs = await client!.fetch(
-    `*[_type == "blog_post"].slug.current`
-  );
+  const slugs = await client!.fetch(`*[_type == "blog_post"].slug.current`);
   return slugs ?? [];
 }
 
@@ -123,14 +121,14 @@ export async function fetchProductBySlug(slug: string) {
         modifiers[]{ name, price, toastGuid }
       }
     }`,
-    { slug }
+    { slug },
   );
   if (!product) return null;
   return {
     ...product,
     longDescriptionHtml: product.longDescription
       ? toHTML(product.longDescription)
-      : '',
+      : "",
   };
 }
 

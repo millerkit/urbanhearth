@@ -1,68 +1,78 @@
 ---
-import Base from '../layouts/Base.astro';
-import Hero from '../components/Hero.astro';
-import ReservationButton from '../components/ReservationButton.astro';
-import restaurant from '../content/restaurant.json';
+import restaurant from "../content/restaurant.json";
 
-import DiningRoomRendering from '../assets/photos/DiningRoomRendering.jpeg';
-import ChefsCounterRendering from '../assets/photos/ChefsCounterRendering.png';
-import BarRendering from '../assets/photos/BarRendering.jpeg';
-import michelinSeal from '../assets/ui/michelin-selected.png';
-import jamesBeardSeal from '../assets/ui/james-beard-seal.png';
-import IntroStatement from '../components/IntroStatement.astro';
-import splashLogo from '../assets/brand/UrbanHearth_Logo_BLACK_cropped.png';
+import DiningRoomRendering from "../assets/photos/DiningRoomRendering.jpeg";
+import ChefsCounterRendering from "../assets/photos/ChefsCounterRendering.png";
+import BarRendering from "../assets/photos/BarRendering.jpeg";
+import michelinSeal from "../assets/ui/michelin-selected.png";
+import jamesBeardSeal from "../assets/ui/james-beard-seal.png";
+import splashLogo from "../assets/brand/UrbanHearth_Logo_BLACK_cropped.png";
+import IntroStatement from "../components/IntroStatement.astro";
+import Hero from "../components/Hero.astro";
+import Base from "../layouts/Base.astro";
+import ReservationButton from "../components/ReservationButton.astro";
 
 const restaurantJsonLd = {
   "@context": "https://schema.org",
   "@type": "Restaurant",
-  "name": restaurant.name,
-  "url": restaurant.url,
-  "telephone": restaurant.phone,
-  "address": {
+  name: restaurant.name,
+  url: restaurant.url,
+  telephone: restaurant.phone,
+  address: {
     "@type": "PostalAddress",
-    "streetAddress": "1281 Cambridge St",
-    "addressLocality": "Cambridge",
-    "addressRegion": "MA",
-    "postalCode": "02139",
-    "addressCountry": "US"
+    streetAddress: "1281 Cambridge St",
+    addressLocality: "Cambridge",
+    addressRegion: "MA",
+    postalCode: "02139",
+    addressCountry: "US",
   },
-  "geo": {
+  geo: {
     "@type": "GeoCoordinates",
-    "latitude": 42.3732,
-    "longitude": -71.0989
+    latitude: 42.3732,
+    longitude: -71.0989,
   },
-  "openingHoursSpecification": [
+  openingHoursSpecification: [
     {
       "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
-      "opens": "17:00",
-      "closes": "22:00"
-    }
+      dayOfWeek: [
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday",
+      ],
+      opens: "17:00",
+      closes: "22:00",
+    },
   ],
-  "servesCuisine": "New American",
-  "priceRange": "$$$",
-  "description": restaurant.tagline,
-  "hasMap": "https://maps.google.com/?q=1281+Cambridge+St+Cambridge+MA",
-  "sameAs": [
+  servesCuisine: "New American",
+  priceRange: "$$$",
+  description: restaurant.tagline,
+  hasMap: "https://maps.google.com/?q=1281+Cambridge+St+Cambridge+MA",
+  sameAs: [
     restaurant.url,
     restaurant.social.facebook,
     restaurant.social.instagram,
-  ]
+  ],
 };
 ---
 
 <Base title="Urban Hearth — Cambridge, MA">
   <Fragment slot="head">
-    <script type="application/ld+json" set:html={JSON.stringify(restaurantJsonLd)} />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(restaurantJsonLd)}
+    />
     <script is:inline>
       (function () {
-        const KEY = 'uh_splash_ts';
+        const KEY = "uh_splash_ts";
         const SEVEN_DAYS = 7 * 24 * 60 * 60 * 1000;
         try {
           const last = localStorage.getItem(KEY);
           if (last && Date.now() - Number(last) < SEVEN_DAYS) {
-            const s = document.createElement('style');
-            s.textContent = '#splash{display:none!important}';
+            const s = document.createElement("style");
+            s.textContent = "#splash{display:none!important}";
             document.head.appendChild(s);
           } else {
             localStorage.setItem(KEY, String(Date.now()));
@@ -81,14 +91,18 @@ const restaurantJsonLd = {
 
   <Hero src={DiningRoomRendering} />
 
-  <IntroStatement/>
+  <IntroStatement />
 
   <section class="dining-teasers">
     <div class="teasers-grid">
-
       <a href="/dining-areas#dining-room" class="teaser">
         <div class="teaser-photo-wrap">
-          <img src={DiningRoomRendering.src} alt="The Dining Room at Urban Hearth" class="teaser-photo" loading="eager" />
+          <img
+            src={DiningRoomRendering.src}
+            alt="The Dining Room at Urban Hearth"
+            class="teaser-photo"
+            loading="eager"
+          />
           <div class="teaser-label">
             <span class="teaser-num">01</span>
             <span class="section-eyebrow">À La Carte</span>
@@ -96,13 +110,21 @@ const restaurantJsonLd = {
         </div>
         <div class="teaser-body">
           <h2 class="teaser-title">The Dining Room</h2>
-          <p class="teaser-desc">Seasonal cooking built around New England farms and fishermen. Intimate, unhurried, and always changing.</p>
+          <p class="teaser-desc">
+            Seasonal cooking built around New England farms and fishermen.
+            Intimate, unhurried, and always changing.
+          </p>
         </div>
       </a>
 
       <a href="/dining-areas#chefs-counter" class="teaser teaser--dark">
         <div class="teaser-photo-wrap">
-          <img src={ChefsCounterRendering.src} alt="The Chef's Counter at Urban Hearth" class="teaser-photo" loading="lazy" />
+          <img
+            src={ChefsCounterRendering.src}
+            alt="The Chef's Counter at Urban Hearth"
+            class="teaser-photo"
+            loading="lazy"
+          />
           <div class="teaser-label">
             <span class="teaser-num">02</span>
             <span class="section-eyebrow">Prix Fixe</span>
@@ -110,13 +132,21 @@ const restaurantJsonLd = {
         </div>
         <div class="teaser-body">
           <h2 class="teaser-title">The Chef's Counter</h2>
-          <p class="teaser-desc">Four seats at the kitchen pass. Five courses written that morning. An experience for the curious and adventurous.</p>
+          <p class="teaser-desc">
+            Four seats at the kitchen pass. Five courses written that morning.
+            An experience for the curious and adventurous.
+          </p>
         </div>
       </a>
 
       <a href="/dining-areas#salon" class="teaser">
         <div class="teaser-photo-wrap">
-          <img src={BarRendering.src} alt="The Salon at Urban Hearth" class="teaser-photo" loading="lazy" />
+          <img
+            src={BarRendering.src}
+            alt="The Salon at Urban Hearth"
+            class="teaser-photo"
+            loading="lazy"
+          />
           <div class="teaser-label">
             <span class="teaser-num">03</span>
             <span class="section-eyebrow">Bar &amp; Lounge</span>
@@ -124,16 +154,20 @@ const restaurantJsonLd = {
         </div>
         <div class="teaser-body">
           <h2 class="teaser-title">The Salon</h2>
-          <p class="teaser-desc">Natural wines, considered cocktails, and small plates. Walk-ins welcome. Open until 11.</p>
+          <p class="teaser-desc">
+            Natural wines, considered cocktails, and small plates. Walk-ins
+            welcome. Open until 11.
+          </p>
         </div>
       </a>
-
     </div>
   </section>
 
   <section class="booking-band">
     <p class="section-eyebrow">Cambridge, MA</p>
-    <p class="booking-tagline">Three distinct experiences, each with its own character and pace.</p>
+    <p class="booking-tagline">
+      Three distinct experiences, each with its own character and pace.
+    </p>
     <ReservationButton />
   </section>
 
@@ -146,7 +180,6 @@ const restaurantJsonLd = {
 </Base>
 
 <style>
-
   /* ── Dining teasers ── */
   .dining-teasers {
     border-bottom: 1px solid var(--border);
@@ -262,7 +295,7 @@ const restaurantJsonLd = {
   }
 
   .booking-tagline {
-    font-family: var(--serif),serif;
+    font-family: var(--serif), serif;
     font-size: 1.1875rem;
     font-weight: 300;
     line-height: 1.75;
@@ -315,7 +348,6 @@ const restaurantJsonLd = {
       height: 72px;
     }
   }
-
 </style>
 
 <style is:global>
@@ -357,21 +389,31 @@ const restaurantJsonLd = {
   }
 
   @keyframes splash-logo-in {
-    from { opacity: 0; transform: translateY(6px); }
-    to   { opacity: 1; transform: translateY(0); }
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   @keyframes splash-out {
-    from { opacity: 1; }
-    to   { opacity: 0; }
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
   }
 </style>
 
 <script>
-  const splash = document.getElementById('splash');
+  const splash = document.getElementById("splash");
   if (splash) {
-    splash.addEventListener('animationend', (e) => {
-      if (e.animationName === 'splash-out') {
+    splash.addEventListener("animationend", (e) => {
+      if (e.animationName === "splash-out") {
         splash.remove();
       }
     });

@@ -1,24 +1,24 @@
 ---
-import Base from '../layouts/Base.astro';
-import restaurant from '../content/restaurant.json';
-import PageHeader from '../components/PageHeader.astro';
+import restaurant from "../content/restaurant.json";
 
-import g007 from '../assets/gallery/gallery-007.jpg';
-import food1 from '../assets/photos/food-photo-1.jpeg';
-import food2 from '../assets/photos/food-photo-2.jpeg';
-import food4 from '../assets/photos/food-photo-4.jpeg';
-import food5 from '../assets/photos/food-photo-5.jpeg';
-import food6 from '../assets/photos/food-photo-6.jpeg';
+import g007 from "../assets/gallery/gallery-007.jpg";
+import food1 from "../assets/photos/food-photo-1.jpeg";
+import food2 from "../assets/photos/food-photo-2.jpeg";
+import food4 from "../assets/photos/food-photo-4.jpeg";
+import food5 from "../assets/photos/food-photo-5.jpeg";
+import food6 from "../assets/photos/food-photo-6.jpeg";
+import Base from "../layouts/Base.astro";
+import PageHeader from "../components/PageHeader.astro";
 
 // Layout spans: 'full' = spans all 3 cols, 'wide' = 2 cols, 'normal' = 1 col
 // Rows are implicit — browser fills gaps
 const photos = [
-  { src: food1.src, alt: 'Seasonal small plate', span: 'normal' },
-  { src: food2.src, alt: 'From the kitchen', span: 'normal' },
-  { src: food4.src, alt: 'Seasonal plate', span: 'normal' },
-  { src: food5.src, alt: 'Kitchen preparation', span: 'normal' },
-  { src: food6.src, alt: 'A course from the Chef\'s Counter', span: 'normal' },
-  { src: g007.src, alt: 'Dried botanicals', span: 'normal' }
+  { src: food1.src, alt: "Seasonal small plate", span: "normal" },
+  { src: food2.src, alt: "From the kitchen", span: "normal" },
+  { src: food4.src, alt: "Seasonal plate", span: "normal" },
+  { src: food5.src, alt: "Kitchen preparation", span: "normal" },
+  { src: food6.src, alt: "A course from the Chef's Counter", span: "normal" },
+  { src: g007.src, alt: "Dried botanicals", span: "normal" },
 ];
 ---
 
@@ -27,21 +27,21 @@ const photos = [
   description="Images from Urban Hearth — the kitchen, the dining room, and the New England landscape that shapes our cooking."
 >
   <div class="gallery-page">
-
     <PageHeader title="Gallery" />
 
     <div class="gallery-grid">
-      {photos.map((photo, i) => (
-        <div class={`gallery-item gallery-item--${photo.span}`}>
-          <img
-            src={photo.src}
-            alt={photo.alt}
-            loading={i < 4 ? 'eager' : 'lazy'}
-          />
-        </div>
-      ))}
+      {
+        photos.map((photo, i) => (
+          <div class={`gallery-item gallery-item--${photo.span}`}>
+            <img
+              src={photo.src}
+              alt={photo.alt}
+              loading={i < 4 ? "eager" : "lazy"}
+            />
+          </div>
+        ))
+      }
     </div>
-
   </div>
 </Base>
 

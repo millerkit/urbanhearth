@@ -1,21 +1,24 @@
 ---
-import { Image } from 'astro:assets';
-import type { ImageMetadata } from 'astro';
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
 
 interface Props {
   src?: ImageMetadata;
   alt?: string;
 }
 
-const { src, alt = 'The dining room at Urban Hearth' } = Astro.props;
+const { src, alt = "The dining room at Urban Hearth" } = Astro.props;
 ---
 
 <div class="hero">
-  {src
-    ? <Image class="hero-img" src={src} alt={alt} />
-    : (
+  {
+    src ? (
+      <Image class="hero-img" src={src} alt={alt} />
+    ) : (
       <div class="hero-placeholder">
-        <span class="hero-placeholder-label">Full-bleed restaurant photograph</span>
+        <span class="hero-placeholder-label">
+          Full-bleed restaurant photograph
+        </span>
       </div>
     )
   }
@@ -32,26 +35,33 @@ const { src, alt = 'The dining room at Urban Hearth' } = Astro.props;
   }
 
   .hero-img {
-    width: 100%; height: 100%;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
     display: block;
     opacity: 0.92;
   }
 
   .hero-placeholder {
-    width: 100%; height: 100%;
-    background: linear-gradient(165deg, #1d2d43 0%, var(--midnight) 60%, #1a2b40 100%);
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      165deg,
+      #1d2d43 0%,
+      var(--midnight) 60%,
+      #1a2b40 100%
+    );
     display: flex;
     align-items: center;
     justify-content: center;
   }
 
   .hero-placeholder-label {
-    font-family: var(--serif),serif;
+    font-family: var(--serif), serif;
     font-size: 13px;
     font-weight: 300;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.28);
+    color: rgba(255, 255, 255, 0.28);
   }
 </style>

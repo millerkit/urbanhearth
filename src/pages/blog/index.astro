@@ -1,9 +1,9 @@
 ---
-import Base from '../../layouts/Base.astro';
-import PageHeader from '../../components/PageHeader.astro';
-import restaurant from '../../content/restaurant.json';
-import { isSanityConfigured } from '../../lib/sanity';
-import { fetchAllPosts } from '../../lib/sanity-fetch';
+import restaurant from "../../content/restaurant.json";
+import Base from "../../layouts/Base.astro";
+import { isSanityConfigured } from "../../lib/sanity";
+import { fetchAllPosts } from "../../lib/sanity-fetch";
+import PageHeader from "../../components/PageHeader.astro";
 
 let posts: any[] = [];
 let totalPages = 1;
@@ -11,14 +11,19 @@ if (isSanityConfigured) {
   try {
     ({ posts, totalPages } = await fetchAllPosts(1, 10));
   } catch (e) {
-    console.error('[blog] fetchAllPosts failed:', e instanceof Error ? e.message : String(e));
+    console.error(
+      "[blog] fetchAllPosts failed:",
+      e instanceof Error ? e.message : String(e),
+    );
   }
 }
 const page = 1;
 
 function formatDate(iso: string) {
-  return new Date(iso).toLocaleDateString('en-US', {
-    year: 'numeric', month: 'long', day: 'numeric',
+  return new Date(iso).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
   });
 }
 ---
@@ -28,40 +33,58 @@ function formatDate(iso: string) {
   description="News, events, and stories from Urban Hearth."
 >
   <div class="blog-page">
-
-    <PageHeader title="Blog" lead="News, events, and stories from the restaurant." />
+    <PageHeader
+      title="Blog"
+      lead="News, events, and stories from the restaurant."
+    />
 
     <div class="posts-body">
-      {posts.length === 0 ? (
-        <p class="empty">No posts yet &mdash; check back soon.</p>
-      ) : (
-        <ul class="post-list">
-          {posts.map(post => (
-            <li class="post-item">
-              <a href={`/post/${post.slug}`} class="post-link">
-                {post.coverImage && (
-                  <div class="post-image-wrap">
-                    <img src={post.coverImage} alt={post.title} class="post-image" loading="lazy" />
+      {
+        posts.length === 0 ? (
+          <p class="empty">No posts yet &mdash; check back soon.</p>
+        ) : (
+          <ul class="post-list">
+            {posts.map((post) => (
+              <li class="post-item">
+                <a href={`/post/${post.slug}`} class="post-link">
+                  {post.coverImage && (
+                    <div class="post-image-wrap">
+                      <img
+                        src={post.coverImage}
+                        alt={post.title}
+                        class="post-image"
+                        loading="lazy"
+                      />
+                    </div>
+                  )}
+                  <div class="post-text">
+                    {post.publishedAt && (
+                      <p class="post-date section-eyebrow">
+                        {formatDate(post.publishedAt)}
+                      </p>
+                    )}
+                    <h2 class="post-title">{post.title}</h2>
+                    {post.excerpt && <p class="post-excerpt">{post.excerpt}</p>}
                   </div>
-                )}
-                <div class="post-text">
-                  {post.publishedAt && <p class="post-date section-eyebrow">{formatDate(post.publishedAt)}</p>}
-                  <h2 class="post-title">{post.title}</h2>
-                  {post.excerpt && <p class="post-excerpt">{post.excerpt}</p>}
-                </div>
-              </a>
-            </li>
-          ))}
-        </ul>
-      )}
-      {totalPages > 1 && (
-        <div class="pagination">
-          <span class="page-indicator">Page {page} of {totalPages}</span>
-          <a href={`/blog/2`} class="text-cta">Older &rarr;</a>
-        </div>
-      )}
+                </a>
+              </li>
+            ))}
+          </ul>
+        )
+      }
+      {
+        totalPages > 1 && (
+          <div class="pagination">
+            <span class="page-indicator">
+              Page {page} of {totalPages}
+            </span>
+            <a href={`/blog/2`} class="text-cta">
+              Older &rarr;
+            </a>
+          </div>
+        )
+      }
     </div>
-
   </div>
 </Base>
 

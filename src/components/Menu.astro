@@ -1,8 +1,8 @@
 ---
-import MenuSection from './MenuSection.astro';
-import RestaurantHours from './RestaurantHours.astro';
-import ReservationButton from './ReservationButton.astro';
-import restaurant from '../content/restaurant.json';
+import restaurant from "../content/restaurant.json";
+import RestaurantHours from "./RestaurantHours.astro";
+import ReservationButton from "./ReservationButton.astro";
+import MenuSection from "./MenuSection.astro";
 
 interface Props {
   blok: {
@@ -15,24 +15,28 @@ const { blok } = Astro.props;
 ---
 
 <div class="menu-card menu-main">
-
   <div class="menu-dining-room">
     <div class="dining-room-text">
       <p class="menu-eyebrow">Dining Room</p>
       <RestaurantHours class="dining-room-hours" />
-      <p class="dining-room-hours">Walk-ins welcome; reservations recommended.</p>
+      <p class="dining-room-hours">
+        Walk-ins welcome; reservations recommended.
+      </p>
     </div>
-    <ReservationButton href={`${restaurant.reservations.href}#dining-room`} label="Reserve a table" />
+    <ReservationButton
+      href={`${restaurant.reservations.href}#dining-room`}
+      label="Reserve a table"
+    />
   </div>
 
-  {blok.sections?.map((section: any) => (
-    <MenuSection blok={section} />
-  ))}
+  {blok.sections?.map((section: any) => <MenuSection blok={section} />)}
 
   <p class="menu-fine-print menu-footer-note">
-    {blok.footer_note ?? 'Ask your server to see our dessert menu. Please inform your server of any dietary restrictions. A 20% gratuity is added for parties of six or more.'}
+    {
+      blok.footer_note ??
+        "Ask your server to see our dessert menu. Please inform your server of any dietary restrictions. A 20% gratuity is added for parties of six or more."
+    }
   </p>
-
 </div>
 
 <style>

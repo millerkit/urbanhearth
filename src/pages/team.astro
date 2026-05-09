@@ -1,90 +1,105 @@
 ---
-import Base from '../layouts/Base.astro';
-import restaurant from '../content/restaurant.json';
-import PageHeader from '../components/PageHeader.astro';
+import restaurant from "../content/restaurant.json";
+import Base from "../layouts/Base.astro";
+import PageHeader from "../components/PageHeader.astro";
 
 const team = [
   {
-    name: 'Gabriel Peterson',
-    roles: ['Sous Chef', 'Translator in Chief', 'Secret Cocktail Wizard'],
-    bio: 'Gabriel has been part of the Urban Hearth kitchen since 2021, working alongside Chef Rebecca through every dinner service. He relocated from Mexico to Boston in search of new opportunities and found a home in the diverse, fast-paced culinary world of New England. His interest in different cuisines has only deepened with time — though his favorite thing to cook remains a traditional Mexican carne asada, the kind that calls for music, food, and good company.',
-    photo: '/src/assets/photos/team/gabriel.jpg',
+    name: "Gabriel Peterson",
+    roles: ["Sous Chef", "Translator in Chief", "Secret Cocktail Wizard"],
+    bio: "Gabriel has been part of the Urban Hearth kitchen since 2021, working alongside Chef Rebecca through every dinner service. He relocated from Mexico to Boston in search of new opportunities and found a home in the diverse, fast-paced culinary world of New England. His interest in different cuisines has only deepened with time — though his favorite thing to cook remains a traditional Mexican carne asada, the kind that calls for music, food, and good company.",
+    photo: "/src/assets/photos/team/gabriel.jpg",
   },
   {
-    name: 'Rebecca Daulton',
-    roles: ['Sous Chef', 'Pastry Specialist', 'Valedictorian'],
-    bio: 'Originally from Columbus, Ohio, Rebecca left a career in accounting to pursue what she actually loved: food. She joined Urban Hearth in 2022 as a kitchen intern while studying classical French and Italian cuisine at the Cambridge School of Culinary Arts, graduating with honors as valedictorian in 2023. She considers it the start of a lifelong culinary education. On the line she delights in vegetables and the endlessly rewarding study of dough, both sweet and savory.',
-    photo: '/src/assets/photos/team/rebecca.jpg',
+    name: "Rebecca Daulton",
+    roles: ["Sous Chef", "Pastry Specialist", "Valedictorian"],
+    bio: "Originally from Columbus, Ohio, Rebecca left a career in accounting to pursue what she actually loved: food. She joined Urban Hearth in 2022 as a kitchen intern while studying classical French and Italian cuisine at the Cambridge School of Culinary Arts, graduating with honors as valedictorian in 2023. She considers it the start of a lifelong culinary education. On the line she delights in vegetables and the endlessly rewarding study of dough, both sweet and savory.",
+    photo: "/src/assets/photos/team/rebecca.jpg",
   },
   {
-    name: 'Abby Taylor',
-    roles: ['General Manager', 'Community Builder', 'Will Pet Your Dog'],
-    bio: 'Abby has spent 30 years in food and beverage — starting as a counter girl at a New England clam shack at 15 — and has brought that same enthusiasm to neighborhood favorites and Michelin-starred kitchens alike. As General Manager of Urban Hearth for over three years, she has been a steady hand through the restaurant\'s James Beard nomination, its first Michelin recommendation, and three consecutive Best of Boston awards. She is currently overseeing the move to a new 60-seat space in Spring 2026.',
-    photo: '/src/assets/photos/team/abby.jpg',
+    name: "Abby Taylor",
+    roles: ["General Manager", "Community Builder", "Will Pet Your Dog"],
+    bio: "Abby has spent 30 years in food and beverage — starting as a counter girl at a New England clam shack at 15 — and has brought that same enthusiasm to neighborhood favorites and Michelin-starred kitchens alike. As General Manager of Urban Hearth for over three years, she has been a steady hand through the restaurant's James Beard nomination, its first Michelin recommendation, and three consecutive Best of Boston awards. She is currently overseeing the move to a new 60-seat space in Spring 2026.",
+    photo: "/src/assets/photos/team/abby.jpg",
   },
   {
-    name: 'Allie Capalbo',
-    roles: ['Pastry Chef', 'Mother', 'Chaos Wrangler'],
-    bio: 'Allie\'s love of baking started at ten years old, selling homemade zucchini bread at the end of her driveway in Yorktown Heights. She went on to study pastry arts at the Culinary Institute of America, earning a degree in Business Management alongside her culinary certificate, and built her career at destinations including Blackberry Farm in Tennessee and kitchens in Colorado and London. She relocated to the Boston area in Summer 2025, bringing a mother\'s patience and a pastry chef\'s precision to every plate.',
-    photo: '/src/assets/photos/team/allie.jpg',
+    name: "Allie Capalbo",
+    roles: ["Pastry Chef", "Mother", "Chaos Wrangler"],
+    bio: "Allie's love of baking started at ten years old, selling homemade zucchini bread at the end of her driveway in Yorktown Heights. She went on to study pastry arts at the Culinary Institute of America, earning a degree in Business Management alongside her culinary certificate, and built her career at destinations including Blackberry Farm in Tennessee and kitchens in Colorado and London. She relocated to the Boston area in Summer 2025, bringing a mother's patience and a pastry chef's precision to every plate.",
+    photo: "/src/assets/photos/team/allie.jpg",
   },
   {
-    name: 'Katie Janik',
-    roles: ['Lead Server', 'Wine Educator', 'Likes Her Wine Dry'],
-    bio: 'Katie joined Urban Hearth in 2023 after a long career in hospitality that she pursued, impressively, while putting herself through law school. Her professionalism and composure are a constant on the floor, and her love of wine is something guests get to benefit from directly. When she\'s not here, she\'s working through a stack of books or drinking iced coffee — even in January.',
-    photo: '/src/assets/photos/team/katie.jpg',
+    name: "Katie Janik",
+    roles: ["Lead Server", "Wine Educator", "Likes Her Wine Dry"],
+    bio: "Katie joined Urban Hearth in 2023 after a long career in hospitality that she pursued, impressively, while putting herself through law school. Her professionalism and composure are a constant on the floor, and her love of wine is something guests get to benefit from directly. When she's not here, she's working through a stack of books or drinking iced coffee — even in January.",
+    photo: "/src/assets/photos/team/katie.jpg",
   },
   {
-    name: 'Sam Sarel',
-    roles: ['Front of House', 'Storyteller', 'Music Educator'],
-    bio: 'Sam splits her time between hospitality and music education for children, and both vocations show in how she works — with warmth, attentiveness, and genuine curiosity about the people in front of her. We\'re glad we managed to tempt her back into restaurants full time. When she\'s not here, she\'s off at a music festival or writing songs of her own.',
-    photo: '/src/assets/photos/team/sam.jpg',
+    name: "Sam Sarel",
+    roles: ["Front of House", "Storyteller", "Music Educator"],
+    bio: "Sam splits her time between hospitality and music education for children, and both vocations show in how she works — with warmth, attentiveness, and genuine curiosity about the people in front of her. We're glad we managed to tempt her back into restaurants full time. When she's not here, she's off at a music festival or writing songs of her own.",
+    photo: "/src/assets/photos/team/sam.jpg",
   },
   {
-    name: 'Shane Allerheiligen',
-    roles: ['Front of House', 'Baker', 'Craftsperson'],
-    bio: 'Shane started as a bar back in her hometown of Fitchburg and has since worked her way through every front-of-house role there is. She is an exceptional baker and craftsperson, and generously shares both — her cookies and birthday cards are legendary among the team. Outside the restaurant, she explores the local culinary and bar scene and spends time with her two cats, Ramona and Rudy.',
-    photo: '/src/assets/photos/team/shane.jpg',
+    name: "Shane Allerheiligen",
+    roles: ["Front of House", "Baker", "Craftsperson"],
+    bio: "Shane started as a bar back in her hometown of Fitchburg and has since worked her way through every front-of-house role there is. She is an exceptional baker and craftsperson, and generously shares both — her cookies and birthday cards are legendary among the team. Outside the restaurant, she explores the local culinary and bar scene and spends time with her two cats, Ramona and Rudy.",
+    photo: "/src/assets/photos/team/shane.jpg",
   },
 ];
 ---
 
-<Base title={`The Team — ${restaurant.name}`} description="Meet the people behind Urban Hearth — the chefs, managers, and front-of-house staff who bring the restaurant to life every night.">
+<Base
+  title={`The Team — ${restaurant.name}`}
+  description="Meet the people behind Urban Hearth — the chefs, managers, and front-of-house staff who bring the restaurant to life every night."
+>
   <div class="team-page">
-
-    <PageHeader title="The Team" lead="The people who make the restaurant what it is, every night.">
+    <PageHeader
+      title="The Team"
+      lead="The people who make the restaurant what it is, every night."
+    >
       <p class="team-chef-link">
         Led by <a href="/chef">Erin Miller</a>, Executive Chef &amp; Owner.
       </p>
     </PageHeader>
 
     <div class="team-grid">
-      {team.map((member, i) => (
-        <article class="member">
-          <div class="member-photo-wrap">
-            <img
-              src={member.photo}
-              alt={member.name}
-              class="member-photo"
-              loading={i < 4 ? 'eager' : 'lazy'}
-            />
-          </div>
-          <div class="member-info">
-            <div class="member-meta">
-              <span class="member-index">{String(i + 1).padStart(2, '0')}</span>
-              <div class="member-roles">
-                {member.roles.map((role, ri) => (
-                  <span class="member-role">{role}{ri < member.roles.length - 1 ? <span class="role-sep">&nbsp;·&nbsp;</span> : ''}</span>
-                ))}
-              </div>
+      {
+        team.map((member, i) => (
+          <article class="member">
+            <div class="member-photo-wrap">
+              <img
+                src={member.photo}
+                alt={member.name}
+                class="member-photo"
+                loading={i < 4 ? "eager" : "lazy"}
+              />
             </div>
-            <h2 class="member-name">{member.name}</h2>
-            <p class="member-bio">{member.bio}</p>
-          </div>
-        </article>
-      ))}
+            <div class="member-info">
+              <div class="member-meta">
+                <span class="member-index">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <div class="member-roles">
+                  {member.roles.map((role, ri) => (
+                    <span class="member-role">
+                      {role}
+                      {ri < member.roles.length - 1 ? (
+                        <span class="role-sep">&nbsp;·&nbsp;</span>
+                      ) : (
+                        ""
+                      )}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              <h2 class="member-name">{member.name}</h2>
+              <p class="member-bio">{member.bio}</p>
+            </div>
+          </article>
+        ))
+      }
     </div>
-
   </div>
 </Base>
 

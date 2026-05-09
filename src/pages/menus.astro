@@ -1,15 +1,15 @@
 ---
-import Base from '../layouts/Base.astro';
-import restaurant from '../content/restaurant.json';
-import RestaurantHours from '../components/RestaurantHours.astro';
-import ReservationButton from '../components/ReservationButton.astro';
-import PageHeader from '../components/PageHeader.astro';
-import ChefsCounter from '../components/ChefsCounter.astro';
-import Menu from '../components/Menu.astro';
-import { isSanityConfigured } from '../lib/sanity';
-import { fetchMenu } from '../lib/sanity-fetch';
-import { staticMenuSections } from '../content/static-menus.ts';
-import '../styles/menu-shared.css';
+import restaurant from "../content/restaurant.json";
+import { isSanityConfigured } from "../lib/sanity";
+import { fetchMenu } from "../lib/sanity-fetch";
+import { staticMenuSections } from "../content/static-menus.ts";
+import "../styles/menu-shared.css";
+import Base from "../layouts/Base.astro";
+import PageHeader from "../components/PageHeader.astro";
+import Menu from "../components/Menu.astro";
+import RestaurantHours from "../components/RestaurantHours.astro";
+import ReservationButton from "../components/ReservationButton.astro";
+import ChefsCounter from "../components/ChefsCounter.astro";
 
 let menuData: any = null;
 let usingFallback = false;
@@ -19,14 +19,14 @@ if (isSanityConfigured) {
     menuData = await fetchMenu();
     if (!menuData) usingFallback = true;
   } catch (e) {
-    console.error('[menus] Sanity fetch failed, showing sample menu:', e);
+    console.error("[menus] Sanity fetch failed, showing sample menu:", e);
     usingFallback = true;
   }
 } else {
   usingFallback = true;
 }
 
-const season = menuData?.season ?? 'Spring 2026';
+const season = menuData?.season ?? "Spring 2026";
 ---
 
 <Base
@@ -34,71 +34,88 @@ const season = menuData?.season ?? 'Spring 2026';
   description={`The ${season} menu at Urban Hearth. Seasonal à la carte dining and a nightly five-course Chef's Tasting Menu.`}
 >
   <div class="menus-page">
-
-    <PageHeader eyebrow={season} title="Our Menus" lead="Seasonal cooking from New England farms and fishermen." />
+    <PageHeader
+      eyebrow={season}
+      title="Our Menus"
+      lead="Seasonal cooking from New England farms and fishermen."
+    />
 
     <p class="menu-accuracy-note">
-      Our menu evolves with the seasons. Items and prices are subject to change — please ask your server about today’s complete offerings.
+      Our menu evolves with the seasons. Items and prices are subject to change
+      — please ask your server about today’s complete offerings.
     </p>
 
     <div class="menus-layout">
-
       <!-- ── À la carte ── -->
       <div class="menu-column">
+        {
+          usingFallback && (
+            <div class="sample-notice" role="alert">
+              <strong>Sample menu</strong> — We’re having trouble loading our
+              current menu right now. Items and prices shown below are for
+              reference only and may not reflect today’s offerings. Please ask
+              your server for the current menu.
+            </div>
+          )
+        }
 
-        {usingFallback && (
-          <div class="sample-notice" role="alert">
-            <strong>Sample menu</strong> — We’re having trouble loading our current menu right now.
-            Items and prices shown below are for reference only and may not reflect today’s offerings.
-            Please ask your server for the current menu.
-          </div>
-        )}
-
-        {menuData
-          ? <Menu blok={menuData} />
-          : (
-            <div class={`menu-main menu-card${usingFallback ? ' is-sample' : ''}`}>
-
+        {
+          menuData ? (
+            <Menu blok={menuData} />
+          ) : (
+            <div
+              class={`menu-main menu-card${usingFallback ? " is-sample" : ""}`}
+            >
               <div class="menu-dining-room">
                 <div class="dining-room-text">
                   <p class="menu-eyebrow">Dining Room</p>
                   <RestaurantHours class="dining-room-hours" />
-                  <p class="dining-room-hours">Walk-ins welcome; reservations recommended.</p>
+                  <p class="dining-room-hours">
+                    Walk-ins welcome; reservations recommended.
+                  </p>
                 </div>
-                <ReservationButton href={`${restaurant.reservations.href}#dining-room`} label="Reserve a table" />
+                <ReservationButton
+                  href={`${restaurant.reservations.href}#dining-room`}
+                  label="Reserve a table"
+                />
               </div>
 
               {staticMenuSections.map((section) => (
                 <section class="menu-section">
                   <h2 class="menu-label menu-section-title">{section.title}</h2>
                   <ul class="dish-list">
-                    {section.items.map(dish => (
+                    {section.items.map((dish) => (
                       <li class="dish">
                         <div class="dish-top">
                           <span class="dish-name">{dish.name}</span>
                           <span class="dish-price">{dish.price}</span>
                         </div>
-                        {dish.description && <p class="dish-desc">{dish.description}</p>}
-                        {dish.note        && <p class="menu-fine-print dish-note">{dish.note}</p>}
+                        {dish.description && (
+                          <p class="dish-desc">{dish.description}</p>
+                        )}
+                        {dish.note && (
+                          <p class="menu-fine-print dish-note">{dish.note}</p>
+                        )}
                       </li>
                     ))}
                   </ul>
                 </section>
               ))}
 
-              <p class="menu-fine-print menu-footer-note">Ask your server to see our dessert menu. Please inform your server of any dietary restrictions. A 20% gratuity is added for parties of six or more.</p>
-
+              <p class="menu-fine-print menu-footer-note">
+                Ask your server to see our dessert menu. Please inform your
+                server of any dietary restrictions. A 20% gratuity is added for
+                parties of six or more.
+              </p>
             </div>
           )
         }
-
       </div>
 
       <!-- ── Chef’s Counter ── -->
       <aside class="menu-sidebar">
         <ChefsCounter />
       </aside>
-
     </div>
   </div>
 </Base>
@@ -153,7 +170,7 @@ const season = menuData?.season ?? 'Spring 2026';
   }
 
   .menu-card.is-sample::after {
-    content: 'SAMPLE';
+    content: "SAMPLE";
     position: absolute;
     top: 50%;
     left: 50%;
