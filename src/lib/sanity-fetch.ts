@@ -137,6 +137,19 @@ export async function fetchAllProductSlugs(): Promise<string[]> {
   return slugs ?? [];
 }
 
+export async function fetchTeamMembers() {
+  const members = await client!.fetch(`
+    *[_type == "teamMember"] | order(order asc){
+      name,
+      roles,
+      bio,
+      "photo": photo.asset->url,
+      order
+    }
+  `);
+  return (members ?? []) as any[];
+}
+
 export async function fetchSiteSettings() {
   return client!.fetch(`
     *[_type == "siteSettings"][0]{
