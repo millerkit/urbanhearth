@@ -1,5 +1,7 @@
 ---
-import restaurant from "../content/restaurant.json";
+import { getSiteSettings } from "../lib/site-settings";
+
+const restaurant = await getSiteSettings();
 
 interface Props {
   label?: string;

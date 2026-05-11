@@ -1,8 +1,9 @@
 ---
-import restaurant from "../content/restaurant.json";
+import { getSiteSettings } from "../lib/site-settings";
 import Base from "../layouts/Base.astro";
 import PageHeader from "../components/PageHeader.astro";
 
+const restaurant = await getSiteSettings();
 const team = [
   {
     name: "Gabriel Peterson",

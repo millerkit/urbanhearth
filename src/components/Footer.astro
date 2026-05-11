@@ -1,7 +1,9 @@
 ---
-import restaurant from "../content/restaurant.json";
+import { getSiteSettings } from "../lib/site-settings";
 import footerLinks from "../content/footer-links.json";
 import RestaurantHours from "./RestaurantHours.astro";
+
+const restaurant = await getSiteSettings();
 
 interface FooterLink {
   label: string;

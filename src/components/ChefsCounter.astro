@@ -1,7 +1,8 @@
 ---
-import restaurant from "../content/restaurant.json";
+import { getSiteSettings } from "../lib/site-settings";
 import "../styles/menu-shared.css";
 
+const restaurant = await getSiteSettings();
 const courses = [
   { label: "I", name: "Amuse-Bouche" },
   {

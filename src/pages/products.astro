@@ -1,5 +1,5 @@
 ---
-import restaurant from "../content/restaurant.json";
+import { getSiteSettings } from "../lib/site-settings";
 import productPlaceholder from "../assets/photos/food-photo-1.jpeg";
 import { isSanityConfigured } from "../lib/sanity";
 import { fetchAllProducts } from "../lib/sanity-fetch";
@@ -7,6 +7,7 @@ import Base from "../layouts/Base.astro";
 import AgeGate from "../components/AgeGate.astro";
 import PageHeader from "../components/PageHeader.astro";
 
+const restaurant = await getSiteSettings();
 const CATEGORY_META: Record<string, { label: string; description: string }> = {
   kitchen: {
     label: "From the Kitchen",

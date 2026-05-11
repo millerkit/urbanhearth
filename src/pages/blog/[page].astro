@@ -1,6 +1,6 @@
 ---
 import PageHeader from "../../components/PageHeader.astro";
-import restaurant from "../../content/restaurant.json";
+import { getSiteSettings } from "../../lib/site-settings";
 import Base from "../../layouts/Base.astro";
 import { isSanityConfigured } from "../../lib/sanity";
 import { fetchAllPosts } from "../../lib/sanity-fetch";
@@ -17,6 +17,7 @@ export async function getStaticPaths() {
   }
 }
 
+const restaurant = await getSiteSettings();
 const page = parseInt(Astro.params.page);
 let posts: any[] = [];
 let totalPages = 1;

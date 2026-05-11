@@ -1,5 +1,5 @@
 ---
-import restaurant from "../content/restaurant.json";
+import { getSiteSettings } from "../lib/site-settings";
 
 import g007 from "../assets/gallery/gallery-007.jpg";
 import food1 from "../assets/photos/food-photo-1.jpeg";
@@ -12,6 +12,7 @@ import PageHeader from "../components/PageHeader.astro";
 
 // Layout spans: 'full' = spans all 3 cols, 'wide' = 2 cols, 'normal' = 1 col
 // Rows are implicit — browser fills gaps
+const restaurant = await getSiteSettings();
 const photos = [
   { src: food1.src, alt: "Seasonal small plate", span: "normal" },
   { src: food2.src, alt: "From the kitchen", span: "normal" },

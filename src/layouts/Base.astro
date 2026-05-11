@@ -1,9 +1,11 @@
 ---
 import "../styles/global.css";
-import restaurant from "../content/restaurant.json";
+import { getSiteSettings } from "../lib/site-settings";
 import TopBar from "../components/TopBar.astro";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
+
+const restaurant = await getSiteSettings();
 
 interface Props {
   title?: string;

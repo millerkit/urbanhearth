@@ -137,6 +137,22 @@ export async function fetchAllProductSlugs(): Promise<string[]> {
   return slugs ?? [];
 }
 
+export async function fetchSiteSettings() {
+  return client!.fetch(`
+    *[_type == "siteSettings"][0]{
+      name,
+      tagline,
+      url,
+      address,
+      phone,
+      hours,
+      privateDiningEmail,
+      reservations{ label, shortLabel, href },
+      social{ instagram, facebook }
+    }
+  `);
+}
+
 export async function fetchPrivateEventPackages() {
   const packages = await client!.fetch(`
     *[_type == "private_event_package"] | order(order asc){

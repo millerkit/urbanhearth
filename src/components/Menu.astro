@@ -1,8 +1,10 @@
 ---
-import restaurant from "../content/restaurant.json";
+import { getSiteSettings } from "../lib/site-settings";
 import RestaurantHours from "./RestaurantHours.astro";
 import ReservationButton from "./ReservationButton.astro";
 import MenuSection from "./MenuSection.astro";
+
+const restaurant = await getSiteSettings();
 
 interface Props {
   blok: {

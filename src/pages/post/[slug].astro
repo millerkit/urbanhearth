@@ -1,5 +1,5 @@
 ---
-import restaurant from "../../content/restaurant.json";
+import { getSiteSettings } from "../../lib/site-settings";
 import Base from "../../layouts/Base.astro";
 import { isSanityConfigured } from "../../lib/sanity";
 import { fetchPostBySlug, fetchAllPostSlugs } from "../../lib/sanity-fetch";
@@ -15,6 +15,7 @@ export async function getStaticPaths() {
   return slugs.map((slug) => ({ params: { slug } }));
 }
 
+const restaurant = await getSiteSettings();
 const { slug } = Astro.params;
 const post = isSanityConfigured ? await fetchPostBySlug(slug!) : null;
 

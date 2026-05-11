@@ -1,6 +1,8 @@
 ---
-import restaurant from "../content/restaurant.json";
+import { getSiteSettings } from "../lib/site-settings";
 import logo from "../assets/brand/UrbanHearth_Logo_BLACK_cropped.png";
+
+const restaurant = await getSiteSettings();
 ---
 
 <div class="top-bar">
@@ -27,8 +29,11 @@ import logo from "../assets/brand/UrbanHearth_Logo_BLACK_cropped.png";
       href={restaurant.reservations.href}
       class="cta"
       target="_blank"
-      rel="noopener">{restaurant.reservations.shortLabel}</a
+      rel="noopener"
     >
+      <span class="cta-full">{restaurant.reservations.label}</span>
+      <span class="cta-short">{restaurant.reservations.shortLabel}</span>
+    </a>
   </div>
 </div>
 
@@ -162,6 +167,10 @@ import logo from "../assets/brand/UrbanHearth_Logo_BLACK_cropped.png";
     opacity: 0.55;
   }
 
+  .cta-short {
+    display: none;
+  }
+
   @media (max-width: 700px) {
     .top-bar {
       padding: 0 1.25rem;
@@ -171,6 +180,12 @@ import logo from "../assets/brand/UrbanHearth_Logo_BLACK_cropped.png";
     }
     .menu-toggle {
       display: block;
+    }
+    .cta-full {
+      display: none;
+    }
+    .cta-short {
+      display: inline;
     }
   }
 </style>

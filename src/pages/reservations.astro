@@ -1,7 +1,9 @@
 ---
 import PageHeader from "../components/PageHeader.astro";
-import restaurant from "../content/restaurant.json";
+import { getSiteSettings } from "../lib/site-settings";
 import Base from "../layouts/Base.astro";
+
+const restaurant = await getSiteSettings();
 ---
 
 <Base

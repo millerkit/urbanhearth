@@ -1,5 +1,5 @@
 ---
-import restaurant from "../content/restaurant.json";
+import { getSiteSettings } from "../lib/site-settings";
 
 type DetailItem = { label: string; value: string; href?: string };
 import diningRoom from "../assets/photos/DiningRoomRendering.jpeg";
@@ -9,6 +9,7 @@ import Base from "../layouts/Base.astro";
 import PageHeader from "../components/PageHeader.astro";
 import ReservationButton from "../components/ReservationButton.astro";
 
+const restaurant = await getSiteSettings();
 const areas = [
   {
     number: "01",

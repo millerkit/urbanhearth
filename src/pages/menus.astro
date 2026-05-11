@@ -1,5 +1,5 @@
 ---
-import restaurant from "../content/restaurant.json";
+import { getSiteSettings } from "../lib/site-settings";
 import { isSanityConfigured } from "../lib/sanity";
 import { fetchMenu } from "../lib/sanity-fetch";
 import { staticMenuSections } from "../content/static-menus.ts";
@@ -11,6 +11,7 @@ import RestaurantHours from "../components/RestaurantHours.astro";
 import ReservationButton from "../components/ReservationButton.astro";
 import ChefsCounter from "../components/ChefsCounter.astro";
 
+const restaurant = await getSiteSettings();
 let menuData: any = null;
 let usingFallback = false;
 

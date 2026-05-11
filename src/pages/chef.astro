@@ -1,8 +1,10 @@
 ---
-import restaurant from "../content/restaurant.json";
+import { getSiteSettings } from "../lib/site-settings";
 import erinPhoto from "../assets/photos/erin.jpg";
 import Base from "../layouts/Base.astro";
 import ReservationButton from "../components/ReservationButton.astro";
+
+const restaurant = await getSiteSettings();
 ---
 
 <Base

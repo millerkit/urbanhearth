@@ -1,9 +1,10 @@
 ---
-import restaurant from "../content/restaurant.json";
+import { getSiteSettings } from "../lib/site-settings";
 import Base from "../layouts/Base.astro";
 import PageHeader from "../components/PageHeader.astro";
 import RestaurantHours from "../components/RestaurantHours.astro";
 
+const restaurant = await getSiteSettings();
 const farms = [
   { name: "Kimball Fruit Farm", location: "Haverhill, MA" },
   { name: "D'Ancello Farm", location: "New Hampshire" },

@@ -1,5 +1,5 @@
 ---
-import restaurant from "../content/restaurant.json";
+import { getSiteSettings } from "../lib/site-settings";
 
 import DiningRoomRendering from "../assets/photos/DiningRoomRendering.jpeg";
 import ChefsCounterRendering from "../assets/photos/ChefsCounterRendering.png";
@@ -12,6 +12,7 @@ import Hero from "../components/Hero.astro";
 import Base from "../layouts/Base.astro";
 import ReservationButton from "../components/ReservationButton.astro";
 
+const restaurant = await getSiteSettings();
 const restaurantJsonLd = {
   "@context": "https://schema.org",
   "@type": "Restaurant",
