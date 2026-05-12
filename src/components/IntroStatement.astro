@@ -1,25 +1,21 @@
 ---
+import { getHomepageContent } from "../lib/homepage";
 
+const homepage = await getHomepageContent();
+const s = homepage.statement;
 ---
 
 <section class="statement">
   <div class="statement-inner">
-    <p class="statement-eyebrow section-eyebrow">Inman Square, Cambridge</p>
-    <p class="statement-tags section-eyebrow">
-      Locally sourced &middot; Globally inspired
-    </p>
+    <p class="statement-eyebrow section-eyebrow">{s.eyebrow}</p>
+    <p class="statement-tags section-eyebrow">{s.tags}</p>
 
     <p class="statement-text">
-      <em>hearth.</em> The heart of a home — a place of warmth and gathering, where
-      the simplest things endure.
+      <em>{s.definitionTerm}</em>
+      {s.definitionText}
     </p>
 
-    <p class="statement-text">
-      Chef-owner Erin Miller presents a contemporary American menu rooted in New
-      England’s farms and fisheries, shaped by global influence. Each plate is
-      composed with care, honoring ingredient, craft, and the shared joy of the
-      table.
-    </p>
+    <p class="statement-text">{s.description}</p>
   </div>
 </section>
 

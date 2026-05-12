@@ -1,5 +1,8 @@
 ---
+import { getHomepageContent } from "../lib/homepage";
 import ReservationButton from "./ReservationButton.astro";
+
+const homepage = await getHomepageContent();
 
 interface Props {
   eyebrow?: string;
@@ -7,12 +10,8 @@ interface Props {
 }
 
 const {
-  eyebrow = "The Restaurant",
-  paragraphs = [
-    "Urban Hearth is a quiet refuge from the city — a place where seasonal cooking meets unhurried hospitality.",
-    "Set across two floors overlooking the harbor, our kitchen works with a close network of New England farmers and fishermen to craft a menu that changes with the week's best produce.",
-    "Everything is made in-house: the bread, the charcuterie, the preserves. Unpretentious but considered. Warm but precise.",
-  ],
+  eyebrow = homepage.intro.eyebrow,
+  paragraphs = homepage.intro.paragraphs,
 } = Astro.props;
 ---
 

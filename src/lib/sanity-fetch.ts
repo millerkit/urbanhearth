@@ -152,6 +152,22 @@ export async function fetchTeamMembers() {
   return (members ?? []) as any[];
 }
 
+export async function fetchHomepageContent() {
+  return client!.fetch(`
+    *[_type == "homepageContent"][0]{
+      statement{ eyebrow, tags, definitionTerm, definitionText, description },
+      intro{ eyebrow, paragraphs }
+    }
+  `);
+}
+
+export async function fetchFarms() {
+  const farms = await client!.fetch(`
+    *[_type == "farm"] | order(order asc){ name, location, order }
+  `);
+  return farms ?? [];
+}
+
 export async function fetchChefProfile() {
   return client!.fetch(`
     *[_type == "chefProfile"][0]{

@@ -1,0 +1,12 @@
+[
+  { "name": "Kimball Fruit Farm", "location": "Haverhill, MA", "order": 1 },
+  { "name": "D'Ancello Farm", "location": "New Hampshire", "order": 2 },
+  { "name": "Red Lite Farm", "location": "Massachusetts", "order": 3 },
+  { "name": "Nab's Farm", "location": "Massachusetts", "order": 4 },
+  { "name": "Kitchen Garden Farm", "location": "Sunderland, MA", "order": 5 },
+  { "name": "La Belle Farm", "location": "New York", "order": 6 },
+  { "name": "Boogy Meadow Farm", "location": "New Hampshire", "order": 7 },
+  { "name": "Manna Greens", "location": "Massachusetts", "order": 8 },
+  { "name": "The Mushroom Shop", "location": "New England", "order": 9 },
+  { "name": "Fat Moon Farms", "location": "Groton, MA", "order": 10 }
+]
