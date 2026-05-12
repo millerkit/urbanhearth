@@ -1,0 +1,16 @@
+{
+  "name": "Erin Miller",
+  "title": "Executive Chef & Owner",
+  "roles": ["Forager", "Camp Counselor"],
+  "bio": [
+    "Erin Miller is proud to count Urban Hearth among the small number of acclaimed woman-owned restaurants in the Boston area. Classically trained at the French Culinary Institute of New York and shaped by her time under the mentorship of Dan Barber at Blue Hill, she opened Urban Hearth in 2016 — and through careful stewardship built it into one of Boston's most quietly beloved dining rooms.",
+    "Her cooking is guided by a simple conviction: that there is much to be learned, and real joy to be found, when people gather around a table. That philosophy extends beyond the kitchen — to how she works with the farmers and fishermen in her network, how she leads her team, and how she engages with the neighborhood she has called home since 2008. Originally from the Blue Ridge mountain town of Floyd, Virginia, Erin lives in Cambridge with her husband and two sons.",
+    "She is honored to have been named a James Beard Finalist and to receive a recommendation in the inaugural Michelin Guide to Boston in 2025."
+  ],
+  "photo": null,
+  "accolades": [
+    { "year": "2025", "text": "James Beard Award Finalist" },
+    { "year": "2025", "text": "Michelin Guide — Boston" },
+    { "year": "2023–25", "text": "Best of Boston — Three Consecutive Years" }
+  ]
+}

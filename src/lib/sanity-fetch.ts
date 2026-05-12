@@ -152,6 +152,19 @@ export async function fetchTeamMembers() {
   return (members ?? []) as any[];
 }
 
+export async function fetchChefProfile() {
+  return client!.fetch(`
+    *[_type == "chefProfile"][0]{
+      name,
+      title,
+      roles,
+      bio,
+      "photo": photo.asset->url,
+      accolades[]{ year, text }
+    }
+  `);
+}
+
 export async function fetchSiteSettings() {
   return client!.fetch(`
     *[_type == "siteSettings"][0]{
