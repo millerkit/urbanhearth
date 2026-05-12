@@ -1,22 +1,30 @@
 /**
- * sync-toast.mjs — Toast "Retail" menu group → Sanity products
+ * sync-toast.mjs — Toast "Online Ordering" menu → Sanity products
  *
  * Usage:
+ *   node --env-file=.env.local scripts/sync-toast.mjs
+ *
+ * Or explicitly:
  *   TOAST_CLIENT_ID=xxx TOAST_CLIENT_SECRET=xxx TOAST_RESTAURANT_GUID=xxx \
  *   SANITY_PROJECT_ID=xxx SANITY_TOKEN=xxx node scripts/sync-toast.mjs
- *
- * Or with Node 22's --env-file flag:
- *   node --env-file=.env.local scripts/sync-toast.mjs
  *
  * The Sanity token must have Editor (write) access.
  * Products are matched by toastItemGuid and upserted — safe to re-run.
  * Fields managed in Sanity (longDescription, category, image) are never overwritten.
+ *
+ * All items from the SYNC_MENU_NAME menu are synced, preserving the group
+ * structure so the storefront can display groups with their descriptions.
  */
 
+import { config } from "dotenv";
 import { createClient } from "@sanity/client";
 
+config({ path: ".env.local" });
+
 const TOAST_BASE_URL = "https://ws-api.toasttab.com";
-const RETAIL_GROUP = "Retail"; // must match the menu group name in Toast exactly
+
+// Name of the Toast menu to sync. Must match exactly.
+const SYNC_MENU_NAME = "Online Ordering";
 
 const TOAST_CLIENT_ID = process.env.TOAST_CLIENT_ID;
 const TOAST_CLIENT_SECRET = process.env.TOAST_CLIENT_SECRET;
@@ -81,6 +89,18 @@ async function getToastToken() {
   return data.token.accessToken;
 }
 
+// ── Collect items from a group and its subgroups ──────────────────────────────
+
+function collectGroupItems(group) {
+  const items = (group.menuItems ?? [])
+    .slice()
+    .sort((a, b) => (a.sortOrder ?? 0) - (b.sortOrder ?? 0));
+  for (const subgroup of group.menuGroups ?? []) {
+    items.push(...collectGroupItems(subgroup));
+  }
+  return items;
+}
+
 // ── Slug ─────────────────────────────────────────────────────────────────────
 
 function slugify(str) {
@@ -97,97 +117,107 @@ async function main() {
   const token = await getToastToken();
 
   console.log("Fetching menus...");
-  const menus = await toastFetch("/menus/v2/menus", token);
+  const data = await toastFetch("/menus/v2/menus", token);
+  const menus = data.menus ?? [];
 
-  // Collect all items from groups named "Retail" across all menus
-  const retailItems = [];
-  for (const menu of menus) {
-    for (const group of menu.groups ?? []) {
-      if (group.name === RETAIL_GROUP) {
-        retailItems.push(...(group.items ?? []));
+  const menu = menus.find((m) => m.name === SYNC_MENU_NAME);
+  if (!menu) {
+    const names = menus.map((m) => `"${m.name}"`).join(", ");
+    console.error(
+      `Menu "${SYNC_MENU_NAME}" not found. Available menus: ${names}`,
+    );
+    process.exit(1);
+  }
+
+  console.log(
+    `Found menu: "${menu.name}" (${(menu.menuGroups ?? []).length} groups)`,
+  );
+
+  // Modifier groups are included in the top-level response
+  const modifierGroupRefs = data.modifierGroupReferences ?? [];
+  const modifierGroupMap = Array.isArray(modifierGroupRefs)
+    ? new Map(modifierGroupRefs.map((g) => [g.guid, g]))
+    : new Map(Object.entries(modifierGroupRefs));
+
+  // ── Collect all items grouped by their menu group ─────────────────────────
+
+  const groups = menu.menuGroups ?? [];
+  let totalItems = 0;
+
+  for (let groupIndex = 0; groupIndex < groups.length; groupIndex++) {
+    const group = groups[groupIndex];
+    const items = collectGroupItems(group);
+    totalItems += items.length;
+
+    console.log(
+      `  Group ${groupIndex + 1}: "${group.name}" — ${items.length} item(s)`,
+    );
+
+    for (const item of items) {
+      const docId = `product-${item.guid}`;
+
+      const modifierGroups = (item.modifierGroupReferences ?? [])
+        .map((ref) => {
+          const g = modifierGroupMap.get(ref.guid);
+          if (!g) return null;
+          return {
+            _type: "modifierGroup",
+            _key: g.guid,
+            name: g.name,
+            toastGuid: g.guid,
+            minSelections: ref.minSelections ?? 0,
+            maxSelections: ref.maxSelections ?? 1,
+            modifiers: (g.modifiers ?? g.menuItemModifierOptions ?? []).map(
+              (m) => ({
+                _type: "modifier",
+                _key: m.guid,
+                name: m.name,
+                price: m.price ?? 0,
+                toastGuid: m.guid,
+              }),
+            ),
+          };
+        })
+        .filter(Boolean);
+
+      const existing = await sanity.fetch(
+        `*[_type == "product" && toastItemGuid == $guid][0]{ _id }`,
+        { guid: item.guid },
+      );
+
+      // Fields synced from Toast on every run
+      const toastFields = {
+        name: item.name,
+        price: item.price ?? 0,
+        description: item.description ?? "",
+        available: !item.isDeferred,
+        toastItemGuid: item.guid,
+        toastGroupGuid: group.guid,
+        toastGroupName: group.name,
+        toastGroupDescription: group.description ?? "",
+        toastGroupIndex: groupIndex,
+        toastSortOrder: item.sortOrder ?? 0,
+        modifierGroups,
+      };
+
+      if (existing) {
+        await sanity.patch(existing._id).set(toastFields).commit();
+        console.log(`    Updated: ${item.name}`);
+      } else {
+        await sanity.create({
+          _type: "product",
+          _id: docId,
+          slug: { _type: "slug", current: slugify(item.name) },
+          ...toastFields,
+        });
+        console.log(`    Created: ${item.name}`);
       }
     }
   }
 
-  if (retailItems.length === 0) {
-    console.warn(
-      `No items found in a menu group named "${RETAIL_GROUP}". Check Toast setup.`,
-    );
-    process.exit(0);
-  }
-
-  console.log(`Found ${retailItems.length} retail item(s).`);
-
-  console.log("Fetching modifier groups...");
-  const modifierGroupsRaw = await toastFetch("/menus/v2/modifierGroups", token);
-  const modifierGroupMap = new Map(modifierGroupsRaw.map((g) => [g.guid, g]));
-
-  // ── Build and upsert Sanity documents ──────────────────────────────────────
-
-  let created = 0,
-    updated = 0;
-
-  for (const item of retailItems) {
-    const docId = `product-${item.guid}`;
-
-    // Resolve modifier groups from their references
-    const modifierGroups = (item.modifierGroupReferences ?? [])
-      .map((ref) => {
-        const group = modifierGroupMap.get(ref.guid);
-        if (!group) return null;
-        return {
-          _type: "modifierGroup",
-          _key: group.guid,
-          name: group.name,
-          toastGuid: group.guid,
-          minSelections: ref.minSelections ?? 0,
-          maxSelections: ref.maxSelections ?? 1,
-          modifiers: (group.modifiers ?? []).map((m) => ({
-            _type: "modifier",
-            _key: m.guid,
-            name: m.name,
-            price: m.price ?? 0,
-            toastGuid: m.guid,
-          })),
-        };
-      })
-      .filter(Boolean);
-
-    // Check if this product already exists in Sanity
-    const existing = await sanity.fetch(
-      `*[_type == "product" && toastItemGuid == $guid][0]{ _id }`,
-      { guid: item.guid },
-    );
-
-    // Fields synced from Toast on every run
-    const toastFields = {
-      name: item.name,
-      price: item.price ?? 0,
-      description: item.description ?? "",
-      available: !item.outOfStock,
-      toastItemGuid: item.guid,
-      modifierGroups,
-    };
-
-    if (existing) {
-      // Patch only Toast-owned fields — never touch longDescription, category, image
-      await sanity.patch(existing._id).set(toastFields).commit();
-      console.log(`  Updated: ${item.name}`);
-      updated++;
-    } else {
-      // Create with a stable, deterministic ID
-      await sanity.create({
-        _type: "product",
-        _id: docId,
-        slug: { _type: "slug", current: slugify(item.name) },
-        ...toastFields,
-      });
-      console.log(`  Created: ${item.name}`);
-      created++;
-    }
-  }
-
-  console.log(`\nDone. ${created} created, ${updated} updated.`);
+  console.log(
+    `\nDone. ${totalItems} item(s) across ${groups.length} group(s).`,
+  );
 }
 
 main().catch((err) => {

@@ -90,14 +90,16 @@ export async function fetchAllPostSlugs(): Promise<string[]> {
 
 export async function fetchAllProducts() {
   const products = await client!.fetch(`
-    *[_type == "product"] | order(name asc){
+    *[_type == "product"] | order(toastGroupIndex asc, toastSortOrder asc){
       name,
       "slug": slug.current,
-      category,
       price,
       description,
       available,
-      "image": image.asset->url
+      "image": image.asset->url,
+      toastGroupGuid,
+      toastGroupName,
+      toastGroupDescription
     }
   `);
   return (products ?? []) as any[];

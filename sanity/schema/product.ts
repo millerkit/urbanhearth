@@ -105,20 +105,63 @@ export const product = defineType({
       description: "Set by the sync script. Do not edit manually.",
       readOnly: true,
     }),
+    defineField({
+      name: "toastGroupGuid",
+      title: "Toast group GUID",
+      type: "string",
+      description: "Set by the sync script. Do not edit manually.",
+      readOnly: true,
+    }),
+    defineField({
+      name: "toastGroupName",
+      title: "Toast group name",
+      type: "string",
+      description:
+        "Synced from Toast. Used to group products on the storefront.",
+      readOnly: true,
+    }),
+    defineField({
+      name: "toastGroupDescription",
+      title: "Toast group description",
+      type: "text",
+      rows: 2,
+      description:
+        "Synced from Toast. Shown as the section description on the shop page.",
+      readOnly: true,
+    }),
+    defineField({
+      name: "toastGroupIndex",
+      title: "Toast group index",
+      type: "number",
+      description:
+        "Synced from Toast. Controls the display order of groups on the shop page.",
+      readOnly: true,
+    }),
+    defineField({
+      name: "toastSortOrder",
+      title: "Toast sort order",
+      type: "number",
+      description:
+        "Synced from Toast. Controls the display order of items within a group.",
+      readOnly: true,
+    }),
   ],
   orderings: [
+    {
+      title: "Menu order",
+      name: "menuOrder",
+      by: [
+        { field: "toastGroupIndex", direction: "asc" },
+        { field: "toastSortOrder", direction: "asc" },
+      ],
+    },
     {
       title: "Name (A–Z)",
       name: "nameAsc",
       by: [{ field: "name", direction: "asc" }],
     },
-    {
-      title: "Category",
-      name: "categoryAsc",
-      by: [{ field: "category", direction: "asc" }],
-    },
   ],
   preview: {
-    select: { title: "name", subtitle: "category", media: "image" },
+    select: { title: "name", subtitle: "toastGroupName", media: "image" },
   },
 });

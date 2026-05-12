@@ -31,6 +31,8 @@
   --text-sm: 0.875rem; /* secondary body, descriptions — 14px @ 16px base */
   --text-base: 1rem; /* standard body, list items — 16px */
   --text-md: 1.125rem; /* comfortable reading paragraphs — 18px */
+
+  --product-cols: 4; /* default; overridden per-grid via inline style */
 }
 
 html {

@@ -1,6 +1,5 @@
 ---
 import { getSiteSettings } from "../lib/site-settings";
-import productPlaceholder from "../assets/photos/food-photo-1.jpeg";
 import { isSanityConfigured } from "../lib/sanity";
 import { fetchAllProducts } from "../lib/sanity-fetch";
 import Base from "../layouts/Base.astro";
@@ -8,210 +7,43 @@ import AgeGate from "../components/AgeGate.astro";
 import PageHeader from "../components/PageHeader.astro";
 
 const restaurant = await getSiteSettings();
-const CATEGORY_META: Record<string, { label: string; description: string }> = {
-  kitchen: {
-    label: "From the Kitchen",
-    description:
-      "Dishes and staples made in our kitchen, ready to finish at home. The same ingredients, the same care — just a different table.",
-  },
-  cocktails: {
-    label: "Bottled Cocktails",
-    description:
-      "Our bar program, bottled. Cocktails formulated and balanced for at-home serving — no special equipment required.",
-  },
-  mixers: {
-    label: "Bar Mixers",
-    description:
-      "House-made syrups, shrubs, and mixers crafted in our kitchen with the same ingredients we use on the line.",
-  },
-  "non-alcoholic": {
-    label: "Non-Alcoholic",
-    description:
-      "Thoughtfully crafted zero-proof beverages — complex enough to stand on their own.",
-  },
-  other: { label: "Other", description: "" },
+
+type Category = {
+  id: string;
+  label: string;
+  description: string;
+  products: any[];
 };
-
-const CATEGORY_ORDER = [
-  "kitchen",
-  "cocktails",
-  "mixers",
-  "non-alcoholic",
-  "other",
-];
-
-// Hardcoded fallback — shown when Sanity has no products yet
-const FALLBACK_CATEGORIES = [
-  {
-    id: "food",
-    label: "From the Kitchen",
-    description:
-      "Dishes and staples made in our kitchen, ready to finish at home. The same ingredients, the same care — just a different table.",
-    products: [
-      {
-        name: "Buttermilk Biscuits",
-        description: "Frozen · dozen · bake from frozen",
-        price: 18,
-        available: false,
-        slug: null,
-        image: null,
-      },
-      {
-        name: "Short Rib Ragù",
-        description: "Frozen · 32 oz · serves 4",
-        price: 32,
-        available: false,
-        slug: null,
-        image: null,
-      },
-      {
-        name: "Cultured Butter",
-        description: "Refrigerated · 8 oz · salted & plain",
-        price: 14,
-        available: false,
-        slug: null,
-        image: null,
-      },
-    ],
-  },
-  {
-    id: "bottled-cocktails",
-    label: "Bottled Cocktails",
-    description:
-      "Our bar program, bottled. Cocktails formulated and balanced for at-home serving — no special equipment required.",
-    products: [
-      {
-        name: "Negroni",
-        description: "375 ml · serves 3–4",
-        price: 28,
-        available: false,
-        slug: null,
-        image: null,
-      },
-      {
-        name: "Boulevardier",
-        description: "375 ml · serves 3–4",
-        price: 30,
-        available: false,
-        slug: null,
-        image: null,
-      },
-      {
-        name: "Old Fashioned",
-        description: "375 ml · serves 3–4",
-        price: 32,
-        available: false,
-        slug: null,
-        image: null,
-      },
-      {
-        name: "Mezcal Sour",
-        description: "375 ml · serves 3–4",
-        price: 30,
-        available: false,
-        slug: null,
-        image: null,
-      },
-    ],
-  },
-  {
-    id: "bar-mixers",
-    label: "Bar Mixers",
-    description:
-      "House-made syrups, shrubs, and mixers crafted in our kitchen with the same ingredients we use on the line.",
-    products: [
-      {
-        name: "House Grenadine",
-        description: "8 oz",
-        price: 14,
-        available: false,
-        slug: null,
-        image: null,
-      },
-      {
-        name: "Honey-Lavender Syrup",
-        description: "8 oz",
-        price: 16,
-        available: false,
-        slug: null,
-        image: null,
-      },
-      {
-        name: "Spiced Citrus Shrub",
-        description: "8 oz",
-        price: 18,
-        available: false,
-        slug: null,
-        image: null,
-      },
-      {
-        name: "Ginger-Cardamom Syrup",
-        description: "8 oz",
-        price: 16,
-        available: false,
-        slug: null,
-        image: null,
-      },
-    ],
-  },
-  {
-    id: "non-alcoholic",
-    label: "Non-Alcoholic",
-    description:
-      "Thoughtfully crafted zero-proof beverages — complex enough to stand on their own.",
-    products: [
-      {
-        name: "Sparkling Herb Tonic",
-        description: "750 ml",
-        price: 12,
-        available: false,
-        slug: null,
-        image: null,
-      },
-      {
-        name: "Shrub Soda Concentrate",
-        description: "12 oz",
-        price: 16,
-        available: false,
-        slug: null,
-        image: null,
-      },
-      {
-        name: "Cold Brew Mushroom Tea",
-        description: "16 oz",
-        price: 14,
-        available: false,
-        slug: null,
-        image: null,
-      },
-    ],
-  },
-];
-
-let categories = FALLBACK_CATEGORIES;
-let fromSanity = false;
+let categories: Category[] = [];
 
 if (isSanityConfigured) {
   try {
     const products = await fetchAllProducts();
-    if (products.length > 0) {
-      // Group by category in the defined display order
-      const grouped = new Map<string, any[]>();
-      for (const p of products) {
-        const key = p.category ?? "other";
-        if (!grouped.has(key)) grouped.set(key, []);
-        grouped.get(key)!.push(p);
+    // Group by toastGroupGuid, preserving order from the GROQ sort
+    // (toastGroupIndex asc, toastSortOrder asc)
+    const grouped = new Map<
+      string,
+      { label: string; description: string; products: any[] }
+    >();
+    for (const p of products) {
+      const key = p.toastGroupGuid ?? "other";
+      if (!grouped.has(key)) {
+        grouped.set(key, {
+          label: p.toastGroupName ?? "Other",
+          description: p.toastGroupDescription ?? "",
+          products: [],
+        });
       }
-      categories = CATEGORY_ORDER.filter((k) => grouped.has(k)).map((k) => ({
-        id: k,
-        label: CATEGORY_META[k]?.label ?? k,
-        description: CATEGORY_META[k]?.description ?? "",
-        products: grouped.get(k)!,
-      }));
-      fromSanity = true;
+      grouped.get(key)!.products.push(p);
     }
+    categories = [...grouped.entries()].map(([id, group]) => ({
+      id,
+      label: group.label,
+      description: group.description,
+      products: group.products,
+    }));
   } catch {
-    // fall back to hardcoded
+    // categories stays empty; coming-soon notice will render
   }
 }
 ---
@@ -230,7 +62,7 @@ if (isSanityConfigured) {
     />
 
     {
-      !fromSanity && (
+      categories.length === 0 && (
         <div class="shop-notice">
           <p class="notice-text">
             Online ordering is opening soon.{" "}
@@ -248,7 +80,10 @@ if (isSanityConfigured) {
 
     {
       categories.map((cat, i) => (
-        <section class="category" id={cat.id}>
+        <section
+          class={`category${i % 2 === 1 ? " category--alt" : ""}`}
+          id={cat.id}
+        >
           <div class="cat-header">
             <span class="cat-num section-eyebrow">
               {String(i + 1).padStart(2, "0")}
@@ -257,7 +92,10 @@ if (isSanityConfigured) {
             <p class="cat-desc">{cat.description}</p>
           </div>
 
-          <div class="product-grid">
+          <div
+            class="product-grid"
+            style={`--product-cols: ${Math.min(cat.products.length, 4)}`}
+          >
             {cat.products.map((p: any) => (
               <div
                 class={`product-card${p.available === false ? " product-card--unavailable" : ""}`}
@@ -271,14 +109,9 @@ if (isSanityConfigured) {
                       loading="lazy"
                     />
                   ) : (
-                    <img
-                      src={productPlaceholder.src}
-                      alt=""
-                      class="product-image"
-                      loading="lazy"
-                    />
+                    <div class="product-image-placeholder" aria-hidden="true" />
                   )}
-                  {p.available === false && fromSanity && (
+                  {p.available === false && (
                     <span class="out-of-stock-badge">Out of stock</span>
                   )}
                 </div>
@@ -398,22 +231,38 @@ if (isSanityConfigured) {
     max-width: 560px;
   }
 
+  /* ── Alternating section backgrounds ── */
+  .category {
+    background: var(--warm-white);
+  }
+
+  .category--alt {
+    background: var(--parchment);
+  }
+
+  /* Cards contrast against their section: warm-white sections get parchment cards,
+     parchment sections get warm-white cards */
+  .category--alt .product-card {
+    background: var(--warm-white);
+  }
+
   /* ── Product grid ── */
   .product-grid {
     max-width: 1100px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
+    grid-template-columns: repeat(var(--product-cols, 4), minmax(0, 1fr));
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
   }
 
   .product-card {
-    background: var(--warm-white);
+    background: var(--parchment);
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    border-top: 1px solid var(--border);
+    border-left: 1px solid var(--border);
   }
 
   .product-card--unavailable {
