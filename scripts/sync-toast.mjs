@@ -6,7 +6,7 @@
  *
  * Or explicitly:
  *   TOAST_CLIENT_ID=xxx TOAST_CLIENT_SECRET=xxx TOAST_RESTAURANT_GUID=xxx \
- *   SANITY_PROJECT_ID=xxx SANITY_TOKEN=xxx node scripts/sync-toast.mjs
+ *   SANITY_PROJECT_ID=xxx SANITY_API_TOKEN=xxx node scripts/sync-toast.mjs
  *
  * The Sanity token must have Editor (write) access.
  * Products are matched by toastItemGuid and upserted — safe to re-run.
@@ -30,7 +30,7 @@ const TOAST_CLIENT_ID = process.env.TOAST_CLIENT_ID;
 const TOAST_CLIENT_SECRET = process.env.TOAST_CLIENT_SECRET;
 const TOAST_RESTAURANT_GUID = process.env.TOAST_RESTAURANT_GUID;
 const SANITY_PROJECT_ID = process.env.SANITY_PROJECT_ID;
-const SANITY_TOKEN = process.env.SANITY_TOKEN;
+const SANITY_API_TOKEN = process.env.SANITY_API_TOKEN;
 const SANITY_DATASET = process.env.SANITY_DATASET ?? "production";
 
 for (const [key, val] of Object.entries({
@@ -38,7 +38,7 @@ for (const [key, val] of Object.entries({
   TOAST_CLIENT_SECRET,
   TOAST_RESTAURANT_GUID,
   SANITY_PROJECT_ID,
-  SANITY_TOKEN,
+  SANITY_API_TOKEN,
 })) {
   if (!val) {
     console.error(`Missing ${key}`);
@@ -51,7 +51,7 @@ for (const [key, val] of Object.entries({
 const sanity = createClient({
   projectId: SANITY_PROJECT_ID,
   dataset: SANITY_DATASET,
-  token: SANITY_TOKEN,
+  token: SANITY_API_TOKEN,
   apiVersion: "2024-01-01",
   useCdn: false,
 });

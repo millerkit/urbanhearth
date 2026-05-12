@@ -2,7 +2,7 @@
  * seed-farms.mjs — Seed farm list from src/content/farms.json into Sanity
  *
  * Usage:
- *   SANITY_PROJECT_ID=xxx SANITY_TOKEN=xxx node scripts/seed-farms.mjs
+ *   SANITY_PROJECT_ID=xxx SANITY_API_TOKEN=xxx node scripts/seed-farms.mjs
  *
  * Or with Node 22's --env-file flag:
  *   node --env-file=.env.local scripts/seed-farms.mjs
@@ -19,10 +19,13 @@ import { fileURLToPath } from "url";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const SANITY_PROJECT_ID = process.env.SANITY_PROJECT_ID;
-const SANITY_TOKEN = process.env.SANITY_TOKEN;
+const SANITY_API_TOKEN = process.env.SANITY_API_TOKEN;
 const SANITY_DATASET = process.env.SANITY_DATASET ?? "production";
 
-for (const [key, val] of Object.entries({ SANITY_PROJECT_ID, SANITY_TOKEN })) {
+for (const [key, val] of Object.entries({
+  SANITY_PROJECT_ID,
+  SANITY_API_TOKEN,
+})) {
   if (!val) {
     console.error(`Missing required env var: ${key}`);
     process.exit(1);
@@ -33,7 +36,7 @@ const client = createClient({
   projectId: SANITY_PROJECT_ID,
   dataset: SANITY_DATASET,
   apiVersion: "2025-01-01",
-  token: SANITY_TOKEN,
+  token: SANITY_API_TOKEN,
   useCdn: false,
 });
 

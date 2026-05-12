@@ -2,7 +2,7 @@
  * seed-posts.mjs — posts.json → Sanity
  *
  * Usage:
- *   SANITY_PROJECT_ID=xxx SANITY_TOKEN=xxx node sanity-seed/seed-posts.mjs
+ *   SANITY_PROJECT_ID=xxx SANITY_API_TOKEN=xxx node sanity-seed/seed-posts.mjs
  *
  * The token must have Editor (write) access.
  * Images are uploaded from sanity-seed/images/.
@@ -18,11 +18,11 @@ import { createClient } from "@sanity/client";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const PROJECT_ID = process.env.SANITY_PROJECT_ID;
-const TOKEN = process.env.SANITY_TOKEN;
+const TOKEN = process.env.SANITY_API_TOKEN;
 const DATASET = process.env.SANITY_DATASET ?? "production";
 
 if (!PROJECT_ID || !TOKEN) {
-  console.error("Missing SANITY_PROJECT_ID or SANITY_TOKEN");
+  console.error("Missing SANITY_PROJECT_ID or SANITY_API_TOKEN");
   process.exit(1);
 }
 

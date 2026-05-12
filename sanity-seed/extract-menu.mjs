@@ -133,5 +133,5 @@ console.log(`\n✓ Wrote ${outPath}`);
 console.log(`  ${menu.sections?.length ?? 0} sections, ${itemCount} items`);
 console.log("\nReview menu.json, then run:");
 console.log(
-  "  SANITY_PROJECT_ID=xxx SANITY_TOKEN=xxx node sanity-seed/seed-menu.mjs",
+  "  SANITY_PROJECT_ID=xxx SANITY_API_TOKEN=xxx node sanity-seed/seed-menu.mjs",
 );

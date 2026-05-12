@@ -24,6 +24,6 @@ jobs:
           TOAST_CLIENT_SECRET: ${{ secrets.TOAST_CLIENT_SECRET }}
           TOAST_RESTAURANT_GUID: ${{ secrets.TOAST_RESTAURANT_GUID }}
           SANITY_PROJECT_ID: ${{ secrets.SANITY_PROJECT_ID }}
-          SANITY_TOKEN: ${{ secrets.SANITY_TOKEN }}
+          SANITY_API_TOKEN: ${{ secrets.SANITY_API_TOKEN }}
           SANITY_DATASET: production
         run: node scripts/sync-toast.mjs
