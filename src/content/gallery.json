@@ -1,0 +1,18 @@
+[
+  {
+    "order": 1,
+    "alt": "Seasonal small plate",
+    "span": "normal",
+    "photo": null
+  },
+  { "order": 2, "alt": "From the kitchen", "span": "normal", "photo": null },
+  { "order": 3, "alt": "Seasonal plate", "span": "normal", "photo": null },
+  { "order": 4, "alt": "Kitchen preparation", "span": "normal", "photo": null },
+  {
+    "order": 5,
+    "alt": "A course from the Chef's Counter",
+    "span": "normal",
+    "photo": null
+  },
+  { "order": 6, "alt": "Dried botanicals", "span": "normal", "photo": null }
+]

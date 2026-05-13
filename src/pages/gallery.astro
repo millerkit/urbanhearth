@@ -1,26 +1,46 @@
 ---
 import { getSiteSettings } from "../lib/site-settings";
-
-import g007 from "../assets/gallery/gallery-007.jpg";
+import { isSanityConfigured } from "../lib/sanity";
+import { fetchGalleryPhotos } from "../lib/sanity-fetch";
+import galleryFallback from "../content/gallery.json";
 import food1 from "../assets/photos/food-photo-1.jpeg";
 import food2 from "../assets/photos/food-photo-2.jpeg";
 import food4 from "../assets/photos/food-photo-4.jpeg";
 import food5 from "../assets/photos/food-photo-5.jpeg";
 import food6 from "../assets/photos/food-photo-6.jpeg";
+import g007 from "../assets/gallery/gallery-007.jpg";
 import Base from "../layouts/Base.astro";
 import PageHeader from "../components/PageHeader.astro";
 
 // Layout spans: 'full' = spans all 3 cols, 'wide' = 2 cols, 'normal' = 1 col
 // Rows are implicit — browser fills gaps
 const restaurant = await getSiteSettings();
-const photos = [
-  { src: food1.src, alt: "Seasonal small plate", span: "normal" },
-  { src: food2.src, alt: "From the kitchen", span: "normal" },
-  { src: food4.src, alt: "Seasonal plate", span: "normal" },
-  { src: food5.src, alt: "Kitchen preparation", span: "normal" },
-  { src: food6.src, alt: "A course from the Chef's Counter", span: "normal" },
-  { src: g007.src, alt: "Dried botanicals", span: "normal" },
+
+// Ordered fallbacks matching gallery.json (index 0 = order 1, etc.)
+const photoFallbacks = [
+  food1.src,
+  food2.src,
+  food4.src,
+  food5.src,
+  food6.src,
+  g007.src,
 ];
+
+let items = galleryFallback;
+if (isSanityConfigured) {
+  try {
+    const data = await fetchGalleryPhotos();
+    if (data?.length) items = data;
+  } catch (e) {
+    console.error("Failed to fetch gallery photos from Sanity:", e);
+  }
+}
+
+const photos = items.map((item, i) => ({
+  src: item.photo ?? photoFallbacks[i],
+  alt: item.alt,
+  span: item.span,
+}));
 ---
 
 <Base

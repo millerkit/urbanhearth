@@ -2,6 +2,7 @@ import { blogPost } from "./blogPost";
 import { chefProfileTypes } from "./chefProfile";
 import { diningAreaTypes } from "./diningArea";
 import { farm } from "./farm";
+import { galleryPhoto } from "./galleryPhoto";
 import { homepageContent } from "./homepageContent";
 import { menuTypes } from "./menu";
 import { product } from "./product";
@@ -16,6 +17,7 @@ export const schemaTypes = [
   ...chefProfileTypes,
   ...diningAreaTypes,
   farm,
+  galleryPhoto,
   blogPost,
   ...menuTypes,
   product,
