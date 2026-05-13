@@ -2,7 +2,7 @@
 import { getSiteSettings } from "../lib/site-settings";
 import { isSanityConfigured } from "../lib/sanity";
 import { fetchMenu } from "../lib/sanity-fetch";
-import { staticMenuSections } from "../content/static-menus.ts";
+import menuSectionsFallback from "../content/menu-sections.json";
 import "../styles/menu-shared.css";
 import Base from "../layouts/Base.astro";
 import PageHeader from "../components/PageHeader.astro";
@@ -81,7 +81,7 @@ const season = menuData?.season ?? "Spring 2026";
                 />
               </div>
 
-              {staticMenuSections.map((section) => (
+              {menuSectionsFallback.map((section) => (
                 <section class="menu-section">
                   <h2 class="menu-label menu-section-title">{section.title}</h2>
                   <ul class="dish-list">
