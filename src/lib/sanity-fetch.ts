@@ -152,6 +152,26 @@ export async function fetchTeamMembers() {
   return (members ?? []) as any[];
 }
 
+export async function fetchDiningAreas() {
+  const areas = await client!.fetch(`
+    *[_type == "diningArea"] | order(order asc){
+      order,
+      number,
+      label,
+      title,
+      "id": id.current,
+      dark,
+      "photo": photo.asset->url,
+      photoAlt,
+      description,
+      details[]{ label, value, linkType },
+      ctaLabel,
+      phoneReserve
+    }
+  `);
+  return areas ?? [];
+}
+
 export async function fetchHomepageContent() {
   return client!.fetch(`
     *[_type == "homepageContent"][0]{

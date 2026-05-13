@@ -1,5 +1,6 @@
 import { blogPost } from "./blogPost";
 import { chefProfileTypes } from "./chefProfile";
+import { diningAreaTypes } from "./diningArea";
 import { farm } from "./farm";
 import { homepageContent } from "./homepageContent";
 import { menuTypes } from "./menu";
@@ -13,6 +14,7 @@ export const schemaTypes = [
   homepageContent,
   teamMember,
   ...chefProfileTypes,
+  ...diningAreaTypes,
   farm,
   blogPost,
   ...menuTypes,

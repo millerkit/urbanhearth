@@ -1,94 +1,33 @@
 ---
 import { getSiteSettings } from "../lib/site-settings";
-
-type DetailItem = { label: string; value: string; href?: string };
-import diningRoom from "../assets/photos/DiningRoomRendering.jpeg";
-import chefsCounter from "../assets/photos/ChefsCounterRendering.png";
-import bar from "../assets/photos/BarRendering.jpeg";
+import { isSanityConfigured } from "../lib/sanity";
+import { fetchDiningAreas } from "../lib/sanity-fetch";
+import diningAreasFallback from "../content/dining-areas.json";
+import diningRoomFallback from "../assets/photos/DiningRoomRendering.jpeg";
+import chefsCounterFallback from "../assets/photos/ChefsCounterRendering.png";
+import barFallback from "../assets/photos/BarRendering.jpeg";
 import Base from "../layouts/Base.astro";
 import PageHeader from "../components/PageHeader.astro";
 import ReservationButton from "../components/ReservationButton.astro";
 
 const restaurant = await getSiteSettings();
-const areas = [
-  {
-    number: "01",
-    label: "À La Carte",
-    title: "The Dining Room",
-    id: "dining-room",
-    photo: diningRoom.src,
-    photoAlt: "The Dining Room at Urban Hearth",
-    description: [
-      "The heart of Urban Hearth. The dining room is an intimate space built around the idea that dinner should be unhurried — a place where the food is always the main event and the evening can unfold at its own pace.",
-      "Our seasonal menu is written each week around what arrives from our network of New England farmers and fishermen. You might find a roasted root from a farm in Vermont sitting beside a fish that was swimming off the coast of Maine that morning. The menu changes because the land and sea change, and we follow their lead.",
-      "Service is warm and attentive without being formal. The room is small enough that every table feels considered.",
-    ],
-    details: [
-      { label: "Hours", value: "Monday – Saturday, 5:00 – 10:00 pm" },
-      { label: "Service", value: "Indoor dining only" },
-      {
-        label: "Large parties",
-        value: `Contact ${restaurant.privateDiningEmail}`,
-        href: `mailto:${restaurant.privateDiningEmail}`,
-      },
-    ],
-    cta: {
-      label: "Reserve a table",
-      href: `${restaurant.reservations.href}#dining-room`,
-    },
-  },
-  {
-    number: "02",
-    label: "Prix Fixe",
-    title: "The Chef's Counter",
-    id: "chefs-counter",
-    photo: chefsCounter.src,
-    photoAlt: "The Chef's Counter at Urban Hearth",
-    dark: true,
-    description: [
-      "Each night, six guests are invited to take a seat at the kitchen side of the pass for an experience unlike the rest of the restaurant. The Chef's Counter is exactly what it sounds like: dinner in the kitchen, close enough to watch every plate being built.",
-      "Five courses move through New England ingredients with a global sensibility. The menu is written daily — shaped entirely by what arrived that morning — so no two seatings are ever the same. It's an experience designed for the curious and the adventurous.",
-      "Wine pairing is available and recommended. Because the menu changes nightly, we cannot guarantee accommodation of all dietary restrictions; details are shared with guests upon confirmation.",
-    ],
-    details: [
-      { label: "Price", value: "$160 per person" },
-      { label: "Wine pairing", value: "+$70 per person" },
-      { label: "Seatings", value: "5:45 pm & 8:15 pm" },
-      { label: "Capacity", value: "Maximum 4 guests per seating" },
-    ],
-    cta: {
-      label: "Reserve your seat",
-      href: `${restaurant.reservations.href}#chefs-counter`,
-    },
-  },
-  {
-    number: "03",
-    label: "Bar & Lounge",
-    title: "The Salon",
-    id: "salon",
-    photo: bar.src,
-    photoAlt: "The Salon at Urban Hearth",
-    description: [
-      "The Salon is a quieter room — suited to a drink before dinner, or an evening that has no particular place to be. The pace is its own. The bar pours natural wines by the glass, a concise selection of cocktails made with the same care as the kitchen, and a rotating list of spirits chosen for character over category.",
-      "A curated selection of small plates is available throughout the evening. Walk-ins are always welcome; for groups of four or more, a reservation is recommended.",
-      "The Salon keeps its own hours, staying open later than the dining room. It's a good place to end up.",
-    ],
-    details: [
-      { label: "Hours", value: "Monday – Saturday, 5:00 – 11:00 pm" },
-      { label: "Walk-ins", value: "Always welcome" },
-      { label: "Groups of 4+", value: "Reservation recommended" },
-    ],
-    cta: {
-      label: "Make a reservation",
-      href: `tel:${restaurant.phone.replace(/\s/g, "")}`,
-      altCta: {
-        label: restaurant.phone,
-        href: `tel:${restaurant.phone.replace(/\s/g, "")}`,
-      },
-    },
-    phoneReserve: true,
-  },
-];
+
+// Per-area photo fallbacks keyed by anchor id
+const photoFallbacks: Record<string, string> = {
+  "dining-room": diningRoomFallback.src,
+  "chefs-counter": chefsCounterFallback.src,
+  salon: barFallback.src,
+};
+
+let areas = diningAreasFallback;
+if (isSanityConfigured) {
+  try {
+    const data = await fetchDiningAreas();
+    if (data?.length) areas = data;
+  } catch (e) {
+    console.error("Failed to fetch dining areas from Sanity:", e);
+  }
+}
 ---
 
 <Base
@@ -113,75 +52,89 @@ const areas = [
     </nav>
 
     {
-      areas.map((area, i) => (
-        <section class={`area ${area.dark ? "area--dark" : ""}`} id={area.id}>
-          <div class="area-photo-wrap">
-            <img
-              src={area.photo}
-              alt={area.photoAlt}
-              class="area-photo"
-              loading={i === 0 ? "eager" : "lazy"}
-            />
-            <div class="area-photo-label">
-              <span class="area-num">{area.number}</span>
-              <span class="area-label section-eyebrow">{area.label}</span>
-            </div>
-          </div>
-
-          <div class="area-body">
-            <div class="area-body-inner">
-              <div class="area-text">
-                <h2 class="area-title">{area.title}</h2>
-                <div class="area-desc">
-                  {area.description.map((p) => (
-                    <p>{p}</p>
-                  ))}
-                </div>
+      areas.map((area, i) => {
+        const photoSrc = area.photo ?? photoFallbacks[area.id];
+        const ctaHref = area.phoneReserve
+          ? `tel:${restaurant.phone.replace(/\s/g, "")}`
+          : `${restaurant.reservations.href}#${area.id}`;
+        return (
+          <section class={`area ${area.dark ? "area--dark" : ""}`} id={area.id}>
+            <div class="area-photo-wrap">
+              <img
+                src={photoSrc}
+                alt={area.photoAlt}
+                class="area-photo"
+                loading={i === 0 ? "eager" : "lazy"}
+              />
+              <div class="area-photo-label">
+                <span class="area-num">{area.number}</span>
+                <span class="area-label section-eyebrow">{area.label}</span>
               </div>
+            </div>
 
-              <div class="area-sidebar">
-                <dl class="area-details">
-                  {area.details.map((d: DetailItem) => (
-                    <div class="detail-row">
-                      <dt>{d.label}</dt>
-                      <dd>
-                        {d.href ? <a href={d.href}>{d.value}</a> : d.value}
-                      </dd>
-                    </div>
-                  ))}
-                </dl>
+            <div class="area-body">
+              <div class="area-body-inner">
+                <div class="area-text">
+                  <h2 class="area-title">{area.title}</h2>
+                  <div class="area-desc">
+                    {area.description.map((p) => (
+                      <p>{p}</p>
+                    ))}
+                  </div>
+                </div>
 
-                <div class="area-cta">
-                  {area.phoneReserve ? (
-                    <div class="phone-reserve">
-                      <a href={area.cta.href} class="text-cta">
-                        Call to reserve
-                      </a>
-                      <span class="phone-num">
-                        <a href={`tel:${restaurant.phone.replace(/\s/g, "")}`}>
-                          {restaurant.phone}
+                <div class="area-sidebar">
+                  <dl class="area-details">
+                    {area.details.map((d) => (
+                      <div class="detail-row">
+                        <dt>{d.label}</dt>
+                        <dd>
+                          {d.linkType === "email" ? (
+                            <a href={`mailto:${restaurant.privateDiningEmail}`}>
+                              Contact {restaurant.privateDiningEmail}
+                            </a>
+                          ) : d.linkType === "phone" ? (
+                            <a
+                              href={`tel:${restaurant.phone.replace(/\s/g, "")}`}
+                            >
+                              {restaurant.phone}
+                            </a>
+                          ) : (
+                            d.value
+                          )}
+                        </dd>
+                      </div>
+                    ))}
+                  </dl>
+
+                  <div class="area-cta">
+                    {area.phoneReserve ? (
+                      <div class="phone-reserve">
+                        <span class="phone-num">
+                          <a
+                            href={`tel:${restaurant.phone.replace(/\s/g, "")}`}
+                          >
+                            {restaurant.phone}
+                          </a>
+                        </span>
+                        <span class="phone-or">or email</span>
+                        <a
+                          href={`mailto:${restaurant.privateDiningEmail}`}
+                          class="text-cta"
+                        >
+                          {restaurant.privateDiningEmail}
                         </a>
-                      </span>
-                      <span class="phone-or">or email</span>
-                      <a
-                        href={`mailto:${restaurant.privateDiningEmail}`}
-                        class="text-cta"
-                      >
-                        {restaurant.privateDiningEmail}
-                      </a>
-                    </div>
-                  ) : (
-                    <ReservationButton
-                      href={area.cta.href}
-                      label={area.cta.label}
-                    />
-                  )}
+                      </div>
+                    ) : (
+                      <ReservationButton href={ctaHref} label={area.ctaLabel} />
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </section>
-      ))
+          </section>
+        );
+      })
     }
   </div>
 </Base>
