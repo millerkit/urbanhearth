@@ -33,6 +33,6 @@ pnpm sanity:dev    # Start Sanity Studio
 ### Preview (GitHub Actions secrets)
 
 - `SANITY_PROJECT_ID`
-- `SANITY_API_TOKEN` — required for draft content access
+- `SANITY_API_TOKEN`
 - `CLOUDFLARE_API_TOKEN`
 - `CLOUDFLARE_ACCOUNT_ID`
