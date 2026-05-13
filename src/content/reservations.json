@@ -1,0 +1,77 @@
+[
+  {
+    "order": 1,
+    "number": "01",
+    "eyebrow": "The Dining Room",
+    "title": "À La Carte",
+    "id": "dining-room",
+    "theme": "default",
+    "description": "Our seasonal menu changes with the week's best produce, sourced from a close network of New England farmers and fishermen. Warm, unhurried dining in an intimate room where the food is always the main event.",
+    "details": [
+      {
+        "label": "Hours",
+        "value": "Monday – Saturday, 5:00 – 10:00 pm",
+        "linkType": "none"
+      },
+      { "label": "Service", "value": "Indoor dining only", "linkType": "none" },
+      { "label": "Large parties", "value": "", "linkType": "email" }
+    ],
+    "note": null,
+    "bookingLabel": "Book online",
+    "otWidgetSrc": "//www.opentable.com/widget/reservation/loader?rid=342889&type=wide&theme=standard&dark=false&iframe=true&domain=com&lang=en-US&newtab=false&ot_source=Restaurant%20website&btnText=Reserve&primaryColor=F4F1EE&primaryFontColor=162235&buttonColor=162235&buttonFontColor=E8E3DF",
+    "phoneReserve": false
+  },
+  {
+    "order": 2,
+    "number": "02",
+    "eyebrow": "Prix Fixe",
+    "title": "The Chef's Counter",
+    "id": "chefs-counter",
+    "theme": "dark",
+    "description": "Four guests join the kitchen side each night for five courses that move through New England ingredients with a global sensibility. The menu changes daily, shaped by what arrived that morning. An experience for the curious and adventurous.",
+    "details": [
+      { "label": "Price", "value": "$160 per person", "linkType": "none" },
+      {
+        "label": "Wine pairing",
+        "value": "+$70 per person",
+        "linkType": "none"
+      },
+      { "label": "Seatings", "value": "5:45 pm & 8:15 pm", "linkType": "none" },
+      {
+        "label": "Capacity",
+        "value": "Maximum 4 guests per seating",
+        "linkType": "none"
+      }
+    ],
+    "note": "As the menu changes nightly we cannot guarantee accommodation of all dietary restrictions. Details are shared upon confirmation.",
+    "bookingLabel": "Book online",
+    "otWidgetSrc": "//www.opentable.com/widget/reservation/loader?rid=342889&experienceid=582148&type=wide&theme=standard&dark=true&iframe=true&domain=com&lang=en-US&newtab=false&ot_source=Restaurant%20website&btnText=Reserve&primaryColor=162235&primaryFontColor=E8E3DF&buttonColor=E8E3DF&buttonFontColor=162235",
+    "phoneReserve": false
+  },
+  {
+    "order": 3,
+    "number": "03",
+    "eyebrow": "Bar & Lounge",
+    "title": "The Salon",
+    "id": "salon",
+    "theme": "cream",
+    "description": "A quieter space for cocktails, natural wines by the glass, and a curated selection of small plates. The salon follows its own pace — equally suited to a solo drink before dinner or an evening that lingers well past it.",
+    "details": [
+      {
+        "label": "Hours",
+        "value": "Monday – Saturday, 5:00 – 11:00 pm",
+        "linkType": "none"
+      },
+      { "label": "Walk-ins", "value": "Always welcome", "linkType": "none" },
+      {
+        "label": "Groups of 4+",
+        "value": "Reservation recommended",
+        "linkType": "none"
+      }
+    ],
+    "note": null,
+    "bookingLabel": "To reserve",
+    "otWidgetSrc": null,
+    "phoneReserve": true
+  }
+]

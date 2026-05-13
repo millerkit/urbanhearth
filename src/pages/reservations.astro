@@ -1,9 +1,28 @@
 ---
 import PageHeader from "../components/PageHeader.astro";
 import { getSiteSettings } from "../lib/site-settings";
+import { isSanityConfigured } from "../lib/sanity";
+import { fetchReservationExperiences } from "../lib/sanity-fetch";
+import reservationsFallback from "../content/reservations.json";
 import Base from "../layouts/Base.astro";
 
 const restaurant = await getSiteSettings();
+
+const themeClass: Record<string, string> = {
+  dark: "experience--dark",
+  cream: "experience--cream",
+  default: "",
+};
+
+let experiences = reservationsFallback;
+if (isSanityConfigured) {
+  try {
+    const data = await fetchReservationExperiences();
+    if (data?.length) experiences = data;
+  } catch (e) {
+    console.error("Failed to fetch reservation experiences from Sanity:", e);
+  }
+}
 ---
 
 <Base
@@ -17,140 +36,66 @@ const restaurant = await getSiteSettings();
     />
 
     <div class="experiences-grid">
-      <!-- 01 · The Dining Room -->
-      <div class="experience" id="dining-room">
-        <div class="exp-top">
-          <div class="exp-label">
-            <span class="exp-number">01</span>
-            <span class="section-eyebrow">The Dining Room</span>
+      {
+        experiences.map((exp) => (
+          <div class={`experience ${themeClass[exp.theme] ?? ""}`} id={exp.id}>
+            <div class="exp-top">
+              <div class="exp-label">
+                <span class="exp-number">{exp.number}</span>
+                <span class="section-eyebrow">{exp.eyebrow}</span>
+              </div>
+              <h2 class="exp-title">{exp.title}</h2>
+              <p class="exp-desc">{exp.description}</p>
+              <dl class="exp-details">
+                {exp.details.map((d) => (
+                  <div>
+                    <dt>{d.label}</dt>
+                    <dd>
+                      {d.linkType === "email" ? (
+                        <a href={`mailto:${restaurant.privateDiningEmail}`}>
+                          {restaurant.privateDiningEmail}
+                        </a>
+                      ) : d.linkType === "phone" ? (
+                        <a href={`tel:${restaurant.phone.replace(/\s/g, "")}`}>
+                          {restaurant.phone}
+                        </a>
+                      ) : (
+                        d.value
+                      )}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+              {exp.note && <p class="exp-note">{exp.note}</p>}
+            </div>
+            <div class="exp-booking">
+              <p class="booking-label section-eyebrow">{exp.bookingLabel}</p>
+              {exp.phoneReserve ? (
+                <>
+                  <p class="contact-line">
+                    <a href={`tel:${restaurant.phone.replace(/\s/g, "")}`}>
+                      {restaurant.phone}
+                    </a>
+                  </p>
+                  <p class="contact-or">or</p>
+                  <a
+                    href={`mailto:${restaurant.privateDiningEmail}`}
+                    class="text-cta"
+                  >
+                    {restaurant.privateDiningEmail}
+                  </a>
+                </>
+              ) : (
+                <div class="ot-widget">
+                  <Fragment
+                    set:html={`<script type="text/javascript" src="${exp.otWidgetSrc}"></script>`}
+                  />
+                </div>
+              )}
+            </div>
           </div>
-          <h2 class="exp-title">À La Carte</h2>
-          <p class="exp-desc">
-            Our seasonal menu changes with the week's best produce, sourced from
-            a close network of New England farmers and fishermen. Warm,
-            unhurried dining in an intimate room where the food is always the
-            main event.
-          </p>
-          <dl class="exp-details">
-            <div>
-              <dt>Hours</dt>
-              <dd>Monday – Saturday, 5:00 – 10:00 pm</dd>
-            </div>
-            <div>
-              <dt>Service</dt>
-              <dd>Indoor dining only</dd>
-            </div>
-            <div>
-              <dt>Large parties</dt>
-              <dd>
-                <a href={`mailto:${restaurant.privateDiningEmail}`}>
-                  {restaurant.privateDiningEmail}
-                </a>
-              </dd>
-            </div>
-          </dl>
-        </div>
-        <div class="exp-booking">
-          <p class="booking-label section-eyebrow">Book online</p>
-          <div class="ot-widget">
-            <script
-              type="text/javascript"
-              src="//www.opentable.com/widget/reservation/loader?rid=342889&type=wide&theme=standard&dark=false&iframe=true&domain=com&lang=en-US&newtab=false&ot_source=Restaurant%20website&btnText=Reserve&primaryColor=F4F1EE&primaryFontColor=162235&buttonColor=162235&buttonFontColor=E8E3DF"
-              is:inline></script>
-          </div>
-        </div>
-      </div>
-
-      <!-- 02 · The Chef's Counter -->
-      <div class="experience experience--dark" id="chefs-counter">
-        <div class="exp-top">
-          <div class="exp-label">
-            <span class="exp-number">02</span>
-            <span class="section-eyebrow">Prix Fixe</span>
-          </div>
-          <h2 class="exp-title">The Chef's Counter</h2>
-          <p class="exp-desc">
-            Four guests join the kitchen side each night for five courses that
-            move through New England ingredients with a global sensibility. The
-            menu changes daily, shaped by what arrived that morning. An
-            experience for the curious and adventurous.
-          </p>
-          <dl class="exp-details">
-            <div>
-              <dt>Price</dt>
-              <dd>$160 per person</dd>
-            </div>
-            <div>
-              <dt>Wine pairing</dt>
-              <dd>+$70 per person</dd>
-            </div>
-            <div>
-              <dt>Seatings</dt>
-              <dd>5:45 pm &amp; 8:15 pm</dd>
-            </div>
-            <div>
-              <dt>Capacity</dt>
-              <dd>Maximum 4 guests per seating</dd>
-            </div>
-          </dl>
-          <p class="exp-note">
-            As the menu changes nightly we cannot guarantee accommodation of all
-            dietary restrictions. Details are shared upon confirmation.
-          </p>
-        </div>
-        <div class="exp-booking">
-          <p class="booking-label section-eyebrow">Book online</p>
-          <div class="ot-widget">
-            <script
-              type="text/javascript"
-              src="//www.opentable.com/widget/reservation/loader?rid=342889&experienceid=582148&type=wide&theme=standard&dark=true&iframe=true&domain=com&lang=en-US&newtab=false&ot_source=Restaurant%20website&btnText=Reserve&primaryColor=162235&primaryFontColor=E8E3DF&buttonColor=E8E3DF&buttonFontColor=162235"
-              is:inline></script>
-          </div>
-        </div>
-      </div>
-
-      <!-- 03 · The Salon -->
-      <div class="experience experience--cream" id="salon">
-        <div class="exp-top">
-          <div class="exp-label">
-            <span class="exp-number">03</span>
-            <span class="section-eyebrow">Bar &amp; Lounge</span>
-          </div>
-          <h2 class="exp-title">The Salon</h2>
-          <p class="exp-desc">
-            A quieter space for cocktails, natural wines by the glass, and a
-            curated selection of small plates. The salon follows its own pace —
-            equally suited to a solo drink before dinner or an evening that
-            lingers well past it.
-          </p>
-          <dl class="exp-details">
-            <div>
-              <dt>Hours</dt>
-              <dd>Monday – Saturday, 5:00 – 11:00 pm</dd>
-            </div>
-            <div>
-              <dt>Walk-ins</dt>
-              <dd>Always welcome</dd>
-            </div>
-            <div>
-              <dt>Groups of 4+</dt>
-              <dd>Reservation recommended</dd>
-            </div>
-          </dl>
-        </div>
-        <div class="exp-booking">
-          <p class="booking-label section-eyebrow">To reserve</p>
-          <p class="contact-line">
-            <a href={`tel:${restaurant.phone.replace(/\s/g, "")}`}
-              >{restaurant.phone}</a
-            >
-          </p>
-          <p class="contact-or">or</p>
-          <a href={`mailto:${restaurant.privateDiningEmail}`} class="text-cta">
-            {restaurant.privateDiningEmail}
-          </a>
-        </div>
-      </div>
+        ))
+      }
     </div>
   </div>
   <script is:inline>

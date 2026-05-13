@@ -172,6 +172,26 @@ export async function fetchDiningAreas() {
   return areas ?? [];
 }
 
+export async function fetchReservationExperiences() {
+  const experiences = await client!.fetch(`
+    *[_type == "reservationExperience"] | order(order asc){
+      order,
+      number,
+      eyebrow,
+      title,
+      "id": id.current,
+      theme,
+      description,
+      details[]{ label, value, linkType },
+      note,
+      bookingLabel,
+      otWidgetSrc,
+      phoneReserve
+    }
+  `);
+  return experiences ?? [];
+}
+
 export async function fetchGalleryPhotos() {
   const photos = await client!.fetch(`
     *[_type == "galleryPhoto"] | order(order asc){
