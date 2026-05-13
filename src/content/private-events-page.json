@@ -1,0 +1,7 @@
+{
+  "capacityStats": [
+    { "value": "50", "label": "Indoor seated" },
+    { "value": "24", "label": "Outdoor seated (seasonal)" },
+    { "value": "80", "label": "Cocktail reception" }
+  ]
+}

@@ -2,7 +2,11 @@
 import { getSiteSettings } from "../lib/site-settings";
 import Base from "../layouts/Base.astro";
 import { isSanityConfigured } from "../lib/sanity";
-import { fetchPrivateEventPackages } from "../lib/sanity-fetch";
+import {
+  fetchPrivateEventPackages,
+  fetchPrivateEventsPage,
+} from "../lib/sanity-fetch";
+import privateEventsPageFallback from "../content/private-events-page.json";
 import PageHeader from "../components/PageHeader.astro";
 
 const restaurant = await getSiteSettings();
@@ -51,6 +55,7 @@ const staticPackages: Package[] = [
 ];
 
 let packages: Package[] = staticPackages;
+let pageConfig = privateEventsPageFallback;
 
 if (isSanityConfigured) {
   try {
@@ -58,6 +63,12 @@ if (isSanityConfigured) {
     if (fetched?.length) packages = fetched;
   } catch (e) {
     console.error("Failed to fetch private event packages from Sanity:", e);
+  }
+  try {
+    const fetchedPage = await fetchPrivateEventsPage();
+    if (fetchedPage?.capacityStats?.length) pageConfig = fetchedPage;
+  } catch (e) {
+    console.error("Failed to fetch private events page config from Sanity:", e);
   }
 }
 ---
@@ -192,20 +203,17 @@ if (isSanityConfigured) {
     </div>
 
     <div class="capacity-bar">
-      <div class="capacity-item">
-        <span class="capacity-value">26</span>
-        <span class="capacity-label">Indoor seated</span>
-      </div>
-      <div class="capacity-divider" aria-hidden="true"></div>
-      <div class="capacity-item">
-        <span class="capacity-value">26</span>
-        <span class="capacity-label">Outdoor seated (seasonal)</span>
-      </div>
-      <div class="capacity-divider" aria-hidden="true"></div>
-      <div class="capacity-item">
-        <span class="capacity-value">36</span>
-        <span class="capacity-label">Cocktail reception</span>
-      </div>
+      {
+        pageConfig.capacityStats.map((stat, i) => (
+          <>
+            {i > 0 && <div class="capacity-divider" aria-hidden="true" />}
+            <div class="capacity-item">
+              <span class="capacity-value">{stat.value}</span>
+              <span class="capacity-label">{stat.label}</span>
+            </div>
+          </>
+        ))
+      }
     </div>
   </div>
 </Base>

@@ -249,6 +249,14 @@ export async function fetchSiteSettings() {
   `);
 }
 
+export async function fetchPrivateEventsPage() {
+  return client!.fetch(`
+    *[_type == "privateEventsPage"][0]{
+      capacityStats[]{ value, label }
+    }
+  `);
+}
+
 export async function fetchPrivateEventPackages() {
   const packages = await client!.fetch(`
     *[_type == "private_event_package"] | order(order asc){
