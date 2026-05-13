@@ -36,3 +36,11 @@ pnpm sanity:dev    # Start Sanity Studio
 - `SANITY_API_TOKEN`
 - `CLOUDFLARE_API_TOKEN`
 - `CLOUDFLARE_ACCOUNT_ID`
+
+### Github Workflow Sync with Toast for Retail Products Page (GitHub Actions secrets)
+
+- `SANITY_PROJECT_ID` — same as above
+- `SANITY_API_TOKEN` — same as above
+- `TOAST_CLIENT_ID`
+- `TOAST_CLIENT_SECRET`
+- `TOAST_RESTAURANT_GUID`
