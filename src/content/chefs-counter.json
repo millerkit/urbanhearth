@@ -1,0 +1,28 @@
+{
+  "eyebrow": "Chef's Counter",
+  "price": "$160",
+  "priceLabel": "per person",
+  "description": "A five-course interactive dining experience at our Chef's Counter. The menu changes nightly, shaped by what arrived that morning.",
+  "winePairingLabel": "Wine pairing",
+  "winePairingValue": "+$70 per person",
+  "courses": [
+    { "label": "I", "name": "Amuse-Bouche" },
+    {
+      "label": "II",
+      "name": "Crudo & Garden",
+      "desc": "Raw or lightly cured fish · seasonal vegetable · cold pressed oil"
+    },
+    {
+      "label": "III",
+      "name": "The Hearth Course",
+      "desc": "Wood-fired preparation · preserved element · fermented accent"
+    },
+    {
+      "label": "IV",
+      "name": "Land & Sea",
+      "desc": "Primary protein · root vegetable · foraged herb"
+    },
+    { "label": "V", "name": "Sweets", "desc": "Seasonal dessert · mignardises" }
+  ],
+  "finePrint": "Advanced reservations required. As the menu changes nightly, we cannot guarantee accommodation of all dietary restrictions."
+}

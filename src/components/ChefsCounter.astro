@@ -1,55 +1,31 @@
 ---
 import { getSiteSettings } from "../lib/site-settings";
+import card from "../content/chefs-counter.json";
 import "../styles/menu-shared.css";
 
 const restaurant = await getSiteSettings();
-const courses = [
-  { label: "I", name: "Amuse-Bouche" },
-  {
-    label: "II",
-    name: "Crudo & Garden",
-    desc: "Raw or lightly cured fish · seasonal vegetable · cold pressed oil",
-  },
-  {
-    label: "III",
-    name: "The Hearth Course",
-    desc: "Wood-fired preparation · preserved element · fermented accent",
-  },
-  {
-    label: "IV",
-    name: "Land & Sea",
-    desc: "Primary protein · root vegetable · foraged herb",
-  },
-  { label: "V", name: "Sweets", desc: "Seasonal dessert · mignardises" },
-];
 ---
 
 <div class="menu-card card">
-  <p class="menu-eyebrow">Chef's Counter</p>
-  <div class="price">$160 <span>per person</span></div>
-  <p class="desc">
-    A five-course interactive dining experience at our Chef's Counter. The menu
-    changes nightly, shaped by what arrived that morning.
-  </p>
+  <p class="menu-eyebrow">{card.eyebrow}</p>
+  <div class="price">{card.price} <span>{card.priceLabel}</span></div>
+  <p class="desc">{card.description}</p>
   <div class="sub-row">
-    <span class="menu-label">Wine pairing</span>
-    <span class="sub-value">+$70 per person</span>
+    <span class="menu-label">{card.winePairingLabel}</span>
+    <span class="sub-value">{card.winePairingValue}</span>
   </div>
   <ul class="courses">
     {
-      courses.map((c) => (
+      card.courses.map((c) => (
         <li class="course">
           <span class="course-numeral">{c.label}</span>
           <span class="dish-name">{c.name}</span>
-          {c.desc && <span class="dish-desc course-desc">{c.desc}</span>}
+          {"desc" in c && <span class="dish-desc course-desc">{c.desc}</span>}
         </li>
       ))
     }
   </ul>
-  <p class="menu-fine-print note">
-    Advanced reservations required. As the menu changes nightly, we cannot
-    guarantee accommodation of all dietary restrictions.
-  </p>
+  <p class="menu-fine-print note">{card.finePrint}</p>
   <a href={`${restaurant.reservations.href}#chefs-counter`} class="cta"
     >Reserve your seat</a
   >

@@ -12,6 +12,7 @@
  */
 
 import { createClient } from "@sanity/client";
+import { readFileSync } from "fs";
 import { dirname, join } from "path";
 import { fileURLToPath } from "url";
 
@@ -36,51 +37,29 @@ const client = createClient({
   useCdn: false,
 });
 
-// ── Packages ──────────────────────────────────────────────────────────────────
+// ── Packages (read from canonical JSON fallback) ──────────────────────────────
 
-const packages = [
-  {
-    id: "full-buyout",
-    order: 1,
-    eyebrow: "Full Buyout",
-    title: "Make It Yours",
-    description:
-      "Reserve the entire restaurant for your celebration. We'll tailor the evening around your guests — custom menus, curated beverages, and service at your pace.",
-    details: [
-      { label: "Availability", value: "Tuesday – Sunday" },
-      { label: "Capacity", value: "Up to 52 seated" },
-      { label: "Min. (Tue–Thu)", value: "$4,000" },
-      { label: "Min. (Fri–Sun)", value: "$5,000" },
-      { label: "Deposit", value: "50% to confirm" },
-    ],
-    note: "Minimums exclude tax, gratuity, and coordination fees. We'll work with you on menus, dietary needs, and beverage program.",
-    dark: true,
-  },
-  {
-    id: "large-party",
-    order: 2,
-    eyebrow: "Groups up to 12",
-    title: "Large Party",
-    description:
-      "Book a section of the dining room for your group. Choose from à la carte service or a custom 3–5 course prix fixe menu.",
-    details: [
-      { label: "Per person", value: "$85 minimum (excl. tax & gratuity)" },
-      { label: "Availability", value: "Tuesday – Saturday" },
-      { label: "Seatings", value: "5:00–7:00 pm or 8:00–10:00 pm" },
-      { label: "Cancellation", value: "7 days' notice for parties of 8+" },
-    ],
-    note: "A credit card is required to secure the reservation. Late cancellations for parties of 8 or more are subject to a $50 per guest fee.",
-    dark: false,
-  },
-];
+const rawPackages = JSON.parse(
+  readFileSync(
+    join(__dirname, "../src/content/private-event-packages.json"),
+    "utf-8",
+  ),
+);
 
-// ── Capacity stats ─────────────────────────────────────────────────────────────
+const packages = rawPackages.map((pkg, i) => ({
+  id: pkg.title.toLowerCase().replace(/\s+/g, "-"),
+  order: i + 1,
+  ...pkg,
+}));
 
-const capacityStats = [
-  { value: "50", label: "Indoor seated" },
-  { value: "24", label: "Outdoor seated (seasonal)" },
-  { value: "80", label: "Cocktail reception" },
-];
+// ── Capacity stats (read from canonical JSON fallback) ────────────────────────
+
+const { capacityStats } = JSON.parse(
+  readFileSync(
+    join(__dirname, "../src/content/private-events-page.json"),
+    "utf-8",
+  ),
+);
 
 // ── Seed ───────────────────────────────────────────────────────────────────────
 
