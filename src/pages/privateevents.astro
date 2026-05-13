@@ -47,9 +47,7 @@ if (isSanityConfigured) {
       <div class="packages-pair">
         {
           packages.map((pkg, i) => (
-            <div
-              class={`package${pkg.dark ? " package--dark" : pkg.cream ? " package--cream" : ""}`}
-            >
+            <div class={`package${pkg.dark ? " package--dark" : ""}`}>
               <div class="pkg-top">
                 <div class="pkg-label">
                   <span class="pkg-number">
