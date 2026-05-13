@@ -2,7 +2,7 @@
  * seed-gallery.mjs — Seed gallery photos into Sanity
  *
  * Usage:
- *   SANITY_PROJECT_ID=xxx SANITY_TOKEN=xxx node sanity-seed/seed-gallery.mjs
+ *   SANITY_PROJECT_ID=xxx SANITY_API_TOKEN=xxx node sanity-seed/seed-gallery.mjs
  *
  * Or with Node 22's --env-file flag:
  *   node --env-file=.env.local sanity-seed/seed-gallery.mjs
@@ -14,16 +14,19 @@
 
 import { createClient } from "@sanity/client";
 import { createReadStream, existsSync } from "fs";
-import { dirname, extname, basename, join } from "path";
+import { basename, dirname, extname, join } from "path";
 import { fileURLToPath } from "url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const SANITY_PROJECT_ID = process.env.SANITY_PROJECT_ID;
-const SANITY_TOKEN = process.env.SANITY_TOKEN;
+const SANITY_API_TOKEN = process.env.SANITY_API_TOKEN;
 const SANITY_DATASET = process.env.SANITY_DATASET ?? "production";
 
-for (const [key, val] of Object.entries({ SANITY_PROJECT_ID, SANITY_TOKEN })) {
+for (const [key, val] of Object.entries({
+  SANITY_PROJECT_ID,
+  SANITY_API_TOKEN,
+})) {
   if (!val) {
     console.error(`Missing required env var: ${key}`);
     process.exit(1);
@@ -34,7 +37,7 @@ const client = createClient({
   projectId: SANITY_PROJECT_ID,
   dataset: SANITY_DATASET,
   apiVersion: "2025-01-01",
-  token: SANITY_TOKEN,
+  token: SANITY_API_TOKEN,
   useCdn: false,
 });
 
