@@ -47,9 +47,9 @@ const areas = JSON.parse(
 
 // Local photo fallbacks keyed by area id
 const localPhotos = {
-  "dining-room": "src/assets/photos/DiningRoomRendering.jpeg",
-  "chefs-counter": "src/assets/photos/ChefsCounterRendering.png",
-  salon: "src/assets/photos/BarRendering.jpeg",
+  "dining-room": "src/assets/photos/DiningRoomPhoto.jpeg",
+  "chefs-counter": "src/assets/photos/ChefsCounterPhoto.png",
+  salon: "src/assets/photos/SalonPhoto.jpeg",
 };
 
 async function uploadPhoto(rawPath) {
