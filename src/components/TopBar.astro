@@ -1,6 +1,7 @@
 ---
 import { getSiteSettings } from "../lib/site-settings";
 import logo from "../assets/brand/UrbanHearth_Logo_BLACK_cropped.png";
+import CartButton from "./CartButton";
 
 const restaurant = await getSiteSettings();
 ---
@@ -25,6 +26,7 @@ const restaurant = await getSiteSettings();
     <img src={logo.src} alt={restaurant.name} class="wordmark-logo" />
   </a>
   <div class="cta-wrap">
+    <CartButton client:only="react" />
     <a
       href={restaurant.reservations.href}
       class="cta"
@@ -147,7 +149,9 @@ const restaurant = await getSiteSettings();
 
   .cta-wrap {
     display: flex;
+    align-items: center;
     justify-content: flex-end;
+    gap: 1.25rem;
   }
 
   .cta {
