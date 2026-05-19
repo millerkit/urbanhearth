@@ -1,0 +1,100 @@
+---
+export const prerender = false;
+import Base from "../../layouts/Base.astro";
+import { getSiteSettings } from "../../lib/site-settings";
+
+const restaurant = await getSiteSettings();
+---
+
+<Base
+  title={`Order Confirmed — ${restaurant.name}`}
+  description="Your order has been placed. We'll be in touch to arrange pickup."
+>
+  <div class="success-page">
+    <div class="success-inner">
+      <p class="section-eyebrow">Order Confirmed</p>
+      <h1>Thank you.</h1>
+      <p class="success-body">
+        Your payment was received. We'll reach out to <strong
+          >arrange a pickup time</strong
+        > — expect a message from us shortly.
+      </p>
+      <p class="success-contact">
+        Questions? Email us at <a
+          href={`mailto:${restaurant.privateDiningEmail}`}
+          >{restaurant.privateDiningEmail}</a
+        >.
+      </p>
+      <a href="/products" class="text-cta">Continue shopping</a>
+    </div>
+  </div>
+</Base>
+
+<!-- Clear the cart from localStorage after a successful payment -->
+<script>
+  try {
+    localStorage.removeItem("urbanhearth-cart");
+  } catch {
+    // localStorage not available
+  }
+</script>
+
+<style>
+  .success-page {
+    margin-top: 103px;
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 2rem;
+  }
+
+  .success-inner {
+    max-width: 520px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .success-inner h1 {
+    font-family: var(--serif), serif;
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 300;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+    line-height: 1.1;
+  }
+
+  .success-body {
+    font-family: var(--serif), serif;
+    font-size: var(--text-md);
+    font-weight: 300;
+    line-height: 1.75;
+    color: var(--ink);
+  }
+
+  .success-body strong {
+    font-weight: 400;
+  }
+
+  .success-contact {
+    font-family: var(--sans), sans-serif;
+    font-size: 12px;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+    color: var(--ink-mid);
+  }
+
+  .success-contact a {
+    color: var(--ink);
+    text-underline-offset: 3px;
+  }
+
+  @media (max-width: 600px) {
+    .success-page {
+      margin-top: 60px;
+    }
+  }
+</style>

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useCartStore, selectSubtotal } from "../lib/cart-store";
 
 export default function CartDrawer() {
@@ -8,6 +8,33 @@ export default function CartDrawer() {
   const removeItem = useCartStore((s) => s.removeItem);
   const updateQuantity = useCartStore((s) => s.updateQuantity);
   const subtotal = useCartStore(selectSubtotal);
+  const [isCheckingOut, setIsCheckingOut] = useState(false);
+  const [checkoutError, setCheckoutError] = useState<string | null>(null);
+
+  async function handleCheckout() {
+    setIsCheckingOut(true);
+    setCheckoutError(null);
+    try {
+      const res = await fetch("/api/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          items: items.map((i) => ({ id: i.id, quantity: i.quantity })),
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok)
+        throw new Error(data.error || "Checkout failed. Please try again.");
+      window.location.href = data.url;
+    } catch (err) {
+      setCheckoutError(
+        err instanceof Error
+          ? err.message
+          : "Checkout failed. Please try again.",
+      );
+      setIsCheckingOut(false);
+    }
+  }
 
   // Lock body scroll while drawer is open
   useEffect(() => {
@@ -137,9 +164,14 @@ export default function CartDrawer() {
                   ${subtotal.toFixed(2)}
                 </span>
               </div>
-              <button className="cart-checkout-btn" disabled>
-                Checkout — Coming Soon
+              <button
+                className="cart-checkout-btn"
+                onClick={handleCheckout}
+                disabled={isCheckingOut}
+              >
+                {isCheckingOut ? "Redirecting…" : "Proceed to Checkout"}
               </button>
+              {checkoutError && <p className="cart-error">{checkoutError}</p>}
               <p className="cart-pickup-note">
                 Available for in-restaurant pickup only.
               </p>

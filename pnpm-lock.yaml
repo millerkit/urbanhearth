@@ -28,6 +28,9 @@ importers:
       sharp:
         specifier: ^0.34.5
         version: 0.34.5
+      stripe:
+        specifier: ^22.1.1
+        version: 22.1.1(@types/node@25.6.0)
       styled-components:
         specifier: ^6.4.1
         version: 6.4.1(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
@@ -8600,6 +8603,18 @@ packages:
       }
     engines: { node: ">=18" }
 
+  stripe@22.1.1:
+    resolution:
+      {
+        integrity: sha512-cmodIYP27tBkJ8G7DuGgWw0PFuemlFZbuF3Wwr1TrjFjUa3T7NIgCe6TVwX8BO2ynu+xtTuDGfHafNDCPt9lXA==,
+      }
+    engines: { node: ">=18" }
+    peerDependencies:
+      "@types/node": ">=18"
+    peerDependenciesMeta:
+      "@types/node":
+        optional: true
+
   styled-components@6.4.1:
     resolution:
       {
@@ -15687,6 +15702,10 @@ snapshots:
   strip-bom@3.0.0: {}
 
   strip-final-newline@4.0.0: {}
+
+  stripe@22.1.1(@types/node@25.6.0):
+    optionalDependencies:
+      "@types/node": 25.6.0
 
   styled-components@6.4.1(react-dom@19.2.6(react@19.2.6))(react@19.2.6):
     dependencies:

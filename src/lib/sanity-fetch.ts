@@ -139,6 +139,23 @@ export async function fetchAllProductSlugs(): Promise<string[]> {
   return slugs ?? [];
 }
 
+export async function fetchProductPrices(
+  slugs: string[],
+): Promise<
+  { slug: string; name: string; price: number; available: boolean }[]
+> {
+  const products = await client!.fetch(
+    `*[_type == "product" && slug.current in $slugs]{
+      "slug": slug.current,
+      name,
+      price,
+      available
+    }`,
+    { slugs },
+  );
+  return products ?? [];
+}
+
 export async function fetchTeamMembers() {
   const members = await client!.fetch(`
     *[_type == "teamMember"] | order(order asc){

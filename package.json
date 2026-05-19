@@ -28,6 +28,7 @@
     "@sanity/client": "^7.22.0",
     "astro": "^6.2.1",
     "sharp": "^0.34.5",
+    "stripe": "^22.1.1",
     "styled-components": "^6.4.1",
     "zustand": "^5.0.13"
   },
