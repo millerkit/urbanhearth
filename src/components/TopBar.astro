@@ -4,6 +4,9 @@ import logo from "../assets/brand/UrbanHearth_Logo_BLACK_cropped.png";
 import CartButton from "./CartButton";
 
 const restaurant = await getSiteSettings();
+const currentPath = Astro.url.pathname;
+const isShopPage =
+  currentPath === "/products" || currentPath.startsWith("/product/");
 ---
 
 <div class="top-bar">
@@ -29,7 +32,7 @@ const restaurant = await getSiteSettings();
     <CartButton client:only="react" />
     <a
       href={restaurant.reservations.href}
-      class="cta"
+      class={isShopPage ? "cta cta--dimmed" : "cta"}
       target="_blank"
       rel="noopener"
     >
@@ -169,6 +172,15 @@ const restaurant = await getSiteSettings();
   }
   .cta:hover {
     opacity: 0.55;
+  }
+
+  .cta--dimmed {
+    opacity: 0.28;
+    border-bottom-color: transparent;
+  }
+
+  .cta--dimmed:hover {
+    opacity: 0.45;
   }
 
   .cta-short {
