@@ -191,7 +191,7 @@ if (isSanityConfigured) {
           headers: { Accept: "application/json" },
         });
         if (res.ok) {
-          form.hidden = true;
+          form.style.display = "none";
           document.querySelector(".form-success").hidden = false;
         } else {
           btn.disabled = false;
