@@ -13,7 +13,15 @@ const { src, alt = "The dining room at Urban Hearth" } = Astro.props;
 <div class="hero">
   {
     src ? (
-      <Image class="hero-img" src={src} alt={alt} />
+      <Image
+        class="hero-img"
+        src={src}
+        alt={alt}
+        widths={[800, 1200, 1600, 2400]}
+        sizes="100vw"
+        loading="eager"
+        fetchpriority="high"
+      />
     ) : (
       <div class="hero-placeholder">
         <span class="hero-placeholder-label">

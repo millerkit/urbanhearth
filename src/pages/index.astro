@@ -1,8 +1,10 @@
 ---
+import { Image } from "astro:assets";
 import { getSiteSettings } from "../lib/site-settings";
 
-import DiningRoomRendering from "../assets/photos/DiningRoomPhoto.jpeg";
-import ChefsCounterRendering from "../assets/photos/ChefsCounterPhoto.png";
+import DiningRoomHeroPhoto from "../assets/photos/DiningRoomHero.jpeg";
+import DiningRoomTeaser from "../assets/photos/DiningRoomTeaser.jpeg";
+import ChefsCounterTeaser from "../assets/photos/ChefsCounterTeaser.jpeg";
 import BarRendering from "../assets/photos/SalonPhoto.jpeg";
 import michelinSeal from "../assets/ui/michelin-selected.png";
 import jamesBeardSeal from "../assets/ui/james-beard-seal.png";
@@ -90,7 +92,7 @@ const restaurantJsonLd = {
     </p>
   </div>
 
-  <Hero src={DiningRoomRendering} />
+  <Hero src={DiningRoomHeroPhoto} />
 
   <IntroStatement />
 
@@ -98,11 +100,13 @@ const restaurantJsonLd = {
     <div class="teasers-grid">
       <a href="/dining-areas#dining-room" class="teaser">
         <div class="teaser-photo-wrap">
-          <img
-            src={DiningRoomRendering.src}
+          <Image
+            src={DiningRoomTeaser}
             alt="The Dining Room at Urban Hearth"
             class="teaser-photo"
-            loading="eager"
+            widths={[400, 800]}
+            sizes="(max-width: 780px) 100vw, 33vw"
+            loading="lazy"
           />
         </div>
         <div class="teaser-body">
@@ -113,10 +117,12 @@ const restaurantJsonLd = {
       <div class="teaser-mid-col">
         <a href="/dining-areas#chefs-counter" class="teaser">
           <div class="teaser-photo-wrap">
-            <img
-              src={ChefsCounterRendering.src}
+            <Image
+              src={ChefsCounterTeaser}
               alt="The Chef's Counter at Urban Hearth"
               class="teaser-photo"
+              widths={[400, 800]}
+              sizes="(max-width: 780px) 100vw, 33vw"
               loading="lazy"
             />
           </div>

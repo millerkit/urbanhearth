@@ -47,7 +47,7 @@ const areas = JSON.parse(
 
 // Local photo fallbacks keyed by area id
 const localPhotos = {
-  "dining-room": "src/assets/photos/DiningRoomPhoto.jpeg",
+  "dining-room": "src/assets/photos/DiningRoomHero.jpeg",
   "chefs-counter": "src/assets/photos/ChefsCounterPhoto.png",
   salon: "src/assets/photos/SalonPhoto.jpeg",
 };
