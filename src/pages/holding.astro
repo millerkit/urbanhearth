@@ -1,0 +1,238 @@
+---
+import logo from "../assets/brand/UrbanHearth_Logo_BLACK.png";
+import charcoal from "../assets/charcoal/Charcoal_art_1.jpg";
+import instagramGlyph from "../assets/ui/Instagram_Glyph_Black.jpg";
+
+const reservationHref = "https://www.opentable.com/r/urban-hearth-cambridge";
+const instagramHref = "https://www.instagram.com/urban_hearth";
+const newsletterHref =
+  "https://www.toasttab.com/urban-hearth-2263-massachusetts-ave/marketing-signup";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Urban Hearth — Cambridge, MA</title>
+    <meta
+      name="description"
+      content="A quiet refuge from the city. Seasonal cooking and unhurried hospitality in Inman Square Cambridge."
+    />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:ital,wght@0,200;0,300;0,400&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <img src={charcoal.src} alt="" class="charcoal-bg" />
+    <header>
+      <a href="/" aria-label="Urban Hearth">
+        <img src={logo.src} alt="Urban Hearth" width="240" />
+      </a>
+    </header>
+
+    <main>
+      <a
+        href={reservationHref}
+        class="reservation-link"
+        target="_blank"
+        rel="noopener noreferrer">Reserve</a
+      >
+    </main>
+
+    <footer>
+      <a
+        href={instagramHref}
+        class="instagram-link"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Urban Hearth on Instagram"
+      >
+        <img src={instagramGlyph.src} alt="" class="instagram-glyph" />
+      </a>
+      <div class="foot-center">
+        <a
+          href={newsletterHref}
+          class="learn-btn"
+          target="_blank"
+          rel="noopener noreferrer">Learn</a
+        >
+      </div>
+      <div class="foot-right">
+        <a href="mailto:press@urbanhearth.net" class="press-link"
+          >Media Inquiries</a
+        >
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style>
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  :root {
+    --parchment: #e8e3df;
+    --midnight: #162235;
+    --sans: "DM Sans", sans-serif;
+  }
+
+  html,
+  body {
+    height: 100%;
+  }
+
+  body {
+    background: var(--parchment);
+    color: var(--midnight);
+    font-family: var(--sans);
+    -webkit-font-smoothing: antialiased;
+    min-height: 100dvh;
+  }
+
+  .charcoal-bg {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 40%;
+    mix-blend-mode: multiply;
+    opacity: 0.55;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  header {
+    position: fixed;
+    top: -3.5rem;
+    left: 1.5rem;
+    z-index: 1;
+  }
+
+  header img {
+    display: block;
+    width: 320px;
+    height: auto;
+    mix-blend-mode: multiply;
+    filter: contrast(1.4);
+  }
+
+  main {
+    position: relative;
+    z-index: 1;
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .reservation-link {
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--midnight);
+    text-decoration: none;
+    border-bottom: 1px solid var(--midnight);
+    padding-bottom: 3px;
+    margin-top: 14vh;
+    transition: opacity 0.2s;
+  }
+
+  .reservation-link:hover {
+    opacity: 0.5;
+  }
+
+  footer {
+    position: fixed;
+    bottom: 2rem;
+    left: 2rem;
+    right: 2rem;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: end;
+    z-index: 1;
+  }
+
+  .foot-center {
+    display: flex;
+    justify-content: center;
+  }
+
+  .foot-right {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .press-link {
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--midnight);
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+
+  .press-link:hover {
+    opacity: 0.5;
+  }
+
+  .instagram-link {
+    display: block;
+    color: var(--midnight);
+    transition: opacity 0.2s;
+  }
+
+  .instagram-link:hover {
+    opacity: 0.5;
+  }
+
+  .instagram-glyph {
+    display: block;
+    width: 22px;
+    height: 22px;
+    mix-blend-mode: multiply;
+  }
+
+  .learn-btn {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--midnight);
+    text-decoration: none;
+    background: var(--parchment);
+    border: 1px solid var(--midnight);
+    padding: 0.55rem 1.1rem;
+    transition: opacity 0.2s;
+  }
+
+  .learn-btn:hover {
+    opacity: 0.6;
+  }
+
+  @media (max-width: 600px) {
+    footer {
+      grid-template-columns: auto 1fr;
+      grid-template-rows: auto auto;
+      gap: 1.25rem;
+    }
+
+    .foot-center {
+      grid-column: 1 / -1;
+      justify-content: flex-start;
+    }
+  }
+</style>
