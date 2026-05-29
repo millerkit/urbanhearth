@@ -2,6 +2,8 @@
 import logo from "../assets/brand/UrbanHearth_Logo_BLACK.png";
 import charcoal from "../assets/charcoal/Charcoal_art_1.jpg";
 import instagramGlyph from "../assets/ui/Instagram_Glyph_Black.jpg";
+import michelinSeal from "../assets/ui/michelin-selected.png";
+import jamesBeardSeal from "../assets/ui/james-beard-seal.png";
 
 const reservationHref = "https://www.opentable.com/r/urban-hearth-cambridge";
 const instagramHref = "https://www.instagram.com/urban_hearth";
@@ -28,15 +30,38 @@ const instagramHref = "https://www.instagram.com/urban_hearth";
   <body>
     <img src={charcoal.src} alt="" class="charcoal-bg" />
     <aside class="site-info">
-      <span>1281 Cambridge St</span>
+      <span>1281 Cambridge St</span><span>Inman Square, Cambridge</span>
       <a href="tel:6176827295">617 682 7295</a>
     </aside>
     <header>
       <a href="/" aria-label="Urban Hearth">
         <img src={logo.src} alt="Urban Hearth" width="240" />
       </a>
-      <p class="location">Inman Square, Cambridge.</p>
     </header>
+    <div class="brand-block">
+      <div class="header-seals">
+        <a
+          href="https://guide.michelin.com/us/en/massachusetts/cambridge_2914793/restaurant/urban-hearth"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Michelin Selected 2025"
+        >
+          <img src={michelinSeal.src} alt="" class="header-seal" />
+        </a>
+        <a
+          href="https://www.jamesbeard.org/stories/2025-james-beard-awards-restaurant-and-chef-nominees"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="James Beard Foundation Nominee 2025"
+        >
+          <img
+            src={jamesBeardSeal.src}
+            alt=""
+            class="header-seal header-seal--jb"
+          />
+        </a>
+      </div>
+    </div>
 
     <main>
       <a
@@ -127,7 +152,7 @@ const instagramHref = "https://www.instagram.com/urban_hearth";
   body {
     background: var(--parchment);
     color: var(--midnight);
-    font-family: var(--sans);
+    font-family: var(--sans), sans-serif;
     -webkit-font-smoothing: antialiased;
     min-height: 100dvh;
   }
@@ -147,12 +172,12 @@ const instagramHref = "https://www.instagram.com/urban_hearth";
 
   header {
     position: fixed;
-    top: -3.5rem;
+    top: -4.5rem;
     left: 1.5rem;
     z-index: 1;
   }
 
-  header img {
+  header > a img {
     display: block;
     width: 320px;
     height: auto;
@@ -160,15 +185,24 @@ const instagramHref = "https://www.instagram.com/urban_hearth";
     filter: contrast(1.4);
   }
 
+  .brand-block {
+    position: fixed;
+    top: 4.5rem;
+    left: 8rem;
+    z-index: 1;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
   .location {
-    font-family: var(--sans);
+    font-family: var(--sans), sans-serif;
     font-size: 11px;
     font-weight: 400;
     letter-spacing: 0.25em;
     text-transform: uppercase;
     color: var(--charcoal);
-    margin-top: -4.5rem;
-    padding-left: 3.5rem;
+    align-self: flex-start;
   }
 
   .site-info {
@@ -183,7 +217,7 @@ const instagramHref = "https://www.instagram.com/urban_hearth";
 
   .site-info span,
   .site-info a {
-    font-family: var(--sans);
+    font-family: var(--sans), sans-serif;
     font-size: 11px;
     font-weight: 300;
     letter-spacing: 0.12em;
@@ -210,6 +244,32 @@ const instagramHref = "https://www.instagram.com/urban_hearth";
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  .header-seals {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    margin-top: 0.85rem;
+  }
+
+  .header-seal {
+    display: block;
+    width: 39px;
+    height: 39px;
+    object-fit: contain;
+    mix-blend-mode: multiply;
+    opacity: 0.85;
+    transition: opacity 0.2s;
+  }
+
+  .header-seal--jb {
+    width: 46px;
+    height: 46px;
+  }
+
+  .header-seal:hover {
+    opacity: 0.6;
   }
 
   .reservation-link {
