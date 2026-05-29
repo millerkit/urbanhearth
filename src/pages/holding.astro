@@ -4,6 +4,7 @@ import charcoal from "../assets/charcoal/Charcoal_art_1.jpg";
 import instagramGlyph from "../assets/ui/Instagram_Glyph_Black.jpg";
 import michelinSeal from "../assets/ui/michelin-selected.png";
 import jamesBeardSeal from "../assets/ui/james-beard-seal.png";
+import restaurant from "../content/restaurant.json";
 
 const reservationHref = "https://www.opentable.com/r/urban-hearth-cambridge";
 const instagramHref = "https://www.instagram.com/urban_hearth";
@@ -15,10 +16,7 @@ const instagramHref = "https://www.instagram.com/urban_hearth";
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Urban Hearth — Cambridge, MA</title>
-    <meta
-      name="description"
-      content="A quiet refuge from the city. Seasonal cooking and unhurried hospitality in Inman Square Cambridge."
-    />
+    <meta name="description" content={restaurant.tagline} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
