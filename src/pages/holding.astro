@@ -5,8 +5,6 @@ import instagramGlyph from "../assets/ui/Instagram_Glyph_Black.jpg";
 
 const reservationHref = "https://www.opentable.com/r/urban-hearth-cambridge";
 const instagramHref = "https://www.instagram.com/urban_hearth";
-const newsletterHref =
-  "https://www.toasttab.com/urban-hearth-2263-massachusetts-ave/marketing-signup";
 ---
 
 <!doctype html>
@@ -29,10 +27,15 @@ const newsletterHref =
   </head>
   <body>
     <img src={charcoal.src} alt="" class="charcoal-bg" />
+    <aside class="site-info">
+      <span>1281 Cambridge St</span>
+      <a href="tel:6176827295">617 682 7295</a>
+    </aside>
     <header>
       <a href="/" aria-label="Urban Hearth">
         <img src={logo.src} alt="Urban Hearth" width="240" />
       </a>
+      <p class="location">Inman Square, Cambridge.</p>
     </header>
 
     <main>
@@ -55,12 +58,37 @@ const newsletterHref =
         <img src={instagramGlyph.src} alt="" class="instagram-glyph" />
       </a>
       <div class="foot-center">
-        <a
-          href={newsletterHref}
-          class="learn-btn"
-          target="_blank"
-          rel="noopener noreferrer">Learn</a
-        >
+        <button id="learn-trigger" class="learn-btn">Learn</button>
+        <form id="signup-form" class="signup-form" novalidate hidden>
+          <input
+            type="text"
+            name="first_name"
+            placeholder="First"
+            required
+            class="signup-input"
+            autocomplete="given-name"
+          />
+          <input
+            type="text"
+            name="last_name"
+            placeholder="Last"
+            required
+            class="signup-input"
+            autocomplete="family-name"
+          />
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            required
+            class="signup-input signup-input--email"
+            autocomplete="email"
+          />
+          <button type="submit" class="signup-submit" aria-label="Subscribe"
+            >→</button
+          >
+        </form>
+        <p id="signup-thanks" class="signup-thanks" hidden>Thank you</p>
       </div>
       <div class="foot-right">
         <a href="mailto:press@urbanhearth.net" class="press-link"
@@ -80,9 +108,14 @@ const newsletterHref =
     padding: 0;
   }
 
+  [hidden] {
+    display: none !important;
+  }
+
   :root {
     --parchment: #e8e3df;
     --midnight: #162235;
+    --charcoal: #706f6d;
     --sans: "DM Sans", sans-serif;
   }
 
@@ -125,6 +158,49 @@ const newsletterHref =
     height: auto;
     mix-blend-mode: multiply;
     filter: contrast(1.4);
+  }
+
+  .location {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--charcoal);
+    margin-top: -4.5rem;
+    padding-left: 3.5rem;
+  }
+
+  .site-info {
+    position: fixed;
+    top: 1.5rem;
+    right: 2rem;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 1.75rem;
+  }
+
+  .site-info span,
+  .site-info a {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--midnight);
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+
+  .site-info a:hover {
+    opacity: 0.5;
+  }
+
+  @media (max-width: 900px) {
+    .site-info {
+      display: none;
+    }
   }
 
   main {
@@ -206,21 +282,76 @@ const newsletterHref =
   }
 
   .learn-btn {
-    display: inline-block;
+    font-family: var(--sans);
     font-size: 11px;
     font-weight: 300;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--midnight);
-    text-decoration: none;
     background: var(--parchment);
     border: 1px solid var(--midnight);
     padding: 0.55rem 1.1rem;
+    cursor: pointer;
     transition: opacity 0.2s;
   }
 
   .learn-btn:hover {
     opacity: 0.6;
+  }
+
+  .signup-form {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.75rem;
+  }
+
+  .signup-input {
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    color: var(--midnight);
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--midnight);
+    padding: 0.25rem 0;
+    width: 96px;
+    outline: none;
+  }
+
+  .signup-input--email {
+    width: 180px;
+  }
+
+  .signup-input::placeholder {
+    color: var(--midnight);
+    opacity: 0.45;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+
+  .signup-submit {
+    font-family: var(--sans);
+    font-size: 13px;
+    background: var(--midnight);
+    border: 1px solid var(--midnight);
+    color: var(--parchment);
+    cursor: pointer;
+    padding: 0.35rem 0.7rem;
+    line-height: 1;
+    transition: opacity 0.2s;
+  }
+
+  .signup-submit:hover {
+    opacity: 0.7;
+  }
+
+  .signup-thanks {
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--midnight);
   }
 
   @media (max-width: 600px) {
@@ -234,5 +365,44 @@ const newsletterHref =
       grid-column: 1 / -1;
       justify-content: flex-start;
     }
+
+    .signup-form {
+      flex-wrap: wrap;
+      gap: 0.6rem 0.75rem;
+    }
+
+    .signup-input--email {
+      width: 160px;
+    }
   }
 </style>
+
+<script>
+  const trigger = document.getElementById("learn-trigger") as HTMLButtonElement;
+  const form = document.getElementById("signup-form") as HTMLFormElement;
+  const thanks = document.getElementById("signup-thanks") as HTMLElement;
+
+  trigger.addEventListener("click", () => {
+    trigger.hidden = true;
+    form.hidden = false;
+    (form.querySelector("input") as HTMLInputElement).focus();
+  });
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const data = new FormData(form);
+    try {
+      const res = await fetch("https://formspree.io/f/meeddqvl", {
+        method: "POST",
+        body: data,
+        headers: { Accept: "application/json" },
+      });
+      if (res.ok) {
+        form.hidden = true;
+        thanks.hidden = false;
+      }
+    } catch {
+      // silent fail — form stays visible so visitor can retry
+    }
+  });
+</script>
