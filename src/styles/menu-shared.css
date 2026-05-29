@@ -6,7 +6,7 @@
 }
 
 .menu-eyebrow {
-  font-family: var(--sans), sans-serif;
+  font-family: var(--font-header-action), sans-serif;
   font-size: 13px;
   font-weight: 300;
   letter-spacing: 0.2em;
@@ -16,7 +16,7 @@
 }
 
 .menu-label {
-  font-family: var(--sans), sans-serif;
+  font-family: var(--font-header-action), sans-serif;
   font-size: 12px;
   font-weight: 300;
   letter-spacing: 0.2em;
@@ -25,7 +25,7 @@
 }
 
 .dish-name {
-  font-family: var(--serif), serif;
+  font-family: var(--font-body), serif;
   font-size: var(--text-base);
   font-weight: 300;
   letter-spacing: 0.03em;
@@ -34,7 +34,7 @@
 }
 
 .dish-desc {
-  font-family: var(--sans), sans-serif;
+  font-family: var(--font-header-action), sans-serif;
   font-size: var(--text-sm);
   font-weight: 300;
   letter-spacing: 0.04em;
@@ -44,7 +44,7 @@
 }
 
 .menu-fine-print {
-  font-family: var(--sans), sans-serif;
+  font-family: var(--font-header-action), sans-serif;
   font-size: 11px;
   font-weight: 300;
   font-style: italic;

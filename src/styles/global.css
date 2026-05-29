@@ -1,4 +1,24 @@
-@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:ital,wght@0,200;0,300;0,400;1,300&family=Outfit:wght@200;300;400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap");
+
+@font-face {
+  font-family: "ContaxSans35";
+  src:
+    url("../assets/fonts/ContaxSans35Thin.woff2") format("woff2"),
+    url("../assets/fonts/ContaxSans35Thin.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "BasicCommercial";
+  src:
+    url("../assets/fonts/AkzidenzGroteskW1GLight.woff2") format("woff2"),
+    url("../assets/fonts/AkzidenzGroteskW1GLight.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
 
 *,
 *::before,
@@ -20,10 +40,10 @@
   --ink-mid: #706f6d; /* = charcoal; secondary text */
   --ink-light: #706f6d; /* alias to charcoal — #A9A8A6 was too low-contrast */
   --border: rgba(22, 34, 53, 0.1);
-  --serif:
+  --font-body:
     "Cormorant Garamond", Georgia, serif; /* Cardinal Classic Short substitute */
-  --sans: "DM Sans", sans-serif; /* Basic Commercial substitute */
-  --display: "Outfit", sans-serif; /* Contax Sans substitute — headlines only */
+  --font-header-action: "BasicCommercial", sans-serif;
+  --font-headline: "ContaxSans35", sans-serif; /* headlines only */
 
   /* Type scale */
   --text-fine: 11px; /* nav chrome, CTAs, decorative separators */
@@ -43,13 +63,13 @@ html {
 body {
   background: var(--warm-white);
   color: var(--ink);
-  font-family: var(--serif), serif;
+  font-family: var(--font-body), serif;
   -webkit-font-smoothing: antialiased;
 }
 
 /* Shared utility classes */
 .section-eyebrow {
-  font-family: var(--sans), sans-serif;
+  font-family: var(--font-header-action), sans-serif;
   font-size: var(--text-label);
   font-weight: 300;
   letter-spacing: 0.22em;
@@ -59,7 +79,7 @@ body {
 
 .text-cta {
   display: inline-block;
-  font-family: var(--sans), sans-serif;
+  font-family: var(--font-header-action), sans-serif;
   font-size: 11px;
   font-weight: 300;
   letter-spacing: 0.18em;
@@ -76,7 +96,7 @@ body {
 }
 
 .page-header h1 {
-  font-family: var(--serif) serif;
+  font-family: var(--font-body) serif;
   font-size: clamp(1.75rem, 4vw, 2.75rem);
   font-weight: 300;
   letter-spacing: 0.1em;

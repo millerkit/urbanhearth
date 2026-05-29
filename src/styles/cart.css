@@ -24,7 +24,7 @@
 }
 
 .cart-btn__label {
-  font-family: var(--sans), sans-serif;
+  font-family: var(--font-header-action), sans-serif;
   font-size: 11px;
   font-weight: 300;
   letter-spacing: 0.12em;
@@ -38,7 +38,7 @@
   right: -5px;
   background: var(--ink);
   color: var(--warm-white);
-  font-family: var(--sans), sans-serif;
+  font-family: var(--font-header-action), sans-serif;
   font-size: 9px;
   font-weight: 400;
   width: 16px;
@@ -102,7 +102,7 @@
 }
 
 .cart-drawer__title {
-  font-family: var(--serif), serif;
+  font-family: var(--font-body), serif;
   font-size: 1.375rem;
   font-weight: 300;
   letter-spacing: 0.04em;
@@ -168,7 +168,7 @@
 }
 
 .cart-item__name {
-  font-family: var(--sans), sans-serif;
+  font-family: var(--font-header-action), sans-serif;
   font-size: 11px;
   font-weight: 300;
   letter-spacing: 0.1em;
@@ -178,7 +178,7 @@
 }
 
 .cart-item__price {
-  font-family: var(--sans), sans-serif;
+  font-family: var(--font-header-action), sans-serif;
   font-size: 12px;
   font-weight: 300;
   letter-spacing: 0.04em;
@@ -202,7 +202,7 @@
   align-items: center;
   justify-content: center;
   color: var(--ink);
-  font-family: var(--sans), sans-serif;
+  font-family: var(--font-header-action), sans-serif;
   font-size: 15px;
   font-weight: 300;
   transition: background 0.15s;
@@ -214,7 +214,7 @@
 }
 
 .cart-item__qty {
-  font-family: var(--sans), sans-serif;
+  font-family: var(--font-header-action), sans-serif;
   font-size: 12px;
   font-weight: 300;
   letter-spacing: 0.06em;
@@ -236,7 +236,7 @@
   border: none;
   cursor: pointer;
   color: var(--ink-mid);
-  font-family: var(--sans), sans-serif;
+  font-family: var(--font-header-action), sans-serif;
   font-size: 18px;
   font-weight: 300;
   margin-left: auto;
@@ -264,7 +264,7 @@
 }
 
 .cart-empty__text {
-  font-family: var(--serif), serif;
+  font-family: var(--font-body), serif;
   font-size: 1.125rem;
   font-weight: 300;
   color: var(--ink-mid);
@@ -272,7 +272,7 @@
 }
 
 .cart-empty__link {
-  font-family: var(--sans), sans-serif;
+  font-family: var(--font-header-action), sans-serif;
   font-size: 11px;
   font-weight: 300;
   letter-spacing: 0.18em;
@@ -306,7 +306,7 @@
 }
 
 .cart-subtotal__label {
-  font-family: var(--sans), sans-serif;
+  font-family: var(--font-header-action), sans-serif;
   font-size: 11px;
   font-weight: 300;
   letter-spacing: 0.18em;
@@ -315,7 +315,7 @@
 }
 
 .cart-subtotal__amount {
-  font-family: var(--serif), serif;
+  font-family: var(--font-body), serif;
   font-size: 1.25rem;
   font-weight: 300;
   color: var(--ink);
@@ -324,7 +324,7 @@
 
 .cart-checkout-btn {
   width: 100%;
-  font-family: var(--sans), sans-serif;
+  font-family: var(--font-header-action), sans-serif;
   font-size: 11px;
   font-weight: 300;
   letter-spacing: 0.2em;
@@ -347,7 +347,7 @@
 }
 
 .cart-error {
-  font-family: var(--sans), sans-serif;
+  font-family: var(--font-header-action), sans-serif;
   font-size: 11px;
   font-weight: 300;
   letter-spacing: 0.04em;
@@ -357,7 +357,7 @@
 }
 
 .cart-pickup-note {
-  font-family: var(--sans), sans-serif;
+  font-family: var(--font-header-action), sans-serif;
   font-size: 10px;
   font-weight: 300;
   letter-spacing: 0.05em;
