@@ -1,8 +1,7 @@
 ---
 import logo from "../assets/brand/UrbanHearth_Logo.png";
 import charcoal from "../assets/charcoal/Charcoal_art_5.jpg";
-import instagramGlyph from "../assets/ui/Instagram_Glyph_Black.jpg";
-import michelinSeal from "../assets/ui/michelin-selected.png";
+import michelinSeal from "../assets/ui/michelin_selected_2025_Round_Black.png";
 import jamesBeardSeal from "../assets/ui/james-beard-seal.png";
 import restaurant from "../content/restaurant.json";
 
@@ -31,6 +30,45 @@ const instagramHref = "https://www.instagram.com/urban_hearth";
       <span>1281 Cambridge St</span>
       <a href="tel:6176827295">617 682 7295</a>
     </aside>
+    <div class="top-left">
+      <button id="learn-trigger" class="learn-btn">Learn</button>
+      <form id="signup-form" class="signup-form" novalidate hidden>
+        <label>
+          <input
+            type="text"
+            name="first_name"
+            placeholder="First"
+            required
+            class="signup-input"
+            autocomplete="given-name"
+          />
+        </label>
+        <label>
+          <input
+            type="text"
+            name="last_name"
+            placeholder="Last"
+            required
+            class="signup-input"
+            autocomplete="family-name"
+          />
+        </label>
+        <label>
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            required
+            class="signup-input signup-input--email"
+            autocomplete="email"
+          />
+        </label>
+        <button type="submit" class="signup-submit" aria-label="Subscribe"
+          >→</button
+        >
+      </form>
+      <p id="signup-thanks" class="signup-thanks" hidden>Thank you</p>
+    </div>
     <main>
       <div class="splash-block">
         <img src={logo.src} alt="Urban Hearth" class="splash-logo" />
@@ -54,47 +92,18 @@ const instagramHref = "https://www.instagram.com/urban_hearth";
         rel="noopener noreferrer"
         aria-label="Urban Hearth on Instagram"
       >
-        <img src={instagramGlyph.src} alt="" class="instagram-glyph" />
+        <svg
+          class="instagram-glyph"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+        >
+          <path
+            d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"
+          ></path>
+        </svg>
       </a>
-      <div class="foot-center">
-        <button id="learn-trigger" class="learn-btn">Learn</button>
-        <form id="signup-form" class="signup-form" novalidate hidden>
-          <label>
-            <input
-              type="text"
-              name="first_name"
-              placeholder="First"
-              required
-              class="signup-input"
-              autocomplete="given-name"
-            />
-          </label>
-          <label>
-            <input
-              type="text"
-              name="last_name"
-              placeholder="Last"
-              required
-              class="signup-input"
-              autocomplete="family-name"
-            />
-          </label>
-          <label>
-            <input
-              type="email"
-              name="email"
-              placeholder="Email"
-              required
-              class="signup-input signup-input--email"
-              autocomplete="email"
-            />
-          </label>
-          <button type="submit" class="signup-submit" aria-label="Subscribe"
-            >→</button
-          >
-        </form>
-        <p id="signup-thanks" class="signup-thanks" hidden>Thank you</p>
-      </div>
+
       <div class="foot-right">
         <a
           href="https://guide.michelin.com/us/en/massachusetts/cambridge_2914793/restaurant/urban-hearth"
@@ -151,7 +160,7 @@ const instagramHref = "https://www.instagram.com/urban_hearth";
 
   body {
     background: var(--parchment);
-    color: var(--midnight);
+    color: var(--charcoal);
     font-family: var(--font-header-action), sans-serif;
     -webkit-font-smoothing: antialiased;
     min-height: 100dvh;
@@ -171,9 +180,14 @@ const instagramHref = "https://www.instagram.com/urban_hearth";
   }
 
   .splash-block {
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     display: flex;
     flex-direction: column;
     align-items: center;
+    z-index: 1;
   }
 
   .splash-logo {
@@ -218,7 +232,7 @@ const instagramHref = "https://www.instagram.com/urban_hearth";
     font-weight: 300;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--midnight);
+    color: var(--charcoal);
     text-decoration: none;
     transition: opacity 0.2s;
   }
@@ -238,10 +252,8 @@ const instagramHref = "https://www.instagram.com/urban_hearth";
     z-index: 1;
     min-height: 100dvh;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 3rem;
   }
 
   .footer-seal {
@@ -264,15 +276,20 @@ const instagramHref = "https://www.instagram.com/urban_hearth";
   }
 
   .reservation-link {
+    position: fixed;
+    top: 60%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
     font-size: 16px;
     font-weight: 400;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: var(--midnight);
+    color: var(--charcoal);
     text-decoration: none;
-    border-bottom: 1px solid var(--midnight);
+    border-bottom: 1px solid var(--charcoal);
     padding-bottom: 3px;
-    margin-top: 14vh;
+    white-space: nowrap;
     transition: opacity 0.2s;
   }
 
@@ -280,27 +297,31 @@ const instagramHref = "https://www.instagram.com/urban_hearth";
     opacity: 0.5;
   }
 
+  .top-left {
+    position: fixed;
+    top: 1.5rem;
+    left: 2rem;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+  }
+
   footer {
     position: fixed;
     bottom: 2rem;
-    left: 2rem;
+    left: 4rem;
     right: 2rem;
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
     z-index: 1;
-  }
-
-  .foot-center {
-    display: flex;
-    justify-content: center;
   }
 
   .foot-right {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    gap: 1.25rem;
+    gap: 0.65rem;
   }
 
   .press-link {
@@ -308,9 +329,10 @@ const instagramHref = "https://www.instagram.com/urban_hearth";
     font-weight: 400;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--midnight);
+    color: var(--charcoal);
     text-decoration: none;
     transition: opacity 0.2s;
+    margin-left: 1.5rem;
   }
 
   .press-link:hover {
@@ -319,7 +341,7 @@ const instagramHref = "https://www.instagram.com/urban_hearth";
 
   .instagram-link {
     display: block;
-    color: var(--midnight);
+    color: var(--charcoal);
     transition: opacity 0.2s;
   }
 
@@ -329,20 +351,20 @@ const instagramHref = "https://www.instagram.com/urban_hearth";
 
   .instagram-glyph {
     display: block;
-    width: 22px;
-    height: 22px;
-    mix-blend-mode: multiply;
+    width: 28px;
+    height: 28px;
+    fill: var(--charcoal);
   }
 
   .learn-btn {
-    font-family: var(--font-header-action);
+    font-family: var(--font-header-action), sans-serif;
     font-size: 11px;
     font-weight: 300;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--midnight);
+    color: var(--charcoal);
     background: var(--parchment);
-    border: 1px solid var(--midnight);
+    border: 1px solid var(--charcoal);
     padding: 0.55rem 1.1rem;
     cursor: pointer;
     transition: opacity 0.2s;
@@ -359,11 +381,11 @@ const instagramHref = "https://www.instagram.com/urban_hearth";
   }
 
   .signup-input {
-    font-family: var(--font-header-action);
+    font-family: var(--font-header-action), sans-serif;
     font-size: 12px;
     font-weight: 300;
     letter-spacing: 0.1em;
-    color: var(--midnight);
+    color: var(--charcoal);
     background: transparent;
     border: none;
     border-bottom: 1px solid var(--midnight);
@@ -384,7 +406,7 @@ const instagramHref = "https://www.instagram.com/urban_hearth";
   }
 
   .signup-submit {
-    font-family: var(--font-header-action);
+    font-family: var(--font-header-action), sans-serif;
     font-size: 13px;
     background: var(--midnight);
     border: 1px solid var(--midnight);
