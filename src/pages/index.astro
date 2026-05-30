@@ -8,7 +8,7 @@ import ChefsCounterTeaser from "../assets/photos/ChefsCounterTeaser.jpeg";
 import BarRendering from "../assets/photos/SalonPhoto.jpeg";
 import michelinSeal from "../assets/ui/michelin-selected.png";
 import jamesBeardSeal from "../assets/ui/james-beard-seal.png";
-import splashLogo from "../assets/brand/UrbanHearth_Logo_BLACK_cropped.png";
+import splashLogo from "../assets/brand/UrbanHearth_Logo.png";
 import IntroStatement from "../components/IntroStatement.astro";
 import Hero from "../components/Hero.astro";
 import Base from "../layouts/Base.astro";
@@ -87,8 +87,7 @@ const restaurantJsonLd = {
   <div id="splash" aria-hidden="true">
     <img src={splashLogo.src} alt="Urban Hearth" class="splash-logo" />
     <p class="splash-location">
-      <span>Inman Square</span>
-      <span>Cambridge, Massachusetts</span>
+      <span>Inman Square&nbsp;&nbsp;|&nbsp;&nbsp;Cambridge</span>
     </p>
   </div>
 
@@ -327,23 +326,23 @@ const restaurantJsonLd = {
   }
 
   #splash .splash-logo {
-    width: min(240px, 48vw);
+    width: min(320px, 58vw);
     height: auto;
+    mix-blend-mode: multiply;
+    filter: contrast(1.4);
     animation: splash-logo-in 0.7s ease forwards;
   }
 
   #splash .splash-location {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    gap: 0.35rem;
-    margin-top: 2.75rem;
+    margin-top: -6rem;
     animation: splash-logo-in 0.7s ease 0.3s both;
   }
 
   #splash .splash-location span {
     font-family: var(--font-header-action), sans-serif;
-    font-size: 10px;
+    font-size: 11px;
     font-weight: 400;
     letter-spacing: 0.25em;
     text-transform: uppercase;
