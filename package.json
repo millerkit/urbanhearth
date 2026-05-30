@@ -22,12 +22,12 @@
     "prepare": "git config core.hooksPath .githooks"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "^13.3.1",
-    "@astrojs/react": "^5.0.5",
-    "@astrojs/sitemap": "^3.7.2",
+    "@astrojs/cloudflare": "^13.6.0",
+    "@astrojs/react": "^5.0.6",
+    "@astrojs/sitemap": "^3.7.3",
     "@portabletext/to-html": "^5.0.2",
     "@sanity/client": "^7.22.0",
-    "astro": "^6.2.1",
+    "astro": "^6.4.2",
     "sharp": "^0.34.5",
     "stripe": "^22.1.1",
     "styled-components": "^6.4.1",
@@ -44,6 +44,6 @@
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
     "sanity": "^5.24.0",
-    "wrangler": "^4.88.0"
+    "wrangler": "^4.95.0"
   }
 }
