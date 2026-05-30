@@ -342,7 +342,9 @@ const instagramHref = "https://www.instagram.com/urban_hearth";
     color: var(--charcoal);
     text-decoration: none;
     transition: opacity 0.2s;
-    margin-left: 1.5rem;
+    position: absolute;
+    left: 49%;
+    transform: translateX(-50%);
   }
 
   .press-link:hover {
@@ -496,7 +498,8 @@ const instagramHref = "https://www.instagram.com/urban_hearth";
     }
 
     .press-link {
-      margin-left: 0;
+      position: static;
+      transform: none;
     }
 
     .foot-right {
