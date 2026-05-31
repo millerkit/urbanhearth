@@ -70,6 +70,9 @@ const instagramHref = "https://www.instagram.com/urban_hearth";
         <button type="submit" class="signup-submit" aria-label="Subscribe"
           >→</button
         >
+        <p id="signup-error" class="signup-error" hidden>
+          Please fill out all fields
+        </p>
       </form>
       <p id="signup-thanks" class="signup-thanks" hidden>Thank you</p>
     </div>
@@ -414,6 +417,22 @@ const instagramHref = "https://www.instagram.com/urban_hearth";
     width: 180px;
   }
 
+  .signup-input--error {
+    border-bottom-color: #c0392b;
+  }
+
+  .signup-error {
+    font-family: var(--font-header-action), sans-serif;
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    color: #c0392b;
+    text-transform: uppercase;
+    margin: 0.4rem 0 0;
+    text-align: center;
+    width: 100%;
+  }
+
   .signup-input::placeholder {
     color: var(--midnight);
     opacity: 0.45;
@@ -535,6 +554,7 @@ const instagramHref = "https://www.instagram.com/urban_hearth";
   const trigger = document.getElementById("learn-trigger") as HTMLButtonElement;
   const form = document.getElementById("signup-form") as HTMLFormElement;
   const thanks = document.getElementById("signup-thanks") as HTMLElement;
+  const errorMsg = document.getElementById("signup-error") as HTMLElement;
 
   trigger.addEventListener("click", () => {
     trigger.hidden = true;
@@ -542,8 +562,36 @@ const instagramHref = "https://www.instagram.com/urban_hearth";
     (form.querySelector("input") as HTMLInputElement).focus();
   });
 
+  form.querySelectorAll("input").forEach((input) => {
+    input.addEventListener("input", () => {
+      input.classList.remove("signup-input--error");
+      errorMsg.hidden = true;
+    });
+  });
+
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
+    const inputs = form.querySelectorAll(
+      "input[required]",
+    ) as NodeListOf<HTMLInputElement>;
+    let firstInvalid: HTMLInputElement | null = null;
+    for (const input of inputs) {
+      const empty = !input.value.trim();
+      const badEmail =
+        input.type === "email" && input.value.trim() && !input.validity.valid;
+      if (empty || badEmail) {
+        input.classList.add("signup-input--error");
+        if (!firstInvalid) firstInvalid = input;
+      } else {
+        input.classList.remove("signup-input--error");
+      }
+    }
+    if (firstInvalid) {
+      errorMsg.hidden = false;
+      firstInvalid.focus();
+      return;
+    }
+    errorMsg.hidden = true;
     const data = new FormData(form);
     try {
       const res = await fetch("https://formspree.io/f/meeddqvl", {
