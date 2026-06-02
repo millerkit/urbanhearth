@@ -14,8 +14,34 @@ const instagramHref = "https://www.instagram.com/urban_hearth";
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Urban Hearth — Cambridge, MA</title>
+    <title>Urban Hearth Restaurant — Inman Square, Cambridge, MA</title>
     <meta name="description" content={restaurant.tagline} />
+    <link rel="canonical" href="https://www.urbanhearth.net/holding" />
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.urbanhearth.net/holding" />
+    <meta
+      property="og:title"
+      content="Urban Hearth Restaurant — Inman Square, Cambridge, MA"
+    />
+    <meta property="og:description" content={restaurant.tagline} />
+    <meta
+      property="og:image"
+      content="https://www.urbanhearth.net/og-image.jpg"
+    />
+    <meta property="og:image:width" content="1750" />
+    <meta property="og:image:height" content="1167" />
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Urban Hearth Restaurant — Inman Square, Cambridge, MA"
+    />
+    <meta name="twitter:description" content={restaurant.tagline} />
+    <meta
+      name="twitter:image"
+      content="https://www.urbanhearth.net/og-image.jpg"
+    />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -23,6 +49,45 @@ const instagramHref = "https://www.instagram.com/urban_hearth";
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:ital,wght@0,200;0,300;0,400&display=swap"
       rel="stylesheet"
     />
+    <!-- Restaurant structured data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Restaurant",
+        "name": "Urban Hearth",
+        "url": "https://www.urbanhearth.net",
+        "telephone": "+16176827295",
+        "servesCuisine": "American",
+        "priceRange": "$$$",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "1281 Cambridge St",
+          "addressLocality": "Cambridge",
+          "addressRegion": "MA",
+          "postalCode": "02139",
+          "addressCountry": "US"
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday",
+              "Saturday",
+              "Sunday"
+            ],
+            "opens": "17:00",
+            "closes": "22:00"
+          }
+        ],
+        "sameAs": [
+          "https://www.instagram.com/urban_hearth",
+          "https://www.facebook.com/urbanhearthcambridge"
+        ]
+      }
+    </script>
     <!-- Fathom - beautiful, simple website analytics -->
     <script src="https://cdn.usefathom.com/script.js" data-site="NZMAWAWM" defer
     ></script>
@@ -127,7 +192,11 @@ const instagramHref = "https://www.instagram.com/urban_hearth";
           rel="noopener noreferrer"
           aria-label="Michelin Selected 2025"
         >
-          <img src={michelinSeal.src} alt="" class="footer-seal" />
+          <img
+            src={michelinSeal.src}
+            alt="Michelin Selected 2025"
+            class="footer-seal"
+          />
         </a>
         <a
           href="https://www.jamesbeard.org/stories/2025-james-beard-awards-restaurant-and-chef-nominees"
@@ -137,7 +206,7 @@ const instagramHref = "https://www.instagram.com/urban_hearth";
         >
           <img
             src={jamesBeardSeal.src}
-            alt=""
+            alt="James Beard Foundation Nominee 2025"
             class="footer-seal footer-seal--jb"
           />
         </a>
