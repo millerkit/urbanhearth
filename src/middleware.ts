@@ -9,13 +9,7 @@ export const onRequest = defineMiddleware((context, next) => {
       pathname !== "/favicon.ico" &&
       pathname !== "/favicon.svg"
     ) {
-      return new Response(null, {
-        status: 302,
-        headers: {
-          Location: "/holding",
-          "Cache-Control": "no-store",
-        },
-      });
+      return context.rewrite("/holding");
     }
   }
   return next();
