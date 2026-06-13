@@ -2,7 +2,7 @@
 import { Image } from "astro:assets";
 import { getSiteSettings } from "../lib/site-settings";
 
-import DiningRoomHeroPhoto from "../assets/photos/DiningRoomHero.jpeg";
+import DiningRoomHeroPhoto from "../assets/photos/UrbanHearth-52.jpg";
 import DiningRoomTeaser from "../assets/photos/DiningRoomTeaser.jpeg";
 import ChefsCounterTeaser from "../assets/photos/ChefsCounterTeaser.jpeg";
 import BarRendering from "../assets/photos/SalonPhoto.jpeg";
@@ -101,7 +101,7 @@ const restaurantJsonLd = {
         <div class="teaser-photo-wrap">
           <Image
             src={DiningRoomTeaser}
-            alt="The Dining Room at Urban Hearth"
+            alt="Dining Room at Urban Hearth"
             class="teaser-photo"
             widths={[400, 800]}
             sizes="(max-width: 780px) 100vw, 33vw"
@@ -109,7 +109,7 @@ const restaurantJsonLd = {
           />
         </div>
         <div class="teaser-body">
-          <h2 class="teaser-title">The Dining Room</h2>
+          <h2 class="teaser-title">Dining Room</h2>
         </div>
       </a>
 
@@ -118,7 +118,7 @@ const restaurantJsonLd = {
           <div class="teaser-photo-wrap">
             <Image
               src={ChefsCounterTeaser}
-              alt="The Chef's Counter at Urban Hearth"
+              alt="Chef's Counter at Urban Hearth"
               class="teaser-photo"
               widths={[400, 800]}
               sizes="(max-width: 780px) 100vw, 33vw"
@@ -126,7 +126,7 @@ const restaurantJsonLd = {
             />
           </div>
           <div class="teaser-body">
-            <h2 class="teaser-title">The Chef's Counter</h2>
+            <h2 class="teaser-title">Chef's Counter</h2>
           </div>
         </a>
       </div>
@@ -135,20 +135,25 @@ const restaurantJsonLd = {
         <div class="teaser-photo-wrap">
           <img
             src={BarRendering.src}
-            alt="The Salon at Urban Hearth"
+            alt="Salon and Bar at Urban Hearth"
             class="teaser-photo"
             loading="lazy"
           />
         </div>
         <div class="teaser-body">
-          <h2 class="teaser-title">The Salon</h2>
+          <h2 class="teaser-title">Salon & Bar</h2>
         </div>
       </a>
     </div>
     <div class="teasers-booking-row">
       <div class="teasers-booking-spacer"></div>
       <div class="teasers-booking-cell">
-        <ReservationButton />
+        <div class="booking-inner">
+          <p class="booking-eyebrow section-eyebrow">
+            Choose your dining experience
+          </p>
+          <ReservationButton label="Reserve" />
+        </div>
       </div>
       <div class="teasers-booking-spacer"></div>
     </div>
@@ -165,7 +170,6 @@ const restaurantJsonLd = {
 <style>
   /* ── Dining teasers ── */
   .dining-teasers {
-    border-bottom: 1px solid var(--border);
     padding: 2.5rem 5rem;
   }
 
@@ -208,12 +212,28 @@ const restaurantJsonLd = {
   .teasers-booking-cell {
     flex: 1;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .booking-inner {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: stretch;
+  }
+
+  .booking-eyebrow {
+    color: var(--ink-mid);
+    text-align: center;
+    margin-top: 1.5rem;
   }
 
   .teasers-booking-cell :global(.reservation-btn) {
     background: var(--midnight);
     color: var(--parchment);
+    font-size: 16px;
   }
 
   .teaser-photo-wrap {
@@ -261,7 +281,7 @@ const restaurantJsonLd = {
   /* ── Awards ── */
   .awards {
     background: var(--warm-white);
-    padding: 4.5rem 2rem;
+    padding: 2rem 2rem 2.5rem;
     border-bottom: 1px solid var(--border);
   }
 
@@ -269,7 +289,7 @@ const restaurantJsonLd = {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 4rem;
+    gap: 2.5rem;
     max-width: 500px;
     margin: 0 auto;
   }

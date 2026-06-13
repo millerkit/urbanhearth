@@ -29,7 +29,7 @@ const s = homepage.statement;
   }
 
   .statement-inner {
-    max-width: clamp(560px, 65ch, 680px);
+    max-width: min(860px, 90vw);
     margin: 0 auto;
   }
 
@@ -44,9 +44,9 @@ const s = homepage.statement;
 
   .statement-text {
     font-family: var(--font-body), serif;
-    font-size: clamp(1.2rem, 2.2vw, 1.5rem);
+    font-size: clamp(1rem, 1.8vw, 1.25rem);
     font-weight: 300;
-    line-height: 1.65;
+    line-height: 1.5;
     color: var(--ink);
     margin-bottom: 1.25rem;
   }

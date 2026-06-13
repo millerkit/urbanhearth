@@ -19,15 +19,11 @@ interface Props {
 
 const { year = new Date().getFullYear(), symbol = "✦" } = Astro.props;
 
-const addressLines = restaurant.address.split(",");
+const [streetAddress, ...cityParts] = restaurant.address.split(",");
+const addressLines = [streetAddress, cityParts.join(",").trim()];
 ---
 
 <footer>
-  <div class="footer-brand">
-    <span class="symbol">{symbol}</span>
-    <span class="year">{year}</span>
-  </div>
-
   <nav class="footer-nav">
     {
       footerLinks.secondaryLinks.map(({ label, href }) => (
@@ -49,18 +45,20 @@ const addressLines = restaurant.address.split(",");
           ))
         }
         <br />T: {restaurant.phone}
+        <br /><a href="mailto:info@urbanhearth.net" class="footer-email"
+          >info@urbanhearth.net</a
+        >
       </address>
     </div>
 
     <div class="footer-col center">
       <p class="footer-col-title">Dining hours</p>
-      <RestaurantHours />
+      <RestaurantHours class="footer-hours-line" />
     </div>
 
     <div class="footer-col right">
-      <p class="footer-col-title">Private dining</p>
+      <p class="footer-col-title">Events & Private dining</p>
       <p>
-        Available for groups of 10–40<br />
         <a href={`mailto:${restaurant.privateDiningEmail}`} class="footer-email"
           >{restaurant.privateDiningEmail}</a
         >
@@ -84,14 +82,6 @@ const addressLines = restaurant.address.split(",");
   footer {
     background: var(--cream);
     border-top: 1px solid var(--border);
-  }
-
-  .footer-brand {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 3.5rem 0 2.5rem;
-    border-bottom: 1px solid var(--border);
   }
 
   .symbol {
@@ -148,11 +138,12 @@ const addressLines = restaurant.address.split(",");
   }
 
   .footer-col p,
-  .footer-col address {
+  .footer-col address,
+  :global(.footer-hours-line) {
     font-family: var(--font-header-action), sans-serif;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 300;
-    line-height: 1.8;
+    line-height: 1.5;
     color: var(--ink);
     font-style: normal;
     letter-spacing: 0.04em;
