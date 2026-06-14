@@ -2,7 +2,8 @@
 import { getSiteSettings } from "../lib/site-settings";
 import { isSanityConfigured } from "../lib/sanity";
 import { fetchTeamMembers } from "../lib/sanity-fetch";
-import teamFallback from "../content/team.json";
+import teamFallback from "../fallback-content/team.json";
+import page from "../fallback-content/team-page.json";
 import Base from "../layouts/Base.astro";
 import PageHeader from "../components/PageHeader.astro";
 
@@ -19,15 +20,9 @@ if (isSanityConfigured) {
 }
 ---
 
-<Base
-  title={`The Team — ${restaurant.name}`}
-  description="Meet the people behind Urban Hearth — the chefs, managers, and front-of-house staff who bring the restaurant to life every night."
->
+<Base title={`The Team — ${restaurant.name}`} description={page.seoDescription}>
   <div class="team-page">
-    <PageHeader
-      title="The Team"
-      lead="The people who make the restaurant what it is, every night."
-    >
+    <PageHeader title={page.pageTitle} lead={page.pageLead}>
       <p class="team-chef-link">
         Led by <a href="/chef">Erin Miller</a>, Executive Chef &amp; Owner.
       </p>

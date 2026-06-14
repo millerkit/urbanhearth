@@ -1,5 +1,5 @@
 /**
- * seed-dining-areas.mjs — Seed dining areas from src/content/dining-areas.json into Sanity
+ * seed-dining-areas.mjs — Seed dining areas from src/fallback-content/dining-areas.json into Sanity
  *
  * Usage:
  *   SANITY_PROJECT_ID=xxx SANITY_API_TOKEN=xxx node sanity-seed/seed-dining-areas.mjs
@@ -42,7 +42,10 @@ const client = createClient({
 });
 
 const areas = JSON.parse(
-  readFileSync(join(__dirname, "../src/content/dining-areas.json"), "utf-8"),
+  readFileSync(
+    join(__dirname, "../src/fallback-content/dining-areas.json"),
+    "utf-8",
+  ),
 );
 
 // Local photo fallbacks keyed by area id

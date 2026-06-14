@@ -2,7 +2,8 @@
 import { getSiteSettings } from "../lib/site-settings";
 import { isSanityConfigured } from "../lib/sanity";
 import { fetchDiningAreas } from "../lib/sanity-fetch";
-import diningAreasFallback from "../content/dining-areas.json";
+import diningAreasFallback from "../fallback-content/dining-areas.json";
+import page from "../fallback-content/dining-areas-page.json";
 import diningRoomFallback from "../assets/photos/DiningRoomHero.jpeg";
 import chefsCounterFallback from "../assets/photos/ChefsCounterTeaser.jpeg";
 import barFallback from "../assets/photos/SalonPhoto.jpeg";
@@ -31,14 +32,11 @@ if (isSanityConfigured) {
 ---
 
 <Base
-  title={`Dining Options — ${restaurant.name}`}
-  description="Three distinct experiences under one roof — Dining Room, Chef's Counter, and Salon. Each with its own character, pace, and menu."
+  title={`${page.pageTitle} — ${restaurant.name}`}
+  description={page.seoDescription}
 >
   <div class="dining-page">
-    <PageHeader
-      title="Dining Areas"
-      lead="Three distinct experiences, each with its own character and pace."
-    />
+    <PageHeader title={page.pageTitle} lead={page.pageLead} />
 
     <nav class="area-nav" aria-label="Dining areas">
       {

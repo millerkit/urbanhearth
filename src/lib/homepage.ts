@@ -6,7 +6,7 @@
  *
  * Module-level cache ensures at most one Sanity request per page build.
  */
-import homepageFallback from "../content/homepage.json";
+import homepageFallback from "../fallback-content/homepage.json";
 import { fetchHomepageContent } from "./sanity-fetch";
 
 export type HomepageContent = typeof homepageFallback;

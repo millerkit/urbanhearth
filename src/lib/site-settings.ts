@@ -7,7 +7,7 @@
  * Uses a module-level cache so each page build makes at most one Sanity
  * request, regardless of how many components call this function.
  */
-import restaurantFallback from "../content/restaurant.json";
+import restaurantFallback from "../fallback-content/restaurant.json";
 import { fetchSiteSettings } from "./sanity-fetch";
 
 export type SiteSettings = typeof restaurantFallback;

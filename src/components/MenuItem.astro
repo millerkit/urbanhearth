@@ -1,6 +1,6 @@
 ---
 interface Props {
-  blok: {
+  item: {
     name?: string;
     price?: string;
     description?: string;
@@ -8,16 +8,16 @@ interface Props {
   };
 }
 
-const { blok } = Astro.props;
+const { item } = Astro.props;
 ---
 
 <li class="dish">
   <div class="dish-top">
-    <span class="dish-name">{blok.name}</span>
-    <span class="dish-price">{blok.price}</span>
+    <span class="dish-name">{item.name}</span>
+    <span class="dish-price">{item.price}</span>
   </div>
-  {blok.description && <p class="dish-desc">{blok.description}</p>}
-  {blok.note && <p class="menu-fine-print dish-note">{blok.note}</p>}
+  {item.description && <p class="dish-desc">{item.description}</p>}
+  {item.note && <p class="menu-fine-print dish-note">{item.note}</p>}
 </li>
 
 <style>

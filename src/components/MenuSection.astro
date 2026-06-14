@@ -2,19 +2,19 @@
 import MenuItem from "./MenuItem.astro";
 
 interface Props {
-  blok: {
+  section: {
     title?: string;
     items?: any[];
   };
 }
 
-const { blok } = Astro.props;
+const { section } = Astro.props;
 ---
 
 <section class="menu-section">
-  <h2 class="menu-label menu-section-title">{blok.title}</h2>
+  <h2 class="menu-label menu-section-title">{section.title}</h2>
   <ul class="dish-list">
-    {blok.items?.map((item: any) => <MenuItem blok={item} />)}
+    {section.items?.map((item: any) => <MenuItem section={item} />)}
   </ul>
 </section>
 

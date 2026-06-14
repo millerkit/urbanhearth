@@ -2,7 +2,8 @@
 import { getSiteSettings } from "../lib/site-settings";
 import { isSanityConfigured } from "../lib/sanity";
 import { fetchChefProfile } from "../lib/sanity-fetch";
-import chefFallback from "../content/chef.json";
+import chefFallback from "../fallback-content/chef.json";
+import page from "../fallback-content/chef-page.json";
 import erinFallbackPhoto from "../assets/photos/erin.jpg";
 import Base from "../layouts/Base.astro";
 import ReservationButton from "../components/ReservationButton.astro";
@@ -24,7 +25,7 @@ const photoSrc = chef.photo ?? erinFallbackPhoto.src;
 
 <Base
   title={`${chef.name} — ${restaurant.name}`}
-  description="Erin Miller is the Executive Chef and owner of Urban Hearth. Classically trained, James Beard Finalist, and recognized by the Michelin Guide in 2025."
+  description={page.seoDescription}
 >
   <div class="chef-page">
     <div class="chef-layout">

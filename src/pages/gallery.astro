@@ -2,7 +2,8 @@
 import { getSiteSettings } from "../lib/site-settings";
 import { isSanityConfigured } from "../lib/sanity";
 import { fetchGalleryPhotos } from "../lib/sanity-fetch";
-import galleryFallback from "../content/gallery.json";
+import galleryFallback from "../fallback-content/gallery.json";
+import page from "../fallback-content/gallery-page.json";
 import food1 from "../assets/photos/food-photo-1.jpeg";
 import food2 from "../assets/photos/food-photo-2.jpeg";
 import food4 from "../assets/photos/food-photo-4.jpeg";
@@ -44,11 +45,11 @@ const photos = items.map((item, i) => ({
 ---
 
 <Base
-  title={`Gallery — ${restaurant.name}`}
-  description="Images from Urban Hearth — the kitchen, the dining room, and the New England landscape that shapes our cooking."
+  title={`${page.pageTitle} — ${restaurant.name}`}
+  description={page.seoDescription}
 >
   <div class="gallery-page">
-    <PageHeader title="Gallery" />
+    <PageHeader title={page.pageTitle} />
 
     <div class="gallery-grid">
       {

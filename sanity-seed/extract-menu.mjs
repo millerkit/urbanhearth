@@ -2,9 +2,9 @@
  * extract-menu.mjs — PDF → menu.json
  *
  * Usage:
- *   ANTHROPIC_API_KEY=xxx node storyblok-import/extract-menu.mjs path/to/menu.pdf
+ *   ANTHROPIC_API_KEY=xxx node sanity-seed/extract-menu.mjs path/to/menu.pdf
  *
- * Outputs storyblok-import/menu.json for review before importing.
+ * Outputs sanity-seed/menu.json for review before importing.
  * No packages required beyond Node 22 built-ins.
  */
 
@@ -22,9 +22,7 @@ if (!API_KEY) {
 
 const pdfPath = process.argv[2];
 if (!pdfPath) {
-  console.error(
-    "Usage: node storyblok-import/extract-menu.mjs path/to/menu.pdf",
-  );
+  console.error("Usage: node sanity-seed/extract-menu.mjs path/to/menu.pdf");
   process.exit(1);
 }
 

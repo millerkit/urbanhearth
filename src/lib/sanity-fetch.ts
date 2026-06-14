@@ -289,3 +289,48 @@ export async function fetchPrivateEventPackages() {
   `);
   return packages ?? [];
 }
+
+export async function fetchAboutPage() {
+  return client!.fetch(`*[_type == "aboutPage"][0]{ statement, farmsIntro }`);
+}
+
+export async function fetchMenusPage() {
+  return client!.fetch(
+    `*[_type == "menusPage"][0]{ accuracyNote, walkInsNote }`,
+  );
+}
+
+export async function fetchChefsCounter() {
+  return client!.fetch(`
+    *[_type == "chefsCounter"][0]{
+      eyebrow, price, priceLabel, description,
+      winePairingLabel, winePairingValue, finePrint
+    }
+  `);
+}
+
+export async function fetchNavLinks() {
+  const doc = await client!.fetch(`
+    *[_type == "navLinks"][0]{
+      links[]{ label, href, children[]{ label, href } }
+    }
+  `);
+  return (doc?.links ?? []) as {
+    label: string;
+    href: string;
+    children?: { label: string; href: string }[];
+  }[];
+}
+
+export async function fetchFooterLinks() {
+  const doc = await client!.fetch(`
+    *[_type == "footerLinks"][0]{
+      secondaryLinks[]{ label, href },
+      legalLinks[]{ label, href }
+    }
+  `);
+  return doc as {
+    secondaryLinks: { label: string; href: string }[];
+    legalLinks: { label: string; href: string }[];
+  } | null;
+}

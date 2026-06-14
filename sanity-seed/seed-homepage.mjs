@@ -41,7 +41,10 @@ const client = createClient({
 });
 
 const homepage = JSON.parse(
-  readFileSync(join(__dirname, "../src/content/homepage.json"), "utf-8"),
+  readFileSync(
+    join(__dirname, "../src/fallback-content/homepage.json"),
+    "utf-8",
+  ),
 );
 
 async function run() {

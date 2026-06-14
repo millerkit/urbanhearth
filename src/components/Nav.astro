@@ -1,10 +1,27 @@
 ---
-import links from "../content/nav-links.json";
+import { isSanityConfigured } from "../lib/sanity";
+import { fetchNavLinks } from "../lib/sanity-fetch";
+import linksFallback from "../fallback-content/nav-links.json";
 import { getSiteSettings } from "../lib/site-settings";
 import logo from "../assets/brand/UrbanHearth_Logo_BLACK_cropped.png";
 
 const restaurant = await getSiteSettings();
 const currentPath = Astro.url.pathname;
+
+let links: {
+  label: string;
+  href: string;
+  children?: { label: string; href: string }[];
+}[] = linksFallback;
+
+if (isSanityConfigured) {
+  try {
+    const data = await fetchNavLinks();
+    if (data.length > 0) links = data;
+  } catch (e) {
+    console.error("Failed to fetch nav links from Sanity:", e);
+  }
+}
 
 function isActive(item: { href: string; children?: { href: string }[] }) {
   if (currentPath === item.href) return true;

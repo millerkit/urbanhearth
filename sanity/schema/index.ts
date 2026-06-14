@@ -1,10 +1,15 @@
+import { aboutPage } from "./aboutPage";
 import { blogPost } from "./blogPost";
+import { chefsCounter } from "./chefsCounter";
 import { chefProfileTypes } from "./chefProfile";
 import { diningAreaTypes } from "./diningArea";
 import { farm } from "./farm";
+import { footerLinks } from "./footerLinks";
 import { galleryPhoto } from "./galleryPhoto";
 import { homepageContent } from "./homepageContent";
 import { menuTypes } from "./menu";
+import { menusPage } from "./menusPage";
+import { navLinkTypes } from "./navLinks";
 import { product } from "./product";
 import { privateEventTypes } from "./privateEventPackage";
 import { reservationExperience } from "./reservationExperience";
@@ -24,4 +29,9 @@ export const schemaTypes = [
   ...menuTypes,
   product,
   ...privateEventTypes,
+  ...navLinkTypes,
+  footerLinks,
+  chefsCounter,
+  aboutPage,
+  menusPage,
 ];

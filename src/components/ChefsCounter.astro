@@ -1,9 +1,21 @@
 ---
 import { getSiteSettings } from "../lib/site-settings";
-import card from "../content/chefs-counter.json";
+import { isSanityConfigured } from "../lib/sanity";
+import { fetchChefsCounter } from "../lib/sanity-fetch";
+import cardFallback from "../fallback-content/chefs-counter.json";
 import "../styles/menu-shared.css";
 
 const restaurant = await getSiteSettings();
+
+let card: typeof cardFallback = cardFallback;
+if (isSanityConfigured) {
+  try {
+    const data = await fetchChefsCounter();
+    if (data) card = data;
+  } catch (e) {
+    console.error("Failed to fetch Chef's Counter from Sanity:", e);
+  }
+}
 ---
 
 <div class="menu-card card">
@@ -14,17 +26,6 @@ const restaurant = await getSiteSettings();
     <span class="menu-label">{card.winePairingLabel}</span>
     <span class="sub-value">{card.winePairingValue}</span>
   </div>
-  <ul class="courses">
-    {
-      card.courses.map((c) => (
-        <li class="course">
-          <span class="course-numeral">{c.label}</span>
-          <span class="dish-name">{c.name}</span>
-          {"desc" in c && <span class="dish-desc course-desc">{c.desc}</span>}
-        </li>
-      ))
-    }
-  </ul>
   <p class="menu-fine-print note">{card.finePrint}</p>
   <a href={`${restaurant.reservations.href}#chefs-counter`} class="cta"
     >Reserve your seat</a
@@ -77,37 +78,6 @@ const restaurant = await getSiteSettings();
     font-size: 13px;
     font-weight: 300;
     color: var(--midnight);
-  }
-
-  .courses {
-    list-style: none;
-    border-top: 1px solid rgba(22, 34, 53, 0.13);
-    margin-bottom: 1.5rem;
-  }
-
-  .course {
-    display: grid;
-    grid-template-columns: 1.4rem 1fr;
-    column-gap: 0.75rem;
-    row-gap: 0.2rem;
-    padding: 0.85rem 0;
-    border-bottom: 1px solid rgba(22, 34, 53, 0.13);
-  }
-
-  .course-numeral {
-    font-family: var(--font-header-action), sans-serif;
-    font-size: 9px;
-    font-weight: 300;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--charcoal);
-    padding-top: 0.2rem;
-    grid-row: 1 / 3;
-    align-self: start;
-  }
-
-  .course-desc {
-    grid-column: 2;
   }
 
   .note {

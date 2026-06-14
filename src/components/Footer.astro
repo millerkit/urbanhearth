@@ -1,9 +1,25 @@
 ---
 import { getSiteSettings } from "../lib/site-settings";
-import footerLinks from "../content/footer-links.json";
+import { isSanityConfigured } from "../lib/sanity";
+import { fetchFooterLinks } from "../lib/sanity-fetch";
+import footerLinksFallback from "../fallback-content/footer-links.json";
 import RestaurantHours from "./RestaurantHours.astro";
 
 const restaurant = await getSiteSettings();
+
+let footerLinks: {
+  secondaryLinks: { label: string; href: string }[];
+  legalLinks: { label: string; href: string }[];
+} = footerLinksFallback;
+
+if (isSanityConfigured) {
+  try {
+    const data = await fetchFooterLinks();
+    if (data) footerLinks = data;
+  } catch (e) {
+    console.error("Failed to fetch footer links from Sanity:", e);
+  }
+}
 
 interface FooterLink {
   label: string;

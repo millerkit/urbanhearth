@@ -3,7 +3,8 @@ import PageHeader from "../components/PageHeader.astro";
 import { getSiteSettings } from "../lib/site-settings";
 import { isSanityConfigured } from "../lib/sanity";
 import { fetchReservationExperiences } from "../lib/sanity-fetch";
-import reservationsFallback from "../content/reservations.json";
+import reservationsFallback from "../fallback-content/reservations.json";
+import page from "../fallback-content/reservations-page.json";
 import Base from "../layouts/Base.astro";
 
 const restaurant = await getSiteSettings();
@@ -26,14 +27,11 @@ if (isSanityConfigured) {
 ---
 
 <Base
-  title={`Reservations — ${restaurant.name}`}
-  description="Reserve your table at Urban Hearth. Three distinct dining experiences in Cambridge, MA."
+  title={`${page.pageTitle} — ${restaurant.name}`}
+  description={page.seoDescription}
 >
   <div class="reservations">
-    <PageHeader
-      title="Reserve"
-      lead="Three distinct experiences, each with its own character and pace."
-    />
+    <PageHeader title={page.pageTitle} lead={page.pageLead} />
 
     <div class="experiences-grid">
       {

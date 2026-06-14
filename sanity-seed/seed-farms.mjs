@@ -1,5 +1,5 @@
 /**
- * seed-farms.mjs — Seed farm list from src/content/farms.json into Sanity
+ * seed-farms.mjs — Seed farm list from src/fallback-content/farms.json into Sanity
  *
  * Usage:
  *   SANITY_PROJECT_ID=xxx SANITY_API_TOKEN=xxx node scripts/seed-farms.mjs
@@ -41,7 +41,7 @@ const client = createClient({
 });
 
 const farms = JSON.parse(
-  readFileSync(join(__dirname, "../src/content/farms.json"), "utf-8"),
+  readFileSync(join(__dirname, "../src/fallback-content/farms.json"), "utf-8"),
 );
 
 function docId(name) {

@@ -1,5 +1,5 @@
 /**
- * seed-team.mjs — Seed team members from src/content/team.json into Sanity
+ * seed-team.mjs — Seed team members from src/fallback-content/team.json into Sanity
  *
  * Usage:
  *   SANITY_PROJECT_ID=xxx SANITY_API_TOKEN=xxx node scripts/seed-team.mjs
@@ -14,7 +14,7 @@
 
 import { createClient } from "@sanity/client";
 import { createReadStream, existsSync, readFileSync } from "fs";
-import { dirname, extname, basename, join } from "path";
+import { basename, dirname, extname, join } from "path";
 import { fileURLToPath } from "url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -42,7 +42,7 @@ const client = createClient({
 });
 
 const team = JSON.parse(
-  readFileSync(join(__dirname, "../src/content/team.json"), "utf-8"),
+  readFileSync(join(__dirname, "../src/fallback-content/team.json"), "utf-8"),
 );
 
 /** Uploads a local image file and returns a Sanity image reference object. */

@@ -6,8 +6,8 @@ import {
   fetchPrivateEventPackages,
   fetchPrivateEventsPage,
 } from "../lib/sanity-fetch";
-import packagesFallback from "../content/private-event-packages.json";
-import privateEventsPageFallback from "../content/private-events-page.json";
+import packagesFallback from "../fallback-content/private-event-packages.json";
+import privateEventsPageFallback from "../fallback-content/private-events-page.json";
 import PageHeader from "../components/PageHeader.astro";
 
 const restaurant = await getSiteSettings();
@@ -32,14 +32,14 @@ if (isSanityConfigured) {
 ---
 
 <Base
-  title={`Private Events — ${restaurant.name}`}
-  description="Host your next event at Urban Hearth — full buyouts, large party reservations, and bespoke offsite catering in Cambridge, MA."
+  title={`${pageConfig.pageTitle} — ${restaurant.name}`}
+  description={pageConfig.seoDescription}
 >
   <div class="private-events">
     <PageHeader
       eyebrow=""
-      title="Private Events"
-      lead="From intimate dinners to full restaurant buyouts, Urban Hearth is designed for gatherings that matter."
+      title={pageConfig.pageTitle}
+      lead={pageConfig.pageLead}
     />
 
     <div class="packages-row">

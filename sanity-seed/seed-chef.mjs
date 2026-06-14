@@ -1,5 +1,5 @@
 /**
- * seed-chef.mjs — Seed the chef profile from src/content/chef.json into Sanity
+ * seed-chef.mjs — Seed the chef profile from src/fallback-content/chef.json into Sanity
  *
  * Usage:
  *   SANITY_PROJECT_ID=xxx SANITY_API_TOKEN=xxx node scripts/seed-chef.mjs
@@ -14,7 +14,7 @@
 
 import { createClient } from "@sanity/client";
 import { createReadStream, existsSync, readFileSync } from "fs";
-import { dirname, extname, basename, join } from "path";
+import { basename, dirname, extname, join } from "path";
 import { fileURLToPath } from "url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -42,7 +42,7 @@ const client = createClient({
 });
 
 const chef = JSON.parse(
-  readFileSync(join(__dirname, "../src/content/chef.json"), "utf-8"),
+  readFileSync(join(__dirname, "../src/fallback-content/chef.json"), "utf-8"),
 );
 
 /** Uploads a local image file and returns a Sanity image reference object. */

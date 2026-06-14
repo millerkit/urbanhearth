@@ -1,8 +1,9 @@
 ---
 import { getSiteSettings } from "../lib/site-settings";
 import { isSanityConfigured } from "../lib/sanity";
-import { fetchMenu } from "../lib/sanity-fetch";
-import menuSectionsFallback from "../content/menu-sections.json";
+import { fetchMenu, fetchMenusPage } from "../lib/sanity-fetch";
+import menuSectionsFallback from "../fallback-content/menu-sections.json";
+import menusPage from "../fallback-content/menus-page.json";
 import "../styles/menu-shared.css";
 import Base from "../layouts/Base.astro";
 import PageHeader from "../components/PageHeader.astro";
@@ -14,6 +15,10 @@ import ChefsCounter from "../components/ChefsCounter.astro";
 const restaurant = await getSiteSettings();
 let menuData: any = null;
 let usingFallback = false;
+let menusContent = {
+  accuracyNote: menusPage.accuracyNote,
+  walkInsNote: menusPage.walkInsNote,
+};
 
 if (isSanityConfigured) {
   try {
@@ -22,6 +27,12 @@ if (isSanityConfigured) {
   } catch (e) {
     console.error("[menus] Sanity fetch failed, showing sample menu:", e);
     usingFallback = true;
+  }
+  try {
+    const data = await fetchMenusPage();
+    if (data) menusContent = { ...menusContent, ...data };
+  } catch (e) {
+    console.error("Failed to fetch menus page from Sanity:", e);
   }
 } else {
   usingFallback = true;
@@ -32,18 +43,17 @@ const season = menuData?.season ?? "Spring 2026";
 
 <Base
   title={`Our Menus — ${restaurant.name}`}
-  description={`The ${season} menu at Urban Hearth. Seasonal à la carte dining and a nightly five-course Chef's Tasting Menu.`}
+  description={menusPage.seoDescription}
 >
   <div class="menus-page">
     <PageHeader
       eyebrow={season}
-      title="Our Menus"
-      lead="Seasonal cooking from New England farms and fishermen."
+      title={menusPage.pageTitle}
+      lead={menusPage.pageLead}
     />
 
     <p class="menu-accuracy-note">
-      Our menu evolves with the seasons. Items and prices are subject to change
-      — please ask your server about today’s complete offerings.
+      {menusContent.accuracyNote}
     </p>
 
     <div class="menus-layout">
@@ -62,7 +72,7 @@ const season = menuData?.season ?? "Spring 2026";
 
         {
           menuData ? (
-            <Menu blok={menuData} />
+            <Menu menu={menuData} />
           ) : (
             <div
               class={`menu-main menu-card${usingFallback ? " is-sample" : ""}`}
@@ -71,9 +81,7 @@ const season = menuData?.season ?? "Spring 2026";
                 <div class="dining-room-text">
                   <p class="menu-eyebrow">Dining Room</p>
                   <RestaurantHours class="dining-room-hours" />
-                  <p class="dining-room-hours">
-                    Walk-ins welcome; reservations recommended.
-                  </p>
+                  <p class="dining-room-hours">{menusContent.walkInsNote}</p>
                 </div>
                 <ReservationButton
                   href={`${restaurant.reservations.href}#dining-room`}
@@ -104,9 +112,7 @@ const season = menuData?.season ?? "Spring 2026";
               ))}
 
               <p class="menu-fine-print menu-footer-note">
-                Ask your server to see our dessert menu. Please inform your
-                server of any dietary restrictions. A 20% gratuity is added for
-                parties of six or more.
+                {menusPage.menuFooterNote}
               </p>
             </div>
           )

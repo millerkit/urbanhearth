@@ -41,7 +41,10 @@ const client = createClient({
 });
 
 const experiences = JSON.parse(
-  readFileSync(join(__dirname, "../src/content/reservations.json"), "utf-8"),
+  readFileSync(
+    join(__dirname, "../src/fallback-content/reservations.json"),
+    "utf-8",
+  ),
 );
 
 async function run() {

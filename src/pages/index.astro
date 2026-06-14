@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import { getSiteSettings } from "../lib/site-settings";
+import { getHomepageContent } from "../lib/homepage";
 
 import DiningRoomHeroPhoto from "../assets/photos/UrbanHearth-52.jpg";
 import DiningRoomTeaser from "../assets/photos/DiningRoomTeaser.jpeg";
@@ -15,6 +16,7 @@ import Base from "../layouts/Base.astro";
 import ReservationButton from "../components/ReservationButton.astro";
 
 const restaurant = await getSiteSettings();
+const homepage = await getHomepageContent();
 const restaurantJsonLd = {
   "@context": "https://schema.org",
   "@type": "Restaurant",
@@ -87,7 +89,7 @@ const restaurantJsonLd = {
   <div id="splash" aria-hidden="true">
     <img src={splashLogo.src} alt="Urban Hearth" class="splash-logo" />
     <p class="splash-location">
-      <span>Inman Square&nbsp;&nbsp;|&nbsp;&nbsp;Cambridge</span>
+      <span>{homepage.statement.eyebrow}</span>
     </p>
   </div>
 

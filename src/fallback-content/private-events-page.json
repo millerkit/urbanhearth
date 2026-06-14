@@ -1,0 +1,10 @@
+{
+  "pageTitle": "Private Events",
+  "pageLead": "From intimate dinners to full restaurant buyouts, Urban Hearth is designed for gatherings that matter.",
+  "seoDescription": "Host your next event at Urban Hearth — full buyouts, large party reservations, and bespoke offsite catering in Cambridge, MA.",
+  "capacityStats": [
+    { "value": "50", "label": "Indoor seated" },
+    { "value": "24", "label": "Outdoor seated (seasonal)" },
+    { "value": "80", "label": "Cocktail reception" }
+  ]
+}

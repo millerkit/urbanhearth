@@ -1,19 +1,35 @@
 ---
 import { getSiteSettings } from "../lib/site-settings";
+import { isSanityConfigured } from "../lib/sanity";
+import { fetchMenusPage } from "../lib/sanity-fetch";
+import menusPageFallback from "../fallback-content/menus-page.json";
 import RestaurantHours from "./RestaurantHours.astro";
 import ReservationButton from "./ReservationButton.astro";
 import MenuSection from "./MenuSection.astro";
 
 const restaurant = await getSiteSettings();
 
+let menusPage = {
+  walkInsNote: menusPageFallback.walkInsNote,
+  menuFooterNote: menusPageFallback.menuFooterNote,
+};
+if (isSanityConfigured) {
+  try {
+    const data = await fetchMenusPage();
+    if (data) menusPage = { ...menusPage, ...data };
+  } catch (e) {
+    console.error("Failed to fetch menus page from Sanity:", e);
+  }
+}
+
 interface Props {
-  blok: {
+  menu: {
     sections?: any[];
     footer_note?: string;
   };
 }
 
-const { blok } = Astro.props;
+const { menu } = Astro.props;
 ---
 
 <div class="menu-card menu-main">
@@ -21,9 +37,7 @@ const { blok } = Astro.props;
     <div class="dining-room-text">
       <p class="menu-eyebrow">Dining Room</p>
       <RestaurantHours class="dining-room-hours" />
-      <p class="dining-room-hours">
-        Walk-ins welcome; reservations recommended.
-      </p>
+      <p class="dining-room-hours">{menusPage.walkInsNote}</p>
     </div>
     <ReservationButton
       href={`${restaurant.reservations.href}#dining-room`}
@@ -31,13 +45,10 @@ const { blok } = Astro.props;
     />
   </div>
 
-  {blok.sections?.map((section: any) => <MenuSection blok={section} />)}
+  {menu.sections?.map((section: any) => <MenuSection section={section} />)}
 
   <p class="menu-fine-print menu-footer-note">
-    {
-      blok.footer_note ??
-        "Ask your server to see our dessert menu. Please inform your server of any dietary restrictions. A 20% gratuity is added for parties of six or more."
-    }
+    {menu.footer_note ?? menusPage.menuFooterNote}
   </p>
 </div>
 

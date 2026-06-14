@@ -44,7 +44,7 @@ const client = createClient({
 
 const rawPackages = JSON.parse(
   readFileSync(
-    join(__dirname, "../src/content/private-event-packages.json"),
+    join(__dirname, "../src/fallback-content/private-event-packages.json"),
     "utf-8",
   ),
 );
@@ -59,7 +59,7 @@ const packages = rawPackages.map((pkg, i) => ({
 
 const { capacityStats } = JSON.parse(
   readFileSync(
-    join(__dirname, "../src/content/private-events-page.json"),
+    join(__dirname, "../src/fallback-content/private-events-page.json"),
     "utf-8",
   ),
 );

@@ -3,7 +3,14 @@ import { structureTool } from "sanity/structure";
 import { schemaTypes } from "./sanity/schema";
 
 const projectId = "h5or5cm0";
-const singletonTypes = new Set(["siteSettings"]);
+const singletonTypes = new Set([
+  "siteSettings",
+  "navLinks",
+  "footerLinks",
+  "chefsCounter",
+  "aboutPage",
+  "menusPage",
+]);
 
 export default defineConfig({
   name: "urbanhearth",
