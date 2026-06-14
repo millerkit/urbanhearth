@@ -14,7 +14,7 @@ const { section } = Astro.props;
 <section class="menu-section">
   <h2 class="menu-label menu-section-title">{section.title}</h2>
   <ul class="dish-list">
-    {section.items?.map((item: any) => <MenuItem section={item} />)}
+    {section.items?.map((item: any) => <MenuItem item={item} />)}
   </ul>
 </section>
 
