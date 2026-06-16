@@ -1,7 +1,6 @@
 ---
 import { getSiteSettings } from "../lib/site-settings";
 import logo from "../assets/brand/UrbanHearth_Logo_BLACK_cropped.png";
-import CartButton from "./CartButton";
 
 const restaurant = await getSiteSettings();
 const currentPath = Astro.url.pathname;
@@ -29,7 +28,6 @@ const isShopPage =
     <img src={logo.src} alt={restaurant.name} class="wordmark-logo" />
   </a>
   <div class="cta-wrap">
-    <CartButton client:only="react" />
     <a
       href={restaurant.reservations.href}
       class={isShopPage ? "cta cta--dimmed" : "cta"}
