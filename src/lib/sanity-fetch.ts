@@ -169,7 +169,7 @@ export async function fetchTeamMembers() {
   return (members ?? []) as any[];
 }
 
-export async function fetchDiningAreas() {
+export async function fetchDiningOptions() {
   const options = await client!.fetch(`
     *[_type == "diningArea"] | order(order asc){
       order,

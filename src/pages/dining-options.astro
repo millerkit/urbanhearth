@@ -1,7 +1,7 @@
 ---
 import { getSiteSettings } from "../lib/site-settings";
 import { isSanityConfigured } from "../lib/sanity";
-import { fetchDiningAreas } from "../lib/sanity-fetch";
+import { fetchDiningOptions } from "../lib/sanity-fetch";
 import diningOptionsFallback from "../fallback-content/dining-options.json";
 import page from "../fallback-content/dining-options-page.json";
 import diningRoomFallback from "../assets/photos/DiningRoomHero.jpeg";
@@ -23,7 +23,7 @@ const photoFallbacks: Record<string, string> = {
 let options = diningOptionsFallback;
 if (isSanityConfigured) {
   try {
-    const data = await fetchDiningAreas();
+    const data = await fetchDiningOptions();
     if (data?.length) options = data;
   } catch (e) {
     console.error("Failed to fetch dining options from Sanity:", e);
