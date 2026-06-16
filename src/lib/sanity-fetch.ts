@@ -335,6 +335,12 @@ export async function fetchFooterLinks() {
   } | null;
 }
 
+export async function fetchReservationsPage() {
+  return client!.fetch(
+    `*[_type == "reservationsPage"][0]{ pageTitle, pageLead, seoDescription }`,
+  );
+}
+
 export async function fetchMailingListPage() {
   return client!.fetch(`
     *[_type == "mailingListPage"][0]{

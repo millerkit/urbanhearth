@@ -60,7 +60,10 @@ const addressLines = [streetAddress, cityParts.join(",").trim()];
             </>
           ))
         }
-        <br />T: {restaurant.phone}
+        <br />T: <a
+          href={`tel:${restaurant.phone.replace(/\s/g, "")}`}
+          class="footer-email">{restaurant.phone}</a
+        >
         <br /><a href="mailto:info@urbanhearth.net" class="footer-email"
           >info@urbanhearth.net</a
         >

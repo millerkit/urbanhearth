@@ -2,9 +2,12 @@
 import PageHeader from "../components/PageHeader.astro";
 import { getSiteSettings } from "../lib/site-settings";
 import { isSanityConfigured } from "../lib/sanity";
-import { fetchReservationExperiences } from "../lib/sanity-fetch";
+import {
+  fetchReservationExperiences,
+  fetchReservationsPage,
+} from "../lib/sanity-fetch";
 import reservationsFallback from "../fallback-content/reservations.json";
-import page from "../fallback-content/reservations-page.json";
+import pageFallback from "../fallback-content/reservations-page.json";
 import Base from "../layouts/Base.astro";
 
 const restaurant = await getSiteSettings();
@@ -16,12 +19,20 @@ const themeClass: Record<string, string> = {
 };
 
 let experiences = reservationsFallback;
+let page = pageFallback;
+
 if (isSanityConfigured) {
   try {
     const data = await fetchReservationExperiences();
     if (data?.length) experiences = data;
   } catch (e) {
     console.error("Failed to fetch reservation experiences from Sanity:", e);
+  }
+  try {
+    const fetchedPage = await fetchReservationsPage();
+    if (fetchedPage?.pageTitle) page = fetchedPage;
+  } catch (e) {
+    console.error("Failed to fetch reservations page from Sanity:", e);
   }
 }
 ---

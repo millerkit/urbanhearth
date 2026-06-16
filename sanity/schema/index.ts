@@ -14,6 +14,7 @@ import { navLinkTypes } from "./navLinks";
 import { product } from "./product";
 import { privateEventTypes } from "./privateEventPackage";
 import { reservationExperience } from "./reservationExperience";
+import { reservationsPage } from "./reservationsPage";
 import { siteSettings } from "./siteSettings";
 import { teamMember } from "./teamMember";
 
@@ -26,6 +27,7 @@ export const schemaTypes = [
   farm,
   galleryPhoto,
   reservationExperience,
+  reservationsPage,
   blogPost,
   ...menuTypes,
   product,
