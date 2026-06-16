@@ -170,7 +170,7 @@ export async function fetchTeamMembers() {
 }
 
 export async function fetchDiningAreas() {
-  const areas = await client!.fetch(`
+  const options = await client!.fetch(`
     *[_type == "diningArea"] | order(order asc){
       order,
       number,
@@ -186,7 +186,7 @@ export async function fetchDiningAreas() {
       phoneReserve
     }
   `);
-  return areas ?? [];
+  return options ?? [];
 }
 
 export async function fetchReservationExperiences() {

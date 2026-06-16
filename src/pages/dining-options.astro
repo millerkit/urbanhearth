@@ -2,8 +2,8 @@
 import { getSiteSettings } from "../lib/site-settings";
 import { isSanityConfigured } from "../lib/sanity";
 import { fetchDiningAreas } from "../lib/sanity-fetch";
-import diningAreasFallback from "../fallback-content/dining-areas.json";
-import page from "../fallback-content/dining-areas-page.json";
+import diningOptionsFallback from "../fallback-content/dining-options.json";
+import page from "../fallback-content/dining-options-page.json";
 import diningRoomFallback from "../assets/photos/DiningRoomHero.jpeg";
 import chefsCounterFallback from "../assets/photos/ChefsCounterTeaser.jpeg";
 import barFallback from "../assets/photos/SalonPhoto.jpeg";
@@ -20,13 +20,13 @@ const photoFallbacks: Record<string, string> = {
   salon: barFallback.src,
 };
 
-let areas = diningAreasFallback;
+let options = diningOptionsFallback;
 if (isSanityConfigured) {
   try {
     const data = await fetchDiningAreas();
-    if (data?.length) areas = data;
+    if (data?.length) options = data;
   } catch (e) {
-    console.error("Failed to fetch dining areas from Sanity:", e);
+    console.error("Failed to fetch dining options from Sanity:", e);
   }
 }
 ---
@@ -40,7 +40,7 @@ if (isSanityConfigured) {
 
     <nav class="area-nav" aria-label="Dining Options">
       {
-        areas.map((a) => (
+        options.map((a) => (
           <a href={`#${a.id}`} class="area-nav-link">
             <span class="area-nav-num">{a.number}</span>
             <span>{a.title}</span>
@@ -50,7 +50,7 @@ if (isSanityConfigured) {
     </nav>
 
     {
-      areas.map((area, i) => {
+      options.map((area, i) => {
         const photoSrc = area.photo ?? photoFallbacks[area.id];
         const ctaHref = area.phoneReserve
           ? `tel:${restaurant.phone.replace(/\s/g, "")}`

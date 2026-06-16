@@ -1,11 +1,11 @@
 /**
- * seed-dining-areas.mjs — Seed dining areas from src/fallback-content/dining-areas.json into Sanity
+ * seed-dining-options.mjs — Seed dining options from src/fallback-content/dining-options.json into Sanity
  *
  * Usage:
- *   SANITY_PROJECT_ID=xxx SANITY_API_TOKEN=xxx node sanity-seed/seed-dining-areas.mjs
+ *   SANITY_PROJECT_ID=xxx SANITY_API_TOKEN=xxx node sanity-seed/seed-dining-options.mjs
  *
  * Or with Node 22's --env-file flag:
- *   node --env-file=.env.local sanity-seed/seed-dining-areas.mjs
+ *   node --env-file=.env.local sanity-seed/seed-dining-options.mjs
  *
  * The Sanity token must have Editor (write) access.
  * Documents use deterministic IDs — safe to re-run.
@@ -43,7 +43,7 @@ const client = createClient({
 
 const areas = JSON.parse(
   readFileSync(
-    join(__dirname, "../src/fallback-content/dining-areas.json"),
+    join(__dirname, "../src/fallback-content/dining-options.json"),
     "utf-8",
   ),
 );
@@ -76,7 +76,7 @@ function docId(id) {
 
 async function run() {
   console.log(
-    `\nSeeding ${areas.length} dining areas → Sanity (${SANITY_DATASET})\n`,
+    `\nSeeding ${areas.length} dining options → Sanity (${SANITY_DATASET})\n`,
   );
 
   for (const area of areas) {
