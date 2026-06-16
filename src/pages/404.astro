@@ -1,0 +1,88 @@
+---
+import { getSiteSettings } from "../lib/site-settings";
+import Base from "../layouts/Base.astro";
+
+const restaurant = await getSiteSettings();
+---
+
+<Base
+  title={`Page Not Found — ${restaurant.name}`}
+  description="The page you're looking for doesn't exist."
+>
+  <div class="not-found">
+    <div class="not-found-inner">
+      <p class="section-eyebrow">404</p>
+      <h1>Page Not Found</h1>
+      <p class="lead">
+        The page you're looking for has moved or doesn't exist. Try one of these
+        instead.
+      </p>
+      <nav class="not-found-links">
+        <a href="/">Home</a>
+        <a href="/menus">Menus</a>
+        <a href="/reservations">Reservations</a>
+        <a href="/dining-options">Dining Options</a>
+        <a href="/blog">Happenings</a>
+        <a href="/privateevents">Private Events</a>
+      </nav>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .not-found {
+    margin-top: 103px;
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .not-found-inner {
+    text-align: center;
+    max-width: 480px;
+  }
+
+  .section-eyebrow {
+    margin-bottom: 1.5rem;
+  }
+
+  h1 {
+    margin-bottom: 1.5rem;
+  }
+
+  .lead {
+    font-family: var(--font-body), serif;
+    font-size: var(--text-md);
+    font-weight: 300;
+    line-height: 1.75;
+    color: var(--ink);
+    margin-bottom: 3rem;
+  }
+
+  .not-found-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem 2rem;
+  }
+
+  .not-found-links a {
+    font-family: var(--font-header-action), sans-serif;
+    font-size: var(--text-label);
+    font-weight: 300;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 2px;
+    transition: opacity 0.2s;
+  }
+
+  .not-found-links a:hover {
+    opacity: 0.5;
+  }
+</style>
