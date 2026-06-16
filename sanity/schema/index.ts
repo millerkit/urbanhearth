@@ -1,5 +1,6 @@
 import { aboutPage } from "./aboutPage";
 import { blogPost } from "./blogPost";
+import { mailingListPage } from "./mailingListPage";
 import { chefsCounter } from "./chefsCounter";
 import { chefProfileTypes } from "./chefProfile";
 import { diningAreaTypes } from "./diningArea";
@@ -34,4 +35,5 @@ export const schemaTypes = [
   chefsCounter,
   aboutPage,
   menusPage,
+  mailingListPage,
 ];

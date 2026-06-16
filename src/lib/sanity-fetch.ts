@@ -334,3 +334,12 @@ export async function fetchFooterLinks() {
     legalLinks: { label: string; href: string }[];
   } | null;
 }
+
+export async function fetchMailingListPage() {
+  return client!.fetch(`
+    *[_type == "mailingListPage"][0]{
+      eyebrow, pageTitle, pageLead, seoDescription,
+      submitLabel, successEyebrow, successMessage
+    }
+  `);
+}
