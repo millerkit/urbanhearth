@@ -38,7 +38,7 @@ if (isSanityConfigured) {
   <div class="dining-page">
     <PageHeader title={page.pageTitle} lead={page.pageLead} />
 
-    <nav class="area-nav" aria-label="Dining areas">
+    <nav class="area-nav" aria-label="Dining Options">
       {
         areas.map((a) => (
           <a href={`#${a.id}`} class="area-nav-link">
@@ -72,39 +72,13 @@ if (isSanityConfigured) {
 
             <div class="area-body">
               <div class="area-body-inner">
-                <div class="area-text">
-                  <h2 class="area-title">{area.title}</h2>
-                  <div class="area-desc">
-                    {area.description.map((p) => (
-                      <p>{p}</p>
-                    ))}
-                  </div>
+                <h2 class="area-title">{area.title}</h2>
+                <div class="area-desc">
+                  {area.description.map((p) => (
+                    <p>{p}</p>
+                  ))}
                 </div>
-
-                <div class="area-sidebar">
-                  <dl class="area-details">
-                    {area.details.map((d) => (
-                      <div class="detail-row">
-                        <dt>{d.label}</dt>
-                        <dd>
-                          {d.linkType === "email" ? (
-                            <a href={`mailto:${restaurant.privateDiningEmail}`}>
-                              Contact {restaurant.privateDiningEmail}
-                            </a>
-                          ) : d.linkType === "phone" ? (
-                            <a
-                              href={`tel:${restaurant.phone.replace(/\s/g, "")}`}
-                            >
-                              {restaurant.phone}
-                            </a>
-                          ) : (
-                            d.value
-                          )}
-                        </dd>
-                      </div>
-                    ))}
-                  </dl>
-
+                {(area.phoneReserve || area.ctaLabel) && (
                   <div class="area-cta">
                     {area.phoneReserve ? (
                       <div class="phone-reserve">
@@ -127,7 +101,7 @@ if (isSanityConfigured) {
                       <ReservationButton href={ctaHref} label={area.ctaLabel} />
                     )}
                   </div>
-                </div>
+                )}
               </div>
             </div>
           </section>
@@ -233,12 +207,8 @@ if (isSanityConfigured) {
   }
 
   .area-body-inner {
-    max-width: 1100px;
+    max-width: 720px;
     margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 320px;
-    gap: 5rem;
-    align-items: start;
   }
 
   /* ── Title & description ── */
@@ -249,17 +219,14 @@ if (isSanityConfigured) {
     letter-spacing: 0.07em;
     color: var(--ink);
     line-height: 1.1;
-    margin-bottom: 2rem;
-  }
-
-  .area--dark .area-title {
-    color: var(--parchment);
+    margin-bottom: 1.5rem;
   }
 
   .area-desc {
     display: flex;
     flex-direction: column;
     gap: 1.3rem;
+    margin-bottom: 2.5rem;
   }
 
   .area-desc p {
@@ -270,68 +237,9 @@ if (isSanityConfigured) {
     color: var(--ink);
   }
 
-  .area--dark .area-desc p {
-    color: var(--parchment);
-  }
-
-  /* ── Sidebar — paper menu card ── */
-  .area-sidebar {
-    background: var(--parchment);
-    border: 1px solid rgba(22, 34, 53, 0.13);
-    padding: 2rem 1.75rem 1.75rem;
-  }
-
-  .area-details {
-    border-top: 1px solid rgba(22, 34, 53, 0.13);
-    margin-bottom: 2rem;
-  }
-
-  .detail-row {
-    display: grid;
-    grid-template-columns: 90px 1fr;
-    gap: 0.75rem;
-    padding: 0.85rem 0;
-    border-bottom: 1px solid rgba(22, 34, 53, 0.13);
-  }
-
-  .area-details dt {
-    font-family: var(--font-header-action), sans-serif;
-    font-size: var(--text-label);
-    font-weight: 300;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--charcoal);
-    padding-top: 2px;
-  }
-
-  .area-details dd {
-    font-family: var(--font-header-action), sans-serif;
-    font-size: 13px;
-    font-weight: 300;
-    color: var(--midnight);
-    line-height: 1.5;
-  }
-
-  .area-details dd a {
-    color: inherit;
-    text-decoration: none;
-    border-bottom: 1px solid rgba(22, 34, 53, 0.25);
-    transition: opacity 0.2s;
-  }
-
-  .area-details dd a:hover {
-    opacity: 0.6;
-  }
-
   /* ── CTA ── */
   .area-cta {
-    padding-top: 0.25rem;
-  }
-
-  /* CTA links always sit on the parchment card — use ink color */
-  .area--dark .text-cta {
-    color: var(--midnight);
-    border-bottom-color: var(--midnight);
+    padding-top: 0;
   }
 
   .phone-reserve {
@@ -369,11 +277,6 @@ if (isSanityConfigured) {
 
   /* ── Responsive ── */
   @media (max-width: 860px) {
-    .area-body-inner {
-      grid-template-columns: 1fr;
-      gap: 3rem;
-    }
-
     .area-nav-link {
       padding: 1rem 1.5rem;
     }
