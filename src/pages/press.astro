@@ -1,0 +1,60 @@
+---
+import { getSiteSettings } from "../lib/site-settings";
+import Base from "../layouts/Base.astro";
+import PageHeader from "../components/PageHeader.astro";
+
+const restaurant = await getSiteSettings();
+---
+
+<Base
+  title={`Press — ${restaurant.name}`}
+  description="Press coverage and media inquiries for Urban Hearth in Cambridge, MA."
+>
+  <div class="placeholder-page">
+    <PageHeader
+      eyebrow="In the Press"
+      title="Press"
+      lead="Details coming soon."
+    />
+    <div class="placeholder-body">
+      <p>
+        For press inquiries, please contact us at
+        <a href={`mailto:${restaurant.privateDiningEmail}`}
+          >{restaurant.privateDiningEmail}</a
+        >.
+      </p>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .placeholder-page {
+    margin-top: 103px;
+  }
+
+  .placeholder-body {
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 4rem 2rem 6rem;
+    text-align: center;
+  }
+
+  .placeholder-body p {
+    font-family: var(--font-body), serif;
+    font-size: var(--text-md);
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--ink);
+  }
+
+  .placeholder-body a {
+    color: inherit;
+    border-bottom: 1px solid var(--border);
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+
+  .placeholder-body a:hover {
+    opacity: 0.6;
+  }
+</style>
