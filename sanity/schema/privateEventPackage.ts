@@ -44,9 +44,9 @@ const capacityStat = defineType({
   },
 });
 
-export const privateEventsPage = defineType({
-  name: "privateEventsPage",
-  title: "Private Events Page",
+export const largePartyPage = defineType({
+  name: "largePartyPage",
+  title: "Large Parties Page",
   type: "document",
   __experimental_actions: ["update", "publish"],
   fields: [
@@ -62,9 +62,9 @@ export const privateEventsPage = defineType({
   ],
 });
 
-export const privateEventPackage = defineType({
-  name: "private_event_package",
-  title: "Private Event Package",
+export const largePartyPackage = defineType({
+  name: "large_party_package",
+  title: "Large Party Package",
   type: "document",
   fields: [
     defineField({
@@ -119,8 +119,8 @@ export const privateEventPackage = defineType({
 });
 
 export const privateEventTypes = [
-  privateEventsPage,
-  privateEventPackage,
+  largePartyPage,
+  largePartyPackage,
   packageDetail,
   capacityStat,
 ];

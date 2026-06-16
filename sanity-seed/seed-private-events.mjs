@@ -67,14 +67,16 @@ const { capacityStats } = JSON.parse(
 // ── Seed ───────────────────────────────────────────────────────────────────────
 
 async function run() {
-  console.log("\nSeeding private events → Sanity (" + SANITY_DATASET + ")\n");
+  console.log(
+    "\nSeeding large party packages → Sanity (" + SANITY_DATASET + ")\n",
+  );
 
   console.log("  Packages:");
   for (const pkg of packages) {
     process.stdout.write(`    ${pkg.title} … `);
     await client.createOrReplace({
-      _type: "private_event_package",
-      _id: `privateEventPackage-${pkg.id}`,
+      _type: "large_party_package",
+      _id: `largePartyPackage-${pkg.id}`,
       order: pkg.order,
       eyebrow: pkg.eyebrow,
       title: pkg.title,
@@ -93,8 +95,8 @@ async function run() {
 
   console.log("\n  Page config (capacity stats) … ");
   await client.createOrReplace({
-    _type: "privateEventsPage",
-    _id: "privateEventsPage",
+    _type: "largePartyPage",
+    _id: "largePartyPage",
     capacityStats: capacityStats.map((s, i) => ({
       _type: "capacityStat",
       _key: `stat-${i + 1}`,

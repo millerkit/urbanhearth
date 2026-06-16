@@ -268,7 +268,7 @@ export async function fetchSiteSettings() {
 
 export async function fetchPrivateEventsPage() {
   return client!.fetch(`
-    *[_type == "privateEventsPage"][0]{
+    *[_type == "largePartyPage"][0]{
       capacityStats[]{ value, label }
     }
   `);
@@ -276,7 +276,7 @@ export async function fetchPrivateEventsPage() {
 
 export async function fetchPrivateEventPackages() {
   const packages = await client!.fetch(`
-    *[_type == "private_event_package"] | order(order asc){
+    *[_type == "large_party_package"] | order(order asc){
       _id,
       order,
       eyebrow,
