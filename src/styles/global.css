@@ -32,13 +32,13 @@
   /* Brand Guide v1.0 — Urban Hearth */
   --parchment: #e8e3df;
   --midnight: #162235;
-  --charcoal: #706f6d;
+  --charcoal: #4a4948;
 
   --cream: #e8e3df; /* = parchment; sections, footer bg */
   --warm-white: #f4f1ee; /* page bg; slightly lighter than parchment */
   --ink: #162235; /* = midnight; body text, headings */
-  --ink-mid: #706f6d; /* = charcoal; secondary text */
-  --ink-light: #706f6d; /* alias to charcoal — #A9A8A6 was too low-contrast */
+  --ink-mid: #4a4948; /* = charcoal; secondary text — darkened for WCAG AA */
+  --ink-light: #4a4948; /* darkened from #706f6d which failed contrast on parchment */
   --border: rgba(22, 34, 53, 0.1);
   --font-body:
     "Cormorant Garamond", Georgia, serif; /* Cardinal Classic Short substitute */
