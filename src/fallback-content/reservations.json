@@ -18,15 +18,5 @@
     "description": "An intimate prix fixe experience at the kitchen's edge — five courses drawn from the season's best, with the chef cooking and talking you through each course.",
     "details": [],
     "note": "As the menu changes nightly we cannot guarantee accommodation of all dietary restrictions. Details are shared upon confirmation."
-  },
-  {
-    "order": 3,
-    "number": "03",
-    "eyebrow": "Bar & Lounge",
-    "title": "Salon & Bar",
-    "id": "salon",
-    "description": "Cocktails, craft beer, curated wines, and a selection of small plates. Walk-ins only — no reservations.",
-    "details": [],
-    "note": null
   }
 ]
