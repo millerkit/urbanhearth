@@ -43,8 +43,8 @@
   {
     "order": 3,
     "number": "03",
-    "label": "Bar & Lounge",
-    "title": "Salon & Bar",
+    "label": "Bar & Salon",
+    "title": "Bar & Salon",
     "id": "salon",
     "photo": null,
     "photoAlt": "Salon and Bar at Urban Hearth",

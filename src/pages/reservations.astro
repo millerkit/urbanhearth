@@ -44,7 +44,10 @@ if (isSanityConfigured) {
           <div class="experience" id={exp.id}>
             <div class="exp-body">
               <h2 class="exp-title">{exp.title}</h2>
-              <p class="exp-desc">{exp.description}</p>
+              <p class="exp-desc">
+                {exp.description}
+                {exp.note && ` ${exp.note}`}
+              </p>
               {exp.details.length > 0 && (
                 <dl class="exp-details">
                   {exp.details.map((d) => (
@@ -69,7 +72,6 @@ if (isSanityConfigured) {
                   ))}
                 </dl>
               )}
-              {exp.note && <p class="exp-note">{exp.note}</p>}
             </div>
           </div>
         ))
@@ -102,7 +104,7 @@ if (isSanityConfigured) {
   }
 
   .experience {
-    padding: 2rem;
+    padding: 1.25rem 2rem;
     border-bottom: 1px solid var(--border);
   }
 
@@ -166,16 +168,6 @@ if (isSanityConfigured) {
 
   .exp-details dd a:hover {
     opacity: 0.6;
-  }
-
-  .exp-note {
-    font-family: var(--font-header-action), sans-serif;
-    font-size: 12px;
-    font-weight: 300;
-    line-height: 1.75;
-    font-style: italic;
-    color: var(--ink-mid);
-    margin-top: 1.5rem;
   }
 
   /* ── Single CTA ── */
