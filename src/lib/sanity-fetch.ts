@@ -197,13 +197,9 @@ export async function fetchReservationExperiences() {
       eyebrow,
       title,
       "id": id.current,
-      theme,
       description,
       details[]{ label, value, linkType },
-      note,
-      bookingLabel,
-      otWidgetSrc,
-      phoneReserve
+      note
     }
   `);
   return experiences ?? [];
@@ -337,7 +333,7 @@ export async function fetchFooterLinks() {
 
 export async function fetchReservationsPage() {
   return client!.fetch(
-    `*[_type == "reservationsPage"][0]{ pageTitle, pageLead, seoDescription }`,
+    `*[_type == "reservationsPage"][0]{ pageTitle, pageLead, seoDescription, bookingUrl }`,
   );
 }
 

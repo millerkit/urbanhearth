@@ -24,6 +24,14 @@ export const reservationsPage = defineType({
       type: "text",
       rows: 2,
     }),
+    defineField({
+      name: "bookingUrl",
+      title: "OpenTable booking URL",
+      type: "url",
+      description:
+        "The direct OpenTable link that opens when guests click Reserve a Table.",
+      validation: (R) => R.required(),
+    }),
   ],
   preview: { prepare: () => ({ title: "Reservations Page" }) },
 });

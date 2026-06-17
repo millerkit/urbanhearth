@@ -49,6 +49,7 @@ async function run() {
     pageTitle: page.pageTitle,
     pageLead: page.pageLead,
     seoDescription: page.seoDescription,
+    bookingUrl: page.bookingUrl,
   });
   console.log("  Reservations page written ✓\n\nDone.");
 }

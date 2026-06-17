@@ -1,11 +1,11 @@
 /**
- * seed-private-events.mjs — Seed private event packages and page config into Sanity
+ * seed-large-party.mjs — Seed private event packages and page config into Sanity
  *
  * Usage:
- *   SANITY_PROJECT_ID=xxx SANITY_API_TOKEN=xxx node sanity-seed/seed-private-events.mjs
+ *   SANITY_PROJECT_ID=xxx SANITY_API_TOKEN=xxx node sanity-seed/seed-large-party.mjs
  *
  * Or with Node 22's --env-file flag:
- *   node --env-file=.env.local sanity-seed/seed-private-events.mjs
+ *   node --env-file=.env.local sanity-seed/seed-large-party.mjs
  *
  * The Sanity token must have Editor (write) access.
  * Documents use deterministic IDs — safe to re-run.

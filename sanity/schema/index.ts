@@ -12,7 +12,7 @@ import { menuTypes } from "./menu";
 import { menusPage } from "./menusPage";
 import { navLinkTypes } from "./navLinks";
 import { product } from "./product";
-import { privateEventTypes } from "./privateEventPackage";
+import { privateEventTypes } from "./largePartyPackage.ts";
 import { reservationExperience } from "./reservationExperience";
 import { reservationsPage } from "./reservationsPage";
 import { siteSettings } from "./siteSettings";

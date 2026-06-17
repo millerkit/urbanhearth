@@ -37,20 +37,6 @@ export const reservationExperience = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: "theme",
-      title: "Card background",
-      type: "string",
-      options: {
-        list: [
-          { title: "Default (warm white)", value: "default" },
-          { title: "Dark (midnight)", value: "dark" },
-          { title: "Cream", value: "cream" },
-        ],
-        layout: "radio",
-      },
-      initialValue: "default",
-    }),
-    defineField({
       name: "description",
       type: "text",
       validation: (Rule) => Rule.required(),
@@ -65,27 +51,6 @@ export const reservationExperience = defineType({
       title: "Disclaimer note",
       type: "text",
       description: "Optional italic note shown below the detail list",
-    }),
-    defineField({
-      name: "bookingLabel",
-      title: "Booking section label",
-      type: "string",
-      description: 'Label above the booking widget, e.g. "Book online"',
-    }),
-    defineField({
-      name: "otWidgetSrc",
-      title: "OpenTable widget URL",
-      type: "string",
-      description:
-        "Full script src from OpenTable (protocol-relative OK). Leave blank when phoneReserve is true.",
-    }),
-    defineField({
-      name: "phoneReserve",
-      title: "Phone/email reservation",
-      type: "boolean",
-      initialValue: false,
-      description:
-        "When true, shows phone and email contact instead of the OpenTable widget",
     }),
   ],
   preview: {

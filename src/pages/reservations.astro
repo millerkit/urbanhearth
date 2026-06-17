@@ -12,12 +12,6 @@ import Base from "../layouts/Base.astro";
 
 const restaurant = await getSiteSettings();
 
-const themeClass: Record<string, string> = {
-  dark: "experience--dark",
-  cream: "experience--cream",
-  default: "",
-};
-
 let experiences = reservationsFallback;
 let page = pageFallback;
 
@@ -44,89 +38,67 @@ if (isSanityConfigured) {
   <div class="reservations">
     <PageHeader title={page.pageTitle} lead={page.pageLead} />
 
-    <div class="experiences-grid">
+    <div class="experiences">
       {
-        experiences.map((exp) => (
-          <div class={`experience ${themeClass[exp.theme] ?? ""}`} id={exp.id}>
-            <div class="exp-top">
-              <div class="exp-label">
-                <span class="exp-number">{exp.number}</span>
-                <span class="section-eyebrow">{exp.eyebrow}</span>
-              </div>
+        experiences.slice(0, -1).map((exp) => (
+          <div class="experience" id={exp.id}>
+            <div class="exp-body">
               <h2 class="exp-title">{exp.title}</h2>
               <p class="exp-desc">{exp.description}</p>
-              <dl class="exp-details">
-                {exp.details.map((d) => (
-                  <div>
-                    <dt>{d.label}</dt>
-                    <dd>
-                      {d.linkType === "email" ? (
-                        <a href={`mailto:${restaurant.privateDiningEmail}`}>
-                          {restaurant.privateDiningEmail}
-                        </a>
-                      ) : d.linkType === "phone" ? (
-                        <a href={`tel:${restaurant.phone.replace(/\s/g, "")}`}>
-                          {restaurant.phone}
-                        </a>
-                      ) : (
-                        d.value
-                      )}
-                    </dd>
-                  </div>
-                ))}
-              </dl>
-              {exp.note && <p class="exp-note">{exp.note}</p>}
-            </div>
-            <div class="exp-booking">
-              <p class="booking-label section-eyebrow">{exp.bookingLabel}</p>
-              {exp.phoneReserve ? (
-                <>
-                  <p class="contact-line">
-                    <a href={`tel:${restaurant.phone.replace(/\s/g, "")}`}>
-                      {restaurant.phone}
-                    </a>
-                  </p>
-                  <p class="contact-or">or</p>
-                  <a
-                    href={`mailto:${restaurant.privateDiningEmail}`}
-                    class="text-cta"
-                  >
-                    {restaurant.privateDiningEmail}
-                  </a>
-                </>
-              ) : (
-                <div class="ot-widget">
-                  <Fragment
-                    set:html={`<script type="text/javascript" src="${exp.otWidgetSrc}"></script>`}
-                  />
-                </div>
+              {exp.details.length > 0 && (
+                <dl class="exp-details">
+                  {exp.details.map((d) => (
+                    <div>
+                      <dt>{d.label}</dt>
+                      <dd>
+                        {d.linkType === "email" ? (
+                          <a href={`mailto:${restaurant.privateDiningEmail}`}>
+                            {restaurant.privateDiningEmail}
+                          </a>
+                        ) : d.linkType === "phone" ? (
+                          <a
+                            href={`tel:${restaurant.phone.replace(/\s/g, "")}`}
+                          >
+                            {restaurant.phone}
+                          </a>
+                        ) : (
+                          d.value
+                        )}
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
               )}
+              {exp.note && <p class="exp-note">{exp.note}</p>}
             </div>
           </div>
         ))
       }
     </div>
-  </div>
-  <script is:inline>
-    (function () {
-      function widenWidgets() {
-        document.querySelectorAll(".ot-widget").forEach(function (container) {
-          const iframe = container.querySelector("iframe");
-          if (iframe) {
-            const w = container.offsetWidth;
-            iframe.width = w;
-            iframe.style.width = w + "px";
-          }
-        });
-      }
 
-      const tries = 0;
-      const poll = setInterval(function () {
-        widenWidgets();
-        if (++tries >= 20) clearInterval(poll);
-      }, 150);
-    })();
-  </script>
+    <div class="booking-cta">
+      <a
+        href={page.bookingUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="reserve-btn"
+      >
+        Reserve
+      </a>
+    </div>
+
+    {
+      experiences.slice(-1).map((exp) => (
+        <div class="experience experience--walkin" id={exp.id}>
+          <div class="exp-body">
+            <h2 class="exp-title">{exp.title}</h2>
+            <p class="exp-desc">{exp.description}</p>
+            {exp.note && <p class="exp-note">{exp.note}</p>}
+          </div>
+        </div>
+      ))
+    }
+  </div>
 </Base>
 
 <style>
@@ -134,86 +106,42 @@ if (isSanityConfigured) {
     margin-top: 103px;
   }
 
-  /* ── Three-column grid ── */
-  .experiences-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1px;
-    background: var(--border);
-    border-bottom: 1px solid var(--border);
-    max-width: 1380px;
+  /* ── Experience list ── */
+  .experiences {
+    max-width: 860px;
     margin: 0 auto;
-    border-left: 1px solid var(--border);
-    border-right: 1px solid var(--border);
+    border-top: 1px solid var(--border);
   }
 
   .experience {
-    background: var(--warm-white);
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-    padding: 3rem 2rem 2.5rem;
+    padding: 2rem;
+    border-bottom: 1px solid var(--border);
   }
 
-  .experience--dark {
-    background: var(--midnight);
-  }
-
-  .experience--cream {
+  .experience--walkin {
     background: var(--cream);
-  }
-
-  /* ── Card top (grows to fill) ── */
-  .exp-top {
-    flex: 1;
-  }
-
-  .exp-label {
-    display: flex;
-    align-items: center;
-    gap: 1.2rem;
-    margin-bottom: 2rem;
-  }
-
-  .exp-number {
-    font-family: var(--font-header-action) sans-serif;
-    font-size: 11px;
-    font-weight: 300;
-    letter-spacing: 0.2em;
-    color: var(--ink-light);
-    flex-shrink: 0;
-  }
-
-  .experience--dark .exp-number,
-  .experience--dark .section-eyebrow {
-    color: rgba(255, 255, 255, 0.4);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
   }
 
   .exp-title {
-    font-family: var(--font-body) serif;
-    font-size: clamp(1.6rem, 2.2vw, 2.2rem);
+    font-family: var(--font-body), serif;
+    font-size: clamp(1.5rem, 2vw, 2rem);
     font-weight: 300;
     letter-spacing: 0.06em;
     color: var(--ink);
     line-height: 1.1;
-    margin-bottom: 1.4rem;
-  }
-
-  .experience--dark .exp-title {
-    color: var(--parchment);
+    margin-bottom: 0.75rem;
   }
 
   .exp-desc {
-    font-family: var(--font-body) serif;
+    font-family: var(--font-body), serif;
     font-size: 1.0625rem;
     font-weight: 300;
-    line-height: 1.85;
+    line-height: 1.7;
     color: var(--ink);
-    margin-bottom: 2rem;
-  }
-
-  .experience--dark .exp-desc {
-    color: rgba(232, 227, 223, 0.8);
+    margin-bottom: 1.25rem;
+    max-width: 52ch;
   }
 
   /* ── Details list ── */
@@ -222,24 +150,16 @@ if (isSanityConfigured) {
     margin-bottom: 0;
   }
 
-  .experience--dark .exp-details {
-    border-top-color: rgba(255, 255, 255, 0.12);
-  }
-
   .exp-details > div {
     display: grid;
-    grid-template-columns: 90px 1fr;
+    grid-template-columns: 110px 1fr;
     gap: 0.75rem;
-    padding: 0.75rem 0;
+    padding: 0.5rem 0;
     border-bottom: 1px solid var(--border);
   }
 
-  .experience--dark .exp-details > div {
-    border-bottom-color: rgba(255, 255, 255, 0.12);
-  }
-
   .exp-details dt {
-    font-family: var(--font-header-action) sans-serif;
+    font-family: var(--font-header-action), sans-serif;
     font-size: var(--text-label);
     font-weight: 300;
     letter-spacing: 0.16em;
@@ -248,20 +168,12 @@ if (isSanityConfigured) {
     padding-top: 2px;
   }
 
-  .experience--dark .exp-details dt {
-    color: rgba(255, 255, 255, 0.38);
-  }
-
   .exp-details dd {
-    font-family: var(--font-header-action) sans-serif;
+    font-family: var(--font-header-action), sans-serif;
     font-size: var(--text-sm);
     font-weight: 300;
     color: var(--ink);
     line-height: 1.5;
-  }
-
-  .experience--dark .exp-details dd {
-    color: var(--parchment);
   }
 
   .exp-details dd a {
@@ -276,7 +188,7 @@ if (isSanityConfigured) {
   }
 
   .exp-note {
-    font-family: var(--font-header-action) sans-serif;
+    font-family: var(--font-header-action), sans-serif;
     font-size: 12px;
     font-weight: 300;
     line-height: 1.75;
@@ -285,80 +197,43 @@ if (isSanityConfigured) {
     margin-top: 1.5rem;
   }
 
-  .experience--dark .exp-note {
-    color: rgba(255, 255, 255, 0.32);
+  /* ── Single CTA ── */
+  .booking-cta {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 2rem 2rem 3rem;
+    display: flex;
+    justify-content: center;
   }
 
-  /* ── Booking section (pinned to bottom) ── */
-  .exp-booking {
-    margin-top: 2.5rem;
-    padding-top: 2rem;
-    border-top: 1px solid var(--border);
-  }
-
-  .experience--dark .exp-booking {
-    border-top-color: rgba(255, 255, 255, 0.12);
-  }
-
-  .booking-label {
-    margin-bottom: 1rem;
-  }
-
-  .experience--dark .booking-label {
-    color: rgba(255, 255, 255, 0.4);
-  }
-
-  .ot-widget {
-    overflow: hidden;
-    border: 1px solid var(--border);
-    box-shadow: 0 2px 12px rgba(22, 34, 53, 0.06);
-  }
-
-  .experience--dark .ot-widget {
-    border-color: rgba(255, 255, 255, 0.1);
-    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.2);
-  }
-
-  /* ── Salon contact ── */
-  .contact-line {
-    font-family: var(--font-body) serif;
-    font-size: 1.5rem;
-    font-weight: 300;
-    letter-spacing: 0.04em;
-    margin-bottom: 0.5rem;
-  }
-
-  .contact-line a {
-    color: var(--ink);
-    text-decoration: none;
-    border-bottom: 1px solid var(--border);
-    transition: opacity 0.2s;
-  }
-
-  .contact-line a:hover {
-    opacity: 0.5;
-  }
-
-  .contact-or {
-    font-family: var(--font-header-action) sans-serif;
-    font-size: 10px;
+  .reserve-btn {
+    display: inline-block;
+    font-family: var(--font-header-action), sans-serif;
+    font-size: var(--text-label);
     font-weight: 300;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--ink-light);
-    margin: 1rem 0;
+    color: var(--warm-white);
+    background: var(--midnight);
+    padding: 1rem 2.5rem;
+    min-width: 14rem;
+    text-align: center;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+
+  .reserve-btn:hover {
+    opacity: 0.75;
   }
 
   /* ── Responsive ── */
-  @media (max-width: 780px) {
-    .experiences-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  @media (max-width: 500px) {
+  @media (max-width: 640px) {
     .experience {
-      padding: 2.5rem 1.5rem 2rem;
+      padding: 1.5rem;
+    }
+
+    .booking-cta {
+      padding: 2rem 1.5rem;
     }
   }
 </style>

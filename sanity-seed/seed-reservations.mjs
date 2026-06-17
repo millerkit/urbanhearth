@@ -63,7 +63,6 @@ async function run() {
       eyebrow: exp.eyebrow,
       title: exp.title,
       id: { _type: "slug", current: exp.id },
-      theme: exp.theme,
       description: exp.description,
       details: exp.details.map((d) => ({
         _type: "diningAreaDetail",
@@ -73,9 +72,6 @@ async function run() {
         linkType: d.linkType ?? "none",
       })),
       ...(exp.note ? { note: exp.note } : {}),
-      bookingLabel: exp.bookingLabel,
-      ...(exp.otWidgetSrc ? { otWidgetSrc: exp.otWidgetSrc } : {}),
-      phoneReserve: exp.phoneReserve ?? false,
     });
 
     console.log("✓");
