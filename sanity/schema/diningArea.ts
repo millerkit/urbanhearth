@@ -40,7 +40,7 @@ const diningAreaDetail = defineType({
 
 export const diningArea = defineType({
   name: "diningArea",
-  title: "Dining Area",
+  title: "Dining Option",
   type: "document",
   fields: [
     defineField({
