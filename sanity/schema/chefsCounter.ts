@@ -2,7 +2,7 @@ import { defineField, defineType } from "sanity";
 
 export const chefsCounter = defineType({
   name: "chefsCounter",
-  title: "Chef's Counter",
+  title: "Chef's Counter Menu Card",
   type: "document",
   fields: [
     defineField({

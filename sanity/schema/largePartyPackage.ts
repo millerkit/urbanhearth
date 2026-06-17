@@ -60,6 +60,7 @@ export const largePartyPage = defineType({
       validation: (Rule) => Rule.required().min(1),
     }),
   ],
+  preview: { prepare: () => ({ title: "Large Parties Page" }) },
 });
 
 export const largePartyPackage = defineType({
