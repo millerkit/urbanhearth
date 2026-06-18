@@ -2,9 +2,6 @@
  * seed-gallery.mjs — Seed gallery photos into Sanity
  *
  * Usage:
- *   SANITY_PROJECT_ID=xxx SANITY_API_TOKEN=xxx node sanity-seed/seed-gallery.mjs
- *
- * Or with Node 22's --env-file flag:
  *   node --env-file=.env.local sanity-seed/seed-gallery.mjs
  *
  * The Sanity token must have Editor (write) access.

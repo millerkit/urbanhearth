@@ -2,7 +2,7 @@
  * extract-menu.mjs — PDF → menu.json
  *
  * Usage:
- *   ANTHROPIC_API_KEY=xxx node sanity-seed/extract-menu.mjs path/to/menu.pdf
+ *   node --env-file=.env.local sanity-seed/extract-menu.mjs path/to/menu.pdf
  *
  * Outputs sanity-seed/menu.json for review before importing.
  * No packages required beyond Node 22 built-ins.

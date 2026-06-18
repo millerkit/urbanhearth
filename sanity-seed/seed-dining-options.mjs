@@ -2,9 +2,6 @@
  * seed-dining-options.mjs — Seed dining options from src/fallback-content/dining-options.json into Sanity
  *
  * Usage:
- *   SANITY_PROJECT_ID=xxx SANITY_API_TOKEN=xxx node sanity-seed/seed-dining-options.mjs
- *
- * Or with Node 22's --env-file flag:
  *   node --env-file=.env.local sanity-seed/seed-dining-options.mjs
  *
  * The Sanity token must have Editor (write) access.

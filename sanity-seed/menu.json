@@ -1,86 +1,122 @@
 {
-  "name": "Urban Hearth",
+  "season": "June 2026",
   "footer_note": "Ask your server to see our dessert menu. Please inform your server if you have any dietary restrictions. We add a 20% gratuity for all parties of 6 or more.",
   "sections": [
     {
-      "title": "Shared Plates",
+      "title": "To start",
       "items": [
         {
-          "name": "Unicorn Oysters on the Half Shell",
+          "name": "Laminated Buttermilk Biscuit",
+          "price": "8",
+          "description": "Smoked maple miso butter",
+          "note": ""
+        },
+        {
+          "name": "Saffron Fougasse",
+          "price": "10",
+          "description": "Spanish olive oil · sherry salt",
+          "note": ""
+        },
+        {
+          "name": "Unicorn Oysters on the Halfshell",
           "price": "4 ea",
-          "description": "cranberry ponzu · absinthe lime mignonette",
+          "description": "Cucumber pastisse · pepper vinegar",
           "note": ""
         },
         {
-          "name": "Hake Crudo in Hibiscus Leche de Tigre",
+          "name": "House Crafted Charcuterie",
           "price": "26",
-          "description": "crispy leek · pickled green strawberry · summer truffle",
+          "description": "Lamb heart pastrami · pâté de campagne · duck liver mousse",
           "note": ""
         },
         {
-          "name": "Vadouvan Carrot Brochette",
-          "price": "28",
-          "description": "savory oat butter · cocoa emulsion · burnt satsuma",
-          "note": ""
-        },
-        {
-          "name": "Grilled Asparagus & Spring Forage Pistou",
-          "price": "26",
-          "description": "cultured sheep’s milk cheese · basil · hazelnut",
-          "note": ""
-        },
-        {
-          "name": "Blistered Kale with Whipped Tahini",
-          "price": "28",
-          "description": "fregula · szechuan sesame crisp · pickled apple · fermented chili",
-          "note": ""
-        },
-        {
-          "name": "Lovage Crème Brûlée with Sugar Snaps",
-          "price": "30",
-          "description": "clothbound cheddar · rye soil · pea tendrils",
-          "note": ""
-        },
-        {
-          "name": "Pan Seared Halibut",
-          "price": "42",
-          "description": "mussel conserva · dill beurre blanc · shaved fennel salad",
-          "note": ""
-        },
-        {
-          "name": "Chicken & Wild Mushrooms in Red Wine",
-          "price": "44",
-          "description": "serrano ham · pommes provençial · pearl onion agrodolce",
+          "name": "New England Cheese Plate",
+          "price": "23",
+          "description": "Nancy's camembert · fiddlehead tomme · Vermont Creamery chèvre",
           "note": ""
         }
       ]
     },
     {
-      "title": "Breads and Charcuterie",
+      "title": "To share",
       "items": [
         {
-          "name": "Warm Mediterranean Olives",
-          "price": "8",
-          "description": "olive oil · preserved lemon · chili",
+          "name": "Marinated Maine Lobster with Verjus Vinaigrette",
+          "price": "28",
+          "description": "Brown butter popcorn · lovage oil · green garlic & chili",
           "note": ""
         },
         {
-          "name": "Big Buttermilk Biscuit",
-          "price": "8",
-          "description": "smoked maple miso butter",
+          "name": "Tilefish Crudo with Wild Chamomile Salt",
+          "price": "24",
+          "description": "Puffed wild rice · fermented strawberry · strawberry consommé",
           "note": ""
         },
         {
-          "name": "Grilled Sourdough Focaccia",
-          "price": "8",
-          "description": "da lat spice · olive oil",
+          "name": "Early Summer Salad with Cultured Sheepsmilk Cheese",
+          "price": "18",
+          "description": "Farm greens · cucumber · salted pistachio butter · early berries · garum vinaigrette",
           "note": ""
         },
         {
-          "name": "New England Nosh Board",
-          "price": "29",
-          "description": "choose 4 · served with crackers and confiture",
-          "note": "Cheeses: Fiddlehead Tomme (NH), Camembert (NY), Great Hill Blue (MA), Jasper Hill Cheddar (VT), Vermont Chèvre (VT). Charcuterie: Rosette de Lyon (NY), Prosciutto de Parma (IT), N'duja (MA)."
+          "name": "Lamb Tartare with Spruce Tip Kōsho",
+          "price": "9 ea",
+          "description": "Fermented turnip · sourdough crumpet · nasturtium · egg yolk jam",
+          "note": ""
+        },
+        {
+          "name": "Squash Blossom Crepes",
+          "price": "28",
+          "description": "Whipped white bean spread · pickled green tomato · feta",
+          "note": ""
+        },
+        {
+          "name": "Tempura Garlic Scapes & Housemade Za'atar",
+          "price": "22",
+          "description": "Caper aioli · samphire · microgreens",
+          "note": ""
+        },
+        {
+          "name": "Summer Squash and Bacon Savory Brûlée",
+          "price": "28",
+          "description": "Jersey peach salsa · watercress · chicharrón",
+          "note": ""
+        },
+        {
+          "name": "Charcoal Grilled Boston Mackerel",
+          "price": "30",
+          "description": "Green crab curry · elderflower vinaigrette",
+          "note": ""
+        },
+        {
+          "name": "Handmade Rigatoni & N'duja Sugo",
+          "price": "33",
+          "description": "Stracciatella · fermented onion flower honey",
+          "note": ""
+        },
+        {
+          "name": "Sugar Snap Peas & Spinach and Ricotta Cavatelli",
+          "price": "32",
+          "description": "Vermouth crème · lemon and laurel gel",
+          "note": ""
+        },
+        {
+          "name": "Dry Aged Striped Bass in Tarragon Lime Butter",
+          "price": "44",
+          "description": "Smoked trout roe · shaved fennel · green strawberry",
+          "note": ""
+        },
+        {
+          "name": "Sautéed Chanterelles & Morel Conserva",
+          "price": "38",
+          "description": "Flint corn pudding · toasted walnut · savory cherry jam",
+          "note": ""
+        },
+        {
+          "name": "BBQ Duck Breast with Chili and Rhubarb Demiglace",
+          "price": "46",
+          "description": "Tropea onion · Swiss chard · rhubarb chutney",
+          "note": ""
         }
       ]
     }

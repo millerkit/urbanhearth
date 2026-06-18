@@ -2,10 +2,7 @@
  * seed-team.mjs — Seed team members from src/fallback-content/team.json into Sanity
  *
  * Usage:
- *   SANITY_PROJECT_ID=xxx SANITY_API_TOKEN=xxx node scripts/seed-team.mjs
- *
- * Or with Node 22's --env-file flag:
- *   node --env-file=.env.local scripts/seed-team.mjs
+ *   node --env-file=.env.local sanity-seed/seed-team.mjs
  *
  * The Sanity token must have Editor (write) access.
  * Documents use deterministic IDs — safe to re-run.

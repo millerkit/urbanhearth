@@ -1,7 +1,7 @@
 /* Shared styles for à la carte menu and Chef's Counter */
 
 .menu-card {
-  background: var(--parchment);
+  background: #d9d3cd;
   border: 1px solid rgba(22, 34, 53, 0.13);
 }
 

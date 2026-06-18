@@ -2,7 +2,7 @@
  * seed-posts.mjs — posts.json → Sanity
  *
  * Usage:
- *   SANITY_PROJECT_ID=xxx SANITY_API_TOKEN=xxx node sanity-seed/seed-posts.mjs
+ *   node --env-file=.env.local sanity-seed/seed-posts.mjs
  *
  * The token must have Editor (write) access.
  * Images are uploaded from sanity-seed/images/.

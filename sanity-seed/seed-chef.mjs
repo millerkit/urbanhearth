@@ -2,10 +2,7 @@
  * seed-chef.mjs — Seed the chef profile from src/fallback-content/chef.json into Sanity
  *
  * Usage:
- *   SANITY_PROJECT_ID=xxx SANITY_API_TOKEN=xxx node scripts/seed-chef.mjs
- *
- * Or with Node 22's --env-file flag:
- *   node --env-file=.env.local scripts/seed-chef.mjs
+ *   node --env-file=.env.local sanity-seed/seed-chef.mjs
  *
  * The Sanity token must have Editor (write) access.
  * Uses a fixed document ID — safe to re-run.

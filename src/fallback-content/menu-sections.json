@@ -1,83 +1,122 @@
-[
-  {
-    "title": "Shared Plates",
-    "items": [
-      {
-        "name": "Unicorn Oysters on the Half Shell",
-        "price": "4 ea",
-        "description": "Blueberry vinegar · long pepper mignonette"
-      },
-      {
-        "name": "New England Lamb Beignets",
-        "price": "8 ea",
-        "description": "Moroccan spiced lamb · lamb heart pastrami · spring herb salad"
-      },
-      {
-        "name": "Hake Crudo in Hibiscus Leche de Tigre",
-        "price": "26",
-        "description": "Crispy leek · pickled green strawberry · summer truffle"
-      },
-      {
-        "name": "Duck Liver Mousse",
-        "price": "22",
-        "description": "Blueberry mostarda · pickled radish · pistachio · rye cracker"
-      },
-      {
-        "name": "Vadouvan Carrot Brûlette",
-        "price": "28",
-        "description": "Savory & butter · sheep maldon · fried mushrooms"
-      },
-      {
-        "name": "Grilled Asparagus & Spring Forage Pistou",
-        "price": "26",
-        "description": "Cultured sheep's milk cheese · basil · fried capers"
-      },
-      {
-        "name": "Blistered Kale with Whipped Tahini",
-        "price": "28",
-        "description": "Friqule · sichuan sesame crisp · pickled apple · fermented chili"
-      },
-      {
-        "name": "Lovage Crème Brûlée with Sugar Snaps",
-        "price": "30",
-        "description": "Clothbound cheddar · rye soil · pea tendrils"
-      },
-      {
-        "name": "Juniper Rubbed Swordfish",
-        "price": "42",
-        "description": "Parsnip crème · blistered grape · tender herbs"
-      },
-      {
-        "name": "Chicken & Wild Mushrooms in Red Wine",
-        "price": "44",
-        "description": "Thomas Farm · pomelo preserve · pickled onion"
-      }
-    ]
+{
+  "sections": [
+    {
+      "title": "To start",
+      "items": [
+        {
+          "name": "Laminated Buttermilk Biscuit",
+          "price": "8",
+          "description": "Smoked maple miso butter"
+        },
+        {
+          "name": "Saffron Fougasse",
+          "price": "10",
+          "description": "Spanish olive oil · sherry salt"
+        },
+        {
+          "name": "Unicorn Oysters on the Halfshell",
+          "price": "4 ea",
+          "description": "Cucumber pastisse · pepper vinegar"
+        },
+        {
+          "name": "House Crafted Charcuterie",
+          "price": "26",
+          "description": "Lamb heart pastrami · pâté de campagne · duck liver mousse"
+        },
+        {
+          "name": "New England Cheese Plate",
+          "price": "23",
+          "description": "Nancy's camembert · fiddlehead tomme · Vermont Creamery chèvre"
+        }
+      ]
+    },
+    {
+      "title": "To share",
+      "items": [
+        {
+          "name": "Marinated Maine Lobster with Verjus Vinaigrette",
+          "price": "28",
+          "description": "Brown butter popcorn · lovage oil · green garlic & chili"
+        },
+        {
+          "name": "Tilefish Crudo with Wild Chamomile Salt",
+          "price": "24",
+          "description": "Puffed wild rice · fermented strawberry · strawberry consommé"
+        },
+        {
+          "name": "Early Summer Salad with Cultured Sheepsmilk Cheese",
+          "price": "18",
+          "description": "Farm greens · cucumber · salted pistachio butter · early berries · garum vinaigrette"
+        },
+        {
+          "name": "Lamb Tartare with Spruce Tip Kōsho",
+          "price": "9 ea",
+          "description": "Fermented turnip · sourdough crumpet · nasturtium · egg yolk jam"
+        },
+        {
+          "name": "Squash Blossom Crepes",
+          "price": "28",
+          "description": "Whipped white bean spread · pickled green tomato · feta"
+        },
+        {
+          "name": "Tempura Garlic Scapes & Housemade Za'atar",
+          "price": "22",
+          "description": "Caper aioli · samphire · microgreens"
+        },
+        {
+          "name": "Summer Squash and Bacon Savory Brûlée",
+          "price": "28",
+          "description": "Jersey peach salsa · watercress · chicharrón"
+        },
+        {
+          "name": "Charcoal Grilled Boston Mackerel",
+          "price": "30",
+          "description": "Green crab curry · elderflower vinaigrette"
+        },
+        {
+          "name": "Handmade Rigatoni & N'duja Sugo",
+          "price": "33",
+          "description": "Stracciatella · fermented onion flower honey"
+        },
+        {
+          "name": "Sugar Snap Peas & Spinach and Ricotta Cavatelli",
+          "price": "32",
+          "description": "Vermouth crème · lemon and laurel gel"
+        },
+        {
+          "name": "Dry Aged Striped Bass in Tarragon Lime Butter",
+          "price": "44",
+          "description": "Smoked trout roe · shaved fennel · green strawberry"
+        },
+        {
+          "name": "Sautéed Chanterelles & Morel Conserva",
+          "price": "38",
+          "description": "Flint corn pudding · toasted walnut · savory cherry jam"
+        },
+        {
+          "name": "BBQ Duck Breast with Chili and Rhubarb Demiglace",
+          "price": "46",
+          "description": "Tropea onion · Swiss chard · rhubarb chutney"
+        }
+      ]
+    }
+  ],
+  "sustainability": {
+    "heading": "our commitment to sustainability",
+    "body": "Sustainability is foundational to how we cook and operate. We prioritize direct relationships with local farmers and producers, sourcing from within our regional foodshed to support a more resilient local food economy. In the kitchen, we pursue a zero-waste model — repurposing trim, preserving surplus, and designing menus that honor the entirety of each ingredient. Through these efforts, we aim to model a more thoughtful and connected way of cooking within our community.",
+    "attribution": "— Urban Hearth"
   },
-  {
-    "title": "Breads & Charcuterie",
+  "partners": {
+    "heading": "regional agriculture and fisheries partners",
     "items": [
-      {
-        "name": "Warm Mediterranean Olives",
-        "price": "8",
-        "description": "Olive oil · preserved lemon · chili"
-      },
-      {
-        "name": "Big Buttermilk Biscuit",
-        "price": "8",
-        "description": "Smoked maple brown butter"
-      },
-      {
-        "name": "Grilled Sourdough Focaccia",
-        "price": "8",
-        "description": "Du lot spice · olive oil"
-      },
-      {
-        "name": "New England Nosh Board",
-        "price": "29",
-        "description": "A selection of local cheeses and charcuterie, served with crackers and crudités",
-        "note": "Cheeses: hardwood thyme (NH) · camembert (NY) · great hill blue (MA) · jasper hill cheddar (VT) · truffle manchego (VT) — Charcuterie: mortadella · prosciutto di parma · n'duja"
-      }
+      { "name": "Kimball Fruit Farm", "location": "Pepperill, MA" },
+      { "name": "Hopkins Southdown Lamb Farm", "location": "Scituate, RI" },
+      { "name": "Red Fire Farm", "location": "Granby, MA" },
+      { "name": "Wards Berry Farm", "location": "Sharon, MA" },
+      { "name": "Red's Best Seafood", "location": "Boston, MA" },
+      { "name": "The Mushroom Shop", "location": "Somerville, MA" },
+      { "name": "La Belle Farm", "location": "Ferndale, NY" },
+      { "name": "Unicorn Oyster Farm", "location": "Damariscotta, ME" }
     ]
   }
-]
+}
