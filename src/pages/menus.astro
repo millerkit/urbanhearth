@@ -53,6 +53,9 @@ const season = menuData?.season ?? "Spring 2026";
     />
 
     <div class="menus-layout">
+      <!-- ── Chef’s Counter ── -->
+      <ChefsCounter />
+
       {
         usingFallback && (
           <div class="sample-notice" role="alert">
@@ -73,7 +76,7 @@ const season = menuData?.season ?? "Spring 2026";
           >
             <div class="menu-dining-room">
               <div class="dining-room-text">
-                <p class="menu-eyebrow">Dining Room</p>
+                <p class="menu-eyebrow">À la carte</p>
                 <RestaurantHours class="dining-room-hours" />
                 <p class="dining-room-hours">{menusContent.walkInsNote}</p>
               </div>
@@ -111,9 +114,6 @@ const season = menuData?.season ?? "Spring 2026";
           </div>
         )
       }
-
-      <!-- ── Chef’s Counter ── -->
-      <ChefsCounter />
     </div>
 
     <!-- ── Partners ── -->
@@ -155,7 +155,7 @@ const season = menuData?.season ?? "Spring 2026";
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    max-width: 760px;
+    max-width: 860px;
     margin: 2rem auto;
     padding: 0 2.5rem;
   }

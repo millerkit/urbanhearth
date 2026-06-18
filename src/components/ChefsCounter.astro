@@ -21,7 +21,10 @@ if (isSanityConfigured) {
 
 <div class="menu-card card">
   <div class="card-header">
-    <p class="menu-eyebrow">{card.eyebrow}</p>
+    <div class="eyebrow-group">
+      <p class="menu-eyebrow">{card.eyebrow}</p>
+      <p class="reservations-note">{card.finePrint}</p>
+    </div>
     <ReservationButton
       href={`${restaurant.reservations.href}#chefs-counter`}
       label="Reserve your seat"
@@ -33,7 +36,6 @@ if (isSanityConfigured) {
     <span class="menu-label">{card.winePairingLabel}</span>
     <span class="sub-value">{card.winePairingValue}</span>
   </div>
-  <p class="menu-fine-print note">{card.finePrint}</p>
 </div>
 
 <style>
@@ -94,7 +96,17 @@ if (isSanityConfigured) {
     border-bottom: 1px solid var(--border);
   }
 
-  .note {
-    margin-top: 1.2rem;
+  .eyebrow-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .reservations-note {
+    font-family: var(--font-header-action), sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--ink);
+    line-height: 1.6;
   }
 </style>
