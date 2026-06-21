@@ -180,6 +180,8 @@ export async function fetchDiningOptions() {
       dark,
       "photo": photo.asset->url,
       photoAlt,
+      "homepagePhoto": homepagePhoto.asset->url,
+      homepagePhotoAlt,
       "photoSecondary": photoSecondary.asset->url,
       photoSecondaryAlt,
       description,

@@ -6,10 +6,10 @@ import { isSanityConfigured } from "../lib/sanity";
 import { fetchDiningOptions } from "../lib/sanity-fetch";
 import diningOptionsFallback from "../fallback-content/dining-options.json";
 
-import DiningRoomHeroPhoto from "../assets/photos/UrbanHearth-52.jpg";
-import DiningRoomTeaser from "../assets/photos/DiningRoomTeaser.jpeg";
-import ChefsCounterTeaser from "../assets/photos/ChefsCounterTeaser.jpeg";
-import BarRendering from "../assets/photos/SalonPhoto.jpeg";
+import DiningRoomHeroPhoto from "../assets/photos/DiningRoomHero.jpg";
+import DiningRoomTeaser from "../assets/photos/HomeDiningRoomTeaser.jpeg";
+import ChefsCounterTeaser from "../assets/photos/HomeChefsCounterTeaser.jpeg";
+import BarTeaser from "../assets/photos/HomeBarTeaser.jpeg";
 import michelinSeal from "../assets/ui/michelin-selected.png";
 import jamesBeardSeal from "../assets/ui/james-beard-seal.png";
 import splashLogo from "../assets/brand/UrbanHearth_Logo.png";
@@ -41,7 +41,7 @@ const teaserPhotos: Record<string, { src: string; alt: string }> = {
     src: ChefsCounterTeaser.src,
     alt: "Chef's Counter at Urban Hearth",
   },
-  salon: { src: BarRendering.src, alt: "Salon and Bar at Urban Hearth" },
+  salon: { src: BarTeaser.src, alt: "Salon and Bar at Urban Hearth" },
 };
 const restaurantJsonLd = {
   "@context": "https://schema.org",
@@ -132,8 +132,8 @@ const restaurantJsonLd = {
             <a href={`/dining-options#${opt.id}`} class="teaser">
               <div class="teaser-photo-wrap">
                 <img
-                  src={opt.photo ?? photo?.src}
-                  alt={opt.photoAlt ?? photo?.alt ?? opt.title}
+                  src={opt.homepagePhoto ?? photo?.src}
+                  alt={opt.homepagePhotoAlt ?? photo?.alt ?? opt.title}
                   class="teaser-photo"
                   loading="lazy"
                 />

@@ -45,11 +45,18 @@ const areas = JSON.parse(
   ),
 );
 
-// Primary photos keyed by area id
+// Primary photos keyed by area id (Dining Options page)
 const localPhotos = {
   "dining-room": "src/assets/photos/OptionsDiningRoomTeaser.jpeg",
   "chefs-counter": "src/assets/photos/OptionsChefsCounterTeaser.jpeg",
   salon: "src/assets/photos/OptionsBarTeaser.jpeg",
+};
+
+// Homepage teaser photos (home page grid)
+const localHomepagePhotos = {
+  "dining-room": "src/assets/photos/HomeDiningRoomTeaser.jpeg",
+  "chefs-counter": "src/assets/photos/HomeChefsCounterTeaser.jpeg",
+  salon: "src/assets/photos/HomeBarTeaser.jpeg",
 };
 
 // Secondary photos (shown side-by-side with primary)
@@ -87,6 +94,11 @@ async function run() {
     const photoPath = localPhotos[area.id];
     const photo = photoPath ? await uploadPhoto(photoPath) : undefined;
 
+    const homepagePhotoPath = localHomepagePhotos[area.id];
+    const homepagePhoto = homepagePhotoPath
+      ? await uploadPhoto(homepagePhotoPath)
+      : undefined;
+
     const photoSecondaryPath = localPhotosSecondary[area.id];
     const photoSecondary = photoSecondaryPath
       ? await uploadPhoto(photoSecondaryPath)
@@ -113,6 +125,7 @@ async function run() {
       ctaLabel: area.ctaLabel,
       phoneReserve: area.phoneReserve ?? false,
       ...(photo ? { photo } : {}),
+      ...(homepagePhoto ? { homepagePhoto } : {}),
       ...(photoSecondary ? { photoSecondary } : {}),
     });
 

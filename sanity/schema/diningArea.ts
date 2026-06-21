@@ -91,6 +91,19 @@ export const diningArea = defineType({
       type: "string",
     }),
     defineField({
+      name: "homepagePhoto",
+      title: "Homepage teaser photo",
+      type: "image",
+      options: { hotspot: true },
+      description:
+        "Photo shown on the homepage teaser grid — can differ from the Dining Options page photo",
+    }),
+    defineField({
+      name: "homepagePhotoAlt",
+      title: "Homepage teaser photo alt text",
+      type: "string",
+    }),
+    defineField({
       name: "photoSecondary",
       title: "Second photo (optional)",
       type: "image",
