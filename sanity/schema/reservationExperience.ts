@@ -20,7 +20,7 @@ export const reservationExperience = defineType({
     defineField({
       name: "eyebrow",
       type: "string",
-      description: 'Short label above the title, e.g. "Prix Fixe"',
+      description: 'Short label above the title, e.g. "Chef\'s Tasting Menu"',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
