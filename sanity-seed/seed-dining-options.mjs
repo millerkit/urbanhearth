@@ -45,11 +45,16 @@ const areas = JSON.parse(
   ),
 );
 
-// Local photo fallbacks keyed by area id
+// Primary photos keyed by area id
 const localPhotos = {
-  "dining-room": "src/assets/photos/DiningOptionsTeaser.jpeg",
-  "chefs-counter": "src/assets/photos/ChefsCounterTeaser.jpeg",
-  salon: "src/assets/photos/SalonPhoto.jpeg",
+  "dining-room": "src/assets/photos/OptionsDiningRoomTeaser.jpeg",
+  "chefs-counter": "src/assets/photos/OptionsChefsCounterTeaser.jpeg",
+  salon: "src/assets/photos/OptionsBarTeaser.jpeg",
+};
+
+// Secondary photos (shown side-by-side with primary)
+const localPhotosSecondary = {
+  salon: "src/assets/photos/OptionsSalonTeaser.jpeg",
 };
 
 async function uploadPhoto(rawPath) {
@@ -82,6 +87,11 @@ async function run() {
     const photoPath = localPhotos[area.id];
     const photo = photoPath ? await uploadPhoto(photoPath) : undefined;
 
+    const photoSecondaryPath = localPhotosSecondary[area.id];
+    const photoSecondary = photoSecondaryPath
+      ? await uploadPhoto(photoSecondaryPath)
+      : undefined;
+
     await client.createOrReplace({
       _type: "diningArea",
       _id: docId(area.id),
@@ -103,6 +113,7 @@ async function run() {
       ctaLabel: area.ctaLabel,
       phoneReserve: area.phoneReserve ?? false,
       ...(photo ? { photo } : {}),
+      ...(photoSecondary ? { photoSecondary } : {}),
     });
 
     console.log("✓");

@@ -180,6 +180,8 @@ export async function fetchDiningOptions() {
       dark,
       "photo": photo.asset->url,
       photoAlt,
+      "photoSecondary": photoSecondary.asset->url,
+      photoSecondaryAlt,
       description,
       details[]{ label, value, linkType },
       ctaLabel,

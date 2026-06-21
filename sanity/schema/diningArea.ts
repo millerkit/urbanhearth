@@ -91,6 +91,19 @@ export const diningArea = defineType({
       type: "string",
     }),
     defineField({
+      name: "photoSecondary",
+      title: "Second photo (optional)",
+      type: "image",
+      options: { hotspot: true },
+      description:
+        "When set, a second photo is shown side-by-side with the first (e.g. Bar & Salon)",
+    }),
+    defineField({
+      name: "photoSecondaryAlt",
+      title: "Second photo alt text",
+      type: "string",
+    }),
+    defineField({
       name: "description",
       type: "array",
       of: [{ type: "text" }],
