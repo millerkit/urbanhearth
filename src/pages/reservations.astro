@@ -79,14 +79,30 @@ if (isSanityConfigured) {
     </div>
 
     <div class="booking-cta">
-      <a
-        href={page.bookingUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="reserve-btn"
+      <button class="reserve-btn" id="open-reservation-modal">Reserve</button>
+    </div>
+  </div>
+
+  <div
+    class="modal-overlay"
+    id="reservation-modal"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Make a reservation"
+  >
+    <div class="modal-box">
+      <button
+        class="modal-close"
+        id="close-reservation-modal"
+        aria-label="Close">&#x2715;</button
       >
-        Reserve
-      </a>
+      <iframe
+        src={`https://www.opentable.com/widget/reservation/loader?rid=342889&domain=com&type=standard&theme=standard&lang=en-US&ot_source=Restaurant%20website&iframe=true`}
+        width="100%"
+        height="100%"
+        frameborder="0"
+        scrolling="yes"
+        title="Make a reservation"></iframe>
     </div>
   </div>
 </Base>
@@ -109,7 +125,7 @@ if (isSanityConfigured) {
   }
 
   .exp-title {
-    font-family: var(--font-body), serif;
+    font-family: var(--font-headline);
     font-size: clamp(1.5rem, 2vw, 2rem);
     font-weight: 300;
     letter-spacing: 0.06em;
@@ -199,6 +215,56 @@ if (isSanityConfigured) {
     opacity: 0.75;
   }
 
+  /* ── Modal ── */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+
+  .modal-overlay.is-open {
+    display: flex;
+  }
+
+  .modal-box {
+    position: relative;
+    width: 100%;
+    max-width: 540px;
+    height: min(680px, 90vh);
+    background: #fff;
+  }
+
+  .modal-box iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  .modal-close {
+    position: absolute;
+    top: -2.25rem;
+    right: 0;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.25rem;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0.25rem 0.5rem;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+  }
+
+  .modal-close:hover {
+    opacity: 1;
+  }
+
   /* ── Responsive ── */
   @media (max-width: 640px) {
     .experience {
@@ -208,5 +274,35 @@ if (isSanityConfigured) {
     .booking-cta {
       padding: 2rem 1.5rem;
     }
+
+    .modal-box {
+      height: 85vh;
+    }
   }
 </style>
+
+<script>
+  const modal = document.getElementById("reservation-modal")!;
+  const openBtn = document.getElementById("open-reservation-modal")!;
+  const closeBtn = document.getElementById("close-reservation-modal")!;
+
+  openBtn.addEventListener("click", () => {
+    modal.classList.add("is-open");
+    document.body.style.overflow = "hidden";
+  });
+
+  const closeModal = () => {
+    modal.classList.remove("is-open");
+    document.body.style.overflow = "";
+  };
+
+  closeBtn.addEventListener("click", closeModal);
+
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) closeModal();
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeModal();
+  });
+</script>

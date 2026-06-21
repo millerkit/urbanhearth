@@ -28,12 +28,7 @@ const isShopPage =
     <img src={logo.src} alt={restaurant.name} class="wordmark-logo" />
   </a>
   <div class="cta-wrap">
-    <a
-      href={restaurant.reservations.href}
-      class={isShopPage ? "cta cta--dimmed" : "cta"}
-      target="_blank"
-      rel="noopener"
-    >
+    <a href="/reservations" class={isShopPage ? "cta cta--dimmed" : "cta"}>
       <span class="cta-full">{restaurant.reservations.label}</span>
       <span class="cta-short">{restaurant.reservations.shortLabel}</span>
     </a>
