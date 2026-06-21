@@ -18,7 +18,6 @@ let links: {
 if (isSanityConfigured) {
   try {
     const data = await fetchNavLinks();
-    // TODO: Large Parties page not ready — remove this filter when complete
     if (data.length > 0)
       links = data.filter((l) => l.href !== "/large-parties");
   } catch (e) {
