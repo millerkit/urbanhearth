@@ -65,6 +65,7 @@ html {
 
 body {
   background: var(--warm-white);
+
   color: var(--ink);
   font-family: var(--font-body), serif;
   -webkit-font-smoothing: antialiased;
