@@ -44,6 +44,13 @@ export const homepageContent = defineType({
       ],
     }),
     defineField({
+      name: "teasersEyebrow",
+      title: "Dining teasers eyebrow",
+      type: "string",
+      description:
+        'Short line above the Reserve button beneath the dining-area cards — e.g. "Choose your dining experience"',
+    }),
+    defineField({
       name: "intro",
       title: "Intro section",
       type: "object",

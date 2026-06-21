@@ -17,11 +17,13 @@ import { reservationExperience } from "./reservationExperience";
 import { reservationsPage } from "./reservationsPage";
 import { siteSettings } from "./siteSettings";
 import { teamMember } from "./teamMember";
+import { teamPage } from "./teamPage";
 
 export const schemaTypes = [
   siteSettings,
   homepageContent,
   teamMember,
+  teamPage,
   ...chefProfileTypes,
   ...diningAreaTypes,
   farm,

@@ -2,6 +2,9 @@
 import { Image } from "astro:assets";
 import { getSiteSettings } from "../lib/site-settings";
 import { getHomepageContent } from "../lib/homepage";
+import { isSanityConfigured } from "../lib/sanity";
+import { fetchDiningOptions } from "../lib/sanity-fetch";
+import diningOptionsFallback from "../fallback-content/dining-options.json";
 
 import DiningRoomHeroPhoto from "../assets/photos/UrbanHearth-52.jpg";
 import DiningRoomTeaser from "../assets/photos/DiningRoomTeaser.jpeg";
@@ -17,6 +20,29 @@ import ReservationButton from "../components/ReservationButton.astro";
 
 const restaurant = await getSiteSettings();
 const homepage = await getHomepageContent();
+
+let diningOptions: typeof diningOptionsFallback = diningOptionsFallback;
+if (isSanityConfigured) {
+  try {
+    const data = await fetchDiningOptions();
+    if (data?.length) diningOptions = data;
+  } catch (e) {
+    console.error("Failed to fetch dining options from Sanity:", e);
+  }
+}
+
+// Photo fallbacks keyed by id, matching the order in dining-options.json
+const teaserPhotos: Record<string, { src: string; alt: string }> = {
+  "dining-room": {
+    src: DiningRoomTeaser.src,
+    alt: "Dining Room at Urban Hearth",
+  },
+  "chefs-counter": {
+    src: ChefsCounterTeaser.src,
+    alt: "Chef's Counter at Urban Hearth",
+  },
+  salon: { src: BarRendering.src, alt: "Salon and Bar at Urban Hearth" },
+};
 const restaurantJsonLd = {
   "@context": "https://schema.org",
   "@type": "Restaurant",
@@ -99,60 +125,34 @@ const restaurantJsonLd = {
 
   <section class="dining-teasers">
     <div class="teasers-grid">
-      <a href="/dining-options#dining-room" class="teaser">
-        <div class="teaser-photo-wrap">
-          <Image
-            src={DiningRoomTeaser}
-            alt="Dining Room at Urban Hearth"
-            class="teaser-photo"
-            widths={[400, 800]}
-            sizes="(max-width: 780px) 100vw, 33vw"
-            loading="lazy"
-          />
-        </div>
-        <div class="teaser-body">
-          <h2 class="teaser-title">Dining Room</h2>
-        </div>
-      </a>
-
-      <div class="teaser-mid-col">
-        <a href="/dining-options#chefs-counter" class="teaser">
-          <div class="teaser-photo-wrap">
-            <Image
-              src={ChefsCounterTeaser}
-              alt="Chef's Counter at Urban Hearth"
-              class="teaser-photo"
-              widths={[400, 800]}
-              sizes="(max-width: 780px) 100vw, 33vw"
-              loading="lazy"
-            />
-          </div>
-          <div class="teaser-body">
-            <h2 class="teaser-title">Chef's Counter</h2>
-          </div>
-        </a>
-      </div>
-
-      <a href="/dining-options#salon" class="teaser">
-        <div class="teaser-photo-wrap">
-          <img
-            src={BarRendering.src}
-            alt="Salon and Bar at Urban Hearth"
-            class="teaser-photo"
-            loading="lazy"
-          />
-        </div>
-        <div class="teaser-body">
-          <h2 class="teaser-title">Salon & Bar</h2>
-        </div>
-      </a>
+      {
+        diningOptions.map((opt, i) => {
+          const photo = teaserPhotos[opt.id] ?? Object.values(teaserPhotos)[i];
+          const card = (
+            <a href={`/dining-options#${opt.id}`} class="teaser">
+              <div class="teaser-photo-wrap">
+                <img
+                  src={opt.photo ?? photo?.src}
+                  alt={opt.photoAlt ?? photo?.alt ?? opt.title}
+                  class="teaser-photo"
+                  loading="lazy"
+                />
+              </div>
+              <div class="teaser-body">
+                <h2 class="teaser-title">{opt.title}</h2>
+              </div>
+            </a>
+          );
+          return i === 1 ? <div class="teaser-mid-col">{card}</div> : card;
+        })
+      }
     </div>
     <div class="teasers-booking-row">
       <div class="teasers-booking-spacer"></div>
       <div class="teasers-booking-cell">
         <div class="booking-inner">
           <p class="booking-eyebrow section-eyebrow">
-            Choose your dining experience
+            {homepage.teasersEyebrow}
           </p>
           <ReservationButton label="Reserve" />
         </div>
@@ -264,7 +264,7 @@ const restaurantJsonLd = {
   }
 
   .teaser-title {
-    font-family: var(--font-body) serif;
+    font-family: var(--font-headline);
     font-size: clamp(1.4rem, 2vw, 1.9rem);
     font-weight: 300;
     letter-spacing: 0.06em;

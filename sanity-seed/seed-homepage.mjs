@@ -57,6 +57,7 @@ async function run() {
       definitionText: homepage.statement.definitionText,
       description: homepage.statement.description,
     },
+    teasersEyebrow: homepage.teasersEyebrow,
     intro: {
       eyebrow: homepage.intro.eyebrow,
       paragraphs: homepage.intro.paragraphs,

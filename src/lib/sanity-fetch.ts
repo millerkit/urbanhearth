@@ -221,6 +221,7 @@ export async function fetchHomepageContent() {
   return client!.fetch(`
     *[_type == "homepageContent"][0]{
       statement{ eyebrow, tags, definitionTerm, definitionText, description },
+      teasersEyebrow,
       intro{ eyebrow, paragraphs }
     }
   `);
@@ -334,6 +335,12 @@ export async function fetchFooterLinks() {
 export async function fetchReservationsPage() {
   return client!.fetch(
     `*[_type == "reservationsPage"][0]{ pageTitle, pageLead, seoDescription, bookingUrl }`,
+  );
+}
+
+export async function fetchTeamPage() {
+  return client!.fetch(
+    `*[_type == "teamPage"][0]{ pageTitle, pageLead, seoDescription, chefLinkText }`,
   );
 }
 

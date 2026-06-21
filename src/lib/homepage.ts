@@ -24,7 +24,10 @@ export async function getHomepageContent(): Promise<HomepageContent> {
   try {
     const data = await fetchHomepageContent();
     if (data) {
-      _cache = data as HomepageContent;
+      const defined = Object.fromEntries(
+        Object.entries(data).filter(([, v]) => v != null),
+      );
+      _cache = { ...homepageFallback, ...defined } as HomepageContent;
       return _cache;
     }
   } catch (e) {
