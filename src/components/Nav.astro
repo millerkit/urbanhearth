@@ -11,13 +11,16 @@ const currentPath = Astro.url.pathname;
 let links: {
   label: string;
   href: string;
+  _hidden?: boolean;
   children?: { label: string; href: string }[];
-}[] = linksFallback;
+}[] = (linksFallback as any[]).filter((l) => !l._hidden);
 
 if (isSanityConfigured) {
   try {
     const data = await fetchNavLinks();
-    if (data.length > 0) links = data;
+    // TODO: Large Parties page not ready — remove this filter when complete
+    if (data.length > 0)
+      links = data.filter((l) => l.href !== "/large-parties");
   } catch (e) {
     console.error("Failed to fetch nav links from Sanity:", e);
   }
