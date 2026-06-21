@@ -1,13 +1,23 @@
 ---
 import { getSiteSettings } from "../lib/site-settings";
 import { isSanityConfigured } from "../lib/sanity";
-import { fetchTeamMembers } from "../lib/sanity-fetch";
+import { fetchTeamMembers, fetchTeamPage } from "../lib/sanity-fetch";
 import teamFallback from "../fallback-content/team.json";
-import page from "../fallback-content/team-page.json";
+import pageFallback from "../fallback-content/team-page.json";
 import Base from "../layouts/Base.astro";
 import PageHeader from "../components/PageHeader.astro";
 
 const restaurant = await getSiteSettings();
+
+let page: typeof pageFallback = pageFallback;
+if (isSanityConfigured) {
+  try {
+    const data = await fetchTeamPage();
+    if (data) page = { ...pageFallback, ...data };
+  } catch (e) {
+    console.error("Failed to fetch team page from Sanity:", e);
+  }
+}
 
 let team: typeof teamFallback = teamFallback;
 if (isSanityConfigured) {
@@ -23,9 +33,18 @@ if (isSanityConfigured) {
 <Base title={`The Team — ${restaurant.name}`} description={page.seoDescription}>
   <div class="team-page">
     <PageHeader title={page.pageTitle} lead={page.pageLead}>
-      <p class="team-chef-link">
-        Led by <a href="/chef">Erin Miller</a>, Executive Chef &amp; Owner.
-      </p>
+      {
+        (() => {
+          const parts = (page.chefLinkText ?? "").split("{chefLink}");
+          return (
+            <p class="team-chef-link">
+              {parts[0]}
+              <a href="/chef">Erin Miller</a>
+              {parts[1] ?? ""}
+            </p>
+          );
+        })()
+      }
     </PageHeader>
 
     <div class="team-grid">
