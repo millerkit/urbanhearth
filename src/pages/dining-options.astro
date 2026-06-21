@@ -38,17 +38,6 @@ if (isSanityConfigured) {
   <div class="dining-page">
     <PageHeader title={page.pageTitle} lead={page.pageLead} />
 
-    <nav class="area-nav" aria-label="Dining Options">
-      {
-        options.map((a) => (
-          <a href={`#${a.id}`} class="area-nav-link">
-            <span class="area-nav-num">{a.number}</span>
-            <span>{a.title}</span>
-          </a>
-        ))
-      }
-    </nav>
-
     {
       options.map((area, i) => {
         const photoSrc = area.photo ?? photoFallbacks[area.id];
@@ -64,10 +53,6 @@ if (isSanityConfigured) {
                 class="area-photo"
                 loading={i === 0 ? "eager" : "lazy"}
               />
-              <div class="area-photo-label">
-                <span class="area-num">{area.number}</span>
-                <span class="area-label section-eyebrow">{area.label}</span>
-              </div>
             </div>
 
             <div class="area-body">
@@ -170,7 +155,8 @@ if (isSanityConfigured) {
   /* ── Photo ── */
   .area-photo-wrap {
     position: relative;
-    width: 100%;
+    width: 60%;
+    margin: 2.5rem auto 0;
     aspect-ratio: 16 / 7;
     overflow: hidden;
     background: var(--midnight);
@@ -217,7 +203,7 @@ if (isSanityConfigured) {
 
   /* ── Title & description ── */
   .area-title {
-    font-family: var(--font-body) serif;
+    font-family: var(--font-headline);
     font-size: clamp(2rem, 3.5vw, 3rem);
     font-weight: 300;
     letter-spacing: 0.07em;
@@ -237,7 +223,7 @@ if (isSanityConfigured) {
     font-family: var(--font-body) serif;
     font-size: var(--text-md);
     font-weight: 300;
-    line-height: 1.85;
+    line-height: 1.55;
     color: var(--ink);
   }
 
