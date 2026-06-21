@@ -2,6 +2,18 @@
 
 Restaurant website for Urban Hearth, built with Astro and Sanity.
 
+## Typography
+
+The brand guide (see `docs/Urban_Hearth_Brand_Guide.pdf`) specifies three typefaces. All are licensed. Notes on substitutions:
+
+| Role                   | Brand Guide Specifies  | Implementation                                      | Notes                                                                                                                                                                                                |
+| :--------------------- | :--------------------- | :-------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Display headlines      | Contax Sans 35         | Contax Sans 35 (`--font-headline`)                  | Exact match. Used for page titles and short section headings only — not for multi-sentence text.                                                                                                     |
+| Section headers / CTAs | Basic Commercial       | Akzidenz Grotesk W1G Light (`--font-header-action`) | Basic Commercial is Linotype's licensed name for Akzidenz-Grotesk. Same typeface; renamed for trademark reasons.                                                                                     |
+| Body copy              | Cardinal Classic Short | Cormorant Garamond (`--font-body`)                  | Cardinal Classic Short is cost-prohibitive. Cormorant Garamond is a close visual substitute — both are elegant, light-weight modernized serifs. Replace if Cardinal Classic Short becomes available. |
+
+Font files live in `src/assets/fonts/`. Cormorant Garamond is loaded from Google Fonts in `src/styles/global.css`.
+
 ## Development
 
 ```sh

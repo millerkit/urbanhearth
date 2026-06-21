@@ -1,6 +1,8 @@
 ---
 import "../styles/global.css";
 import "../styles/cart.css";
+import contaxSansUrl from "../assets/fonts/ContaxSans35Thin.woff2?url";
+import akzidenzUrl from "../assets/fonts/AkzidenzGroteskW1GLight.woff2?url";
 import { getSiteSettings } from "../lib/site-settings";
 import TopBar from "../components/TopBar.astro";
 import Nav from "../components/Nav.astro";
@@ -35,6 +37,22 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? restaurant.url)
     <meta name="description" content={description} />
     <title>{title}</title>
     <link rel="canonical" href={canonicalURL} />
+
+    <!-- Preload display fonts to prevent FOUT on headline elements -->
+    <link
+      rel="preload"
+      href={contaxSansUrl}
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href={akzidenzUrl}
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
 
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
