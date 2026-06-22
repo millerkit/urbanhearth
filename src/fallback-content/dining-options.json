@@ -41,10 +41,10 @@
     "phoneReserve": false,
     "ctaLabel": "Reserve your seat",
     "description": [
-      "Six seats at the kitchen pass. Five courses shaped by what arrived that morning — $160 per person, with wine pairing available at $70."
+      "Six seats at the kitchen pass. Five courses shaped by what arrived that morning — $190 per person, with optional wine pairings, spirit pairings or spirit free pairings."
     ],
     "details": [
-      { "label": "Price", "value": "$160 per person" },
+      { "label": "Price", "value": "$190 per person" },
       { "label": "Wine pairing", "value": "+$70 per person" },
       { "label": "Seatings", "value": "5:45 pm & 8:15 pm" },
       { "label": "Capacity", "value": "Maximum 4 guests per seating" }

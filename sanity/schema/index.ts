@@ -3,7 +3,7 @@ import { blogPost } from "./blogPost";
 import { mailingListPage } from "./mailingListPage";
 import { chefsCounter } from "./chefsCounter";
 import { chefProfileTypes } from "./chefProfile";
-import { diningAreaTypes } from "./diningArea";
+import { diningOptionTypes } from "./diningOption";
 import { farm } from "./farm";
 import { footerLinks } from "./footerLinks";
 import { galleryPhoto } from "./galleryPhoto";
@@ -25,7 +25,7 @@ export const schemaTypes = [
   teamMember,
   teamPage,
   ...chefProfileTypes,
-  ...diningAreaTypes,
+  ...diningOptionTypes,
   farm,
   galleryPhoto,
   reservationExperience,

@@ -1,6 +1,6 @@
 import { defineField, defineType } from "sanity";
 
-const diningAreaDetail = defineType({
+const diningOptionDetail = defineType({
   name: "diningAreaDetail",
   title: "Detail row",
   type: "object",
@@ -38,7 +38,7 @@ const diningAreaDetail = defineType({
   },
 });
 
-export const diningArea = defineType({
+export const diningOption = defineType({
   name: "diningArea",
   title: "Dining Option",
   type: "document",
@@ -155,4 +155,4 @@ export const diningArea = defineType({
   ],
 });
 
-export const diningAreaTypes = [diningArea, diningAreaDetail];
+export const diningOptionTypes = [diningOption, diningOptionDetail];
