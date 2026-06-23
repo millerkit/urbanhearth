@@ -79,6 +79,7 @@ if (isSanityConfigured) {
     </div>
 
     <div class="booking-cta">
+      <p class="booking-cta-label">Reserve either experience</p>
       <button class="reserve-btn" id="open-reservation-modal">Reserve</button>
     </div>
   </div>
@@ -187,12 +188,25 @@ if (isSanityConfigured) {
   }
 
   /* ── Single CTA ── */
+  .booking-cta-label {
+    font-family: var(--font-header-action), sans-serif;
+    font-size: var(--text-label);
+    font-weight: 300;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
   .booking-cta {
     max-width: 860px;
     margin: 0 auto;
     padding: 2rem 2rem 3rem;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
   }
 
   .reserve-btn {
