@@ -15,6 +15,10 @@ import img9 from "../assets/photos/gallery/gallery-image-9.jpg";
 import img10 from "../assets/photos/gallery/gallery-image-10.jpg";
 import img11 from "../assets/photos/gallery/gallery-image-11.jpg";
 import img12 from "../assets/photos/gallery/gallery-image-12.jpg";
+import img13 from "../assets/photos/gallery/gallery-image-13.jpg";
+import img14 from "../assets/photos/gallery/gallery-image-14.jpg";
+import img15 from "../assets/photos/gallery/gallery-image-15.jpg";
+import img16 from "../assets/photos/gallery/gallery-image-16.jpg";
 
 const restaurant = await getSiteSettings();
 
@@ -31,6 +35,10 @@ const photos = [
   img10,
   img11,
   img12,
+  img13,
+  img14,
+  img15,
+  img16,
 ];
 ---
 
@@ -60,10 +68,10 @@ const photos = [
 
   .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 3px;
     width: 80%;
-    margin: 0 auto;
+    margin: 0 auto 2.5rem;
     background: var(--border);
     border-bottom: 1px solid var(--border);
   }
@@ -87,13 +95,13 @@ const photos = [
     transform: scale(1.03);
   }
 
-  @media (max-width: 700px) {
+  @media (max-width: 900px) {
     .gallery-grid {
       grid-template-columns: repeat(2, 1fr);
     }
   }
 
-  @media (max-width: 440px) {
+  @media (max-width: 500px) {
     .gallery-grid {
       grid-template-columns: 1fr;
       gap: 2px;
