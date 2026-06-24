@@ -1,0 +1,16 @@
+{
+  "heading": "regional agriculture and fisheries partners",
+  "items": [
+    { "name": "Kitchen Garden Farm", "location": "Sunderland, MA" },
+    { "name": "Langwater Farm", "location": "North Easton, MA" },
+    { "name": "Kimball Fruit Farm", "location": "Pepperill, MA" },
+    { "name": "Hopkins Southdown Lamb Farm", "location": "Scituate, RI" },
+    { "name": "Red Fire Farm", "location": "Granby, MA" },
+    { "name": "Wards Berry Farm", "location": "Sharon, MA" },
+    { "name": "Red's Best Seafood", "location": "Boston, MA" },
+    { "name": "The Mushroom Shop", "location": "Somerville, MA" },
+    { "name": "La Belle Farm", "location": "Ferndale, NY" },
+    { "name": "Unicorn Oyster Farm", "location": "Damariscotta, ME" },
+    { "name": "Revival Road Farm", "location": "Beverly, MA" }
+  ]
+}

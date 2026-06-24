@@ -6,6 +6,7 @@ import { chefsCounter } from "./chefsCounter";
 import { chefProfileTypes } from "./chefProfile";
 import { diningOptionTypes } from "./diningOption";
 import { farm } from "./farm";
+import { partnerTypes } from "./partners";
 import { footerLinks } from "./footerLinks";
 import { galleryPhoto } from "./galleryPhoto";
 import { homepageContent } from "./homepageContent";
@@ -28,6 +29,7 @@ export const schemaTypes = [
   ...chefProfileTypes,
   ...diningOptionTypes,
   farm,
+  ...partnerTypes,
   galleryPhoto,
   reservationExperience,
   reservationsPage,

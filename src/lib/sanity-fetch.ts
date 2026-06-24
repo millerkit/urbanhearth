@@ -232,9 +232,9 @@ export async function fetchHomepageContent() {
 
 export async function fetchFarms() {
   const doc = await client!.fetch(`
-    *[_type == "menu"][0]{ partners[]{ name, location } }
+    *[_type == "partners"][0]{ items[]{ name, location } }
   `);
-  return (doc?.partners ?? []) as { name: string; location: string }[];
+  return (doc?.items ?? []) as { name: string; location: string }[];
 }
 
 export async function fetchChefProfile() {

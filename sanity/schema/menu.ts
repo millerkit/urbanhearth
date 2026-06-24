@@ -19,21 +19,6 @@ const menuItem = defineType({
   },
 });
 
-const partner = defineType({
-  name: "menuPartner",
-  title: "Partner",
-  type: "object",
-  fields: [
-    defineField({
-      name: "name",
-      type: "string",
-      validation: (R) => R.required(),
-    }),
-    defineField({ name: "location", type: "string" }),
-  ],
-  preview: { select: { title: "name", subtitle: "location" } },
-});
-
 const menuSection = defineType({
   name: "menuSection",
   title: "Menu Section",
@@ -71,22 +56,10 @@ export const menu = defineType({
       type: "array",
       of: [{ type: "menuSection" }],
     }),
-    defineField({
-      name: "partnersHeading",
-      title: "Partners heading",
-      type: "string",
-    }),
-    defineField({
-      name: "partners",
-      title: "Partners",
-      type: "array",
-      of: [{ type: "menuPartner" }],
-      description: "Farms and fisheries listed on the menu and About pages",
-    }),
   ],
   preview: {
     select: { title: "season" },
   },
 });
 
-export const menuTypes = [menu, menuSection, menuItem, partner];
+export const menuTypes = [menu, menuSection, menuItem];

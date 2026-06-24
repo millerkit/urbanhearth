@@ -58,21 +58,12 @@ const sections = (menu.sections ?? []).map((section) => ({
   })),
 }));
 
-const partners = (menu.partners?.items ?? []).map((p, i) => ({
-  _type: "menuPartner",
-  _key: `partner-${i + 1}`,
-  name: p.name,
-  location: p.location ?? "",
-}));
-
 const doc = {
   _id: "menu",
   _type: "menu",
   season: menu.name ?? menu.season ?? "",
   footer_note: menu.footer_note ?? "",
   sections,
-  partnersHeading: menu.partners?.heading ?? "",
-  partners,
 };
 
 console.log(`Seeding menu: ${doc.season}`);
