@@ -8,13 +8,16 @@ import logo from "../assets/brand/UrbanHearth_Logo_BLACK_cropped.png";
 const restaurant = await getSiteSettings();
 const currentPath = Astro.url.pathname;
 
-let links: {
+type NavLink = {
   label: string;
   href: string;
   hidden?: boolean;
   children?: { label: string; href: string }[];
-}[] = (linksFallback as any[])
-  .map(({ _hidden, ...rest }: any) => ({ ...rest, hidden: _hidden === true }))
+};
+
+const fallbackLinks = linksFallback as (NavLink & { _hidden?: boolean })[];
+let links: NavLink[] = fallbackLinks
+  .map(({ _hidden, ...rest }) => ({ ...rest, hidden: _hidden === true }))
   .filter((l) => !l.hidden);
 
 if (isSanityConfigured) {
