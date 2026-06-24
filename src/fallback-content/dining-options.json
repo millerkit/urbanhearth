@@ -41,14 +41,15 @@
     "phoneReserve": false,
     "ctaLabel": "Reserve your seat",
     "description": [
-      "Six seats at the kitchen pass. Five courses shaped by what arrived that morning — $190 per person, with optional wine pairings, spirit pairings or spirit free pairings."
+      "Six seats at the kitchen pass. A multi-course menu prepared by the Chef — $190 per person, with optional wine pairings, spirit pairings or spirit free pairings."
     ],
     "details": [
       { "label": "Price", "value": "$190 per person" },
-      { "label": "Wine pairing", "value": "+$70 per person" },
+      { "label": "Pairings", "value": "Wine · Spirit · Spirit-free" },
       { "label": "Seatings", "value": "5:45 pm & 8:15 pm" },
       { "label": "Capacity", "value": "Maximum 4 guests per seating" }
-    ]
+    ],
+    "finePrint": "Advanced reservations required."
   },
   {
     "order": 3,
@@ -66,7 +67,8 @@
     "phoneReserve": false,
     "ctaLabel": "",
     "description": [
-      "Natural wines, craft cocktails, and small plates in a relaxed room that keeps its own hours. Walk-ins always welcome; reservations recommended for groups of four or more."
+      "Natural wines, craft cocktails, and small plates in a relaxed room that keeps its own hours. Walk-ins always welcome; reservations recommended for groups of four or more.",
+      "The salon is available for private gatherings. To book, reach out to our concierge team at <a href=\"mailto:concierge@urbanhearth.net\">concierge@urbanhearth.net</a>."
     ],
     "details": [
       { "label": "Hours", "value": "Monday – Saturday, 5:00 – 11:00 pm" },

@@ -124,6 +124,7 @@ async function run() {
       })),
       ctaLabel: area.ctaLabel,
       phoneReserve: area.phoneReserve ?? false,
+      ...(area.finePrint ? { finePrint: area.finePrint } : {}),
       ...(photo ? { photo } : {}),
       ...(homepagePhoto ? { homepagePhoto } : {}),
       ...(photoSecondary ? { photoSecondary } : {}),

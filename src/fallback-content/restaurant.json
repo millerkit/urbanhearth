@@ -1,7 +1,7 @@
 {
   "name": "Urban Hearth",
   "url": "https://www.urbanhearth.net",
-  "tagline": "Seasonal cooking and unhurried hospitality in Inman Square, Cambridge. Michelin-selected. James Beard Foundation nominated.",
+  "tagline": "Seasonal cooking and unhurried hospitality in Inman Square, Cambridge. Michelin-recommended. James Beard Foundation nominated.",
   "address": "1281 Cambridge St, Cambridge, MA 02139",
   "phone": "617 682 7295",
   "reservations": {
@@ -10,7 +10,7 @@
     "href": "/reservations"
   },
   "hours": ["Tuesday – Sunday: 5:00 — 10:00 pm"],
-  "privateDiningEmail": "info@urbanhearth.net",
+  "privateDiningEmail": "concierge@urbanhearth.net",
   "social": {
     "facebook": "https://www.facebook.com/urbanhearthcambridge",
     "instagram": "https://www.instagram.com/urban_hearth"

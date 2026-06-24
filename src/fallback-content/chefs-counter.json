@@ -1,9 +1,8 @@
 {
-  "eyebrow": "Chef's Counter",
-  "price": "$160",
-  "priceLabel": "per person",
-  "description": "A five-course interactive dining experience at our Chef's Counter.",
-  "winePairingLabel": "Wine pairing",
-  "winePairingValue": "+$70 per person",
+  "eyebrow": "Chef's Tasting Menu",
+  "priceDisplay": "$190 per person",
+  "description": "A multi-course interactive dining experience at our Chef's Counter.",
+  "pairingsLabel": "Pairings",
+  "pairingsValue": "Wine · Spirit · Spirit-free",
   "finePrint": "Advanced reservations required."
 }

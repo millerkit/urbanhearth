@@ -1,10 +1,11 @@
 /**
- * seed-chefs-counter.mjs — Seed Chef's Counter card from src/fallback-content/chefs-counter.json
+ * seed-site-settings.mjs — Seed siteSettings from src/fallback-content/restaurant.json
  *
  * Usage:
- *   node --env-file=.env.local sanity-seed/seed-chefs-counter.mjs
+ *   node --env-file=.env.local sanity-seed/seed-site-settings.mjs
  *
- * Creates a single chefsCounter singleton document. Safe to re-run.
+ * Creates/replaces the singleton siteSettings document. Safe to re-run.
+ * The token must have Editor (write) access.
  */
 
 import { createClient } from "@sanity/client";
@@ -36,29 +37,31 @@ const client = createClient({
   useCdn: false,
 });
 
-const card = JSON.parse(
+const r = JSON.parse(
   readFileSync(
-    join(__dirname, "../src/fallback-content/chefs-counter.json"),
+    join(__dirname, "../src/fallback-content/restaurant.json"),
     "utf-8",
   ),
 );
 
 async function run() {
-  console.log(`\nSeeding Chef's Counter → Sanity (${SANITY_DATASET})\n`);
+  console.log(`\nSeeding siteSettings → Sanity (${SANITY_DATASET})\n`);
 
   await client.createOrReplace({
-    _type: "chefsCounter",
-    _id: "chefsCounter",
-    eyebrow: card.eyebrow,
-    price: card.price,
-    priceLabel: card.priceLabel,
-    description: card.description,
-    winePairingLabel: card.winePairingLabel,
-    winePairingValue: card.winePairingValue,
-    finePrint: card.finePrint,
+    _type: "siteSettings",
+    _id: "siteSettings",
+    name: r.name,
+    tagline: r.tagline,
+    url: r.url,
+    address: r.address,
+    phone: r.phone,
+    hours: r.hours,
+    privateDiningEmail: r.privateDiningEmail,
+    reservations: r.reservations,
+    social: r.social,
   });
 
-  console.log("  Chef's Counter written ✓");
+  console.log("  siteSettings written ✓");
   console.log("\nDone.");
 }
 

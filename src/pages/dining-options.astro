@@ -77,7 +77,7 @@ if (isSanityConfigured) {
                 <h2 class="area-title">{area.title}</h2>
                 <div class="area-desc">
                   {area.description.map((p) => (
-                    <p>{p}</p>
+                    <p set:html={p} />
                   ))}
                 </div>
                 {(area.phoneReserve || area.ctaLabel) && (

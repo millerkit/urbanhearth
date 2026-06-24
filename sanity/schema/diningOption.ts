@@ -142,6 +142,13 @@ export const diningOption = defineType({
       description:
         "When true, shows phone/email contact instead of a reservation button",
     }),
+    defineField({
+      name: "finePrint",
+      title: "Fine print",
+      type: "string",
+      description:
+        'Small note shown on the Menus page card (e.g. "Advanced reservations required.")',
+    }),
   ],
   preview: {
     select: { title: "title", subtitle: "label", media: "photo" },

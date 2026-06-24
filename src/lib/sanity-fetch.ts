@@ -10,7 +10,7 @@ const client = import.meta.env.SANITY_PROJECT_ID
       projectId: import.meta.env.SANITY_PROJECT_ID,
       dataset: import.meta.env.SANITY_DATASET ?? "production",
       apiVersion: "2025-01-01",
-      useCdn: !isPreview && !import.meta.env.DEV,
+      useCdn: false,
       perspective: isPreview ? "previewDrafts" : "published",
       token: isPreview ? import.meta.env.SANITY_API_TOKEN : undefined,
     })
@@ -303,9 +303,13 @@ export async function fetchMenusPage() {
 
 export async function fetchChefsCounter() {
   return client!.fetch(`
-    *[_type == "chefsCounter"][0]{
-      eyebrow, price, priceLabel, description,
-      winePairingLabel, winePairingValue, finePrint
+    *[_type == "diningArea" && id.current == "chefs-counter"][0]{
+      "eyebrow": label,
+      "priceDisplay": details[label == "Price"][0].value,
+      "description": description[0],
+      "pairingsLabel": details[label == "Pairings"][0].label,
+      "pairingsValue": details[label == "Pairings"][0].value,
+      finePrint
     }
   `);
 }

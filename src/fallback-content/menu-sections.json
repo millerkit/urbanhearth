@@ -1,4 +1,6 @@
 {
+  "season": "June 2026",
+  "footer_note": "Ask your server to see our dessert menu. Please inform your server if you have any dietary restrictions. We add a 20% gratuity for all parties of 6 or more.",
   "sections": [
     {
       "title": "To start",
@@ -15,18 +17,18 @@
         },
         {
           "name": "Unicorn Oysters on the Halfshell",
-          "price": "4 ea",
-          "description": "Cucumber pastisse · pepper vinegar"
+          "price": "4ea",
+          "description": "Cucumber pastisse mignonette · pickled pepper vinegar"
         },
         {
           "name": "House Crafted Charcuterie",
           "price": "26",
-          "description": "Lamb heart pastrami · pâté de campagne · duck liver mousse"
+          "description": "Housemade paté, terrine and saloumi with pickles and confiture"
         },
         {
           "name": "New England Cheese Plate",
           "price": "23",
-          "description": "Nancy's camembert · fiddlehead tomme · Vermont Creamery chèvre"
+          "description": "Jasper Hill brie · fiddlehead tomme · Vermont Creamery chèvre · confiture"
         }
       ]
     },
@@ -34,14 +36,14 @@
       "title": "To share",
       "items": [
         {
-          "name": "Marinated Maine Lobster with Verjus Vinaigrette",
+          "name": "Maine Lobster with Elderflower Vinaigrette",
           "price": "28",
           "description": "Brown butter popcorn · lovage oil · green garlic & chili"
         },
         {
-          "name": "Tilefish Crudo with Wild Chamomile Salt",
+          "name": "Yellowfin Tuna Crudo with Wild Chamomile",
           "price": "24",
-          "description": "Puffed wild rice · fermented strawberry · strawberry consommé"
+          "description": "Wild rice furikake · lemon & laurel gel · strawberry consommé"
         },
         {
           "name": "Early Summer Salad with Cultured Sheepsmilk Cheese",
@@ -50,7 +52,7 @@
         },
         {
           "name": "Lamb Tartare with Spruce Tip Kōsho",
-          "price": "9 ea",
+          "price": "9",
           "description": "Fermented turnip · sourdough crumpet · nasturtium · egg yolk jam"
         },
         {
@@ -59,9 +61,9 @@
           "description": "Whipped white bean spread · pickled green tomato · feta"
         },
         {
-          "name": "Tempura Garlic Scapes & Housemade Za'atar",
+          "name": "Tempura Fried Garlic Scapes",
           "price": "22",
-          "description": "Caper aioli · samphire · microgreens"
+          "description": "Caper aioli · samphire · microgreens · za'atar"
         },
         {
           "name": "Summer Squash and Bacon Savory Brûlée",
@@ -71,7 +73,7 @@
         {
           "name": "Charcoal Grilled Boston Mackerel",
           "price": "30",
-          "description": "Green crab curry · elderflower vinaigrette"
+          "description": "Green crab curry · chive oil · summer escabeche"
         },
         {
           "name": "Handmade Rigatoni & N'duja Sugo",
@@ -79,9 +81,9 @@
           "description": "Stracciatella · fermented onion flower honey"
         },
         {
-          "name": "Sugar Snap Peas & Spinach and Ricotta Cavatelli",
+          "name": "Ricotta Cavatelli with Petits Pois",
           "price": "32",
-          "description": "Vermouth crème · lemon and laurel gel"
+          "description": "Sugar snaps · bibb lettuce · soft herbs"
         },
         {
           "name": "Dry Aged Striped Bass in Tarragon Lime Butter",
@@ -89,26 +91,23 @@
           "description": "Smoked trout roe · shaved fennel · green strawberry"
         },
         {
-          "name": "Sautéed Chanterelles & Morel Conserva",
-          "price": "38",
-          "description": "Flint corn pudding · toasted walnut · savory cherry jam"
-        },
-        {
-          "name": "BBQ Duck Breast with Chili and Rhubarb Demiglace",
+          "name": "BBQ Duck Breast with Allspice and Cherry",
           "price": "46",
-          "description": "Tropea onion · Swiss chard · rhubarb chutney"
+          "description": "Sweet onion · sprouted broccoli · walnut"
         }
       ]
     }
   ],
   "sustainability": {
     "heading": "our commitment to sustainability",
-    "body": "Sustainability is foundational to how we cook and operate. We prioritize direct relationships with local farmers and producers, sourcing from within our regional foodshed to support a more resilient local food economy. In the kitchen, we pursue a zero-waste model — repurposing trim, preserving surplus, and designing menus that honor the entirety of each ingredient. Through these efforts, we aim to model a more thoughtful and connected way of cooking within our community.",
+    "body": "Sustainability and responsible gastronomy are foundational to our identity and inform every aspect of how we operate. At Urban Hearth, our approach is rooted in a broader mission: to reconnect our guests, our team, and our community more deeply with the land and the systems that sustain us. We prioritize direct relationships with local farmers and producers, sourcing as much as possible from within our regional foodshed. By keeping our purchasing close to home, we actively support a more resilient and equitable local food economy. In the kitchen, we are committed to a holistic, low-waste approach to ingredient utilization. We strive for a zero-waste model by fabricating ingredients fully and thoughtfully: repurposing trim, preserving surplus, and designing our menus to honor the entirety of each product. Education is a central pillar of our culture. We view sustainability not as a static set of practices, but as an ongoing responsibility that requires engagement, reflection, and shared learning. Through these combined efforts, we aim not only to reduce our footprint, but to model a more thoughtful and connected way of cooking, serving, and operating within our community.",
     "attribution": "— Urban Hearth"
   },
   "partners": {
     "heading": "regional agriculture and fisheries partners",
     "items": [
+      { "name": "Kitchen Garden Farm", "location": "Sunderland, MA" },
+      { "name": "Langwater Farm", "location": "North Easton, MA" },
       { "name": "Kimball Fruit Farm", "location": "Pepperill, MA" },
       { "name": "Hopkins Southdown Lamb Farm", "location": "Scituate, RI" },
       { "name": "Red Fire Farm", "location": "Granby, MA" },
@@ -116,7 +115,8 @@
       { "name": "Red's Best Seafood", "location": "Boston, MA" },
       { "name": "The Mushroom Shop", "location": "Somerville, MA" },
       { "name": "La Belle Farm", "location": "Ferndale, NY" },
-      { "name": "Unicorn Oyster Farm", "location": "Damariscotta, ME" }
+      { "name": "Unicorn Oyster Farm", "location": "Damariscotta, ME" },
+      { "name": "Revival Road Farm", "location": "Beverly, MA" }
     ]
   }
 }

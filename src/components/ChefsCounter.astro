@@ -30,11 +30,11 @@ if (isSanityConfigured) {
       label="Reserve your seat"
     />
   </div>
-  <div class="price">{card.price} <span>{card.priceLabel}</span></div>
+  <div class="price">{card.priceDisplay}</div>
   <p class="desc">{card.description}</p>
   <div class="sub-row">
-    <span class="menu-label">{card.winePairingLabel}</span>
-    <span class="sub-value">{card.winePairingValue}</span>
+    <span class="menu-label">{card.pairingsLabel}</span>
+    <span class="sub-value">{card.pairingsValue}</span>
   </div>
 </div>
 
@@ -50,14 +50,6 @@ if (isSanityConfigured) {
     color: var(--midnight);
     line-height: 1;
     margin-bottom: 1.2rem;
-  }
-
-  .price span {
-    font-family: var(--font-header-action), sans-serif;
-    font-size: 14px;
-    font-weight: 300;
-    color: var(--ink);
-    letter-spacing: 0.1em;
   }
 
   .desc {
