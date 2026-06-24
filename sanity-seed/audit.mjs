@@ -47,6 +47,23 @@ function fallback(filename) {
 // ── Diff helpers ────────────────────────────────────────────────────────────
 
 let totalDiffs = 0;
+let currentSectionTitle = "";
+let sectionLines = [];
+
+function startSection(title) {
+  currentSectionTitle = title;
+  sectionLines = [];
+}
+
+function endSection() {
+  if (sectionLines.length === 0) {
+    console.log(`  ✓  ${currentSectionTitle}`);
+  } else {
+    console.log(`\n  ✗  ${currentSectionTitle}`);
+    sectionLines.forEach((l) => console.log(l));
+  }
+  console.log("");
+}
 
 function diff(label, local, remote, { blankEqualsNull = false } = {}) {
   let a = local ?? null;
@@ -59,28 +76,22 @@ function diff(label, local, remote, { blankEqualsNull = false } = {}) {
   const remoteStr = JSON.stringify(b);
   if (localStr === remoteStr) return;
   totalDiffs++;
-  console.log(`  ✗ ${label}`);
-  console.log(`      fallback: ${localStr}`);
-  console.log(`      sanity:   ${remoteStr}`);
-}
-
-function section(title) {
-  console.log(`\n${"─".repeat(60)}`);
-  console.log(`  ${title}`);
-  console.log("─".repeat(60));
+  sectionLines.push(`      ✗ ${label}`);
+  sectionLines.push(`          fallback: ${localStr}`);
+  sectionLines.push(`          sanity:   ${remoteStr}`);
 }
 
 // ── siteSettings ────────────────────────────────────────────────────────────
 
 async function auditSiteSettings() {
-  section("siteSettings  ←  restaurant.json");
+  startSection("siteSettings  ←  restaurant.json");
   const local = fallback("restaurant.json");
   const remote = await client.fetch(
     `*[_type == "siteSettings"][0]{ name, tagline, url, address, phone, hours, privateDiningEmail, reservations{ label, shortLabel, href }, social{ instagram, facebook } }`,
   );
 
   if (!remote) {
-    console.log("  ✗ Document not found in Sanity");
+    sectionLines.push("      ✗ Document not found in Sanity");
     totalDiffs++;
     return;
   }
@@ -113,12 +124,13 @@ async function auditSiteSettings() {
   );
   diff("social.instagram", local.social?.instagram, remote.social?.instagram);
   diff("social.facebook", local.social?.facebook, remote.social?.facebook);
+  endSection();
 }
 
 // ── diningArea ──────────────────────────────────────────────────────────────
 
 async function auditDiningOptions() {
-  section("diningArea  ←  dining-options.json");
+  startSection("diningArea  ←  dining-options.json");
   const localAreas = fallback("dining-options.json");
   const remoteAreas = await client.fetch(
     `*[_type == "diningArea"] | order(order asc){ "id": id.current, order, number, label, title, dark, description, details[]{ label, value, linkType }, ctaLabel, phoneReserve, finePrint }`,
@@ -129,7 +141,7 @@ async function auditDiningOptions() {
     const prefix = local.id;
 
     if (!remote) {
-      console.log(`  ✗ ${prefix}: document not found in Sanity`);
+      sectionLines.push(`      ✗ ${prefix}: document not found in Sanity`);
       totalDiffs++;
       continue;
     }
@@ -175,22 +187,25 @@ async function auditDiningOptions() {
   // Check for remote documents not present in fallback
   for (const remote of remoteAreas) {
     if (!localAreas.find((l) => l.id === remote.id)) {
-      console.log(`  ℹ  ${remote.id}: exists in Sanity but not in fallback`);
+      sectionLines.push(
+        `      ℹ  ${remote.id}: exists in Sanity but not in fallback`,
+      );
     }
   }
+  endSection();
 }
 
 // ── menu ────────────────────────────────────────────────────────────────────
 
 async function auditMenu() {
-  section("menu  ←  menu-sections.json");
+  startSection("menu  ←  menu-sections.json");
   const local = fallback("menu-sections.json");
   const remote = await client.fetch(
     `*[_type == "menu"][0]{ season, footer_note, sections[]{ title, items[]{ name, price, description } } }`,
   );
 
   if (!remote) {
-    console.log("  ✗ Document not found in Sanity");
+    sectionLines.push("      ✗ Document not found in Sanity");
     totalDiffs++;
     return;
   }
@@ -215,12 +230,12 @@ async function auditMenu() {
     const sp = `sections[${si}]`;
 
     if (!ls) {
-      console.log(`  ✗ ${sp}: missing in fallback`);
+      sectionLines.push(`      ✗ ${sp}: missing in fallback`);
       totalDiffs++;
       continue;
     }
     if (!rs) {
-      console.log(`  ✗ ${sp}: missing in Sanity`);
+      sectionLines.push(`      ✗ ${sp}: missing in Sanity`);
       totalDiffs++;
       continue;
     }
@@ -244,12 +259,14 @@ async function auditMenu() {
       const ip = `${sp}.items[${ii}]`;
 
       if (!li) {
-        console.log(`  ✗ ${ip}: missing in fallback`);
+        sectionLines.push(`      ✗ ${ip}: missing in fallback`);
+        totalDiffs++;
         totalDiffs++;
         continue;
       }
       if (!ri) {
-        console.log(`  ✗ ${ip}: missing in Sanity`);
+        sectionLines.push(`      ✗ ${ip}: missing in Sanity`);
+        totalDiffs++;
         totalDiffs++;
         continue;
       }
@@ -259,12 +276,13 @@ async function auditMenu() {
       diff(`${ip}.description`, li.description, ri.description);
     }
   }
+  endSection();
 }
 
 // ── reservationExperiences ──────────────────────────────────────────────────
 
 async function auditReservations() {
-  section("reservationExperience  ←  reservations.json");
+  startSection("reservationExperience  ←  reservations.json");
   const localExps = fallback("reservations.json");
   const remoteExps = await client.fetch(
     `*[_type == "reservationExperience"] | order(order asc){ "id": id.current, order, number, eyebrow, title, description, note, details[]{ label, value, linkType } }`,
@@ -275,7 +293,7 @@ async function auditReservations() {
     const prefix = local.id;
 
     if (!remote) {
-      console.log(`  ✗ ${prefix}: document not found in Sanity`);
+      sectionLines.push(`      ✗ ${prefix}: document not found in Sanity`);
       totalDiffs++;
       continue;
     }
@@ -309,38 +327,40 @@ async function auditReservations() {
       );
     }
   }
+  endSection();
 }
 
 // ── menusPage ───────────────────────────────────────────────────────────────
 
 async function auditMenusPage() {
-  section("menusPage  ←  menus-page.json");
+  startSection("menusPage  ←  menus-page.json");
   const local = fallback("menus-page.json");
   const remote = await client.fetch(
     `*[_type == "menusPage"][0]{ accuracyNote, walkInsNote }`,
   );
 
   if (!remote) {
-    console.log("  ✗ Document not found in Sanity");
+    sectionLines.push("      ✗ Document not found in Sanity");
     totalDiffs++;
     return;
   }
 
   diff("accuracyNote", local.accuracyNote, remote.accuracyNote);
   diff("walkInsNote", local.walkInsNote, remote.walkInsNote);
+  endSection();
 }
 
 // ── reservationsPage ────────────────────────────────────────────────────────
 
 async function auditReservationsPage() {
-  section("reservationsPage  ←  reservations-page.json");
+  startSection("reservationsPage  ←  reservations-page.json");
   const local = fallback("reservations-page.json");
   const remote = await client.fetch(
     `*[_type == "reservationsPage"][0]{ pageTitle, pageLead, seoDescription, bookingUrl }`,
   );
 
   if (!remote) {
-    console.log("  ✗ Document not found in Sanity");
+    sectionLines.push("      ✗ Document not found in Sanity");
     totalDiffs++;
     return;
   }
@@ -349,19 +369,20 @@ async function auditReservationsPage() {
   diff("pageLead", local.pageLead, remote.pageLead);
   diff("seoDescription", local.seoDescription, remote.seoDescription);
   diff("bookingUrl", local.bookingUrl ?? null, remote.bookingUrl ?? null);
+  endSection();
 }
 
 // ── homepageContent ─────────────────────────────────────────────────────────
 
 async function auditHomepage() {
-  section("homepageContent  ←  homepage.json");
+  startSection("homepageContent  ←  homepage.json");
   const local = fallback("homepage.json");
   const remote = await client.fetch(
     `*[_type == "homepageContent"][0]{ statement{ eyebrow, tags, definitionTerm, definitionText, description }, teasersEyebrow, intro{ eyebrow, paragraphs } }`,
   );
 
   if (!remote) {
-    console.log("  ✗ Document not found in Sanity");
+    sectionLines.push("      ✗ Document not found in Sanity");
     totalDiffs++;
     return;
   }
@@ -390,12 +411,13 @@ async function auditHomepage() {
   diff("teasersEyebrow", local.teasersEyebrow, remote.teasersEyebrow);
   diff("intro.eyebrow", local.intro?.eyebrow, remote.intro?.eyebrow);
   diff("intro.paragraphs", local.intro?.paragraphs, remote.intro?.paragraphs);
+  endSection();
 }
 
 // ── teamMember ──────────────────────────────────────────────────────────────
 
 async function auditTeamMembers() {
-  section("teamMember  ←  team.json");
+  startSection("teamMember  ←  team.json");
   const localMembers = fallback("team.json");
   const remoteMembers = await client.fetch(
     `*[_type == "teamMember"] | order(order asc){ name, roles, bio, order }`,
@@ -404,7 +426,7 @@ async function auditTeamMembers() {
   for (const local of localMembers) {
     const remote = remoteMembers.find((r) => r.name === local.name);
     if (!remote) {
-      console.log(`  ✗ ${local.name}: not found in Sanity`);
+      sectionLines.push(`      ✗ ${local.name}: not found in Sanity`);
       totalDiffs++;
       continue;
     }
@@ -415,22 +437,25 @@ async function auditTeamMembers() {
 
   for (const remote of remoteMembers) {
     if (!localMembers.find((l) => l.name === remote.name)) {
-      console.log(`  ℹ  ${remote.name}: exists in Sanity but not in fallback`);
+      sectionLines.push(
+        `      ℹ  ${remote.name}: exists in Sanity but not in fallback`,
+      );
     }
   }
+  endSection();
 }
 
 // ── teamPage ────────────────────────────────────────────────────────────────
 
 async function auditTeamPage() {
-  section("teamPage  ←  team-page.json");
+  startSection("teamPage  ←  team-page.json");
   const local = fallback("team-page.json");
   const remote = await client.fetch(
     `*[_type == "teamPage"][0]{ pageTitle, pageLead, seoDescription, chefLinkText }`,
   );
 
   if (!remote) {
-    console.log("  ✗ Document not found in Sanity");
+    sectionLines.push("      ✗ Document not found in Sanity");
     totalDiffs++;
     return;
   }
@@ -439,19 +464,20 @@ async function auditTeamPage() {
   diff("pageLead", local.pageLead, remote.pageLead);
   diff("seoDescription", local.seoDescription, remote.seoDescription);
   diff("chefLinkText", local.chefLinkText, remote.chefLinkText);
+  endSection();
 }
 
 // ── chefProfile ─────────────────────────────────────────────────────────────
 
 async function auditChefProfile() {
-  section("chefProfile  ←  chef.json");
+  startSection("chefProfile  ←  chef.json");
   const local = fallback("chef.json");
   const remote = await client.fetch(
     `*[_type == "chefProfile"][0]{ name, title, roles, bio, accolades[]{ year, text } }`,
   );
 
   if (!remote) {
-    console.log("  ✗ Document not found in Sanity");
+    sectionLines.push("      ✗ Document not found in Sanity");
     totalDiffs++;
     return;
   }
@@ -461,12 +487,13 @@ async function auditChefProfile() {
   diff("roles", local.roles, remote.roles);
   diff("bio", local.bio, remote.bio);
   diff("accolades", local.accolades, remote.accolades);
+  endSection();
 }
 
 // ── farm ────────────────────────────────────────────────────────────────────
 
 async function auditFarms() {
-  section("farm  ←  farms.json");
+  startSection("farm  ←  farms.json");
   const localFarms = fallback("farms.json");
   const remoteFarms = await client.fetch(
     `*[_type == "farm"] | order(order asc){ name, location, order }`,
@@ -475,7 +502,7 @@ async function auditFarms() {
   for (const local of localFarms) {
     const remote = remoteFarms.find((r) => r.name === local.name);
     if (!remote) {
-      console.log(`  ✗ ${local.name}: not found in Sanity`);
+      sectionLines.push(`      ✗ ${local.name}: not found in Sanity`);
       totalDiffs++;
       continue;
     }
@@ -485,15 +512,18 @@ async function auditFarms() {
 
   for (const remote of remoteFarms) {
     if (!localFarms.find((l) => l.name === remote.name)) {
-      console.log(`  ℹ  ${remote.name}: exists in Sanity but not in fallback`);
+      sectionLines.push(
+        `      ℹ  ${remote.name}: exists in Sanity but not in fallback`,
+      );
     }
   }
+  endSection();
 }
 
 // ── galleryPhoto ─────────────────────────────────────────────────────────────
 
 async function auditGallery() {
-  section("galleryPhoto  ←  gallery.json");
+  startSection("galleryPhoto  ←  gallery.json");
   const localPhotos = fallback("gallery.json");
   const remotePhotos = await client.fetch(
     `*[_type == "galleryPhoto"] | order(order asc){ order, alt, span }`,
@@ -506,32 +536,34 @@ async function auditGallery() {
   for (const local of localPhotos) {
     const remote = remotePhotos.find((r) => r.order === local.order);
     if (!remote) {
-      console.log(`  ✗ order ${local.order}: not found in Sanity`);
+      sectionLines.push(`      ✗ order ${local.order}: not found in Sanity`);
       totalDiffs++;
       continue;
     }
     diff(`[${local.order}].alt`, local.alt, remote.alt);
     diff(`[${local.order}].span`, local.span, remote.span);
   }
+  endSection();
 }
 
 // ── largePartyPage + large_party_package ─────────────────────────────────────
 
 async function auditLargeParty() {
-  section("largePartyPage  ←  private-events-page.json");
+  startSection("largePartyPage  ←  private-events-page.json");
   const localPage = fallback("private-events-page.json");
   const remotePage = await client.fetch(
     `*[_type == "largePartyPage"][0]{ capacityStats[]{ value, label } }`,
   );
 
   if (!remotePage) {
-    console.log("  ✗ Document not found in Sanity");
+    sectionLines.push("      ✗ Document not found in Sanity");
     totalDiffs++;
   } else {
     diff("capacityStats", localPage.capacityStats, remotePage.capacityStats);
   }
+  endSection();
 
-  section("large_party_package  ←  private-event-packages.json");
+  startSection("large_party_package  ←  private-event-packages.json");
   const localPkgs = fallback("private-event-packages.json");
   const remotePkgs = await client.fetch(
     `*[_type == "large_party_package"] | order(order asc){ order, eyebrow, title, description, details[]{ label, value }, note, dark }`,
@@ -540,7 +572,7 @@ async function auditLargeParty() {
   for (const local of localPkgs) {
     const remote = remotePkgs.find((r) => r.title === local.title);
     if (!remote) {
-      console.log(`  ✗ "${local.title}": not found in Sanity`);
+      sectionLines.push(`      ✗ "${local.title}": not found in Sanity`);
       totalDiffs++;
       continue;
     }
@@ -565,75 +597,79 @@ async function auditLargeParty() {
       );
     }
   }
+  endSection();
 }
 
 // ── navLinks ────────────────────────────────────────────────────────────────
 
 async function auditNavLinks() {
-  section("navLinks  ←  nav-links.json");
+  startSection("navLinks  ←  nav-links.json");
   const localLinks = fallback("nav-links.json");
   const remote = await client.fetch(
     `*[_type == "navLinks"][0]{ links[]{ label, href, children[]{ label, href } } }`,
   );
 
   if (!remote) {
-    console.log("  ✗ Document not found in Sanity");
+    sectionLines.push("      ✗ Document not found in Sanity");
     totalDiffs++;
     return;
   }
 
   diff("links", localLinks, remote.links);
+  endSection();
 }
 
 // ── footerLinks ─────────────────────────────────────────────────────────────
 
 async function auditFooterLinks() {
-  section("footerLinks  ←  footer-links.json");
+  startSection("footerLinks  ←  footer-links.json");
   const local = fallback("footer-links.json");
   const remote = await client.fetch(
     `*[_type == "footerLinks"][0]{ secondaryLinks[]{ label, href }, legalLinks[]{ label, href } }`,
   );
 
   if (!remote) {
-    console.log("  ✗ Document not found in Sanity");
+    sectionLines.push("      ✗ Document not found in Sanity");
     totalDiffs++;
     return;
   }
 
   diff("secondaryLinks", local.secondaryLinks, remote.secondaryLinks);
   diff("legalLinks", local.legalLinks, remote.legalLinks);
+  endSection();
 }
 
 // ── aboutPage ───────────────────────────────────────────────────────────────
 
 async function auditAboutPage() {
-  section("aboutPage  ←  about-page.json");
+  startSection("aboutPage  ←  about-page.json");
   const local = fallback("about-page.json");
   const remote = await client.fetch(
     `*[_type == "aboutPage"][0]{ statement, farmsIntro }`,
   );
 
   if (!remote) {
-    console.log("  ✗ Document not found in Sanity");
+    sectionLines.push("      ✗ Document not found in Sanity");
     totalDiffs++;
     return;
   }
 
   diff("statement", local.statement, remote.statement);
   diff("farmsIntro", local.farmsIntro ?? null, remote.farmsIntro ?? null);
+  endSection();
 }
 
 // ── mailingListPage ──────────────────────────────────────────────────────────
 
 async function auditMailingListPage() {
-  section("mailingListPage  ←  mailing-list-page.json");
+  startSection("mailingListPage  ←  mailing-list-page.json");
   const local = fallback("mailing-list-page.json");
   const remote = await client.fetch(
     `*[_type == "mailingListPage"][0]{ eyebrow, pageTitle, pageLead, seoDescription, submitLabel, successEyebrow, successMessage }`,
   );
 
   if (!remote) {
-    console.log("  ✗ Document not found in Sanity");
+    sectionLines.push("      ✗ Document not found in Sanity");
     totalDiffs++;
     return;
   }
@@ -645,6 +681,7 @@ async function auditMailingListPage() {
   diff("submitLabel", local.submitLabel, remote.submitLabel);
   diff("successEyebrow", local.successEyebrow, remote.successEyebrow);
   diff("successMessage", local.successMessage, remote.successMessage);
+  endSection();
 }
 
 // ── Run all ─────────────────────────────────────────────────────────────────
