@@ -53,6 +53,11 @@ if (isSanityConfigured) {
               </li>
             ))
           }
+          {
+            farms.length % 2 !== 0 && (
+              <li class="farm-item farm-item--empty" aria-hidden="true" />
+            )
+          }
         </ul>
       </section>
 
@@ -145,6 +150,10 @@ if (isSanityConfigured) {
     gap: 1px;
     background: var(--border);
     border: 1px solid var(--border);
+  }
+
+  .farm-item {
+    background: var(--warm-white);
   }
 
   .farm-item {
