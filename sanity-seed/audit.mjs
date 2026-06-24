@@ -65,6 +65,19 @@ function endSection() {
   console.log("");
 }
 
+// Recursively sort object keys so key-order differences don't show as diffs.
+function sortKeys(val) {
+  if (Array.isArray(val)) return val.map(sortKeys);
+  if (val !== null && typeof val === "object") {
+    return Object.fromEntries(
+      Object.keys(val)
+        .sort()
+        .map((k) => [k, sortKeys(val[k])]),
+    );
+  }
+  return val;
+}
+
 function diff(label, local, remote, { blankEqualsNull = false } = {}) {
   let a = local ?? null;
   let b = remote ?? null;
@@ -72,13 +85,13 @@ function diff(label, local, remote, { blankEqualsNull = false } = {}) {
     if (a === "") a = null;
     if (b === "") b = null;
   }
-  const localStr = JSON.stringify(a);
-  const remoteStr = JSON.stringify(b);
+  const localStr = JSON.stringify(sortKeys(a));
+  const remoteStr = JSON.stringify(sortKeys(b));
   if (localStr === remoteStr) return;
   totalDiffs++;
   sectionLines.push(`      ✗ ${label}`);
-  sectionLines.push(`          fallback: ${localStr}`);
-  sectionLines.push(`          sanity:   ${remoteStr}`);
+  sectionLines.push(`          fallback: ${JSON.stringify(a)}`);
+  sectionLines.push(`          sanity:   ${JSON.stringify(b)}`);
 }
 
 // ── siteSettings ────────────────────────────────────────────────────────────
