@@ -606,7 +606,7 @@ async function auditNavLinks() {
   startSection("navLinks  ←  nav-links.json");
   const localLinks = fallback("nav-links.json");
   const remote = await client.fetch(
-    `*[_type == "navLinks"][0]{ links[]{ label, href, children[]{ label, href } } }`,
+    `*[_type == "navLinks"][0]{ links[]{ label, href, hidden, children[]{ label, href } } }`,
   );
 
   if (!remote) {
@@ -616,15 +616,14 @@ async function auditNavLinks() {
   }
 
   // Normalize before comparing:
-  // - strip _hidden (fallback-only UI flag; Sanity excludes the link by other means)
+  // - unify _hidden (fallback) and hidden (Sanity) into a single hidden key
   // - drop children: null (GROQ returns null for missing arrays; fallback omits the key)
   const normalize = (links) =>
-    links
-      .filter((l) => !l._hidden)
-      .map(({ _hidden: _, children, ...rest }) => ({
-        ...rest,
-        ...(children != null ? { children } : {}),
-      }));
+    links.map(({ _hidden, hidden, children, ...rest }) => ({
+      ...rest,
+      ...(_hidden || hidden ? { hidden: true } : {}),
+      ...(children != null ? { children } : {}),
+    }));
 
   diff("links", normalize(localLinks), normalize(remote.links ?? []));
   endSection();

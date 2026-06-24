@@ -49,6 +49,7 @@ function toNavLink(item) {
     _key: item.href.replace(/\//g, "-").replace(/^-/, "") || "home",
     label: item.label,
     href: item.href,
+    hidden: item._hidden === true,
     ...(item.children
       ? {
           children: item.children.map((child) => ({

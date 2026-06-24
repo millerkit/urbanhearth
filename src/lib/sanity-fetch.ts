@@ -317,12 +317,13 @@ export async function fetchChefsCounter() {
 export async function fetchNavLinks() {
   const doc = await client!.fetch(`
     *[_type == "navLinks"][0]{
-      links[]{ label, href, children[]{ label, href } }
+      links[]{ label, href, hidden, children[]{ label, href } }
     }
   `);
   return (doc?.links ?? []) as {
     label: string;
     href: string;
+    hidden?: boolean;
     children?: { label: string; href: string }[];
   }[];
 }

@@ -40,6 +40,14 @@ const navLink = defineType({
       of: [{ type: "navLinkChild" }],
       description: "Optional dropdown items",
     }),
+    defineField({
+      name: "hidden",
+      title: "Hidden",
+      type: "boolean",
+      description:
+        "Exclude this link from the rendered nav (page not yet live)",
+      initialValue: false,
+    }),
   ],
   preview: { select: { title: "label", subtitle: "href" } },
 });
