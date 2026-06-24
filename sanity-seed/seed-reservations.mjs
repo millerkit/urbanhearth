@@ -62,7 +62,7 @@ async function run() {
       id: { _type: "slug", current: exp.id },
       description: exp.description,
       details: exp.details.map((d) => ({
-        _type: "diningAreaDetail",
+        _type: "diningOptionDetail",
         _key: d.label.toLowerCase().replace(/\s+/g, "-"),
         label: d.label,
         value: d.value ?? "",

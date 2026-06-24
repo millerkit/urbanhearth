@@ -1,6 +1,9 @@
 /**
  * seed-homepage.mjs — Seed homepage content into Sanity
  *
+ * Handles the homepageContent document: text fields and the diningTeasers
+ * array of homepage teaser photos (one per dining option, keyed by areaId).
+ *
  * Usage:
  *   node --env-file=.env.local sanity-seed/seed-homepage.mjs
  *
@@ -9,8 +12,8 @@
  */
 
 import { createClient } from "@sanity/client";
-import { readFileSync } from "fs";
-import { dirname, join } from "path";
+import { createReadStream, existsSync, readFileSync } from "fs";
+import { basename, dirname, extname, join } from "path";
 import { fileURLToPath } from "url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -44,8 +47,56 @@ const homepage = JSON.parse(
   ),
 );
 
+// Homepage teaser photos keyed by dining option area id
+const teaserPhotos = {
+  "dining-room": {
+    path: "src/assets/photos/HomeDiningRoomTeaser.jpeg",
+    alt: "Dining Room at Urban Hearth",
+  },
+  "chefs-counter": {
+    path: "src/assets/photos/HomeChefsCounterTeaser.jpeg",
+    alt: "Chef's Counter at Urban Hearth",
+  },
+  salon: {
+    path: "src/assets/photos/HomeBarTeaser.jpeg",
+    alt: "Bar & Salon at Urban Hearth",
+  },
+};
+
+async function uploadPhoto(rawPath) {
+  const absPath = join(__dirname, "..", rawPath);
+  if (!existsSync(absPath)) {
+    console.warn(`    ⚠  Photo not found: ${absPath} — skipping`);
+    return undefined;
+  }
+  const ext = extname(absPath).toLowerCase();
+  const contentType = ext === ".png" ? "image/png" : "image/jpeg";
+  const asset = await client.assets.upload("image", createReadStream(absPath), {
+    filename: basename(absPath),
+    contentType,
+  });
+  return { _type: "image", asset: { _type: "reference", _ref: asset._id } };
+}
+
 async function run() {
   console.log("\nSeeding homepage content → Sanity (" + SANITY_DATASET + ")\n");
+
+  console.log("  Uploading dining teaser photos…");
+  const diningTeasers = [];
+  for (const [areaId, { path, alt }] of Object.entries(teaserPhotos)) {
+    process.stdout.write(`    ${areaId} … `);
+    const photo = await uploadPhoto(path);
+    if (photo) {
+      diningTeasers.push({
+        _type: "diningTeaser",
+        _key: areaId,
+        areaId,
+        photo,
+        photoAlt: alt,
+      });
+      console.log("✓");
+    }
+  }
 
   await client.createOrReplace({
     _type: "homepageContent",
@@ -58,6 +109,7 @@ async function run() {
       description: homepage.statement.description,
     },
     teasersEyebrow: homepage.teasersEyebrow,
+    diningTeasers,
     intro: {
       eyebrow: homepage.intro.eyebrow,
       paragraphs: homepage.intro.paragraphs,

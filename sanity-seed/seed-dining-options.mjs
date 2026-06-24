@@ -1,6 +1,9 @@
 /**
  * seed-dining-options.mjs — Seed dining options from src/fallback-content/dining-options.json into Sanity
  *
+ * Handles text content and dining-options-page photos only (photo, photoSecondary).
+ * Homepage teaser photos are seeded separately via seed-homepage.mjs.
+ *
  * Usage:
  *   node --env-file=.env.local sanity-seed/seed-dining-options.mjs
  *
@@ -48,20 +51,14 @@ const areas = JSON.parse(
 // Primary photos keyed by area id (Dining Options page)
 const localPhotos = {
   "dining-room": "src/assets/photos/OptionsDiningRoomTeaser.jpeg",
-  "chefs-counter": "src/assets/photos/OptionsChefsCounterTeaser.jpeg",
-  salon: "src/assets/photos/OptionsBarTeaser.jpeg",
-};
-
-// Homepage teaser photos (home page grid)
-const localHomepagePhotos = {
-  "dining-room": "src/assets/photos/HomeDiningRoomTeaser.jpeg",
-  "chefs-counter": "src/assets/photos/HomeChefsCounterTeaser.jpeg",
-  salon: "src/assets/photos/HomeBarTeaser.jpeg",
-};
-
-// Secondary photos (shown side-by-side with primary)
-const localPhotosSecondary = {
+  "chefs-counter": "src/assets/photos/OptionsChefsCounterTeaserSmall.jpeg",
   salon: "src/assets/photos/OptionsSalonTeaser.jpeg",
+};
+
+// Secondary photos shown side-by-side with the primary on the Dining Options page
+const localPhotosSecondary = {
+  "chefs-counter": "src/assets/photos/OptionsChefsCounterTeaserLarge.jpeg",
+  salon: "src/assets/photos/OptionsBarTeaser.jpeg",
 };
 
 async function uploadPhoto(rawPath) {
@@ -80,7 +77,7 @@ async function uploadPhoto(rawPath) {
 }
 
 function docId(id) {
-  return `diningArea-${id}`;
+  return `diningOption-${id}`;
 }
 
 async function run() {
@@ -94,18 +91,13 @@ async function run() {
     const photoPath = localPhotos[area.id];
     const photo = photoPath ? await uploadPhoto(photoPath) : undefined;
 
-    const homepagePhotoPath = localHomepagePhotos[area.id];
-    const homepagePhoto = homepagePhotoPath
-      ? await uploadPhoto(homepagePhotoPath)
-      : undefined;
-
     const photoSecondaryPath = localPhotosSecondary[area.id];
     const photoSecondary = photoSecondaryPath
       ? await uploadPhoto(photoSecondaryPath)
       : undefined;
 
     await client.createOrReplace({
-      _type: "diningArea",
+      _type: "diningOption",
       _id: docId(area.id),
       order: area.order,
       number: area.number,
@@ -116,7 +108,7 @@ async function run() {
       photoAlt: area.photoAlt,
       description: area.description,
       details: area.details.map((d) => ({
-        _type: "diningAreaDetail",
+        _type: "diningOptionDetail",
         _key: d.label.toLowerCase().replace(/\s+/g, "-"),
         label: d.label,
         value: d.value ?? "",
@@ -126,7 +118,6 @@ async function run() {
       phoneReserve: area.phoneReserve ?? false,
       ...(area.finePrint ? { finePrint: area.finePrint } : {}),
       ...(photo ? { photo } : {}),
-      ...(homepagePhoto ? { homepagePhoto } : {}),
       ...(photoSecondary ? { photoSecondary } : {}),
     });
 

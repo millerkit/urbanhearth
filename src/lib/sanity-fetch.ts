@@ -171,7 +171,7 @@ export async function fetchTeamMembers() {
 
 export async function fetchDiningOptions() {
   const options = await client!.fetch(`
-    *[_type == "diningArea"] | order(order asc){
+    *[_type == "diningOption"] | order(order asc){
       order,
       number,
       label,
@@ -180,8 +180,6 @@ export async function fetchDiningOptions() {
       dark,
       "photo": photo.asset->url,
       photoAlt,
-      "homepagePhoto": homepagePhoto.asset->url,
-      homepagePhotoAlt,
       "photoSecondary": photoSecondary.asset->url,
       photoSecondaryAlt,
       description,
@@ -226,6 +224,7 @@ export async function fetchHomepageContent() {
     *[_type == "homepageContent"][0]{
       statement{ eyebrow, tags, definitionTerm, definitionText, description },
       teasersEyebrow,
+      diningTeasers[]{ areaId, "photo": photo.asset->url, photoAlt },
       intro{ eyebrow, paragraphs }
     }
   `);
@@ -303,7 +302,7 @@ export async function fetchMenusPage() {
 
 export async function fetchChefsCounter() {
   return client!.fetch(`
-    *[_type == "diningArea" && id.current == "chefs-counter"][0]{
+    *[_type == "diningOption" && id.current == "chefs-counter"][0]{
       "eyebrow": label,
       "priceDisplay": details[label == "Price"][0].value,
       "description": description[0],

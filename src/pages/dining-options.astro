@@ -5,9 +5,10 @@ import { fetchDiningOptions } from "../lib/sanity-fetch";
 import diningOptionsFallback from "../fallback-content/dining-options.json";
 import page from "../fallback-content/dining-options-page.json";
 import diningRoomFallback from "../assets/photos/OptionsDiningRoomTeaser.jpeg";
-import chefsCounterFallback from "../assets/photos/OptionsChefsCounterTeaser.jpeg";
+import chefsCounterFallback from "../assets/photos/OptionsChefsCounterTeaserLarge.jpeg";
 import barFallback from "../assets/photos/OptionsBarTeaser.jpeg";
 import salonFallback from "../assets/photos/OptionsSalonTeaser.jpeg";
+import bottomBarPhoto from "../assets/photos/OptionsBottomBarTeaser.jpeg";
 import Base from "../layouts/Base.astro";
 import PageHeader from "../components/PageHeader.astro";
 import ReservationButton from "../components/ReservationButton.astro";
@@ -22,6 +23,7 @@ const photoFallbacks: Record<string, string> = {
 };
 
 const photoSecondaryFallbacks: Record<string, string> = {
+  "chefs-counter": diningRoomFallback.src,
   salon: salonFallback.src,
 };
 
@@ -111,6 +113,14 @@ if (isSanityConfigured) {
       })
     }
   </div>
+  <div class="bottom-photo-wrap">
+    <img
+      src={bottomBarPhoto.src}
+      alt="Bar at Urban Hearth"
+      class="bottom-photo"
+      loading="lazy"
+    />
+  </div>
 </Base>
 
 <style>
@@ -181,8 +191,9 @@ if (isSanityConfigured) {
 
   .area-photo-wrap--dual {
     display: flex;
-    gap: 0.5rem;
+    gap: 1.5rem;
     aspect-ratio: 16 / 7;
+    background: var(--warm-white);
   }
 
   .area-photo {
@@ -197,6 +208,29 @@ if (isSanityConfigured) {
   .area-photo-wrap--dual .area-photo {
     width: 50%;
     flex-shrink: 0;
+    min-width: 0;
+  }
+
+  /* Chef's Counter: small left, wide right */
+  #chefs-counter .area-photo:first-child {
+    flex: 0 0 42%;
+    width: 42%;
+    object-position: center top;
+  }
+  #chefs-counter .area-photo:last-child {
+    flex: 1 1 0;
+    width: auto;
+  }
+
+  /* Bar & Salon: wide left, small right */
+  #salon .area-photo:first-child {
+    flex: 1 1 0;
+    width: auto;
+  }
+  #salon .area-photo:last-child {
+    flex: 0 0 42%;
+    width: 42%;
+    object-position: center top;
   }
 
   .area-photo-label {
@@ -292,6 +326,30 @@ if (isSanityConfigured) {
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--charcoal);
+  }
+
+  /* ── Bottom photo ── */
+  .area:last-of-type {
+    border-bottom: none;
+  }
+
+  .area:last-of-type .area-body {
+    padding-bottom: 1.5rem;
+  }
+
+  .bottom-photo-wrap {
+    width: 60%;
+    margin: 0 auto 2.5rem;
+    aspect-ratio: 16 / 7;
+    overflow: hidden;
+  }
+
+  .bottom-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
   }
 
   /* ── Responsive ── */

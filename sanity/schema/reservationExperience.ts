@@ -44,7 +44,7 @@ export const reservationExperience = defineType({
     defineField({
       name: "details",
       type: "array",
-      of: [{ type: "diningAreaDetail" }],
+      of: [{ type: "diningOptionDetail" }],
     }),
     defineField({
       name: "note",

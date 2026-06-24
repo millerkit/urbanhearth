@@ -51,6 +51,38 @@ export const homepageContent = defineType({
         'Short line above the Reserve button beneath the dining-area cards — e.g. "Choose your dining experience"',
     }),
     defineField({
+      name: "diningTeasers",
+      title: "Dining teaser photos",
+      type: "array",
+      description:
+        "Homepage teaser photo for each dining option, keyed by area ID (dining-room, chefs-counter, salon)",
+      of: [
+        {
+          type: "object",
+          name: "diningTeaser",
+          fields: [
+            defineField({
+              name: "areaId",
+              title: "Area ID",
+              type: "string",
+              validation: (Rule) => Rule.required(),
+            }),
+            defineField({
+              name: "photo",
+              type: "image",
+              options: { hotspot: true },
+            }),
+            defineField({
+              name: "photoAlt",
+              title: "Photo alt text",
+              type: "string",
+            }),
+          ],
+          preview: { select: { title: "areaId", media: "photo" } },
+        },
+      ],
+    }),
+    defineField({
       name: "intro",
       title: "Intro section",
       type: "object",

@@ -140,13 +140,13 @@ async function auditSiteSettings() {
   endSection();
 }
 
-// ── diningArea ──────────────────────────────────────────────────────────────
+// ── diningOption ──────────────────────────────────────────────────────────────
 
 async function auditDiningOptions() {
-  startSection("diningArea  ←  dining-options.json");
+  startSection("diningOption  ←  dining-options.json");
   const localAreas = fallback("dining-options.json");
   const remoteAreas = await client.fetch(
-    `*[_type == "diningArea"] | order(order asc){ "id": id.current, order, number, label, title, dark, description, details[]{ label, value, linkType }, ctaLabel, phoneReserve, finePrint }`,
+    `*[_type == "diningOption"] | order(order asc){ "id": id.current, order, number, label, title, dark, description, details[]{ label, value, linkType }, ctaLabel, phoneReserve, finePrint }`,
   );
 
   for (const local of localAreas) {

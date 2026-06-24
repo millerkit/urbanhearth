@@ -7,6 +7,23 @@
     "description": "Chef-owner Erin Miller presents a contemporary American menu rooted in New England's farms and fisheries and shaped by global influences. Each plate is composed with care, honoring ingredients, craft, and the shared joy of the table."
   },
   "teasersEyebrow": "Choose your dining experience",
+  "diningTeasers": [
+    {
+      "areaId": "dining-room",
+      "photo": null,
+      "photoAlt": "Dining Room at Urban Hearth"
+    },
+    {
+      "areaId": "chefs-counter",
+      "photo": null,
+      "photoAlt": "Chef's Counter at Urban Hearth"
+    },
+    {
+      "areaId": "salon",
+      "photo": null,
+      "photoAlt": "Bar & Salon at Urban Hearth"
+    }
+  ],
   "intro": {
     "eyebrow": "The Restaurant",
     "paragraphs": [

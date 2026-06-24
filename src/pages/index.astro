@@ -31,8 +31,8 @@ if (isSanityConfigured) {
   }
 }
 
-// Photo fallbacks keyed by id, matching the order in dining-options.json
-const teaserPhotos: Record<string, { src: string; alt: string }> = {
+// Local photo fallbacks keyed by area id — used when Sanity has no teaser photo
+const localTeaserPhotos: Record<string, { src: string; alt: string }> = {
   "dining-room": {
     src: DiningRoomTeaser.src,
     alt: "Dining Room at Urban Hearth",
@@ -43,6 +43,13 @@ const teaserPhotos: Record<string, { src: string; alt: string }> = {
   },
   salon: { src: BarTeaser.src, alt: "Salon and Bar at Urban Hearth" },
 };
+
+// Teaser photos from Sanity (via homepageContent.diningTeasers), keyed by area id
+const sanityTeasers: Record<string, { src: string; alt: string }> = {};
+for (const t of homepage.diningTeasers ?? []) {
+  if (t.photo)
+    sanityTeasers[t.areaId] = { src: t.photo, alt: t.photoAlt ?? "" };
+}
 const restaurantJsonLd = {
   "@context": "https://schema.org",
   "@type": "Restaurant",
@@ -127,13 +134,16 @@ const restaurantJsonLd = {
     <div class="teasers-grid">
       {
         diningOptions.map((opt, i) => {
-          const photo = teaserPhotos[opt.id] ?? Object.values(teaserPhotos)[i];
+          const teaserPhoto =
+            sanityTeasers[opt.id] ??
+            localTeaserPhotos[opt.id] ??
+            Object.values(localTeaserPhotos)[i];
           const card = (
             <a href={`/dining-options#${opt.id}`} class="teaser">
               <div class="teaser-photo-wrap">
                 <img
-                  src={opt.homepagePhoto ?? photo?.src}
-                  alt={opt.homepagePhotoAlt ?? photo?.alt ?? opt.title}
+                  src={teaserPhoto?.src}
+                  alt={teaserPhoto?.alt ?? opt.title}
                   class="teaser-photo"
                   loading="lazy"
                 />
