@@ -10,7 +10,7 @@ const currentPath = Astro.url.pathname;
 
 type NavLink = {
   label: string;
-  href: string;
+  href?: string;
   hidden?: boolean;
   children?: { label: string; href: string }[];
 };
@@ -43,28 +43,50 @@ function isActive(item: { href: string; children?: { href: string }[] }) {
         <div
           class={`nav-item nav-item--dropdown${isActive(item) ? " active" : ""}`}
         >
-          <a
-            href={item.href}
-            class={`nav-link${isActive(item) ? " active" : ""}`}
-          >
-            {item.label}
-            <svg
-              class="dropdown-caret"
-              width="8"
-              height="5"
-              viewBox="0 0 8 5"
-              fill="none"
-              aria-hidden="true"
+          {item.href ? (
+            <a
+              href={item.href}
+              class={`nav-link${isActive(item) ? " active" : ""}`}
             >
-              <path
-                d="M1 1l3 3 3-3"
-                stroke="currentColor"
-                stroke-width="1.2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-          </a>
+              {item.label}
+              <svg
+                class="dropdown-caret"
+                width="8"
+                height="5"
+                viewBox="0 0 8 5"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M1 1l3 3 3-3"
+                  stroke="currentColor"
+                  stroke-width="1.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </a>
+          ) : (
+            <span class={`nav-link${isActive(item) ? " active" : ""}`}>
+              {item.label}
+              <svg
+                class="dropdown-caret"
+                width="8"
+                height="5"
+                viewBox="0 0 8 5"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M1 1l3 3 3-3"
+                  stroke="currentColor"
+                  stroke-width="1.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </span>
+          )}
           <div class="dropdown">
             {item.children.map((child) => (
               <a
@@ -108,12 +130,20 @@ function isActive(item: { href: string; children?: { href: string }[] }) {
     {
       links.map((item) => (
         <div class="mm-item">
-          <a
-            href={item.href}
-            class={`mm-link${isActive(item) ? " active" : ""}`}
-          >
-            {item.label}
-          </a>
+          {item.href ? (
+            <a
+              href={item.href}
+              class={`mm-link${isActive(item) ? " active" : ""}`}
+            >
+              {item.label}
+            </a>
+          ) : (
+            <span
+              class={`mm-link mm-link--group${isActive(item) ? " active" : ""}`}
+            >
+              {item.label}
+            </span>
+          )}
           {item.children &&
             item.children.map((child) => (
               <a
@@ -401,6 +431,11 @@ function isActive(item: { href: string; children?: { href: string }[] }) {
 
     .mm-link.active {
       opacity: 0.5;
+    }
+
+    .mm-link--group {
+      cursor: default;
+      color: var(--ink-mid);
     }
 
     .mm-child {

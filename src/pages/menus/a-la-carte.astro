@@ -1,0 +1,343 @@
+---
+import { getSiteSettings } from "../../lib/site-settings";
+import { isSanityConfigured } from "../../lib/sanity";
+import { fetchMenu, fetchMenusPage } from "../../lib/sanity-fetch";
+import menuSectionsFallback from "../../fallback-content/menu-sections.json";
+import menusPage from "../../fallback-content/menus-page.json";
+import "../../styles/menu-shared.css";
+import Base from "../../layouts/Base.astro";
+import PageHeader from "../../components/PageHeader.astro";
+import Menu from "../../components/Menu.astro";
+import RestaurantHours from "../../components/RestaurantHours.astro";
+import ReservationButton from "../../components/ReservationButton.astro";
+
+const restaurant = await getSiteSettings();
+let menuData: any = null;
+let usingFallback = false;
+let menusContent = {
+  accuracyNote: menusPage.accuracyNote,
+  walkInsNote: menusPage.walkInsNote,
+};
+
+if (isSanityConfigured) {
+  try {
+    menuData = await fetchMenu();
+    if (!menuData) usingFallback = true;
+  } catch (e) {
+    console.error("[a-la-carte] Sanity fetch failed, showing sample menu:", e);
+    usingFallback = true;
+  }
+  try {
+    const data = await fetchMenusPage();
+    if (data) menusContent = { ...menusContent, ...data };
+  } catch (e) {
+    console.error("Failed to fetch menus page from Sanity:", e);
+  }
+} else {
+  usingFallback = true;
+}
+---
+
+<Base
+  title={`À la Carte — ${restaurant.name}`}
+  description={menusPage.seoDescription}
+>
+  <div class="menus-page">
+    <PageHeader
+      title="À la Carte"
+      lead={menusPage.pageLead}
+      leadNote={menusContent.accuracyNote}
+    />
+
+    <div class="menus-layout">
+      {
+        usingFallback && (
+          <div class="sample-notice" role="alert">
+            <strong>Sample menu</strong> — We're having trouble loading our
+            current menu right now. Items and prices shown below are for
+            reference only and may not reflect today's offerings. Please ask
+            your server for the current menu.
+          </div>
+        )
+      }
+
+      {
+        menuData ? (
+          <Menu menu={menuData} />
+        ) : (
+          <div
+            class={`menu-main menu-card${usingFallback ? " is-sample" : ""}`}
+          >
+            <div class="menu-dining-room">
+              <div class="dining-room-text">
+                <p class="menu-eyebrow">À la carte</p>
+                <RestaurantHours class="dining-room-hours" />
+                <p class="dining-room-hours">{menusContent.walkInsNote}</p>
+              </div>
+              <ReservationButton
+                href={`${restaurant.reservations.href}#dining-room`}
+                label="Reserve a table"
+              />
+            </div>
+
+            {menuSectionsFallback.sections.map((section) => (
+              <section class="menu-section">
+                <h2 class="menu-label menu-section-title">{section.title}</h2>
+                <ul class="dish-list">
+                  {section.items.map((dish) => (
+                    <li class="dish">
+                      <div class="dish-top">
+                        <span class="dish-name">{dish.name}</span>
+                        <span class="dish-price">{dish.price}</span>
+                      </div>
+                      {dish.description && (
+                        <p class="dish-desc">{dish.description}</p>
+                      )}
+                      {dish.note && (
+                        <p class="menu-fine-print dish-note">{dish.note}</p>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            ))}
+
+            <p class="menu-fine-print menu-footer-note">
+              {menusPage.menuFooterNote}
+            </p>
+          </div>
+        )
+      }
+    </div>
+
+    <!-- ── Partners ── -->
+    <div class="partners-section">
+      <p class="menu-label partners-heading">
+        {menuSectionsFallback.partners.heading}
+      </p>
+      <ul class="partners-list">
+        {
+          menuSectionsFallback.partners.items.map((partner) => (
+            <li class="partner-item">
+              <span class="partner-name">{partner.name}</span>
+              <span class="partner-location">{partner.location}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <!-- ── Sustainability ── -->
+    <div class="sustainability-section">
+      <p class="menu-label sustainability-heading">
+        {menuSectionsFallback.sustainability.heading}
+      </p>
+      <p class="sustainability-body">
+        {menuSectionsFallback.sustainability.body}
+      </p>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .menus-page {
+    margin-top: 111px;
+  }
+
+  .menus-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    max-width: 860px;
+    margin: 2rem auto;
+    padding: 0 2.5rem;
+  }
+
+  .sample-notice {
+    background: #fef9ec;
+    border: 1px solid #e8c84a;
+    border-left: 4px solid #c9a820;
+    border-radius: 4px;
+    padding: 0.85rem 1.1rem;
+    font-family: var(--font-header-action), sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    color: #5c4a12;
+    line-height: 1.6;
+  }
+
+  .sample-notice strong {
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-size: 11px;
+  }
+
+  .menu-card.is-sample {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .menu-card.is-sample::after {
+    content: "SAMPLE";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-30deg);
+    font-family: var(--font-header-action), sans-serif;
+    font-size: 6rem;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    color: rgba(0, 0, 0, 0.045);
+    pointer-events: none;
+    white-space: nowrap;
+    user-select: none;
+  }
+
+  .menu-main {
+    padding: 2.5rem 3rem 3rem;
+  }
+
+  .menu-dining-room {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: 0 0 2rem;
+    margin-bottom: 2.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .dining-room-hours {
+    font-family: var(--font-header-action), sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--ink);
+    line-height: 1.6;
+  }
+
+  .menu-section {
+    margin-bottom: 3.5rem;
+  }
+
+  .menu-section:last-of-type {
+    margin-bottom: 2.5rem;
+  }
+
+  .menu-section-title {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .dish-list {
+    list-style: none;
+  }
+
+  .dish {
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .dish-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1.5rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .dish-price {
+    font-family: var(--font-header-action), sans-serif;
+    font-size: var(--text-base);
+    font-weight: 300;
+    color: var(--ink);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .dish-note {
+    margin-top: 0.5rem;
+  }
+
+  .menu-footer-note {
+    font-size: 12px;
+    border-top: 1px solid var(--border);
+    padding-top: 1.5rem;
+  }
+
+  .partners-section {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 2.5rem 2.5rem 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .partners-heading {
+    margin-bottom: 1.5rem;
+  }
+
+  .partners-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem 2rem;
+  }
+
+  .partner-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .partner-name {
+    font-family: var(--font-body), serif;
+    font-size: var(--text-base);
+    font-weight: 400;
+    color: var(--ink);
+  }
+
+  .partner-location {
+    font-family: var(--font-header-action), sans-serif;
+    font-size: 12px;
+    font-weight: 300;
+    letter-spacing: 0.06em;
+    color: var(--ink-mid);
+  }
+
+  .sustainability-section {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 2.5rem 2.5rem 3rem;
+  }
+
+  .sustainability-heading {
+    margin-bottom: 1rem;
+  }
+
+  .sustainability-body {
+    font-family: var(--font-body), serif;
+    font-size: var(--text-base);
+    font-weight: 300;
+    color: var(--ink);
+    line-height: 1.85;
+    max-width: 100%;
+  }
+
+  @media (max-width: 600px) {
+    .menus-layout,
+    .partners-section,
+    .sustainability-section {
+      padding-left: 1.25rem;
+      padding-right: 1.25rem;
+    }
+
+    .menu-main {
+      padding: 2rem 1.25rem;
+    }
+
+    .partners-list {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

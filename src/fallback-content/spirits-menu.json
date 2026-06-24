@@ -1,0 +1,171 @@
+{
+  "curatedBy": "Peter G Nelson Jr, bar lead",
+  "spiritsSections": [
+    {
+      "title": "Vodka",
+      "items": [
+        { "name": "Tito's", "price": "14" },
+        { "name": "Grey Goose", "price": "18" }
+      ]
+    },
+    {
+      "title": "Gin",
+      "items": [
+        { "name": "Broker's", "price": "14" },
+        { "name": "Barr Hill", "price": "14" },
+        { "name": "Tanqueray", "price": "18" },
+        { "name": "Drumshambo Gunpowder Irish", "price": "20" },
+        { "name": "Plymouth", "price": "16" },
+        { "name": "Roku", "price": "18" }
+      ]
+    },
+    {
+      "title": "Rum",
+      "items": [
+        { "name": "Privateer Reserva", "price": "16" },
+        { "name": "Privateer Silver", "price": "16" },
+        { "name": "Old Monk", "price": "16" },
+        { "name": "Goslings", "price": "14" },
+        { "name": "Novo Fogo Cachaça", "price": "14" }
+      ]
+    },
+    {
+      "title": "Agave",
+      "items": [
+        { "name": "Tres Agave Bianco", "price": "14" },
+        { "name": "Ocho Reposado", "price": "18" },
+        { "name": "400 Conejos Mezcal", "price": "14" }
+      ]
+    },
+    {
+      "title": "Whiskey",
+      "items": [
+        { "name": "Old Overholt", "price": "14" },
+        { "name": "Basil Hayden Bourbon", "price": "18" },
+        { "name": "Nikka Coffey", "price": "18" },
+        { "name": "Rittenhouse Rye", "price": "14" }
+      ]
+    },
+    {
+      "title": "Scotch",
+      "items": [
+        { "name": "Dewar's", "price": "12" },
+        { "name": "Caol Ila 12", "price": "22" },
+        { "name": "Talisker Storm 10", "price": "22" },
+        { "name": "Balvenie Doublewood 12", "price": "24" }
+      ]
+    }
+  ],
+  "onTapCocktails": {
+    "price": "18",
+    "items": [
+      {
+        "name": "Sunkissed",
+        "description": "Vodka, rhubarb cordial, lemon"
+      },
+      {
+        "name": "Helix",
+        "description": "Roku Gin, Aperol, chinchona"
+      },
+      {
+        "name": "Summertime Crush",
+        "description": "Symphony 6 (black currant, fig leaf, citrus), yuzu, Earl Grey"
+      }
+    ]
+  },
+  "cocktailPrice": "18",
+  "cocktails": [
+    {
+      "name": "Low Light",
+      "description": "Vermouth, clarified coconut, olive, agave, celery"
+    },
+    {
+      "name": "Starry Eyes",
+      "description": "Brandy two ways — Blanche d'Armagnac, Calvados, shiso, bitters"
+    },
+    {
+      "name": "Verdant Gent",
+      "description": "Gin, Thai-basil matcha, American forest, lime"
+    },
+    {
+      "name": "Spark of Inspiration",
+      "description": "Cilantro, sherry, salted rosemary, rabarbaro"
+    },
+    {
+      "name": "Good Luck Charm",
+      "description": "Snap pea, plum, sorghum, gentian"
+    },
+    {
+      "name": "Toil & Trouble",
+      "description": "Coconut milk, Thai-basil matcha, strawberry cordial, lime, seltzer",
+      "nonAlcoholic": true
+    },
+    {
+      "name": "Beach Rose",
+      "description": "Pentire Seaward, shiso, citrus, sherry vin, nori"
+    },
+    {
+      "name": "Scarlet",
+      "description": "Pomegranate, beet, citrus, salted rosemary, aromatic foam"
+    }
+  ],
+  "zeroProofPrice": "12",
+  "beer": [
+    {
+      "name": "Notch Salem Lager",
+      "brewery": "Salem, MA",
+      "price": "10",
+      "description": "4.5% helles lager — lemon, brioche"
+    },
+    {
+      "name": "Shilling Alexandr",
+      "brewery": "Littleton, NH",
+      "price": "10",
+      "description": "5% pilsner — crisp, lemon, biscuit"
+    },
+    {
+      "name": "Equilibrium Photon",
+      "brewery": "Middletown, NY",
+      "price": "10",
+      "description": "4.8% pale ale — biscuit, pineapple, mango"
+    },
+    {
+      "name": "Aeronaut Dr. Nandu",
+      "brewery": "Somerville, MA",
+      "price": "10",
+      "description": "6.3% APA — pine sap, passion fruit, toast"
+    },
+    {
+      "name": "Oxbow Farmhouse Ale",
+      "brewery": "Newcastle, ME",
+      "price": "8",
+      "description": "6% session — brioche, lemon zest"
+    },
+    {
+      "name": "Ommegang Rare Vos",
+      "brewery": "Cooperstown, NY",
+      "price": "9",
+      "description": "6.5% amber — coriander, orange peel, grain"
+    },
+    {
+      "name": "Stormalong Legendary Dry Cider",
+      "brewery": "Millis, MA",
+      "price": "9",
+      "description": "6.5% extra dry cider"
+    },
+    {
+      "name": "Stormalong Passion Trip Cider",
+      "brewery": "Millis, MA",
+      "price": "9",
+      "description": "Non-alcoholic cider with passionfruit",
+      "nonAlcoholic": true
+    },
+    {
+      "name": "Notch Brewing IPA",
+      "brewery": "Salem, MA",
+      "price": "8",
+      "description": "Non-alcoholic IPA",
+      "nonAlcoholic": true
+    }
+  ]
+}

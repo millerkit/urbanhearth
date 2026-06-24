@@ -44,11 +44,17 @@ const links = JSON.parse(
 );
 
 function toNavLink(item) {
+  const key = item.href
+    ? item.href.replace(/\//g, "-").replace(/^-/, "")
+    : item.label
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-|-$/g, "");
   return {
     _type: "navLink",
-    _key: item.href.replace(/\//g, "-").replace(/^-/, "") || "home",
+    _key: key || "home",
     label: item.label,
-    href: item.href,
+    ...(item.href ? { href: item.href } : {}),
     hidden: item._hidden === true,
     ...(item.children
       ? {

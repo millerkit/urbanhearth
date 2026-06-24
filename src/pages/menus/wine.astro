@@ -1,0 +1,162 @@
+---
+import { getSiteSettings } from "../../lib/site-settings";
+import wineMenu from "../../fallback-content/wine-menu.json";
+import "../../styles/menu-shared.css";
+import Base from "../../layouts/Base.astro";
+import PageHeader from "../../components/PageHeader.astro";
+
+const restaurant = await getSiteSettings();
+---
+
+<Base
+  title={`Wine — ${restaurant.name}`}
+  description="Wine by the glass at Urban Hearth in Cambridge, MA. Curated natural and small-producer selections."
+>
+  <div class="menus-page">
+    <PageHeader
+      title="Wine"
+      lead="A selection of wines chosen to complement the season's menu."
+    />
+
+    <div class="menus-layout">
+      <div class="menu-main menu-card">
+        <div class="menu-header-row">
+          <p class="bottle-note">{wineMenu.footerNote}</p>
+          <p class="price-header menu-label">Glass | Bottle</p>
+        </div>
+
+        {
+          wineMenu.sections.map((section) => (
+            <section class="menu-section">
+              <h2 class="menu-label menu-section-title">{section.title}</h2>
+              <ul class="dish-list">
+                {section.items.map((wine) => (
+                  <li class="dish">
+                    <div class="dish-top">
+                      <span class="dish-name">{wine.name}</span>
+                      <span class="dish-price">{wine.price}</span>
+                    </div>
+                    <p class="wine-region menu-label">{wine.region}</p>
+                    {wine.description && (
+                      <p class="dish-desc">{wine.description}</p>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ))
+        }
+
+        <p class="curated-by menu-fine-print">
+          Curated by {wineMenu.curatedBy}
+        </p>
+      </div>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .menus-page {
+    margin-top: 111px;
+  }
+
+  .menus-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    max-width: 860px;
+    margin: 2rem auto;
+    padding: 0 2.5rem;
+  }
+
+  .menu-main {
+    padding: 2.5rem 3rem 3rem;
+  }
+
+  .menu-header-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .bottle-note {
+    font-family: var(--font-body), serif;
+    font-size: var(--text-md);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--ink);
+  }
+
+  .price-header {
+    text-align: right;
+    color: var(--ink-mid);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .curated-by {
+    margin-top: 1.5rem;
+  }
+
+  .menu-section {
+    margin-bottom: 3.5rem;
+  }
+
+  .menu-section:last-of-type {
+    margin-bottom: 2.5rem;
+  }
+
+  .menu-section-title {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .dish-list {
+    list-style: none;
+  }
+
+  .dish {
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .dish-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1.5rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .dish-price {
+    font-family: var(--font-header-action), sans-serif;
+    font-size: var(--text-base);
+    font-weight: 300;
+    color: var(--ink);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .wine-region {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    color: var(--ink-mid);
+    margin-bottom: 0.3rem;
+  }
+
+  @media (max-width: 600px) {
+    .menus-layout {
+      padding-left: 1.25rem;
+      padding-right: 1.25rem;
+    }
+
+    .menu-main {
+      padding: 2rem 1.25rem;
+    }
+  }
+</style>

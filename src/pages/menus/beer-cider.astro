@@ -1,0 +1,103 @@
+---
+import { getSiteSettings } from "../../lib/site-settings";
+import spiritsMenu from "../../fallback-content/spirits-menu.json";
+import "../../styles/menu-shared.css";
+import Base from "../../layouts/Base.astro";
+import PageHeader from "../../components/PageHeader.astro";
+
+const restaurant = await getSiteSettings();
+---
+
+<Base
+  title={`Beer & Cider — ${restaurant.name}`}
+  description="Local and regional beer and cider at Urban Hearth in Cambridge, MA."
+>
+  <div class="menus-page">
+    <PageHeader
+      title="Beer & Cider"
+      lead="Local and regional selections, with non-alcoholic options."
+    />
+
+    <div class="menus-layout">
+      <div class="menu-card menu-main">
+        <ul class="dish-list">
+          {
+            spiritsMenu.beer.map((beer) => (
+              <li class="dish">
+                <div class="dish-top">
+                  <span class="dish-name">{beer.name}</span>
+                  <span class="dish-price">{beer.price}</span>
+                </div>
+                <p class="beer-brewery menu-label">{beer.brewery}</p>
+                <p class="dish-desc">{beer.description}</p>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .menus-page {
+    margin-top: 111px;
+  }
+
+  .menus-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    max-width: 860px;
+    margin: 2rem auto;
+    padding: 0 2.5rem 3rem;
+  }
+
+  .menu-main {
+    padding: 2.5rem 3rem 3rem;
+  }
+
+  .dish-list {
+    list-style: none;
+  }
+
+  .dish {
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .dish-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1.5rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .dish-price {
+    font-family: var(--font-header-action), sans-serif;
+    font-size: var(--text-base);
+    font-weight: 300;
+    color: var(--ink);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .beer-brewery {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    color: var(--ink-mid);
+    margin-bottom: 0.3rem;
+  }
+
+  @media (max-width: 600px) {
+    .menus-layout {
+      padding-left: 1.25rem;
+      padding-right: 1.25rem;
+    }
+
+    .menu-main {
+      padding: 2rem 1.25rem;
+    }
+  }
+</style>

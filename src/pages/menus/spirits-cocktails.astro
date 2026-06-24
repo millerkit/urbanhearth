@@ -1,0 +1,235 @@
+---
+import { getSiteSettings } from "../../lib/site-settings";
+import spiritsMenu from "../../fallback-content/spirits-menu.json";
+import "../../styles/menu-shared.css";
+import Base from "../../layouts/Base.astro";
+import PageHeader from "../../components/PageHeader.astro";
+
+const restaurant = await getSiteSettings();
+---
+
+<Base
+  title={`Spirits & Cocktails — ${restaurant.name}`}
+  description="Cocktails, spirits, beer, and zero-proof drinks at Urban Hearth in Cambridge, MA."
+>
+  <div class="menus-page">
+    <PageHeader
+      title="Spirits & Cocktails"
+      lead="Seasonal cocktails and curated spirits."
+    />
+
+    <div class="menus-layout">
+      <!-- ── Cocktails ── -->
+      <div class="menu-card menu-main">
+        <p class="menu-eyebrow">Cocktails</p>
+
+        <section class="menu-section">
+          <h2 class="menu-label menu-section-title">
+            On Tap — {spiritsMenu.onTapCocktails.price}
+          </h2>
+          <ul class="dish-list">
+            {
+              spiritsMenu.onTapCocktails.items.map((cocktail) => (
+                <li class="dish">
+                  <div class="dish-top">
+                    <span class="dish-name">{cocktail.name}</span>
+                  </div>
+                  <p class="dish-desc">{cocktail.description}</p>
+                </li>
+              ))
+            }
+          </ul>
+        </section>
+
+        <section class="menu-section">
+          <h2 class="menu-label menu-section-title">Cocktails</h2>
+          <ul class="dish-list">
+            {
+              spiritsMenu.cocktails.map((cocktail) => (
+                <li class="dish">
+                  <div class="dish-top">
+                    <span class="dish-name">{cocktail.name}</span>
+                    <span class="dish-price">
+                      {cocktail.nonAlcoholic
+                        ? spiritsMenu.zeroProofPrice
+                        : spiritsMenu.cocktailPrice}
+                    </span>
+                  </div>
+                  <p class="dish-desc">{cocktail.description}</p>
+                </li>
+              ))
+            }
+          </ul>
+        </section>
+      </div>
+
+      <!-- ── Spirits ── -->
+      <div class="menu-card menu-main">
+        <p class="menu-eyebrow">Spirits</p>
+        <div class="spirits-grid">
+          {
+            spiritsMenu.spiritsSections.map((category) => (
+              <section class="spirits-category">
+                <h2 class="menu-label spirits-category-title">
+                  {category.title}
+                </h2>
+                <ul class="spirits-list">
+                  {category.items.map((spirit) => (
+                    <li class="spirit-item">
+                      <span class="spirit-name">{spirit.name}</span>
+                      <span class="spirit-price">{spirit.price}</span>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            ))
+          }
+        </div>
+      </div>
+
+      <p class="curated-by menu-fine-print">
+        Curated by {spiritsMenu.curatedBy}
+      </p>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .menus-page {
+    margin-top: 111px;
+  }
+
+  .menus-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    max-width: 860px;
+    margin: 2rem auto;
+    padding: 0 2.5rem 3rem;
+  }
+
+  .curated-by {
+    text-align: center;
+    padding: 0.5rem 0 1rem;
+  }
+
+  .menu-main {
+    padding: 2.5rem 3rem 3rem;
+  }
+
+  .menu-eyebrow {
+    margin-bottom: 2rem;
+  }
+
+  .menu-section {
+    margin-bottom: 3rem;
+  }
+
+  .menu-section:last-of-type {
+    margin-bottom: 0;
+  }
+
+  .menu-section-title {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .dish-list {
+    list-style: none;
+  }
+
+  .dish {
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .dish-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1.5rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .dish-price {
+    font-family: var(--font-header-action), sans-serif;
+    font-size: var(--text-base);
+    font-weight: 300;
+    color: var(--ink);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .na-badge {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--ink-mid);
+    white-space: nowrap;
+  }
+
+  /* ── Spirits grid ── */
+  .spirits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem 3rem;
+  }
+
+  .spirits-category-title {
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .spirits-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .spirit-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+  }
+
+  .spirit-name {
+    font-family: var(--font-body), serif;
+    font-size: var(--text-base);
+    font-weight: 300;
+    color: var(--ink);
+  }
+
+  .spirit-price {
+    font-family: var(--font-header-action), sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--ink);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 700px) {
+    .spirits-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .menus-layout {
+      padding-left: 1.25rem;
+      padding-right: 1.25rem;
+    }
+
+    .menu-main {
+      padding: 2rem 1.25rem;
+    }
+
+    .spirits-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

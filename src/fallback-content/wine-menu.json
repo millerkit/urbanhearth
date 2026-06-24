@@ -1,0 +1,98 @@
+{
+  "curatedBy": "Katie Janik, wine director",
+  "footerNote": "For a full bottle list, please ask your server.",
+  "sections": [
+    {
+      "title": "Sparkling",
+      "items": [
+        {
+          "name": "NV Dibon Brut Cava",
+          "region": "Cataluña, Spain",
+          "description": "Macabeo — white flowers, lively bubbles, fresh apples, citrus",
+          "price": "14 | 45"
+        },
+        {
+          "name": "2024 Oyster River Morphos Pét Nat",
+          "region": "Warren, Maine",
+          "description": "Cayuga, Seyval Blanc — yeasty, lemon drops, yellow apples, brioche",
+          "price": "16 | 65"
+        },
+        {
+          "name": "NV Arnaud Lambert Crémant de Loire Brut",
+          "region": "Loire, France",
+          "description": "Chenin Blanc, Chardonnay — fresh citrus, honey, crisp minerality",
+          "price": "18 | 75"
+        }
+      ]
+    },
+    {
+      "title": "White",
+      "items": [
+        {
+          "name": "2023 Union Sacré Dry Riesling",
+          "region": "Paso Robles, CA",
+          "description": "Riesling — pineapple, honeysuckle, minerality",
+          "price": "14 | 65"
+        },
+        {
+          "name": "2024 Arnaud Lambert Le Parcelles",
+          "region": "Saumur, Loire, France",
+          "description": "Chenin Blanc — quince, pear, crushed rocks, salt",
+          "price": "18 | 80"
+        },
+        {
+          "name": "2023 Mortellito Cala Iancu",
+          "region": "Sicily, Italy",
+          "description": "Grillo, Catarratto — zesty lemon, grapefruit, sea spray",
+          "price": "19 | 80"
+        },
+        {
+          "name": "2024 Judith Beck Weissburgunder",
+          "region": "Burgenland, Austria",
+          "description": "Weissburgunder — peach, apricot, sea salt",
+          "price": "16 | 65"
+        }
+      ]
+    },
+    {
+      "title": "Rosé & Orange",
+      "items": [
+        {
+          "name": "2023 Turay Vineyards Galactic Juice",
+          "region": "Baj, Hungary",
+          "description": "Blaufränkisch — cherries & berries",
+          "price": "16 | 65"
+        },
+        {
+          "name": "2024 Garalis Terra Ambera",
+          "region": "Lemnos, Greece",
+          "description": "Muscat of Alexandria — quince, lemon zest, mushroom",
+          "price": "18 | 75"
+        }
+      ]
+    },
+    {
+      "title": "Red",
+      "items": [
+        {
+          "name": "2024 San Biagio Vecchio Porcaloca",
+          "region": "Emilia-Romagna, Italy",
+          "description": "Sangiovese — red licorice, cinnamon, subtle fruit",
+          "price": "18 | 85"
+        },
+        {
+          "name": "2023 Yohan Lardy Fleurie Le Vivier",
+          "region": "Fleurie, Beaujolais, France",
+          "description": "Gamay — bright cherry, strawberry, violets",
+          "price": "17 | 75"
+        },
+        {
+          "name": "2022 Zagreus Santimenti Red",
+          "region": "Thracian Valley, Bulgaria",
+          "description": "Mavrud — powerful, black cherry, spice",
+          "price": "17 | 75"
+        }
+      ]
+    }
+  ]
+}

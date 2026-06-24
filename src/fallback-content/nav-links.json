@@ -9,11 +9,16 @@
   },
   {
     "label": "Our Menus",
-    "href": "/menus"
+    "children": [
+      { "label": "À la Carte", "href": "/menus/a-la-carte" },
+      { "label": "Chef's Counter", "href": "/menus/chefs-counter" },
+      { "label": "Wine", "href": "/menus/wine" },
+      { "label": "Spirits & Cocktails", "href": "/menus/spirits-cocktails" },
+      { "label": "Beer & Cider", "href": "/menus/beer-cider" }
+    ]
   },
   {
     "label": "About",
-    "href": "/about",
     "children": [
       {
         "label": "Chef Erin Miller",

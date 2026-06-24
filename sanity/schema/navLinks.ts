@@ -32,7 +32,7 @@ const navLink = defineType({
     defineField({
       name: "href",
       type: "string",
-      validation: (R) => R.required(),
+      description: "Leave blank for dropdown-only items with no direct link",
     }),
     defineField({
       name: "children",

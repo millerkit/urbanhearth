@@ -1,0 +1,46 @@
+---
+import { getSiteSettings } from "../../lib/site-settings";
+import Base from "../../layouts/Base.astro";
+import PageHeader from "../../components/PageHeader.astro";
+import ChefsCounter from "../../components/ChefsCounter.astro";
+
+const restaurant = await getSiteSettings();
+---
+
+<Base
+  title={`Chef's Counter — ${restaurant.name}`}
+  description="A five-course tasting menu at the Chef's Counter at Urban Hearth in Cambridge, MA."
+>
+  <div class="menus-page">
+    <PageHeader
+      title="Chef's Counter"
+      lead="A nightly five-course tasting menu, served at the counter with a view of the kitchen."
+    />
+
+    <div class="menus-layout">
+      <ChefsCounter />
+    </div>
+  </div>
+</Base>
+
+<style>
+  .menus-page {
+    margin-top: 111px;
+  }
+
+  .menus-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    max-width: 860px;
+    margin: 2rem auto;
+    padding: 0 2.5rem;
+  }
+
+  @media (max-width: 600px) {
+    .menus-layout {
+      padding-left: 1.25rem;
+      padding-right: 1.25rem;
+    }
+  }
+</style>
