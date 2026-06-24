@@ -9,8 +9,8 @@
   ],
   "photo": null,
   "accolades": [
-    { "year": "2025", "text": "James Beard Award Finalist" },
-    { "year": "2025", "text": "Michelin Guide — Boston" },
-    { "year": "2023–25", "text": "Best of Boston — Three Consecutive Years" }
+    { "text": "James Beard Award Finalist", "year": "2025" },
+    { "text": "Michelin Guide — Boston", "year": "2025" },
+    { "text": "Best of Boston — Three Consecutive Years", "year": "2023–25" }
   ]
 }
