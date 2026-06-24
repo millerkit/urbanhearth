@@ -116,6 +116,19 @@ async function run() {
       })),
       ctaLabel: area.ctaLabel,
       phoneReserve: area.phoneReserve ?? false,
+      ...(area.price ? { price: area.price } : {}),
+      ...(area.priceSuffix ? { priceSuffix: area.priceSuffix } : {}),
+      ...(area.bookingNote ? { bookingNote: area.bookingNote } : {}),
+      ...(area.pairings?.length
+        ? {
+            pairings: area.pairings.map((p, i) => ({
+              _type: "object",
+              _key: `pairing-${i}`,
+              label: p.label,
+              price: p.price,
+            })),
+          }
+        : {}),
       ...(area.finePrint ? { finePrint: area.finePrint } : {}),
       ...(photo ? { photo } : {}),
       ...(photoSecondary ? { photoSecondary } : {}),

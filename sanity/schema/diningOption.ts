@@ -130,6 +130,48 @@ export const diningOption = defineType({
         "When true, shows phone/email contact instead of a reservation button",
     }),
     defineField({
+      name: "price",
+      title: "Price",
+      type: "string",
+      description: 'Display price, e.g. "$190"',
+    }),
+    defineField({
+      name: "priceSuffix",
+      title: "Price suffix",
+      type: "string",
+      description: 'Shown after the price, e.g. "per person, plus tax and tip"',
+    }),
+    defineField({
+      name: "bookingNote",
+      title: "Booking note",
+      type: "string",
+      description:
+        'Short note about payment or booking policy, e.g. "Bookings are paid in advance via OpenTable"',
+    }),
+    defineField({
+      name: "pairings",
+      title: "Optional pairings",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            defineField({
+              name: "label",
+              type: "string",
+              validation: (Rule) => Rule.required(),
+            }),
+            defineField({
+              name: "price",
+              type: "string",
+              validation: (Rule) => Rule.required(),
+            }),
+          ],
+          preview: { select: { title: "label", subtitle: "price" } },
+        },
+      ],
+    }),
+    defineField({
       name: "finePrint",
       title: "Fine print",
       type: "string",

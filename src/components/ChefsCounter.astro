@@ -1,8 +1,9 @@
 ---
 import { getSiteSettings } from "../lib/site-settings";
 import { isSanityConfigured } from "../lib/sanity";
-import { fetchChefsCounter } from "../lib/sanity-fetch";
+import { fetchChefsCounter, fetchDiningOptions } from "../lib/sanity-fetch";
 import cardFallback from "../fallback-content/chefs-counter.json";
+import diningOptionsFallback from "../fallback-content/dining-options.json";
 import ReservationButton from "./ReservationButton.astro";
 import "../styles/menu-shared.css";
 
@@ -17,6 +18,19 @@ if (isSanityConfigured) {
     console.error("Failed to fetch Chef's Counter from Sanity:", e);
   }
 }
+
+type DiningOption = (typeof diningOptionsFallback)[number];
+let diningOptions: DiningOption[] = diningOptionsFallback;
+if (isSanityConfigured) {
+  try {
+    const data = await fetchDiningOptions();
+    if (data?.length) diningOptions = data;
+  } catch (e) {
+    console.error("Failed to fetch dining options from Sanity:", e);
+  }
+}
+
+const pricing = diningOptions.find((o) => o.id === "chefs-counter");
 ---
 
 <div class="menu-card card">
@@ -30,52 +44,40 @@ if (isSanityConfigured) {
       label="Reserve your seat"
     />
   </div>
-  <div class="price">{card.priceDisplay}</div>
+
+  {
+    pricing && (
+      <div class="price-block">
+        <span class="price">{pricing.price}</span>
+        <span class="price-suffix">{pricing.priceSuffix}</span>
+      </div>
+    )
+  }
+
+  {pricing?.bookingNote && <p class="booking-note">{pricing.bookingNote}</p>}
+
   <p class="desc">{card.description}</p>
-  <div class="sub-row">
-    <span class="menu-label">{card.pairingsLabel}</span>
-    <span class="sub-value">{card.pairingsValue}</span>
-  </div>
+
+  {
+    pricing?.pairings && pricing.pairings.length > 0 && (
+      <div class="pairings">
+        <p class="menu-label pairings-label">Optional pairings</p>
+        <ul class="pairings-list">
+          {pricing.pairings.map((p) => (
+            <li class="pairing-row">
+              <span class="pairing-name">{p.label}</span>
+              <span class="pairing-price">{p.price}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )
+  }
 </div>
 
 <style>
   .card {
     padding: 2.5rem 2rem;
-  }
-
-  .price {
-    font-family: var(--font-body), serif;
-    font-size: 2.4rem;
-    font-weight: 300;
-    color: var(--midnight);
-    line-height: 1;
-    margin-bottom: 1.2rem;
-  }
-
-  .desc {
-    font-family: var(--font-body), serif;
-    font-size: var(--text-md);
-    font-weight: 300;
-    line-height: 1.8;
-    color: var(--midnight);
-    margin-bottom: 1.5rem;
-  }
-
-  .sub-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    padding: 0.75rem 0;
-    border-top: 1px solid rgba(22, 34, 53, 0.13);
-    border-bottom: 1px solid rgba(22, 34, 53, 0.13);
-    margin-bottom: 1.2rem;
-  }
-
-  .sub-value {
-    font-family: var(--font-header-action), sans-serif;
-    font-size: 15px;
-    font-weight: 300;
-    color: var(--midnight);
   }
 
   .card-header {
@@ -84,7 +86,7 @@ if (isSanityConfigured) {
     justify-content: space-between;
     gap: 2rem;
     padding-bottom: 1.5rem;
-    margin-bottom: 1.2rem;
+    margin-bottom: 1.5rem;
     border-bottom: 1px solid var(--border);
   }
 
@@ -100,5 +102,85 @@ if (isSanityConfigured) {
     font-weight: 300;
     color: var(--ink);
     line-height: 1.6;
+  }
+
+  .price-block {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .price {
+    font-family: var(--font-body), serif;
+    font-size: 2.4rem;
+    font-weight: 300;
+    color: var(--midnight);
+    line-height: 1;
+  }
+
+  .price-suffix {
+    font-family: var(--font-header-action), sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--ink-mid);
+  }
+
+  .booking-note {
+    font-family: var(--font-header-action), sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--ink-mid);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .desc {
+    font-family: var(--font-body), serif;
+    font-size: var(--text-md);
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--midnight);
+    margin-bottom: 1.5rem;
+  }
+
+  .pairings {
+    border-top: 1px solid var(--border);
+    padding-top: 1.25rem;
+  }
+
+  .pairings-label {
+    margin-bottom: 0.75rem;
+  }
+
+  .pairings-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .pairing-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .pairing-name {
+    font-family: var(--font-body), serif;
+    font-size: var(--text-base);
+    font-weight: 300;
+    color: var(--ink);
+  }
+
+  .pairing-price {
+    font-family: var(--font-header-action), sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--ink);
+    white-space: nowrap;
+    flex-shrink: 0;
   }
 </style>

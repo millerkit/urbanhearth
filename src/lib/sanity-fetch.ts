@@ -183,9 +183,14 @@ export async function fetchDiningOptions() {
       "photoSecondary": photoSecondary.asset->url,
       photoSecondaryAlt,
       description,
+      price,
+      priceSuffix,
+      bookingNote,
+      pairings[]{ label, price },
       details[]{ label, value, linkType },
       ctaLabel,
-      phoneReserve
+      phoneReserve,
+      finePrint
     }
   `);
   return options ?? [];
