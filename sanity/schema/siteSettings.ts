@@ -28,6 +28,12 @@ export const siteSettings = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: "mapsUrl",
+      title: "Google Maps URL",
+      type: "url",
+      description: "Link for the address in the top bar and footer",
+    }),
+    defineField({
       name: "phone",
       type: "string",
       validation: (Rule) => Rule.required(),

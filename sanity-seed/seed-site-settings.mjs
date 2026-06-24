@@ -54,6 +54,7 @@ async function run() {
     tagline: r.tagline,
     url: r.url,
     address: r.address,
+    ...(r.mapsUrl ? { mapsUrl: r.mapsUrl } : {}),
     phone: r.phone,
     hours: r.hours,
     privateDiningEmail: r.privateDiningEmail,

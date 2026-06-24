@@ -261,6 +261,7 @@ export async function fetchSiteSettings() {
       tagline,
       url,
       address,
+      mapsUrl,
       phone,
       hours,
       privateDiningEmail,
