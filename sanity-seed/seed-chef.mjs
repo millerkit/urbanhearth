@@ -62,7 +62,7 @@ async function run() {
   console.log(`\nSeeding chef profile → Sanity (${SANITY_DATASET})\n`);
 
   process.stdout.write(`  Uploading photo … `);
-  const photo = await uploadPhoto("src/assets/photos/erin.jpg");
+  const photo = await uploadPhoto("src/assets/photos/ChefErinHeadshot.jpg");
   console.log(photo ? "✓" : "skipped");
 
   process.stdout.write(`  Creating document … `);
