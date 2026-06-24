@@ -65,10 +65,16 @@ html {
 
 body {
   background: var(--warm-white);
-
   color: var(--ink);
   font-family: var(--font-body), serif;
   -webkit-font-smoothing: antialiased;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
 }
 
 /* Shared utility classes */
