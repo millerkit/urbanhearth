@@ -224,8 +224,7 @@ export async function fetchHomepageContent() {
     *[_type == "homepageContent"][0]{
       statement{ eyebrow, tags, definitionTerm, definitionText, description },
       teasersEyebrow,
-      diningTeasers[]{ areaId, "photo": photo.asset->url, photoAlt },
-      intro{ eyebrow, paragraphs }
+      diningTeasers[]{ areaId, "photo": photo.asset->url, photoAlt }
     }
   `);
 }
@@ -321,7 +320,7 @@ export async function fetchNavLinks() {
   `);
   return (doc?.links ?? []) as {
     label: string;
-    href: string;
+    href?: string;
     hidden?: boolean;
     children?: { label: string; href: string }[];
   }[];

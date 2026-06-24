@@ -4,7 +4,7 @@
     "tags": "Locally sourced · Globally inspired",
     "definitionTerm": "hearth.",
     "definitionText": "The heart of a home — a place of warmth and gathering, where the simplest things endure.",
-    "description": "Chef-owner Erin Miller presents a contemporary American menu rooted in New England's farms and fisheries and shaped by global influences. Each plate is composed with care, honoring ingredients, craft, and the shared joy of the table."
+    "description": "Chef-owner Erin Miller presents a contemporary American menu rooted in New England's farms, forests, and fisheries and shaped by global influences. Each plate is composed with care, honoring ingredients, craft, and the shared joy of the table."
   },
   "teasersEyebrow": "Choose your dining experience",
   "diningTeasers": [
@@ -23,14 +23,5 @@
       "photo": null,
       "photoAlt": "Bar & Salon at Urban Hearth"
     }
-  ],
-  "intro": {
-    "eyebrow": "The Restaurant",
-    "paragraphs": [
-      "Urban Hearth is a quiet refuge from the city — a place where seasonal cooking meets unhurried hospitality.",
-      "Set in a warmly designed room in Inman Square, the space is quiet and considered — built for evenings that unfold at their own pace.",
-      "Our kitchen works with a close network of New England farmers and fishermen to craft a menu that changes with the week's best produce.",
-      "Everything is made in-house: the bread, the charcuterie, the preserves. Unpretentious but considered. Warm but precise."
-    ]
-  }
+  ]
 }
