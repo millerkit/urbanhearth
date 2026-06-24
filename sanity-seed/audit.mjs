@@ -351,17 +351,324 @@ async function auditReservationsPage() {
   diff("bookingUrl", local.bookingUrl ?? null, remote.bookingUrl ?? null);
 }
 
+// ── homepageContent ─────────────────────────────────────────────────────────
+
+async function auditHomepage() {
+  section("homepageContent  ←  homepage.json");
+  const local = fallback("homepage.json");
+  const remote = await client.fetch(
+    `*[_type == "homepageContent"][0]{ statement{ eyebrow, tags, definitionTerm, definitionText, description }, teasersEyebrow, intro{ eyebrow, paragraphs } }`,
+  );
+
+  if (!remote) {
+    console.log("  ✗ Document not found in Sanity");
+    totalDiffs++;
+    return;
+  }
+
+  diff(
+    "statement.eyebrow",
+    local.statement?.eyebrow,
+    remote.statement?.eyebrow,
+  );
+  diff("statement.tags", local.statement?.tags, remote.statement?.tags);
+  diff(
+    "statement.definitionTerm",
+    local.statement?.definitionTerm,
+    remote.statement?.definitionTerm,
+  );
+  diff(
+    "statement.definitionText",
+    local.statement?.definitionText,
+    remote.statement?.definitionText,
+  );
+  diff(
+    "statement.description",
+    local.statement?.description,
+    remote.statement?.description,
+  );
+  diff("teasersEyebrow", local.teasersEyebrow, remote.teasersEyebrow);
+  diff("intro.eyebrow", local.intro?.eyebrow, remote.intro?.eyebrow);
+  diff("intro.paragraphs", local.intro?.paragraphs, remote.intro?.paragraphs);
+}
+
+// ── teamMember ──────────────────────────────────────────────────────────────
+
+async function auditTeamMembers() {
+  section("teamMember  ←  team.json");
+  const localMembers = fallback("team.json");
+  const remoteMembers = await client.fetch(
+    `*[_type == "teamMember"] | order(order asc){ name, roles, bio, order }`,
+  );
+
+  for (const local of localMembers) {
+    const remote = remoteMembers.find((r) => r.name === local.name);
+    if (!remote) {
+      console.log(`  ✗ ${local.name}: not found in Sanity`);
+      totalDiffs++;
+      continue;
+    }
+    diff(`${local.name}.roles`, local.roles, remote.roles);
+    diff(`${local.name}.bio`, local.bio, remote.bio);
+    diff(`${local.name}.order`, local.order, remote.order);
+  }
+
+  for (const remote of remoteMembers) {
+    if (!localMembers.find((l) => l.name === remote.name)) {
+      console.log(`  ℹ  ${remote.name}: exists in Sanity but not in fallback`);
+    }
+  }
+}
+
+// ── teamPage ────────────────────────────────────────────────────────────────
+
+async function auditTeamPage() {
+  section("teamPage  ←  team-page.json");
+  const local = fallback("team-page.json");
+  const remote = await client.fetch(
+    `*[_type == "teamPage"][0]{ pageTitle, pageLead, seoDescription, chefLinkText }`,
+  );
+
+  if (!remote) {
+    console.log("  ✗ Document not found in Sanity");
+    totalDiffs++;
+    return;
+  }
+
+  diff("pageTitle", local.pageTitle, remote.pageTitle);
+  diff("pageLead", local.pageLead, remote.pageLead);
+  diff("seoDescription", local.seoDescription, remote.seoDescription);
+  diff("chefLinkText", local.chefLinkText, remote.chefLinkText);
+}
+
+// ── chefProfile ─────────────────────────────────────────────────────────────
+
+async function auditChefProfile() {
+  section("chefProfile  ←  chef.json");
+  const local = fallback("chef.json");
+  const remote = await client.fetch(
+    `*[_type == "chefProfile"][0]{ name, title, roles, bio, accolades[]{ year, text } }`,
+  );
+
+  if (!remote) {
+    console.log("  ✗ Document not found in Sanity");
+    totalDiffs++;
+    return;
+  }
+
+  diff("name", local.name, remote.name);
+  diff("title", local.title, remote.title);
+  diff("roles", local.roles, remote.roles);
+  diff("bio", local.bio, remote.bio);
+  diff("accolades", local.accolades, remote.accolades);
+}
+
+// ── farm ────────────────────────────────────────────────────────────────────
+
+async function auditFarms() {
+  section("farm  ←  farms.json");
+  const localFarms = fallback("farms.json");
+  const remoteFarms = await client.fetch(
+    `*[_type == "farm"] | order(order asc){ name, location, order }`,
+  );
+
+  for (const local of localFarms) {
+    const remote = remoteFarms.find((r) => r.name === local.name);
+    if (!remote) {
+      console.log(`  ✗ ${local.name}: not found in Sanity`);
+      totalDiffs++;
+      continue;
+    }
+    diff(`${local.name}.location`, local.location, remote.location);
+    diff(`${local.name}.order`, local.order, remote.order);
+  }
+
+  for (const remote of remoteFarms) {
+    if (!localFarms.find((l) => l.name === remote.name)) {
+      console.log(`  ℹ  ${remote.name}: exists in Sanity but not in fallback`);
+    }
+  }
+}
+
+// ── galleryPhoto ─────────────────────────────────────────────────────────────
+
+async function auditGallery() {
+  section("galleryPhoto  ←  gallery.json");
+  const localPhotos = fallback("gallery.json");
+  const remotePhotos = await client.fetch(
+    `*[_type == "galleryPhoto"] | order(order asc){ order, alt, span }`,
+  );
+
+  if (localPhotos.length !== remotePhotos.length) {
+    diff("count", localPhotos.length, remotePhotos.length);
+  }
+
+  for (const local of localPhotos) {
+    const remote = remotePhotos.find((r) => r.order === local.order);
+    if (!remote) {
+      console.log(`  ✗ order ${local.order}: not found in Sanity`);
+      totalDiffs++;
+      continue;
+    }
+    diff(`[${local.order}].alt`, local.alt, remote.alt);
+    diff(`[${local.order}].span`, local.span, remote.span);
+  }
+}
+
+// ── largePartyPage + large_party_package ─────────────────────────────────────
+
+async function auditLargeParty() {
+  section("largePartyPage  ←  private-events-page.json");
+  const localPage = fallback("private-events-page.json");
+  const remotePage = await client.fetch(
+    `*[_type == "largePartyPage"][0]{ capacityStats[]{ value, label } }`,
+  );
+
+  if (!remotePage) {
+    console.log("  ✗ Document not found in Sanity");
+    totalDiffs++;
+  } else {
+    diff("capacityStats", localPage.capacityStats, remotePage.capacityStats);
+  }
+
+  section("large_party_package  ←  private-event-packages.json");
+  const localPkgs = fallback("private-event-packages.json");
+  const remotePkgs = await client.fetch(
+    `*[_type == "large_party_package"] | order(order asc){ order, eyebrow, title, description, details[]{ label, value }, note, dark }`,
+  );
+
+  for (const local of localPkgs) {
+    const remote = remotePkgs.find((r) => r.title === local.title);
+    if (!remote) {
+      console.log(`  ✗ "${local.title}": not found in Sanity`);
+      totalDiffs++;
+      continue;
+    }
+    diff(`${local.title}.eyebrow`, local.eyebrow, remote.eyebrow);
+    diff(`${local.title}.description`, local.description, remote.description);
+    diff(`${local.title}.note`, local.note ?? null, remote.note ?? null);
+    diff(`${local.title}.dark`, local.dark, remote.dark);
+
+    const localDetails = local.details ?? [];
+    const remoteDetails = remote.details ?? [];
+    const allLabels = new Set([
+      ...localDetails.map((d) => d.label),
+      ...remoteDetails.map((d) => d.label),
+    ]);
+    for (const lbl of allLabels) {
+      const ld = localDetails.find((d) => d.label === lbl);
+      const rd = remoteDetails.find((d) => d.label === lbl);
+      diff(
+        `${local.title}.details[${lbl}]`,
+        ld?.value ?? null,
+        rd?.value ?? null,
+      );
+    }
+  }
+}
+
+// ── navLinks ────────────────────────────────────────────────────────────────
+
+async function auditNavLinks() {
+  section("navLinks  ←  nav-links.json");
+  const localLinks = fallback("nav-links.json");
+  const remote = await client.fetch(
+    `*[_type == "navLinks"][0]{ links[]{ label, href, children[]{ label, href } } }`,
+  );
+
+  if (!remote) {
+    console.log("  ✗ Document not found in Sanity");
+    totalDiffs++;
+    return;
+  }
+
+  diff("links", localLinks, remote.links);
+}
+
+// ── footerLinks ─────────────────────────────────────────────────────────────
+
+async function auditFooterLinks() {
+  section("footerLinks  ←  footer-links.json");
+  const local = fallback("footer-links.json");
+  const remote = await client.fetch(
+    `*[_type == "footerLinks"][0]{ secondaryLinks[]{ label, href }, legalLinks[]{ label, href } }`,
+  );
+
+  if (!remote) {
+    console.log("  ✗ Document not found in Sanity");
+    totalDiffs++;
+    return;
+  }
+
+  diff("secondaryLinks", local.secondaryLinks, remote.secondaryLinks);
+  diff("legalLinks", local.legalLinks, remote.legalLinks);
+}
+
+// ── aboutPage ───────────────────────────────────────────────────────────────
+
+async function auditAboutPage() {
+  section("aboutPage  ←  about-page.json");
+  const local = fallback("about-page.json");
+  const remote = await client.fetch(
+    `*[_type == "aboutPage"][0]{ statement, farmsIntro }`,
+  );
+
+  if (!remote) {
+    console.log("  ✗ Document not found in Sanity");
+    totalDiffs++;
+    return;
+  }
+
+  diff("statement", local.statement, remote.statement);
+  diff("farmsIntro", local.farmsIntro ?? null, remote.farmsIntro ?? null);
+}
+
+// ── mailingListPage ──────────────────────────────────────────────────────────
+
+async function auditMailingListPage() {
+  section("mailingListPage  ←  mailing-list-page.json");
+  const local = fallback("mailing-list-page.json");
+  const remote = await client.fetch(
+    `*[_type == "mailingListPage"][0]{ eyebrow, pageTitle, pageLead, seoDescription, submitLabel, successEyebrow, successMessage }`,
+  );
+
+  if (!remote) {
+    console.log("  ✗ Document not found in Sanity");
+    totalDiffs++;
+    return;
+  }
+
+  diff("eyebrow", local.eyebrow, remote.eyebrow);
+  diff("pageTitle", local.pageTitle, remote.pageTitle);
+  diff("pageLead", local.pageLead, remote.pageLead);
+  diff("seoDescription", local.seoDescription, remote.seoDescription);
+  diff("submitLabel", local.submitLabel, remote.submitLabel);
+  diff("successEyebrow", local.successEyebrow, remote.successEyebrow);
+  diff("successMessage", local.successMessage, remote.successMessage);
+}
+
 // ── Run all ─────────────────────────────────────────────────────────────────
 
 console.log("\nUrban Hearth — Sanity vs Fallback Content Audit");
 console.log(`Dataset: ${SANITY_DATASET}`);
 
 await auditSiteSettings();
+await auditHomepage();
 await auditDiningOptions();
 await auditMenu();
 await auditReservations();
 await auditMenusPage();
 await auditReservationsPage();
+await auditTeamMembers();
+await auditTeamPage();
+await auditChefProfile();
+await auditFarms();
+await auditGallery();
+await auditLargeParty();
+await auditNavLinks();
+await auditFooterLinks();
+await auditAboutPage();
+await auditMailingListPage();
 
 console.log(`\n${"─".repeat(60)}`);
 if (totalDiffs === 0) {
