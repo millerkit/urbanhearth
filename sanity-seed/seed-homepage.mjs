@@ -110,10 +110,6 @@ async function run() {
     },
     teasersEyebrow: homepage.teasersEyebrow,
     diningTeasers,
-    intro: {
-      eyebrow: homepage.intro.eyebrow,
-      paragraphs: homepage.intro.paragraphs,
-    },
   });
   await client.delete("drafts.homepageContent").catch(() => {});
 
