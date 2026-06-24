@@ -7,27 +7,28 @@
   {
     "_key": "parking",
     "question": "Where should we park?",
-    "answer": "In addition to street parking, there is a metered lot about 2 blocks away on Springfield St."
+    "answer": "Street parking is available in the area, though it is limited. We recommend the City of Cambridge metered lot on Springfield St., about two blocks away.",
+    "mapUrl": "https://maps.app.goo.gl/VskZEFGXY56uGXH88"
   },
   {
     "_key": "kids",
-    "question": "Should we bring our kids to Urban Hearth?",
-    "answer": "We don't offer a kids menu, but well-behaved little ones are welcome — you know your kiddo best. Seasonal patio dining is a great option for small kids. We'd steer most children away from Chef's Counter though; it's a different kind of experience."
+    "question": "Should we bring our children to Urban Hearth?",
+    "answer": "We don't offer a children's menu, but well-behaved children are welcome. Seasonal patio dining is a great option for young children. We'd steer most children away from Chef's Counter, however; it's a different kind of experience."
   },
   {
     "_key": "timing",
     "question": "What if we are early or late? Is there a waiting area?",
-    "answer": "We have a full bar and salon area with comfortable seating — if you arrive early, we'd love for you to settle in with a drink before your table is ready. It's a great way to start the evening.\n\nFor late arrivals, we have a 15-minute grace period, but beyond that you run the risk of losing your table. Please call us in advance if you think you might be running behind. We also ask that you be mindful of your table time so that guests arriving after you can enjoy the same experience."
+    "answer": "We have a full bar and salon area with comfortable seating — if you arrive early, please feel free to settle in with a drink before your table is ready. It's a wonderful way to start the evening.\n\nFor late arrivals, we have a 15-minute grace period, but beyond that you run the risk of losing your table. Please call us in advance if you think you might be running late. We also ask that you be mindful of your table time so that guests arriving after you can enjoy the same experience."
   },
   {
     "_key": "dresscode",
     "question": "Does Urban Hearth have a dress code?",
-    "answer": "No dress code, but think of it as an intimate dinner party with good friends — dress however makes you feel your best. No judgement!"
+    "answer": "We don't have a dress code. We like to think of a visit to Urban Hearth as an intimate dinner party with good friends — dress however makes you feel your best."
   },
   {
     "_key": "photography",
     "question": "Do you allow photography and video?",
-    "answer": "We love when guests want to capture the food or the space — please snap away. We only ask that you get permission before photographing or filming our team or other guests, and that you avoid flash or supplemental lighting unless you've checked with us first."
+    "answer": "We're always happy when guests want to photograph the food or the space. We only ask that you get permission before photographing or filming our team or other guests, and that you avoid flash or supplemental lighting unless you've arranged it with us in advance."
   },
   {
     "_key": "accessibility",

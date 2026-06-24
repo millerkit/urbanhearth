@@ -18,6 +18,13 @@ export const faqItem = defineType({
       validation: (R) => R.required(),
     }),
     defineField({
+      name: "mapUrl",
+      title: "Map link URL",
+      type: "url",
+      description:
+        "Optional. Renders as a 'View on Google Maps' link below the answer.",
+    }),
+    defineField({
       name: "order",
       title: "Display order",
       type: "number",

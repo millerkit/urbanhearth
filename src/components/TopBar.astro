@@ -10,7 +10,12 @@ const isShopPage =
 
 <div class="top-bar">
   <div class="top-bar-left">
-    <span class="address">{restaurant.address}</span>
+    <a
+      href={restaurant.mapsUrl}
+      class="address"
+      target="_blank"
+      rel="noopener noreferrer">{restaurant.address}</a
+    >
     <button
       class="menu-toggle"
       id="menu-toggle"
@@ -63,6 +68,11 @@ const isShopPage =
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--ink);
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .address:hover {
+    opacity: 0.5;
   }
 
   .menu-toggle {

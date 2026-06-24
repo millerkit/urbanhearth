@@ -52,14 +52,21 @@ const addressLines = [streetAddress, cityParts.join(",").trim()];
     <div class="footer-col">
       <p class="footer-col-title">Contact</p>
       <address>
-        {
-          addressLines.map((line, i) => (
-            <>
-              {line.trim()}
-              {i < addressLines.length - 1 ? <br /> : null}
-            </>
-          ))
-        }
+        <a
+          href={restaurant.mapsUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="footer-address"
+        >
+          {
+            addressLines.map((line, i) => (
+              <>
+                {line.trim()}
+                {i < addressLines.length - 1 ? <br /> : null}
+              </>
+            ))
+          }
+        </a>
         <br />T: <a
           href={`tel:${restaurant.phone.replace(/\s/g, "")}`}
           class="footer-email">{restaurant.phone}</a
@@ -166,6 +173,15 @@ const addressLines = [streetAddress, cityParts.join(",").trim()];
     color: var(--ink);
     font-style: normal;
     letter-spacing: 0.04em;
+  }
+
+  .footer-address {
+    color: inherit;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .footer-address:hover {
+    opacity: 0.6;
   }
 
   .footer-email {

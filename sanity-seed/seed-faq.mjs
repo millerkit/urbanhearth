@@ -50,6 +50,7 @@ async function run() {
       _id: id,
       question: item.question,
       answer: item.answer,
+      ...(item.mapUrl ? { mapUrl: item.mapUrl } : {}),
       order: i,
     });
   }
