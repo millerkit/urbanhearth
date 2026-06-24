@@ -360,3 +360,9 @@ export async function fetchMailingListPage() {
     }
   `);
 }
+
+export async function fetchFaq() {
+  return client!.fetch<{ question: string; answer: string }[]>(`
+    *[_type == "faqItem"] | order(order asc){ question, answer }
+  `);
+}

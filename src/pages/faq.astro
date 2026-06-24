@@ -1,0 +1,114 @@
+---
+import { getSiteSettings } from "../lib/site-settings";
+import { isSanityConfigured } from "../lib/sanity";
+import { fetchFaq } from "../lib/sanity-fetch";
+import faqFallback from "../fallback-content/faq.json";
+import Base from "../layouts/Base.astro";
+import PageHeader from "../components/PageHeader.astro";
+
+const restaurant = await getSiteSettings();
+
+let rawFaqs: { question: string; answer: string }[] = faqFallback;
+
+if (isSanityConfigured) {
+  try {
+    const data = await fetchFaq();
+    if (data?.length) rawFaqs = data;
+  } catch (e) {
+    console.error("Failed to fetch FAQ from Sanity:", e);
+  }
+}
+
+const faqs = rawFaqs.map((item) => ({
+  question: item.question,
+  answer: item.answer
+    .split(/\n\n+/)
+    .map((p) => p.trim())
+    .filter(Boolean),
+}));
+---
+
+<Base
+  title={`FAQ — ${restaurant.name}`}
+  description="Answers to common questions about dining at Urban Hearth, including dietary accommodations, parking, reservations, and accessibility."
+>
+  <div class="faq-page">
+    <PageHeader
+      title="Frequently Asked Questions"
+      lead="Here's a list of the most common questions our guests have. If you have a question not addressed here, please email us at concierge@urbanhearth.net and we will answer as soon as possible."
+    />
+
+    <div class="faq-body">
+      {
+        faqs.map((item) => (
+          <div class="faq-item">
+            <h2 class="faq-question">
+              <span class="faq-symbol">+</span>
+              {item.question}
+            </h2>
+            <div class="faq-answer">
+              {item.answer.map((para) => (
+                <p>{para}</p>
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</Base>
+
+<style>
+  .faq-page {
+    margin-top: 111px;
+  }
+
+  .faq-body {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 3rem 2rem 5rem;
+  }
+
+  .faq-item {
+    padding: 2.5rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .faq-item:first-child {
+    padding-top: 0;
+  }
+
+  .faq-question {
+    font-family: var(--font-body), serif;
+    font-size: clamp(1.1rem, 1.5vw, 1.35rem);
+    font-weight: 300;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+    margin-bottom: 1.25rem;
+    line-height: 1.3;
+    display: flex;
+    align-items: baseline;
+    gap: 0.6em;
+  }
+
+  .faq-symbol {
+    font-family: var(--font-header-action), sans-serif;
+    font-size: 0.85em;
+    font-weight: 300;
+    color: var(--ink-light);
+    flex-shrink: 0;
+  }
+
+  .faq-answer p {
+    font-family: var(--font-body), serif;
+    font-size: var(--text-md);
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1.75;
+    margin-bottom: 1rem;
+  }
+
+  .faq-answer p:last-child {
+    margin-bottom: 0;
+  }
+</style>
