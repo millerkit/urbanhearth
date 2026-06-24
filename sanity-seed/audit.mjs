@@ -48,9 +48,15 @@ function fallback(filename) {
 
 let totalDiffs = 0;
 
-function diff(label, local, remote) {
-  const localStr = JSON.stringify(local ?? null);
-  const remoteStr = JSON.stringify(remote ?? null);
+function diff(label, local, remote, { blankEqualsNull = false } = {}) {
+  let a = local ?? null;
+  let b = remote ?? null;
+  if (blankEqualsNull) {
+    if (a === "") a = null;
+    if (b === "") b = null;
+  }
+  const localStr = JSON.stringify(a);
+  const remoteStr = JSON.stringify(b);
   if (localStr === remoteStr) return;
   totalDiffs++;
   console.log(`  ✗ ${label}`);
@@ -156,6 +162,7 @@ async function auditDiningOptions() {
         `${prefix}.details[${lbl}].value`,
         ld?.value ?? null,
         rd?.value ?? null,
+        { blankEqualsNull: true },
       );
       diff(
         `${prefix}.details[${lbl}].linkType`,
@@ -293,6 +300,7 @@ async function auditReservations() {
         `${prefix}.details[${lbl}].value`,
         ld?.value ?? null,
         rd?.value ?? null,
+        { blankEqualsNull: true },
       );
       diff(
         `${prefix}.details[${lbl}].linkType`,
