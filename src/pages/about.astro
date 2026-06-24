@@ -2,7 +2,7 @@
 import { getSiteSettings } from "../lib/site-settings";
 import { isSanityConfigured } from "../lib/sanity";
 import { fetchFarms, fetchAboutPage } from "../lib/sanity-fetch";
-import farmsFallback from "../fallback-content/farms.json";
+import menuFallback from "../fallback-content/menu-sections.json";
 import page from "../fallback-content/about-page.json";
 import Base from "../layouts/Base.astro";
 import PageHeader from "../components/PageHeader.astro";
@@ -10,7 +10,8 @@ import RestaurantHours from "../components/RestaurantHours.astro";
 
 const restaurant = await getSiteSettings();
 
-let farms: { name: string; location: string }[] = farmsFallback;
+let farms: { name: string; location: string }[] =
+  menuFallback.partners?.items ?? [];
 let aboutContent = { statement: page.statement, farmsIntro: page.farmsIntro };
 
 if (isSanityConfigured) {

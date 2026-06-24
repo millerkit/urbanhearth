@@ -231,10 +231,10 @@ export async function fetchHomepageContent() {
 }
 
 export async function fetchFarms() {
-  const farms = await client!.fetch(`
-    *[_type == "farm"] | order(order asc){ name, location, order }
+  const doc = await client!.fetch(`
+    *[_type == "menu"][0]{ partners[]{ name, location } }
   `);
-  return farms ?? [];
+  return (doc?.partners ?? []) as { name: string; location: string }[];
 }
 
 export async function fetchChefProfile() {
