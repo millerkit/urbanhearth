@@ -4,34 +4,34 @@
     "roles": ["General Manager"],
     "bio": "Abby has spent 30 years in food and beverage — starting as a counter girl at a New England clam shack at 15 — and has brought that same enthusiasm to neighborhood favorites and Michelin-starred kitchens alike. As General Manager of Urban Hearth for over three years, she has been a steady hand through the restaurant's James Beard nomination, its first Michelin recommendation, and three consecutive Best of Boston awards. She is currently overseeing the move to a new 60-seat space in Spring 2026.",
     "photo": "/src/assets/photos/team/Abby.jpg",
-    "order": 3
+    "order": 1
   },
   {
     "name": "Katie Janik",
     "roles": ["Beverage Manager"],
     "bio": "Katie joined Urban Hearth in 2023 after a long career in hospitality that she pursued, impressively, while putting herself through law school. Her professionalism and composure are a constant on the floor, and her love of wine is something guests get to benefit from directly. When she's not here, she's working through a stack of books or drinking iced coffee — even in January.",
     "photo": "/src/assets/photos/team/Katie.jpg",
-    "order": 5
+    "order": 2
   },
   {
     "name": "Rebecca Daulton",
     "roles": ["Sous Chef"],
     "bio": "Originally from Columbus, Ohio, Rebecca left a career in accounting to pursue what she actually loved: food. She joined Urban Hearth in 2022 as a kitchen intern while studying classical French and Italian cuisine at the Cambridge School of Culinary Arts, graduating with honors as valedictorian in 2023. She considers it the start of a lifelong culinary education. On the line she delights in vegetables and the endlessly rewarding study of dough, both sweet and savory.",
     "photo": "/src/assets/photos/team/Rebecca.jpg",
-    "order": 2
+    "order": 3
   },
   {
     "name": "Gabriel Peterson",
     "roles": ["Sous Chef"],
     "bio": "Gabriel has been part of the Urban Hearth kitchen since 2021, working alongside Chef Rebecca through every dinner service. He relocated from Mexico to Boston in search of new opportunities and found a home in the diverse, fast-paced culinary world of New England. His interest in different cuisines has only deepened with time — though his favorite thing to cook remains a traditional Mexican carne asada, the kind that calls for music, food, and good company.",
     "photo": "/src/assets/photos/team/Gabriel.jpg",
-    "order": 1
+    "order": 4
   },
   {
     "name": "Allie Capalbo",
     "roles": ["Pastry Chef"],
     "bio": "Allie's love of baking started at ten years old, selling homemade zucchini bread at the end of her driveway in Yorktown Heights. She went on to study pastry arts at the Culinary Institute of America, earning a degree in Business Management alongside her culinary certificate, and built her career at destinations including Blackberry Farm in Tennessee and kitchens in Colorado and London. She relocated to the Boston area in Summer 2025, bringing a mother's patience and a pastry chef's precision to every plate.",
     "photo": "/src/assets/photos/team/Allie.jpg",
-    "order": 4
+    "order": 5
   }
 ]

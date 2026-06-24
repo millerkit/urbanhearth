@@ -11,7 +11,7 @@
     "label": "Our Menus",
     "children": [
       { "label": "À la Carte", "href": "/menus/a-la-carte" },
-      { "label": "Chef's Counter", "href": "/menus/chefs-counter" },
+      { "label": "Chef's Counter", "href": "/menus/chefs-counter-menu" },
       { "label": "Wine", "href": "/menus/wine" },
       { "label": "Spirits & Cocktails", "href": "/menus/spirits-cocktails" },
       { "label": "Beer & Cider", "href": "/menus/beer-cider" }
@@ -27,10 +27,6 @@
       {
         "label": "Team",
         "href": "/team"
-      },
-      {
-        "label": "Our Story",
-        "href": "/about"
       }
     ]
   },
