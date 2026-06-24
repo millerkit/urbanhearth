@@ -615,7 +615,18 @@ async function auditNavLinks() {
     return;
   }
 
-  diff("links", localLinks, remote.links);
+  // Normalize before comparing:
+  // - strip _hidden (fallback-only UI flag; Sanity excludes the link by other means)
+  // - drop children: null (GROQ returns null for missing arrays; fallback omits the key)
+  const normalize = (links) =>
+    links
+      .filter((l) => !l._hidden)
+      .map(({ _hidden: _, children, ...rest }) => ({
+        ...rest,
+        ...(children != null ? { children } : {}),
+      }));
+
+  diff("links", normalize(localLinks), normalize(remote.links ?? []));
   endSection();
 }
 
