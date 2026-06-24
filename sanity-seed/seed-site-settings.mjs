@@ -60,6 +60,7 @@ async function run() {
     reservations: r.reservations,
     social: r.social,
   });
+  await client.delete("drafts.siteSettings").catch(() => {});
 
   console.log("  siteSettings written ✓");
   console.log("\nDone.");

@@ -63,6 +63,7 @@ async function run() {
       paragraphs: homepage.intro.paragraphs,
     },
   });
+  await client.delete("drafts.homepageContent").catch(() => {});
 
   console.log("  ✓ Homepage content seeded\n\nDone.");
 }

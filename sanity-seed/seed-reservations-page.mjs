@@ -51,6 +51,7 @@ async function run() {
     seoDescription: page.seoDescription,
     bookingUrl: page.bookingUrl,
   });
+  await client.delete("drafts.reservationsPage").catch(() => {});
   console.log("  Reservations page written ✓\n\nDone.");
 }
 

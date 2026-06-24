@@ -61,6 +61,7 @@ async function run() {
     secondaryLinks: secondaryLinks.map((l) => toLink("sec", l)),
     legalLinks: legalLinks.map((l) => toLink("leg", l)),
   });
+  await client.delete("drafts.footerLinks").catch(() => {});
 
   console.log(
     `  ${secondaryLinks.length} secondary links + ${legalLinks.length} legal links written ✓`,

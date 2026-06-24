@@ -114,6 +114,7 @@ async function run() {
       span: item.span,
       photo,
     });
+    await client.delete(`drafts.galleryPhoto-${item.order}`).catch(() => {});
 
     console.log("✓");
   }

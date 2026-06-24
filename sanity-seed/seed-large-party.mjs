@@ -87,6 +87,7 @@ async function run() {
       ...(pkg.note ? { note: pkg.note } : {}),
       dark: pkg.dark,
     });
+    await client.delete(`drafts.largePartyPackage-${pkg.id}`).catch(() => {});
     console.log("✓");
   }
 
@@ -101,6 +102,7 @@ async function run() {
       label: s.label,
     })),
   });
+  await client.delete("drafts.largePartyPage").catch(() => {});
   console.log("    ✓");
 
   console.log("\nDone.");

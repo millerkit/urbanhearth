@@ -57,6 +57,7 @@ async function run() {
     seoDescription: page.seoDescription,
     chefLinkText: page.chefLinkText,
   });
+  await client.delete("drafts.teamPage").catch(() => {});
 
   console.log("  ✓ Team page seeded\n\nDone.");
 }

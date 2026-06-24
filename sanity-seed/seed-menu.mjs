@@ -72,5 +72,6 @@ console.log(
 );
 
 await client.createOrReplace(doc);
+await client.delete("drafts.menu").catch(() => {});
 
 console.log("Done.");

@@ -71,6 +71,9 @@ async function run() {
       ...(exp.note ? { note: exp.note } : {}),
     });
 
+    await client
+      .delete(`drafts.reservationExperience-${exp.id}`)
+      .catch(() => {});
     console.log("✓");
   }
 

@@ -63,6 +63,7 @@ async function run() {
       location: farm.location,
       order: farm.order,
     });
+    await client.delete(`drafts.${docId(farm.name)}`).catch(() => {});
     console.log("✓");
   }
 

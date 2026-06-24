@@ -49,6 +49,7 @@ async function run() {
     statement: page.statement,
     farmsIntro: page.farmsIntro,
   });
+  await client.delete("drafts.aboutPage").catch(() => {});
   console.log("  About page written ✓\n\nDone.");
 }
 

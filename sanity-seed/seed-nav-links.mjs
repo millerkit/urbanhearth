@@ -70,6 +70,7 @@ async function run() {
     _id: "navLinks",
     links: links.map(toNavLink),
   });
+  await client.delete("drafts.navLinks").catch(() => {});
 
   console.log(`  ${links.length} nav links written ✓`);
   console.log("\nDone.");

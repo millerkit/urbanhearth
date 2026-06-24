@@ -130,6 +130,7 @@ async function run() {
       ...(photoSecondary ? { photoSecondary } : {}),
     });
 
+    await client.delete(`drafts.${docId(area.id)}`).catch(() => {});
     console.log("✓");
   }
 

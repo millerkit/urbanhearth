@@ -88,6 +88,7 @@ async function run() {
       order: member.order,
       ...(photo ? { photo } : {}),
     });
+    await client.delete(`drafts.${docId(member.name)}`).catch(() => {});
 
     console.log("✓");
   }

@@ -54,6 +54,7 @@ async function run() {
     successEyebrow: page.successEyebrow,
     successMessage: page.successMessage,
   });
+  await client.delete("drafts.mailingListPage").catch(() => {});
   console.log("  Mailing List page written ✓\n\nDone.");
 }
 

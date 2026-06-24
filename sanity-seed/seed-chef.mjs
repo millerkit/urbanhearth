@@ -76,6 +76,7 @@ async function run() {
     accolades: chef.accolades,
     ...(photo ? { photo } : {}),
   });
+  await client.delete("drafts.chefProfile").catch(() => {});
   console.log("✓");
 
   console.log("\nDone.");

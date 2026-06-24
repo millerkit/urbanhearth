@@ -49,6 +49,7 @@ async function run() {
     accuracyNote: page.accuracyNote,
     walkInsNote: page.walkInsNote,
   });
+  await client.delete("drafts.menusPage").catch(() => {});
   console.log("  Menus page written ✓\n\nDone.");
 }
 
