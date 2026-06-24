@@ -37,6 +37,20 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? restaurant.url)
     <meta name="description" content={description} />
     <title>{title}</title>
     <link rel="canonical" href={canonicalURL} />
+    <link
+      rel="preload"
+      href={contaxSansUrl}
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href={akzidenzUrl}
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
 
     <!-- Preload display fonts to prevent FOUT on headline elements -->
     <link
