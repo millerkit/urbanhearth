@@ -15,8 +15,16 @@
   ],
   "legalLinks": [
     {
+      "label": "Legal",
+      "href": "/legal"
+    },
+    {
       "label": "Instagram",
       "href": "https://www.instagram.com/urban_hearth"
+    },
+    {
+      "label": "Reservation policy",
+      "href": "/reservation-policy"
     }
   ]
 }
