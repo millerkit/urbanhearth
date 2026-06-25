@@ -18,7 +18,7 @@
       "We approach our beverage program with the same care and curiosity that guide our kitchen. The wine list features both celebrated producers and emerging voices, with an emphasis on character, place, and balance. Seasonal cocktails showcase exceptional spirits and house-made ingredients, alongside a broad selection of beer, cider, and non-alcoholic beverages."
     ],
     "details": [
-      { "label": "Hours", "value": "Monday – Saturday, 5:00 – 10:00 pm" },
+      { "label": "Hours", "value": "Tuesday – Sunday, 5:00 – 10:00 pm" },
       { "label": "Service", "value": "Indoor dining only" },
       { "label": "Large parties", "linkType": "email" }
     ]
@@ -41,12 +41,12 @@
       "Join us at our six-seat Chef’s Counter for an immersive tasting menu featuring 8–12 courses inspired by the season, the farm, and the larder. Watch the kitchen at work, engage directly with the chefs, and experience each dish as it is finished and presented.",
       "Led by James Beard Award-nominated Chef Erin Miller, the menu showcases exceptional local ingredients, foraged discoveries, and refined technique in a setting that is equal parts dinner party and culinary performance.",
       "Thoughtful hospitality, lively conversation, and unforgettable food come together in an experience designed to delight and nourish.",
-      "The Chef’s Counter experience is available Tuesday through Saturday at 5:30 and 8:00 pm. We offer an omnivore or vegetarian menu. Limited accommodation is made for allergies and dietary needs. Please note requests in your reservation."
+      "The Chef’s Counter experience is available Tuesday through Saturday at 5:45 and 8:15 pm. We offer an omnivore or vegetarian menu. Limited accommodation is made for allergies and dietary needs. Please note requests in your reservation."
     ],
     "descriptionShort": [
       "An intimate front-row seat to the creative heart of Urban Hearth.",
       "Join us at our six-seat Chef’s Counter for an immersive tasting menu featuring 8–12 courses inspired by the season, the farm, and the larder. Watch the kitchen at work, engage directly with the chefs, and experience each dish as it is finished and presented.",
-      "The Chef’s Counter experience is available Tuesday through Saturday at 5:30 and 8:00 pm. We offer an omnivore or vegetarian menu. Limited accommodation is made for allergies and dietary needs. Please note requests in your reservation."
+      "The Chef’s Counter experience is available Tuesday through Saturday at 5:45 and 8:15 pm. We offer an omnivore or vegetarian menu. Limited accommodation is made for allergies and dietary needs. Please note requests in your reservation."
     ],
     "price": "$190",
     "priceSuffix": "per person, plus tax and tip",
@@ -60,7 +60,7 @@
       { "label": "Seatings", "value": "5:45 pm & 8:15 pm" },
       { "label": "Capacity", "value": "Maximum 4 guests per seating" }
     ],
-    "finePrint": "Advanced reservations required."
+    "finePrint": "Advance reservations required."
   },
   {
     "order": 3,
@@ -82,7 +82,7 @@
       "The Salon is also available for private gatherings, celebrations, and special events. To inquire about hosting your event, please contact our concierge team at concierge@urbanhearth.net."
     ],
     "details": [
-      { "label": "Hours", "value": "Monday – Saturday, 5:00 – 11:00 pm" },
+      { "label": "Hours", "value": "Tuesday – Sunday, 5:00 – 11:00 pm" },
       { "label": "Walk-ins", "value": "Always welcome" },
       { "label": "Groups of 4+", "value": "Reservation recommended" }
     ]
