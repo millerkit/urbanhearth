@@ -2,14 +2,14 @@
   {
     "name": "Abby Taylor",
     "roles": ["General Manager"],
-    "bio": "Abby has spent 30 years in food and beverage — starting as a counter girl at a New England clam shack at 15 — and has brought that same enthusiasm to neighborhood favorites and Michelin-starred kitchens alike. As General Manager of Urban Hearth for over three years, she has been a steady hand through the restaurant's James Beard nomination, its first Michelin recommendation, and three consecutive Best of Boston awards. She is currently overseeing the move to a new 60-seat space in Spring 2026.",
+    "bio": "Abby has spent 30 years in food and beverage, starting as a counter girl at a New England clam shack at 15, and has brought that same enthusiasm to neighborhood favorites and Michelin-starred kitchens alike. As General Manager of Urban Hearth for over three years, she has been a steady hand through the restaurant's James Beard nomination, its first Michelin recommendation, and three consecutive Best of Boston awards. She is currently overseeing the move to a new 60-seat space in Spring 2026.",
     "photo": "/src/assets/photos/team/Abby.jpg",
     "order": 1
   },
   {
     "name": "Katie Janik",
     "roles": ["Beverage Manager"],
-    "bio": "Katie joined Urban Hearth in 2023 after a long career in hospitality that she pursued, impressively, while putting herself through law school. Her professionalism and composure are a constant on the floor, and her love of wine is something guests get to benefit from directly. When she's not here, she's working through a stack of books or drinking iced coffee — even in January.",
+    "bio": "Katie joined Urban Hearth in 2023 after a long career in hospitality that she pursued, impressively, while putting herself through law school. Her professionalism and composure are a constant on the floor, and her love of wine is something guests get to benefit from directly. When she's not here, she's working through a stack of books or drinking iced coffee, even in January.",
     "photo": "/src/assets/photos/team/Katie.jpg",
     "order": 2
   },

@@ -2,7 +2,7 @@
   {
     "_key": "dietary",
     "question": "Can you accommodate my dietary restrictions?",
-    "answer": "We can accommodate most common dietary restrictions for our a la carte menu, including gluten free/celiac, shellfish free, dairy free, nut free, vegetarian, and vegan diets. Please include your restrictions in your booking notes or reach out ahead of your visit — our team needs advance notice to prepare properly.\n\nChef's Counter is designed around rare, foraged, and locally sourced New England ingredients, so adventurous eating is part of the experience. We can work with most restrictions, but please note we cannot currently accommodate vegan diets for Chef's Counter. If you're unsure, our a la carte menu is always the safer choice."
+    "answer": "We can accommodate most common dietary restrictions for our a la carte menu, including gluten free/celiac, shellfish free, dairy free, nut free, vegetarian, and vegan diets. Please include your restrictions in your booking notes or reach out ahead of your visit. Our team needs advance notice to prepare properly.\n\nChef's Counter is designed around rare, foraged, and locally sourced New England ingredients, so adventurous eating is part of the experience. We can work with most restrictions, but please note we cannot currently accommodate vegan diets for Chef's Counter. If you're unsure, our a la carte menu is always the safer choice."
   },
   {
     "_key": "parking",
@@ -13,7 +13,7 @@
   {
     "_key": "kids",
     "question": "Should we bring our children to Urban Hearth?",
-    "answer": "We don't offer a children's menu, but well-behaved children are welcome. Seasonal patio dining is a great option for young children. We'd steer most children away from Chef's Counter, however; it's a different kind of experience."
+    "answer": "We don't offer a children's menu, but children are welcome. Seasonal patio dining is a great option for young children. We'd steer most children away from Chef's Counter, however; it's a different kind of experience."
   },
   {
     "_key": "timing",
@@ -23,7 +23,7 @@
   {
     "_key": "dresscode",
     "question": "Does Urban Hearth have a dress code?",
-    "answer": "We don't have a dress code. We like to think of a visit to Urban Hearth as an intimate dinner party with good friends — dress however makes you feel your best."
+    "answer": "We don't have a dress code. We like to think of a visit to Urban Hearth as an intimate dinner party with good friends. Dress however makes you feel your best."
   },
   {
     "_key": "photography",
