@@ -89,7 +89,7 @@ const photoSrc = chef.photo ?? erinFallbackPhoto.src;
   /* ── Split layout ── */
   .chef-layout {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 2fr 3fr;
     flex: 1;
     width: 80%;
     margin: 2.5rem auto 4rem;
@@ -99,7 +99,7 @@ const photoSrc = chef.photo ?? erinFallbackPhoto.src;
   .chef-photo-col {
     position: relative;
     overflow: hidden;
-    background: var(--midnight);
+    background: var(--warm-white);
   }
 
   .chef-photo-wrap {
@@ -118,14 +118,13 @@ const photoSrc = chef.photo ?? erinFallbackPhoto.src;
 
   /* ── Content column ── */
   .chef-content-col {
-    border-left: 1px solid var(--border);
     display: flex;
     align-items: flex-start;
     justify-content: center;
   }
 
   .chef-content {
-    padding: 5rem 4rem 5rem 4rem;
+    padding: 5rem 4rem 5rem 2.5rem;
     max-width: 580px;
   }
 
@@ -137,7 +136,7 @@ const photoSrc = chef.photo ?? erinFallbackPhoto.src;
   /* ── Name ── */
   .chef-name {
     font-family: var(--font-headline);
-    font-size: clamp(2.8rem, 4.5vw, 4.2rem);
+    font-size: clamp(2.8rem, 3.6vw, 4.2rem);
     font-weight: 300;
     letter-spacing: 0.08em;
     color: var(--ink);
@@ -224,12 +223,23 @@ const photoSrc = chef.photo ?? erinFallbackPhoto.src;
   @media (max-width: 860px) {
     .chef-layout {
       grid-template-columns: 1fr;
+      width: 100%;
+      margin: 0 0 4rem;
     }
 
     .chef-photo-col {
       position: static;
       height: 60vw;
       max-height: 480px;
+    }
+
+    .chef-photo-wrap {
+      position: static;
+      height: 100%;
+    }
+
+    .chef-photo {
+      height: 100%;
     }
 
     .chef-content-col {
