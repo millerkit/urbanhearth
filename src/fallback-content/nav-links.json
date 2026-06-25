@@ -9,6 +9,7 @@
   },
   {
     "label": "Our Menus",
+    "href": null,
     "children": [
       { "label": "À la Carte", "href": "/menus/a-la-carte" },
       { "label": "Chef's Counter", "href": "/menus/chefs-counter-menu" },
@@ -19,6 +20,7 @@
   },
   {
     "label": "About",
+    "href": null,
     "children": [
       {
         "label": "Chef Erin Miller",
@@ -42,5 +44,9 @@
     "_hidden": true,
     "label": "Large Parties",
     "href": "/large-parties"
+  },
+  {
+    "label": "Gift cards",
+    "href": "/gift-cards"
   }
 ]
