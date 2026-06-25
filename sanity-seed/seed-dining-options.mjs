@@ -107,6 +107,9 @@ async function run() {
       dark: area.dark ?? false,
       photoAlt: area.photoAlt,
       description: area.description,
+      ...(area.descriptionShort
+        ? { descriptionShort: area.descriptionShort }
+        : {}),
       details: area.details.map((d) => ({
         _type: "diningOptionDetail",
         _key: d.label.toLowerCase().replace(/\s+/g, "-"),
