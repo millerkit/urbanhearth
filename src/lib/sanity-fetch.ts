@@ -40,7 +40,8 @@ export async function fetchAllPosts(page = 1, perPage = 10) {
         "slug": slug.current,
         publishedAt,
         excerpt,
-        "coverImage": coverImage.asset->url
+        "coverImage": coverImage.asset->url,
+        "coverImageHotspot": coverImage.hotspot
       }
     `),
     client!.fetch(`count(*[_type == "blog_post"])`),
@@ -58,6 +59,7 @@ export async function fetchPostBySlug(slug: string) {
       publishedAt,
       excerpt,
       "coverImage": coverImage.asset->url,
+      "coverImageHotspot": coverImage.hotspot,
       body[]{
         ...,
         _type == "image" => { ..., "url": asset->url }

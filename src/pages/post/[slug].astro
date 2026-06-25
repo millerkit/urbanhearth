@@ -80,7 +80,15 @@ const articleJsonLd = {
     {
       post.coverImage && (
         <div class="post-cover">
-          <img src={post.coverImage} alt={post.title} />
+          <img
+            src={post.coverImage}
+            alt={post.title}
+            style={
+              post.coverImageHotspot
+                ? `object-position: ${post.coverImageHotspot.x * 100}% ${post.coverImageHotspot.y * 100}%`
+                : undefined
+            }
+          />
         </div>
       )
     }
@@ -144,7 +152,6 @@ const articleJsonLd = {
     aspect-ratio: 3 / 2;
     display: block;
     object-fit: cover;
-    object-position: top;
   }
 
   /* ── Body ── */

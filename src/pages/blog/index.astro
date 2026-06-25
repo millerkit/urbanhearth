@@ -55,6 +55,11 @@ function formatDate(iso: string) {
                         alt={post.title}
                         class="post-image"
                         loading="lazy"
+                        style={
+                          post.coverImageHotspot
+                            ? `object-position: ${post.coverImageHotspot.x * 100}% ${post.coverImageHotspot.y * 100}%`
+                            : undefined
+                        }
                       />
                     </div>
                   )}
@@ -153,7 +158,6 @@ function formatDate(iso: string) {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: top;
     display: block;
   }
 
