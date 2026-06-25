@@ -99,29 +99,18 @@ const diningOptionsMap = Object.fromEntries(
                     ))}
                   </dl>
                 )}
-                {pricing?.pairings && pricing.pairings.length > 0 && (
-                  <div class="exp-pairings">
-                    <p class="exp-pairings-label">Optional pairings</p>
-                    <ul class="exp-pairings-list">
-                      {pricing.pairings.map((p) => (
-                        <li class="exp-pairing-row">
-                          <span class="exp-pairing-name">{p.label}</span>
-                          <span class="exp-pairing-price">{p.price}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
+                <div class="exp-cta">
+                  <button class="reserve-btn open-reservation-modal">
+                    {exp.id === "chefs-counter"
+                      ? "Reserve a Seat"
+                      : "Reserve a Table"}
+                  </button>
+                </div>
               </div>
             </div>
           );
         })
       }
-    </div>
-
-    <div class="booking-cta">
-      <p class="booking-cta-label">Reserve either experience</p>
-      <button class="reserve-btn" id="open-reservation-modal">Reserve</button>
     </div>
   </div>
 
@@ -298,26 +287,9 @@ const diningOptionsMap = Object.fromEntries(
     opacity: 0.6;
   }
 
-  /* ── Single CTA ── */
-  .booking-cta-label {
-    font-family: var(--font-header-action), sans-serif;
-    font-size: var(--text-label);
-    font-weight: 300;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--ink-mid);
-    text-align: center;
-    margin-bottom: 1rem;
-  }
-
-  .booking-cta {
-    max-width: 860px;
-    margin: 0 auto;
-    padding: 2rem 2rem 3rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
+  /* ── Per-experience CTA ── */
+  .exp-cta {
+    margin-top: 1.75rem;
   }
 
   .reserve-btn {
@@ -329,10 +301,11 @@ const diningOptionsMap = Object.fromEntries(
     text-transform: uppercase;
     color: var(--warm-white);
     background: var(--midnight);
+    border: none;
     padding: 1rem 2.5rem;
     min-width: 14rem;
     text-align: center;
-    text-decoration: none;
+    cursor: pointer;
     transition: opacity 0.2s;
   }
 
@@ -408,12 +381,14 @@ const diningOptionsMap = Object.fromEntries(
 
 <script>
   const modal = document.getElementById("reservation-modal")!;
-  const openBtn = document.getElementById("open-reservation-modal")!;
+  const openBtns = document.querySelectorAll(".open-reservation-modal");
   const closeBtn = document.getElementById("close-reservation-modal")!;
 
-  openBtn.addEventListener("click", () => {
-    modal.classList.add("is-open");
-    document.body.style.overflow = "hidden";
+  openBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      modal.classList.add("is-open");
+      document.body.style.overflow = "hidden";
+    });
   });
 
   const closeModal = () => {
