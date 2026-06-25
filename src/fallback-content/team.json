@@ -14,24 +14,31 @@
     "order": 2
   },
   {
+    "name": "Peter G. Nelson, Jr.",
+    "roles": ["Lead Bar Manager"],
+    "bio": "Peter brings a craftsman's sensibility to the bar at Urban Hearth, with a distinguished bar-tending career and background leading classic cocktail programs. He believes a great drink, like a great dish, should tell you something about where it came from.",
+    "photo": "/src/assets/photos/team/Peter.jpg",
+    "order": 3
+  },
+  {
     "name": "Rebecca Daulton",
     "roles": ["Sous Chef"],
     "bio": "Originally from Columbus, Ohio, Rebecca left a career in accounting to pursue what she actually loved: food. She joined Urban Hearth in 2022 as a kitchen intern while studying classical French and Italian cuisine at the Cambridge School of Culinary Arts, graduating with honors as valedictorian in 2023. She considers it the start of a lifelong culinary education. On the line she delights in vegetables and the endlessly rewarding study of dough, both sweet and savory.",
     "photo": "/src/assets/photos/team/Rebecca.jpg",
-    "order": 3
+    "order": 4
   },
   {
     "name": "Gabriel Peterson",
     "roles": ["Sous Chef"],
     "bio": "Gabriel has been part of the Urban Hearth kitchen since 2021, working alongside Chef Rebecca through every dinner service. He relocated from Mexico to Boston in search of new opportunities and found a home in the diverse, fast-paced culinary world of New England. His interest in different cuisines has only deepened with time — though his favorite thing to cook remains a traditional Mexican carne asada, the kind that calls for music, food, and good company.",
     "photo": "/src/assets/photos/team/Gabriel.jpg",
-    "order": 4
+    "order": 5
   },
   {
     "name": "Allie Capalbo",
     "roles": ["Pastry Chef"],
     "bio": "Allie's love of baking started at ten years old, selling homemade zucchini bread at the end of her driveway in Yorktown Heights. She went on to study pastry arts at the Culinary Institute of America, earning a degree in Business Management alongside her culinary certificate, and built her career at destinations including Blackberry Farm in Tennessee and kitchens in Colorado and London. She relocated to the Boston area in Summer 2025, bringing a mother's patience and a pastry chef's precision to every plate.",
     "photo": "/src/assets/photos/team/Allie.jpg",
-    "order": 5
+    "order": 6
   }
 ]
