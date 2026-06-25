@@ -15,6 +15,7 @@ const restaurant = await getSiteSettings();
 let menuData: any = null;
 let usingFallback = false;
 let menusContent = {
+  pageLead: menusPage.pageLead,
   accuracyNote: menusPage.accuracyNote,
   walkInsNote: menusPage.walkInsNote,
 };
@@ -29,7 +30,13 @@ if (isSanityConfigured) {
   }
   try {
     const data = await fetchMenusPage();
-    if (data) menusContent = { ...menusContent, ...data };
+    if (data)
+      menusContent = {
+        ...menusContent,
+        ...Object.fromEntries(
+          Object.entries(data).filter(([, v]) => v != null),
+        ),
+      };
   } catch (e) {
     console.error("Failed to fetch menus page from Sanity:", e);
   }
@@ -45,7 +52,7 @@ if (isSanityConfigured) {
   <div class="menus-page">
     <PageHeader
       title="À la Carte"
-      lead={menusPage.pageLead}
+      lead={menusContent.pageLead}
       leadNote={menusContent.accuracyNote}
     />
 

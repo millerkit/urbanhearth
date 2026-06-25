@@ -23,7 +23,7 @@
         {
           "name": "House Crafted Charcuterie",
           "price": "26",
-          "description": "Housemade paté, terrine and saloumi with pickles and confiture"
+          "description": "Housemade paté, terrine and salumi with pickles and confiture"
         },
         {
           "name": "New England Cheese Plate",
@@ -37,7 +37,7 @@
       "items": [
         {
           "name": "Maine Lobster with Elderflower Vinaigrette",
-          "price": "28",
+          "price": "32",
           "description": "Brown butter popcorn · lovage oil · green garlic & chili"
         },
         {
@@ -100,7 +100,7 @@
   ],
   "sustainability": {
     "heading": "our commitment to sustainability",
-    "body": "Sustainability and responsible gastronomy are foundational to our identity and inform every aspect of how we operate. At Urban Hearth, our approach is rooted in a broader mission: to reconnect our guests, our team, and our community more deeply with the land and the systems that sustain us. We prioritize direct relationships with local farmers and producers, sourcing as much as possible from within our regional foodshed. By keeping our purchasing close to home, we actively support a more resilient and equitable local food economy. In the kitchen, we are committed to a holistic, low-waste approach to ingredient utilization. We strive for a zero-waste model by fabricating ingredients fully and thoughtfully: repurposing trim, preserving surplus, and designing our menus to honor the entirety of each product. Education is a central pillar of our culture. We view sustainability not as a static set of practices, but as an ongoing responsibility that requires engagement, reflection, and shared learning. Through these combined efforts, we aim not only to reduce our footprint, but to model a more thoughtful and connected way of cooking, serving, and operating within our community.",
+    "body": "Sustainability and responsible gastronomy are foundational to our identity and inform every aspect of our operations. At Urban Hearth, our approach is rooted in a broader mission: to reconnect our guests, our team, and our community more deeply with the land and the systems that sustain us. We prioritize direct relationships with local farmers and producers, sourcing as much as possible from within our regional foodshed. By keeping our purchasing close to home, we actively support a more resilient and equitable local food economy. In the kitchen, we are committed to a holistic, low-waste approach to ingredient utilization. We strive for a zero-waste model by fabricating ingredients fully and thoughtfully: repurposing trim, preserving surplus, and designing our menus to honor the entirety of each product. Education is a central pillar of our culture. We view sustainability not as a static set of practices, but as an ongoing responsibility that requires engagement, reflection, and shared learning. Through these combined efforts, we aim not only to reduce our footprint but to model a more thoughtful and connected way of cooking, serving, and operating within our community.",
     "attribution": "— Urban Hearth"
   },
   "partners": {
@@ -108,7 +108,7 @@
     "items": [
       { "name": "Kitchen Garden Farm", "location": "Sunderland, MA" },
       { "name": "Langwater Farm", "location": "North Easton, MA" },
-      { "name": "Kimball Fruit Farm", "location": "Pepperill, MA" },
+      { "name": "Kimball Fruit Farm", "location": "Pepperell, MA" },
       { "name": "Hopkins Southdown Lamb Farm", "location": "Scituate, RI" },
       { "name": "Red Fire Farm", "location": "Granby, MA" },
       { "name": "Wards Berry Farm", "location": "Sharon, MA" },

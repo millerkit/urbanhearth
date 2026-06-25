@@ -303,7 +303,7 @@ export async function fetchAboutPage() {
 
 export async function fetchMenusPage() {
   return client!.fetch(
-    `*[_type == "menusPage"][0]{ accuracyNote, walkInsNote }`,
+    `*[_type == "menusPage"][0]{ pageLead, accuracyNote, walkInsNote }`,
   );
 }
 

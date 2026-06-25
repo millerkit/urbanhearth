@@ -15,7 +15,12 @@ const { eyebrow, title, lead, leadNote } = Astro.props;
     lead && (
       <p class="page-lead">
         {lead}
-        {leadNote && <span class="page-lead-note"> Note: {leadNote}</span>}
+        {leadNote && (
+          <>
+            <br />
+            <span class="page-lead-note">Note: {leadNote}</span>
+          </>
+        )}
       </p>
     )
   }

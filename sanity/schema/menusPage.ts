@@ -6,6 +6,12 @@ export const menusPage = defineType({
   type: "document",
   fields: [
     defineField({
+      name: "pageLead",
+      title: "Page lead",
+      type: "string",
+      description: "Introductory sentence shown below the À la Carte heading.",
+    }),
+    defineField({
       name: "accuracyNote",
       title: "Accuracy note",
       type: "string",
