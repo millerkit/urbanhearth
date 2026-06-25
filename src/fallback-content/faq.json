@@ -2,23 +2,23 @@
   {
     "_key": "dietary",
     "question": "Can you accommodate my dietary restrictions?",
-    "answer": "We can accommodate most common dietary restrictions for our a la carte menu, including gluten free/celiac, shellfish free, dairy free, nut free, vegetarian, and vegan diets. Please include your restrictions in your booking notes or reach out ahead of your visit. Our team needs advance notice to prepare properly.\n\nChef's Counter is designed around rare, foraged, and locally sourced New England ingredients, so adventurous eating is part of the experience. We can work with most restrictions, but please note we cannot currently accommodate vegan diets for Chef's Counter. If you're unsure, our a la carte menu is always the safer choice."
+    "answer": "We take allergies and dietary restrictions very seriously at Urban Hearth. Your safety and comfort are paramount. We accommodate most common dietary restrictions, including gluten-free/celiac, shellfish, dairy, nuts, vegetarian, and vegan diets. Please include your restrictions in your booking notes or reach out ahead of your visit. Our team can better prepare for your visit with advance notice.\n\nThe Chef's Counter menu is designed around rare, foraged, and locally sourced New England ingredients, so adventurous eating is part of the experience. We can work with many common restrictions, but please note we cannot currently accommodate vegan diets, allium allergies, or no alcohol diets for Chef's Counter. If you are unsure, our à la carte menu is always the safer choice."
   },
   {
     "_key": "parking",
     "question": "Where should we park?",
-    "answer": "Street parking is available in the area, though it is limited. We recommend the City of Cambridge metered lot on Springfield St., about two blocks away.",
+    "answer": "Street parking is available in the area. Most meters run only until 6 pm. Take care to check signage. We recommend the City of Cambridge metered lot on Springfield St or the private lot at Cambridge Health Alliance on Cambridge Street for paid parking.",
     "mapUrl": "https://maps.app.goo.gl/VskZEFGXY56uGXH88"
   },
   {
     "_key": "kids",
     "question": "Should we bring our children to Urban Hearth?",
-    "answer": "We don't offer a children's menu, but children are welcome. Seasonal patio dining is a great option for young children. We'd steer most children away from Chef's Counter, however; it's a different kind of experience."
+    "answer": "We do not offer a children's menu, but children are welcome. Seasonal patio dining is a great option for young children. Adventurous eaters, 12 and older, are welcome at the Chef's Counter. "
   },
   {
     "_key": "timing",
     "question": "What if we are early or late? Is there a waiting area?",
-    "answer": "We have a full bar and salon area with comfortable seating — if you arrive early, please feel free to settle in with a drink before your table is ready. It's a wonderful way to start the evening.\n\nFor late arrivals, we have a 15-minute grace period, but beyond that you run the risk of losing your table. Please call us in advance if you think you might be running late. We also ask that you be mindful of your table time so that guests arriving after you can enjoy the same experience."
+    "answer": "We have a full bar and salon area with comfortable seating. If you arrive early, please feel free to settle in with a drink before your table is ready. It's a wonderful way to start the evening.\n\nFor late arrivals, we have a 15-minute grace period; after that, you risk losing your table. Please call us in advance if you think you might be running late. We also ask that you be mindful of your table time so that guests arriving after you can enjoy the same experience."
   },
   {
     "_key": "dresscode",
@@ -33,6 +33,11 @@
   {
     "_key": "accessibility",
     "question": "Is Urban Hearth wheelchair accessible?",
-    "answer": "Urban Hearth is fully wheelchair accessible. We have an ADA-compliant entry with an automatic opening mechanism, an ADA-compliant restroom, and accessible bar seating. Please let us know in advance if you require accessible seating and we will make sure it's ready for you."
+    "answer": "Urban Hearth is fully wheelchair accessible. We have an ADA-compliant entry with an automatic opening mechanism, an accessible restroom, and accessible bar seating. Please let us know in advance if you require accessibility accommodation so that we may reserve the best table or seat for you. The Chef’s Counter experience is available at accessible-height tables upon request."
+  },
+  {
+    "_key": "cancellation",
+    "question": "What is your cancellation policy?",
+    "answer": "All reservations require a credit card number to secure. Guests are asked to cancel or reschedule reservations as early as possible. Reservations canceled within 24 hours of the reservation time and no-show/no-call bookings are subject to a $50/person charge."
   }
 ]

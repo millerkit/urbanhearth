@@ -43,7 +43,14 @@ const addressLines = [streetAddress, cityParts.join(",").trim()];
   <nav class="footer-nav">
     {
       footerLinks.secondaryLinks.map(({ label, href }) => (
-        <a href={href}>{label}</a>
+        <a
+          href={href}
+          {...(href.startsWith("http")
+            ? { target: "_blank", rel: "noopener noreferrer" }
+            : {})}
+        >
+          {label}
+        </a>
       ))
     }
   </nav>

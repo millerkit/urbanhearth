@@ -613,6 +613,39 @@ async function auditLargeParty() {
   endSection();
 }
 
+// ── faqItem ──────────────────────────────────────────────────────────────────
+
+async function auditFaq() {
+  startSection("faqItem  ←  faq.json");
+  const localItems = fallback("faq.json");
+  const remoteItems = await client.fetch(
+    `*[_type == "faqItem"] | order(order asc){ question, answer, mapUrl }`,
+  );
+
+  for (const local of localItems) {
+    const remote = remoteItems.find((r) => r.question === local.question);
+    const prefix = local._key;
+
+    if (!remote) {
+      sectionLines.push(`      ✗ ${prefix}: not found in Sanity`);
+      totalDiffs++;
+      continue;
+    }
+
+    diff(`${prefix}.answer`, local.answer, remote.answer);
+    diff(`${prefix}.mapUrl`, local.mapUrl ?? null, remote.mapUrl ?? null);
+  }
+
+  for (const remote of remoteItems) {
+    if (!localItems.find((l) => l.question === remote.question)) {
+      sectionLines.push(
+        `      ℹ  "${remote.question}": exists in Sanity but not in fallback`,
+      );
+    }
+  }
+  endSection();
+}
+
 // ── navLinks ────────────────────────────────────────────────────────────────
 
 async function auditNavLinks() {
@@ -724,6 +757,7 @@ await auditTeamPage();
 await auditChefProfile();
 await auditFarms();
 await auditGallery();
+await auditFaq();
 await auditLargeParty();
 await auditNavLinks();
 await auditFooterLinks();

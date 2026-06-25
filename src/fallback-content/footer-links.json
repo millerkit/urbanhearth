@@ -7,17 +7,17 @@
     {
       "label": "Mailing list",
       "href": "/mailing-list-signup"
-    }
-  ],
-  "legalLinks": [
+    },
     {
-      "label": "Legal",
-      "href": "/legal"
+      "label": "Happenings",
+      "href": "/blog"
     },
     {
       "label": "Instagram",
       "href": "https://www.instagram.com/urban_hearth"
-    },
+    }
+  ],
+  "legalLinks": [
     {
       "label": "Reservation policy",
       "href": "/reservation-policy"

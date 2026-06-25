@@ -1,629 +1,123 @@
 ---
 import { getSiteSettings } from "../lib/site-settings";
 import Base from "../layouts/Base.astro";
-import { isSanityConfigured } from "../lib/sanity";
-import {
-  fetchPrivateEventPackages,
-  fetchPrivateEventsPage,
-} from "../lib/sanity-fetch";
-import packagesFallback from "../fallback-content/private-event-packages.json";
-import privateEventsPageFallback from "../fallback-content/private-events-page.json";
 import PageHeader from "../components/PageHeader.astro";
 
 const restaurant = await getSiteSettings();
-
-let packages = packagesFallback;
-let pageConfig = privateEventsPageFallback;
-
-if (isSanityConfigured) {
-  try {
-    const fetched = await fetchPrivateEventPackages();
-    if (fetched?.length) packages = fetched;
-  } catch (e) {
-    console.error("Failed to fetch private event packages from Sanity:", e);
-  }
-  try {
-    const fetchedPage = await fetchPrivateEventsPage();
-    if (fetchedPage?.capacityStats?.length) pageConfig = fetchedPage;
-  } catch (e) {
-    console.error("Failed to fetch private events page config from Sanity:", e);
-  }
-}
 ---
 
 <Base
-  title={`${pageConfig.pageTitle} — ${restaurant.name}`}
-  description={pageConfig.seoDescription}
+  title={`Large Parties — ${restaurant.name}`}
+  description="Large party reservations and private events at Urban Hearth in Cambridge, MA."
 >
   <div class="large-parties">
     <PageHeader
-      eyebrow=""
-      title={pageConfig.pageTitle}
-      lead={pageConfig.pageLead}
+      title="Group Bookings"
+      lead="Some occasions deserve a little more room around the table."
     />
 
-    <div class="packages-row">
-      <!-- Package cards -->
-      <div class="packages-pair">
-        {
-          packages.map((pkg, i) => (
-            <div class={`package${pkg.dark ? " package--dark" : ""}`}>
-              <div class="pkg-top">
-                <div class="pkg-label">
-                  <span class="pkg-number">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <span class="section-eyebrow">{pkg.eyebrow}</span>
-                </div>
-                <h2 class="pkg-title">{pkg.title}</h2>
-                <p class="pkg-desc">{pkg.description}</p>
-                <dl class="pkg-details">
-                  {pkg.details.map((d) => (
-                    <div>
-                      <dt>{d.label}</dt>
-                      <dd>{d.value}</dd>
-                    </div>
-                  ))}
-                </dl>
-                {pkg.note && <p class="pkg-note">{pkg.note}</p>}
-              </div>
-            </div>
-          ))
-        }
-      </div>
+    <div class="body">
+      <h2 class="section-eyebrow">Large Parties</h2>
+      <p>
+        Whether you're planning an intimate celebration, a business dinner, or
+        simply gathering a group of friends, Urban Hearth offers a variety of
+        options for larger parties.
+      </p>
 
-      <!-- Inquiry form -->
-      <div class="package package--form">
-        <div class="pkg-label">
-          <span class="pkg-number">03</span>
-          <span class="section-eyebrow">Inquire</span>
-        </div>
-        <h2 class="pkg-title">Plan Your Event</h2>
-        <form
-          id="inquiry-form"
-          action="https://formspree.io/f/mvzykvkn"
-          method="POST"
-          class="pkg-form"
-          data-email={restaurant.privateDiningEmail}
-        >
-          <input
-            type="hidden"
-            name="_subject"
-            value="Large Party Inquiry — Urban Hearth"
-          />
+      <ul>
+        <li>
+          Available for 7–30 guests in the dining room and up to 20 guests in
+          the salon.
+        </li>
+        <li>Minimum food &amp; beverage purchase is required.</li>
+        <li>
+          We will work with you to create customized menus that reflect the
+          season and the spirit of your occasion. Menu options may be limited.
+        </li>
+        <li>
+          Our concierge team will guide you through menu selections, beverage
+          pairings, and event details to ensure a seamless experience from
+          beginning to end.
+        </li>
+      </ul>
 
-          <div class="form-row form-row--two">
-            <div class="form-field">
-              <label for="first-name">First name</label>
-              <input type="text" id="first-name" name="first_name" required />
-            </div>
-            <div class="form-field">
-              <label for="last-name">Last name</label>
-              <input type="text" id="last-name" name="last_name" required />
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="form-field">
-              <label for="email">Email</label>
-              <input type="email" id="email" name="email" required />
-            </div>
-          </div>
-
-          <div class="form-row form-row--two">
-            <div class="form-field">
-              <label for="event-type">Event type</label>
-              <select id="event-type" name="event_type" required>
-                <option value="" disabled selected></option>
-                <option value="Full Buyout">Full Buyout</option>
-                <option value="Large Party">Large Party</option>
-                <option value="Other">Other</option>
-              </select>
-            </div>
-            <div class="form-field">
-              <label for="guests">Guests</label>
-              <input type="text" id="guests" name="guests" />
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="form-field">
-              <label for="date">Preferred date(s)</label>
-              <input
-                type="text"
-                id="date"
-                name="preferred_date"
-                placeholder="e.g. Saturday evenings in March"
-              />
-            </div>
-          </div>
-
-          <div class="form-row form-row--grow">
-            <div class="form-field">
-              <label for="message">Tell us about your event</label>
-              <textarea id="message" name="message"></textarea>
-            </div>
-          </div>
-
-          <div class="form-actions">
-            <button type="submit" class="form-submit">Send Inquiry</button>
-          </div>
-        </form>
-
-        <div class="form-success" hidden>
-          <p class="section-eyebrow">Received</p>
-          <p class="form-success-msg">
-            Thank you — we'll be in touch within one business day.
-          </p>
-        </div>
-      </div>
+      <p class="contact">
+        To inquire, email us at <a
+          href={`mailto:${restaurant.privateDiningEmail}`}
+          >{restaurant.privateDiningEmail}</a
+        >.
+      </p>
     </div>
 
-    <div class="capacity-bar">
-      {
-        pageConfig.capacityStats.map((stat, i) => (
-          <>
-            {i > 0 && <div class="capacity-divider" aria-hidden="true" />}
-            <div class="capacity-item">
-              <span class="capacity-value">{stat.value}</span>
-              <span class="capacity-label">{stat.label}</span>
-            </div>
-          </>
-        ))
-      }
+    <div class="body private-events">
+      <h2 class="section-eyebrow">Private Events</h2>
+      <p>
+        Urban Hearth is also available for bespoke private events, including
+        weddings, milestone celebrations, corporate gatherings, and full
+        restaurant buyouts. We build an exclusive event program tailored to your
+        needs, and the restaurant space will be reserved exclusively for your
+        group on the chosen evening.
+      </p>
+      <p>
+        To learn more about availability, pricing, and event options, please
+        contact our concierge team at <a
+          href={`mailto:${restaurant.privateDiningEmail}`}
+          >{restaurant.privateDiningEmail}</a
+        >.
+      </p>
     </div>
   </div>
 </Base>
-
-<script is:inline>
-  (function () {
-    const form = document.getElementById("inquiry-form");
-    if (!form) return;
-    form.addEventListener("submit", async function (e) {
-      e.preventDefault();
-      const btn = form.querySelector('button[type="submit"]');
-      btn.disabled = true;
-      btn.textContent = "Sending…";
-      try {
-        const res = await fetch(form.action, {
-          method: "POST",
-          body: new FormData(form),
-          headers: { Accept: "application/json" },
-        });
-        if (res.ok) {
-          form.style.display = "none";
-          document.querySelector(".form-success").hidden = false;
-        } else {
-          btn.disabled = false;
-          btn.textContent = "Send Inquiry";
-          alert(
-            "Something went wrong. Please email us directly at " +
-              form.dataset.email,
-          );
-        }
-      } catch (_) {
-        btn.disabled = false;
-        btn.textContent = "Send Inquiry";
-      }
-    });
-  })();
-</script>
 
 <style>
   .large-parties {
     margin-top: 111px;
   }
 
-  /* ── Layout row ── */
-  .packages-row {
-    display: flex;
-    align-items: stretch;
-    gap: 3rem;
-    max-width: 1380px;
+  .body {
+    max-width: 720px;
     margin: 0 auto;
-    padding: 0 2rem 0;
-    border-bottom: 1px solid var(--border);
+    padding: 1.25rem 2rem 2.5rem;
   }
 
-  /* Package card pair */
-  .packages-pair {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
-    flex: 2;
-    min-width: 0;
-    align-self: stretch;
-  }
-
-  .package {
-    background: var(--warm-white);
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-    padding: 3rem 2rem 2.5rem;
-  }
-
-  .package--dark {
-    background: var(--midnight);
-  }
-
-  .package--cream {
-    background: var(--cream);
-  }
-
-  .pkg-top {
-    flex: 1;
-  }
-
-  .pkg-label {
-    display: flex;
-    align-items: center;
-    gap: 1.2rem;
-    margin-bottom: 2rem;
-  }
-
-  .pkg-number {
-    font-family: var(--font-header-action), sans-serif;
-    font-size: 11px;
-    font-weight: 300;
-    letter-spacing: 0.2em;
-    color: var(--ink-light);
-    flex-shrink: 0;
-  }
-
-  .package--dark .pkg-number,
-  .package--dark .section-eyebrow {
-    color: rgba(255, 255, 255, 0.4);
-  }
-
-  .pkg-title {
-    font-family: var(--font-body), serif;
-    font-size: clamp(1.6rem, 2.2vw, 2.2rem);
-    font-weight: 300;
-    letter-spacing: 0.06em;
-    color: var(--ink);
-    line-height: 1.1;
-    margin-bottom: 1.4rem;
-  }
-
-  .package--dark .pkg-title {
-    color: var(--parchment);
-  }
-
-  .pkg-desc {
+  .body p {
     font-family: var(--font-body), serif;
     font-size: 1.0625rem;
     font-weight: 300;
-    line-height: 1.85;
+    line-height: 1.6;
     color: var(--ink);
-    margin-bottom: 2rem;
   }
 
-  .package--dark .pkg-desc {
-    color: rgba(232, 227, 223, 0.8);
+  .body p + p {
+    margin-top: 0.75rem;
   }
 
-  /* ── Details list ── */
-  .pkg-details {
+  .body ul {
+    margin: 0.75rem 0;
+    padding-left: 1.25rem;
+  }
+
+  .body li {
+    font-family: var(--font-body), serif;
+    font-size: 1.0625rem;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--ink);
+    margin-bottom: 0.35rem;
+  }
+
+  .contact {
+    margin-top: 1rem;
+  }
+
+  .body .section-eyebrow {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+  }
+
+  .private-events {
     border-top: 1px solid var(--border);
-    margin-bottom: 0;
-  }
-
-  .package--dark .pkg-details {
-    border-top-color: rgba(255, 255, 255, 0.12);
-  }
-
-  .pkg-details > div {
-    display: grid;
-    grid-template-columns: 110px 1fr;
-    gap: 0.75rem;
-    padding: 0.75rem 0;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .package--dark .pkg-details > div {
-    border-bottom-color: rgba(255, 255, 255, 0.12);
-  }
-
-  .pkg-details dt {
-    font-family: var(--font-header-action), sans-serif;
-    font-size: var(--text-label);
-    font-weight: 300;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--ink-mid);
-    padding-top: 2px;
-  }
-
-  .package--dark .pkg-details dt {
-    color: rgba(255, 255, 255, 0.38);
-  }
-
-  .pkg-details dd {
-    font-family: var(--font-header-action), sans-serif;
-    font-size: var(--text-sm);
-    font-weight: 300;
-    color: var(--ink);
-    line-height: 1.5;
-  }
-
-  .package--dark .pkg-details dd {
-    color: var(--parchment);
-  }
-
-  .pkg-note {
-    font-family: var(--font-header-action), sans-serif;
-    font-size: 12px;
-    font-weight: 300;
-    line-height: 1.75;
-    font-style: italic;
-    color: var(--ink-mid);
-    margin-top: 1.5rem;
-  }
-
-  .package--dark .pkg-note {
-    color: rgba(255, 255, 255, 0.32);
-  }
-
-  /* ── Form card ── */
-  .package--form {
-    background: var(--cream);
-    flex: 1.4;
-    border: 1px solid var(--border);
-    align-self: stretch;
-  }
-
-  .package--form .pkg-label,
-  .package--form .pkg-title {
-    justify-content: center;
-    text-align: center;
-  }
-
-  .package--form .form-actions {
-    text-align: center;
-  }
-
-  .pkg-form {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    margin-top: 1.5rem;
-  }
-
-  .form-row--grow {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .form-row--grow .form-field {
-    flex: 1;
-  }
-
-  .form-row--grow .form-field textarea {
-    flex: 1;
-    resize: none;
-    min-height: 80px;
-  }
-
-  /* ── Capacity bar ── */
-  .capacity-bar {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0;
-    padding: 3rem 2rem;
-    border-bottom: 1px solid var(--border);
-    background: var(--warm-white);
-  }
-
-  .capacity-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0 3.5rem;
-  }
-
-  .capacity-value {
-    font-family: var(--font-body), serif;
-    font-size: clamp(2.2rem, 4vw, 3.2rem);
-    font-weight: 300;
-    color: var(--ink);
-    letter-spacing: 0.04em;
-    line-height: 1;
-  }
-
-  .capacity-label {
-    font-family: var(--font-header-action), sans-serif;
-    font-size: var(--text-label);
-    font-weight: 300;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--ink-mid);
-  }
-
-  .capacity-divider {
-    width: 1px;
-    height: 60px;
-    background: var(--border);
-    flex-shrink: 0;
-  }
-
-  /* ── Form ── */
-  .form-row {
-    margin-bottom: 1.5rem;
-  }
-
-  .form-row--two {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.25rem;
-  }
-
-  .form-field {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .form-field label {
-    font-family: var(--font-header-action), sans-serif;
-    font-size: var(--text-label);
-    font-weight: 300;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--ink-mid);
-  }
-
-  .form-optional {
-    letter-spacing: 0;
-    text-transform: none;
-    font-size: 10px;
-    color: var(--ink-light);
-  }
-
-  .form-field input,
-  .form-field select,
-  .form-field textarea {
-    font-family: var(--font-header-action), sans-serif;
-    font-size: var(--text-sm);
-    font-weight: 300;
-    color: var(--ink);
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid var(--border);
-    padding: 0.5rem 0;
-    outline: none;
-    width: 100%;
-    transition: border-color 0.2s;
-    -webkit-appearance: none;
-    appearance: none;
-  }
-
-  .form-field select {
-    cursor: pointer;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23162235' stroke-width='1' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 2px center;
-    padding-right: 1.5rem;
-  }
-
-  .form-field textarea {
-    resize: vertical;
-    line-height: 1.7;
-  }
-
-  .form-field input:focus,
-  .form-field select:focus,
-  .form-field textarea:focus {
-    border-bottom-color: var(--ink);
-  }
-
-  .form-field input::placeholder,
-  .form-field textarea::placeholder {
-    color: var(--ink-light);
-    font-style: italic;
-  }
-
-  .form-actions {
-    margin-top: 2rem;
-  }
-
-  .form-submit {
-    font-family: var(--font-header-action), sans-serif;
-    font-size: var(--text-label);
-    font-weight: 400;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--parchment);
-    background: var(--midnight);
-    border: none;
-    padding: 0.9rem 2rem;
-    cursor: pointer;
-    transition: opacity 0.2s;
-  }
-
-  .form-submit:hover {
-    opacity: 0.8;
-  }
-
-  .form-submit:disabled {
-    opacity: 0.5;
-    cursor: default;
-  }
-
-  .form-success {
-    padding: 2rem 0;
-  }
-
-  .form-success .section-eyebrow {
-    margin-bottom: 1rem;
-  }
-
-  .form-success-msg {
-    font-family: var(--font-body), serif;
-    font-size: 1.1rem;
-    font-weight: 300;
-    line-height: 1.8;
-    color: var(--ink);
-  }
-
-  /* ── Responsive ── */
-  @media (max-width: 860px) {
-    .packages-row {
-      flex-direction: column;
-      gap: 2rem;
-      padding: 0;
-    }
-
-    .packages-pair {
-      border-left: none;
-      border-right: none;
-    }
-
-    .package--form {
-      border-left: none;
-      border-right: none;
-      border-top: 1px solid var(--border);
-    }
-
-    .pkg-form {
-      flex: none;
-    }
-
-    .form-row--grow .form-field textarea {
-      min-height: 120px;
-    }
-
-    .capacity-bar {
-      flex-wrap: wrap;
-      row-gap: 2rem;
-    }
-
-    .capacity-item {
-      padding: 0 2rem;
-    }
-  }
-
-  @media (max-width: 500px) {
-    .package {
-      padding: 2.5rem 1.5rem 2rem;
-    }
-
-    .form-row--two {
-      grid-template-columns: 1fr;
-    }
-
-    .capacity-divider {
-      display: none;
-    }
-
-    .capacity-bar {
-      flex-direction: column;
-      gap: 2rem;
-    }
+    padding-top: 1.25rem;
   }
 </style>

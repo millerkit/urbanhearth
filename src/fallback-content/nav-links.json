@@ -29,6 +29,10 @@
       {
         "label": "Team",
         "href": "/team"
+      },
+      {
+        "label": "Happenings",
+        "href": "/blog"
       }
     ]
   },
@@ -37,11 +41,7 @@
     "href": "/gallery"
   },
   {
-    "label": "Happenings",
-    "href": "/blog"
-  },
-  {
-    "label": "Large Parties",
+    "label": "Group Bookings",
     "href": "/large-parties"
   },
   {

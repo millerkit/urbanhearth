@@ -1,0 +1,45 @@
+---
+import { getSiteSettings } from "../lib/site-settings";
+import Base from "../layouts/Base.astro";
+import PageHeader from "../components/PageHeader.astro";
+
+const restaurant = await getSiteSettings();
+---
+
+<Base
+  title={`Reservation Policy — ${restaurant.name}`}
+  description="Reservation and cancellation policy at Urban Hearth in Cambridge, MA."
+>
+  <div class="reservation-policy">
+    <PageHeader title="Reservation Policy" />
+
+    <div class="body">
+      <p>
+        All reservations require a credit card number to secure. Guests are
+        asked to cancel or reschedule reservations as early as possible.
+        Reservations canceled within 24 hours of the reservation time and
+        no-show/no-call bookings are subject to a $50/person charge.
+      </p>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .reservation-policy {
+    margin-top: 111px;
+  }
+
+  .body {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 1.25rem 2rem 2.5rem;
+  }
+
+  .body p {
+    font-family: var(--font-body), serif;
+    font-size: 1.0625rem;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--ink);
+  }
+</style>
