@@ -13,7 +13,15 @@ import Base from "../layouts/Base.astro";
 
 const restaurant = await getSiteSettings();
 
-let experiences = reservationsFallback;
+type Detail = { label: string; value?: string; linkType?: string };
+type Experience = Omit<
+  (typeof reservationsFallback)[number],
+  "details" | "description"
+> & {
+  details: Detail[];
+  description: string | string[];
+};
+let experiences: Experience[] = reservationsFallback as Experience[];
 let page = pageFallback;
 
 if (isSanityConfigured) {
@@ -71,10 +79,16 @@ const diningOptionsMap = Object.fromEntries(
                 {pricing?.bookingNote && (
                   <p class="exp-booking-note">{pricing.bookingNote}</p>
                 )}
-                <p class="exp-desc">
-                  {exp.description}
-                  {exp.note && ` ${exp.note}`}
-                </p>
+                <div class="exp-desc">
+                  {(
+                    pricing?.descriptionShort ??
+                    pricing?.description ??
+                    [exp.description].flat()
+                  ).map((para: string) => (
+                    <p set:html={para} />
+                  ))}
+                  {exp.note && <p>{exp.note}</p>}
+                </div>
                 {exp.details.length > 0 && (
                   <dl class="exp-details">
                     {exp.details.map((d) => (
@@ -210,6 +224,10 @@ const diningOptionsMap = Object.fromEntries(
     line-height: 1.7;
     color: var(--ink);
     margin-bottom: 1.25rem;
+  }
+
+  .exp-desc p + p {
+    margin-top: 1.25rem;
   }
 
   .exp-pairings {

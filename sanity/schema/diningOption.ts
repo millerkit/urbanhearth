@@ -107,8 +107,17 @@ export const diningOption = defineType({
       name: "description",
       type: "array",
       of: [{ type: "text" }],
-      description: "One entry per paragraph",
+      description:
+        "One entry per paragraph. Shown in full on the Dining Options page.",
       validation: (Rule) => Rule.required().min(1),
+    }),
+    defineField({
+      name: "descriptionShort",
+      title: "Short description",
+      type: "array",
+      of: [{ type: "text" }],
+      description:
+        "Subset of paragraphs shown on the Reservations page and Chef's Counter Menu page. Leave blank to use the full description.",
     }),
     defineField({
       name: "details",

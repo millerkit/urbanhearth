@@ -1,18 +1,98 @@
 [
   {
     "order": 1,
-    "alt": "Seasonal small plate",
+    "alt": "",
     "span": "normal",
-    "photo": null
+    "photo": "/src/assets/photos/gallery/gallery-image-1.jpg"
   },
-  { "order": 2, "alt": "From the kitchen", "span": "normal", "photo": null },
-  { "order": 3, "alt": "Seasonal plate", "span": "normal", "photo": null },
-  { "order": 4, "alt": "Kitchen preparation", "span": "normal", "photo": null },
+  {
+    "order": 2,
+    "alt": "",
+    "span": "normal",
+    "photo": "/src/assets/photos/gallery/gallery-image-2.jpg"
+  },
+  {
+    "order": 3,
+    "alt": "",
+    "span": "normal",
+    "photo": "/src/assets/photos/gallery/gallery-image-3.jpg"
+  },
+  {
+    "order": 4,
+    "alt": "",
+    "span": "normal",
+    "photo": "/src/assets/photos/gallery/gallery-image-4.jpg"
+  },
   {
     "order": 5,
-    "alt": "A course from the Chef's Counter",
+    "alt": "",
     "span": "normal",
-    "photo": null
+    "photo": "/src/assets/photos/gallery/gallery-image-5.jpg"
   },
-  { "order": 6, "alt": "Dried botanicals", "span": "normal", "photo": null }
+  {
+    "order": 6,
+    "alt": "",
+    "span": "normal",
+    "photo": "/src/assets/photos/gallery/gallery-image-6.jpg"
+  },
+  {
+    "order": 7,
+    "alt": "",
+    "span": "normal",
+    "photo": "/src/assets/photos/gallery/gallery-image-7.jpg"
+  },
+  {
+    "order": 8,
+    "alt": "",
+    "span": "normal",
+    "photo": "/src/assets/photos/gallery/gallery-image-8.jpg"
+  },
+  {
+    "order": 9,
+    "alt": "",
+    "span": "normal",
+    "photo": "/src/assets/photos/gallery/gallery-image-9.jpg"
+  },
+  {
+    "order": 10,
+    "alt": "",
+    "span": "normal",
+    "photo": "/src/assets/photos/gallery/gallery-image-10.jpg"
+  },
+  {
+    "order": 11,
+    "alt": "",
+    "span": "normal",
+    "photo": "/src/assets/photos/gallery/gallery-image-11.jpg"
+  },
+  {
+    "order": 12,
+    "alt": "",
+    "span": "normal",
+    "photo": "/src/assets/photos/gallery/gallery-image-12.jpg"
+  },
+  {
+    "order": 13,
+    "alt": "",
+    "span": "normal",
+    "photo": "/src/assets/photos/gallery/gallery-image-13.jpg"
+  },
+  {
+    "order": 14,
+    "alt": "",
+    "span": "normal",
+    "photo": "/src/assets/photos/gallery/gallery-image-14.jpg"
+  },
+  {
+    "order": 15,
+    "alt": "",
+    "span": "normal",
+    "photo": "/src/assets/photos/gallery/gallery-image-15.jpg"
+  },
+  {
+    "order": 16,
+    "alt": "",
+    "span": "normal",
+    "photo": "/src/assets/photos/gallery/gallery-image-16.jpg"
+  }
 ]

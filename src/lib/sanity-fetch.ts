@@ -185,6 +185,7 @@ export async function fetchDiningOptions() {
       "photoSecondary": photoSecondary.asset->url,
       photoSecondaryAlt,
       description,
+      descriptionShort,
       price,
       priceSuffix,
       bookingNote,

@@ -4,17 +4,18 @@
  * Usage:
  *   node --env-file=.env.local sanity-seed/seed-gallery.mjs
  *
- * The Sanity token must have Editor (write) access.
+ * Reads every image in src/assets/photos/gallery/, uploads each to Sanity's
+ * asset pipeline, and creates/replaces a galleryPhoto document for it.
  * Documents use deterministic IDs — safe to re-run.
- * Photos are uploaded to Sanity's asset pipeline before the document is created.
  */
 
 import { createClient } from "@sanity/client";
-import { createReadStream, existsSync } from "fs";
+import { createReadStream, readdirSync } from "fs";
 import { basename, dirname, extname, join } from "path";
 import { fileURLToPath } from "url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
+const GALLERY_DIR = join(__dirname, "..", "src/assets/photos/gallery");
 
 const SANITY_PROJECT_ID = process.env.SANITY_PROJECT_ID;
 const SANITY_API_TOKEN = process.env.SANITY_API_TOKEN;
@@ -38,83 +39,57 @@ const client = createClient({
   useCdn: false,
 });
 
-const photos = [
-  {
-    order: 1,
-    alt: "Seasonal small plate",
-    span: "normal",
-    path: "src/assets/photos/food-photo-1.jpeg",
-  },
-  {
-    order: 2,
-    alt: "From the kitchen",
-    span: "normal",
-    path: "src/assets/photos/food-photo-2.jpeg",
-  },
-  {
-    order: 3,
-    alt: "Seasonal plate",
-    span: "normal",
-    path: "src/assets/photos/food-photo-4.jpeg",
-  },
-  {
-    order: 4,
-    alt: "Kitchen preparation",
-    span: "normal",
-    path: "src/assets/photos/food-photo-5.jpeg",
-  },
-  {
-    order: 5,
-    alt: "A course from the Chef's Counter",
-    span: "normal",
-    path: "src/assets/photos/food-photo-6.jpeg",
-  },
-  {
-    order: 6,
-    alt: "Dried botanicals",
-    span: "normal",
-    path: "src/assets/gallery/gallery-007.jpg",
-  },
-];
+const SUPPORTED = new Set([".jpg", ".jpeg", ".png", ".webp"]);
 
-async function uploadPhoto(rawPath) {
-  const absPath = join(__dirname, "..", rawPath);
-  if (!existsSync(absPath)) {
-    console.warn(`    ⚠  Photo not found: ${absPath} — skipping`);
-    return undefined;
-  }
-  const ext = extname(absPath).toLowerCase();
-  const contentType = ext === ".png" ? "image/png" : "image/jpeg";
-  const asset = await client.assets.upload("image", createReadStream(absPath), {
-    filename: basename(absPath),
+function getPhotos() {
+  return readdirSync(GALLERY_DIR)
+    .filter((f) => SUPPORTED.has(extname(f).toLowerCase()))
+    .sort()
+    .map((filename, i) => ({
+      order: i + 1,
+      filename,
+      path: join(GALLERY_DIR, filename),
+    }));
+}
+
+async function uploadPhoto({ path, filename }) {
+  const ext = extname(filename).toLowerCase();
+  const contentType =
+    ext === ".png"
+      ? "image/png"
+      : ext === ".webp"
+        ? "image/webp"
+        : "image/jpeg";
+  const asset = await client.assets.upload("image", createReadStream(path), {
+    filename,
     contentType,
   });
   return { _type: "image", asset: { _type: "reference", _ref: asset._id } };
 }
 
 async function run() {
+  const photos = getPhotos();
   console.log(
     `\nSeeding ${photos.length} gallery photos → Sanity (${SANITY_DATASET})\n`,
   );
 
   for (const item of photos) {
-    process.stdout.write(`  [${item.order}] ${item.alt} … `);
+    process.stdout.write(
+      `  [${String(item.order).padStart(2, "0")}] ${item.filename} … `,
+    );
 
-    const photo = await uploadPhoto(item.path);
-    if (!photo) {
-      console.log("skipped (no photo)");
-      continue;
-    }
+    const photo = await uploadPhoto(item);
+    const id = `galleryPhoto-${String(item.order).padStart(3, "0")}`;
 
     await client.createOrReplace({
       _type: "galleryPhoto",
-      _id: `galleryPhoto-${item.order}`,
+      _id: id,
       order: item.order,
-      alt: item.alt,
-      span: item.span,
+      alt: "",
+      span: "normal",
       photo,
     });
-    await client.delete(`drafts.galleryPhoto-${item.order}`).catch(() => {});
+    await client.delete(`drafts.${id}`).catch(() => {});
 
     console.log("✓");
   }

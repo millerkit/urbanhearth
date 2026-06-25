@@ -5,7 +5,9 @@
     "eyebrow": "Dining Room",
     "title": "À La Carte",
     "id": "dining-room",
-    "description": "The à la carte menu follows the seasons, is rooted in locally sourced ingredients, and is informed by culinary traditions from around the world. Warm and gracious hospitality, whether you are celebrating a milestone or the end of a busy day.",
+    "description": [
+      "The à la carte menu follows the seasons, is rooted in locally sourced ingredients, and is informed by culinary traditions from around the world. Warm and gracious hospitality, whether you are celebrating a milestone or the end of a busy day."
+    ],
     "details": [],
     "note": null
   },
@@ -15,7 +17,11 @@
     "eyebrow": "Chef's Tasting Menu",
     "title": "Chef's Counter",
     "id": "chefs-counter",
-    "description": "An intimate chef's tasting menu experience at the kitchen's edge: 8–12 courses drawn from the season's best, with the chef talking you through each course.",
+    "description": [
+      "An intimate front-row seat to the creative heart of Urban Hearth.",
+      "Join us at our six-seat Chef’s Counter for an immersive tasting menu featuring 8–12 courses inspired by the season, the farm, and the larder. Watch the kitchen at work, engage directly with the chefs, and experience each dish as it is finished and presented.",
+      "The Chef’s Counter experience is available Tuesday through Saturday at 5:30 and 8:00 pm. We offer an omnivore or vegetarian menu. Limited accommodation is made for allergies and dietary needs. Please note requests in your reservation."
+    ],
     "details": [],
     "note": "As the menu changes nightly we cannot guarantee accommodation of all dietary restrictions. Details are shared upon confirmation."
   }
