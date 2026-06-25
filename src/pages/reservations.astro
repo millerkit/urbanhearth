@@ -127,40 +127,22 @@ const diningOptionsMap = Object.fromEntries(
                   </div>
                 )}
                 <div class="exp-cta">
-                  <button class="reserve-btn open-reservation-modal">
+                  <a
+                    href={page.bookingUrl ?? restaurant.reservations.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="reserve-btn"
+                  >
                     {exp.id === "chefs-counter"
                       ? "Reserve a Seat"
                       : "Reserve a Table"}
-                  </button>
+                  </a>
                 </div>
               </div>
             </div>
           );
         })
       }
-    </div>
-  </div>
-
-  <div
-    class="modal-overlay"
-    id="reservation-modal"
-    role="dialog"
-    aria-modal="true"
-    aria-label="Make a reservation"
-  >
-    <div class="modal-box">
-      <button
-        class="modal-close"
-        id="close-reservation-modal"
-        aria-label="Close">&#x2715;</button
-      >
-      <iframe
-        src={`https://www.opentable.com/widget/reservation/loader?rid=342889&domain=com&type=standard&theme=standard&lang=en-US&ot_source=Restaurant%20website&iframe=true`}
-        width="100%"
-        height="100%"
-        frameborder="0"
-        scrolling="yes"
-        title="Make a reservation"></iframe>
     </div>
   </div>
 </Base>
@@ -346,56 +328,6 @@ const diningOptionsMap = Object.fromEntries(
     opacity: 0.75;
   }
 
-  /* ── Modal ── */
-  .modal-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.6);
-    z-index: 1000;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-  }
-
-  .modal-overlay.is-open {
-    display: flex;
-  }
-
-  .modal-box {
-    position: relative;
-    width: 100%;
-    max-width: 540px;
-    height: min(680px, 90vh);
-    background: #fff;
-  }
-
-  .modal-box iframe {
-    display: block;
-    width: 100%;
-    height: 100%;
-    border: none;
-  }
-
-  .modal-close {
-    position: absolute;
-    top: -2.25rem;
-    right: 0;
-    background: none;
-    border: none;
-    color: #fff;
-    font-size: 1.25rem;
-    cursor: pointer;
-    line-height: 1;
-    padding: 0.25rem 0.5rem;
-    opacity: 0.8;
-    transition: opacity 0.2s;
-  }
-
-  .modal-close:hover {
-    opacity: 1;
-  }
-
   /* ── Responsive ── */
   @media (max-width: 640px) {
     .experience {
@@ -405,37 +337,5 @@ const diningOptionsMap = Object.fromEntries(
     .booking-cta {
       padding: 2rem 1.5rem;
     }
-
-    .modal-box {
-      height: 85vh;
-    }
   }
 </style>
-
-<script>
-  const modal = document.getElementById("reservation-modal")!;
-  const openBtns = document.querySelectorAll(".open-reservation-modal");
-  const closeBtn = document.getElementById("close-reservation-modal")!;
-
-  openBtns.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      modal.classList.add("is-open");
-      document.body.style.overflow = "hidden";
-    });
-  });
-
-  const closeModal = () => {
-    modal.classList.remove("is-open");
-    document.body.style.overflow = "";
-  };
-
-  closeBtn.addEventListener("click", closeModal);
-
-  modal.addEventListener("click", (e) => {
-    if (e.target === modal) closeModal();
-  });
-
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") closeModal();
-  });
-</script>
