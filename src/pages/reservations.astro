@@ -33,7 +33,7 @@ if (isSanityConfigured) {
   }
   try {
     const fetchedPage = await fetchReservationsPage();
-    if (fetchedPage?.pageTitle) page = fetchedPage;
+    if (fetchedPage?.pageTitle) page = { ...pageFallback, ...fetchedPage };
   } catch (e) {
     console.error("Failed to fetch reservations page from Sanity:", e);
   }
@@ -127,16 +127,28 @@ const diningOptionsMap = Object.fromEntries(
                   </div>
                 )}
                 <div class="exp-cta">
-                  <a
-                    href={page.bookingUrl ?? restaurant.reservations.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="reserve-btn"
-                  >
-                    {exp.id === "chefs-counter"
-                      ? "Reserve a Seat"
-                      : "Reserve a Table"}
-                  </a>
+                  {exp.id === "chefs-counter" ? (
+                    <a
+                      href={
+                        page.chefCounterBookingUrl ??
+                        page.bookingUrl ??
+                        restaurant.reservations.href
+                      }
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="reserve-btn"
+                    >
+                      Reserve a Seat
+                    </a>
+                  ) : (
+                    <div class="ot-widget-container">
+                      <script
+                        is:inline
+                        type="text/javascript"
+                        src="//www.opentable.com/widget/reservation/loader?rid=342889&type=standard&theme=wide&color=8&dark=false&iframe=true&domain=com&lang=en-US&newtab=false&ot_source=Restaurant%20website&font=trebuchetMs&ot_logo=standard&primary_color=ffffff&primary_font_color=333333&button_color=162235&button_font_color=ffffff&logo_pid=95007913&cfe=true"
+                      />
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -154,13 +166,13 @@ const diningOptionsMap = Object.fromEntries(
 
   /* ── Experience list ── */
   .experiences {
-    max-width: 860px;
+    max-width: 936px;
     margin: 0 auto;
     border-top: 1px solid var(--border);
   }
 
   .experience {
-    padding: 2.5rem 2rem;
+    padding: 1.75rem 2rem;
     border-bottom: 1px solid var(--border);
   }
 
@@ -302,7 +314,7 @@ const diningOptionsMap = Object.fromEntries(
 
   /* ── Per-experience CTA ── */
   .exp-cta {
-    margin-top: 1.75rem;
+    margin-top: 1rem;
     display: flex;
     justify-content: flex-end;
   }
@@ -321,11 +333,18 @@ const diningOptionsMap = Object.fromEntries(
     padding: 1.4rem 2rem;
     text-align: center;
     cursor: pointer;
+    text-decoration: none;
     transition: opacity 0.2s;
   }
 
   .reserve-btn:hover {
     opacity: 0.75;
+  }
+
+  .ot-widget-container {
+    width: 100%;
+    max-height: 130px;
+    overflow: hidden;
   }
 
   /* ── Responsive ── */
