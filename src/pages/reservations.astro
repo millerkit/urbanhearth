@@ -99,6 +99,19 @@ const diningOptionsMap = Object.fromEntries(
                     ))}
                   </dl>
                 )}
+                {pricing?.pairings && pricing.pairings.length > 0 && (
+                  <div class="exp-pairings">
+                    <p class="exp-pairings-label">Optional pairings</p>
+                    <ul class="exp-pairings-list">
+                      {pricing.pairings.map((p) => (
+                        <li class="exp-pairing-row">
+                          <span class="exp-pairing-name">{p.label}</span>
+                          <span class="exp-pairing-price">{p.price}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
                 <div class="exp-cta">
                   <button class="reserve-btn open-reservation-modal">
                     {exp.id === "chefs-counter"
