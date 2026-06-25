@@ -92,6 +92,17 @@ const restaurant = await getSiteSettings();
     margin-top: 0.75rem;
   }
 
+  .body a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    transition: opacity 0.2s;
+  }
+
+  .body a:hover {
+    opacity: 0.6;
+  }
+
   .body ul {
     margin: 0.75rem 0;
     padding-left: 1.25rem;
