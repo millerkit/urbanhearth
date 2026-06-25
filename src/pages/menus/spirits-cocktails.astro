@@ -24,40 +24,46 @@ const restaurant = await getSiteSettings();
         <p class="menu-eyebrow">Cocktails</p>
 
         <section class="menu-section">
-          <h2 class="menu-label menu-section-title">
-            On Tap — {spiritsMenu.onTapCocktails.price}
-          </h2>
           <ul class="dish-list">
             {
-              spiritsMenu.onTapCocktails.items.map((cocktail) => (
-                <li class="dish">
-                  <div class="dish-top">
-                    <span class="dish-name">{cocktail.name}</span>
-                  </div>
-                  <p class="dish-desc">{cocktail.description}</p>
-                </li>
-              ))
+              spiritsMenu.cocktails
+                .filter((c) => !c.nonAlcoholic)
+                .map((cocktail) => (
+                  <li class="dish">
+                    <div class="dish-top">
+                      <span class="dish-name">{cocktail.name}</span>
+                      <span class="dish-price">
+                        {spiritsMenu.cocktailPrice}
+                      </span>
+                    </div>
+                    <p class="dish-desc">{cocktail.description}</p>
+                  </li>
+                ))
             }
           </ul>
         </section>
+      </div>
+
+      <!-- ── Zero Proof ── -->
+      <div class="menu-card menu-main">
+        <p class="menu-eyebrow">Zero Proof</p>
 
         <section class="menu-section">
-          <h2 class="menu-label menu-section-title">Cocktails</h2>
           <ul class="dish-list">
             {
-              spiritsMenu.cocktails.map((cocktail) => (
-                <li class="dish">
-                  <div class="dish-top">
-                    <span class="dish-name">{cocktail.name}</span>
-                    <span class="dish-price">
-                      {cocktail.nonAlcoholic
-                        ? spiritsMenu.zeroProofPrice
-                        : spiritsMenu.cocktailPrice}
-                    </span>
-                  </div>
-                  <p class="dish-desc">{cocktail.description}</p>
-                </li>
-              ))
+              spiritsMenu.cocktails
+                .filter((c) => c.nonAlcoholic)
+                .map((cocktail) => (
+                  <li class="dish">
+                    <div class="dish-top">
+                      <span class="dish-name">{cocktail.name}</span>
+                      <span class="dish-price">
+                        {spiritsMenu.zeroProofPrice}
+                      </span>
+                    </div>
+                    <p class="dish-desc">{cocktail.description}</p>
+                  </li>
+                ))
             }
           </ul>
         </section>

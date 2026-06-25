@@ -56,25 +56,20 @@
       ]
     }
   ],
-  "onTapCocktails": {
-    "price": "18",
-    "items": [
-      {
-        "name": "Sunkissed",
-        "description": "Vodka, rhubarb cordial, lemon"
-      },
-      {
-        "name": "Helix",
-        "description": "Roku Gin, Aperol, chinchona"
-      },
-      {
-        "name": "Summertime Crush",
-        "description": "Symphony 6 (black currant, fig leaf, citrus), yuzu, Earl Grey"
-      }
-    ]
-  },
   "cocktailPrice": "18",
   "cocktails": [
+    {
+      "name": "Sunkissed",
+      "description": "Vodka, rhubarb cordial, lemon"
+    },
+    {
+      "name": "Helix",
+      "description": "Roku Gin, Aperol, chinchona"
+    },
+    {
+      "name": "Summertime Crush",
+      "description": "Symphony 6 (black currant, fig leaf, citrus), yuzu, Earl Grey"
+    },
     {
       "name": "Low Light",
       "description": "Vermouth, clarified coconut, olive, agave, celery"
@@ -102,11 +97,13 @@
     },
     {
       "name": "Beach Rose",
-      "description": "Pentire Seaward, shiso, citrus, sherry vin, nori"
+      "description": "Pentire Seaward, shiso, citrus, sherry vin, nori",
+      "nonAlcoholic": true
     },
     {
       "name": "Scarlet",
-      "description": "Pomegranate, beet, citrus, salted rosemary, aromatic foam"
+      "description": "Pomegranate, beet, citrus, salted rosemary, aromatic foam",
+      "nonAlcoholic": true
     }
   ],
   "zeroProofPrice": "12",
