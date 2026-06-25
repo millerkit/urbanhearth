@@ -29,6 +29,27 @@ const photoSrc = chef.photo ?? erinFallbackPhoto.src;
 >
   <div class="chef-page">
     <div class="chef-layout">
+      <div class="chef-heading">
+        <div class="chef-eyebrow">
+          <p class="section-eyebrow">{chef.title}</p>
+        </div>
+
+        <h1 class="chef-name">{chef.name}</h1>
+
+        {
+          chef.roles.length > 0 && (
+            <div class="chef-roles">
+              {chef.roles.map((role, i) => (
+                <>
+                  <span>{role}</span>
+                  {i < chef.roles.length - 1 && <span class="role-dot">·</span>}
+                </>
+              ))}
+            </div>
+          )
+        }
+      </div>
+
       <div class="chef-photo-col">
         <div class="chef-photo-wrap">
           <img src={photoSrc} alt={chef.name} class="chef-photo" />
@@ -36,42 +57,19 @@ const photoSrc = chef.photo ?? erinFallbackPhoto.src;
       </div>
 
       <div class="chef-content-col">
-        <div class="chef-content">
-          <div class="chef-eyebrow">
-            <p class="section-eyebrow">{chef.title}</p>
-          </div>
+        <div class="chef-bio">
+          {chef.bio.map((paragraph) => <p>{paragraph}</p>)}
+        </div>
 
-          <h1 class="chef-name">{chef.name}</h1>
-
+        <div class="chef-accolades">
           {
-            chef.roles.length > 0 && (
-              <div class="chef-roles">
-                {chef.roles.map((role, i) => (
-                  <>
-                    <span>{role}</span>
-                    {i < chef.roles.length - 1 && (
-                      <span class="role-dot">·</span>
-                    )}
-                  </>
-                ))}
+            chef.accolades.map((a) => (
+              <div class="accolade">
+                <span class="accolade-year">{a.year}</span>
+                <span class="accolade-text">{a.text}</span>
               </div>
-            )
+            ))
           }
-
-          <div class="chef-bio">
-            {chef.bio.map((paragraph) => <p>{paragraph}</p>)}
-          </div>
-
-          <div class="chef-accolades">
-            {
-              chef.accolades.map((a) => (
-                <div class="accolade">
-                  <span class="accolade-year">{a.year}</span>
-                  <span class="accolade-text">{a.text}</span>
-                </div>
-              ))
-            }
-          </div>
         </div>
       </div>
     </div>
@@ -86,46 +84,16 @@ const photoSrc = chef.photo ?? erinFallbackPhoto.src;
     flex-direction: column;
   }
 
-  /* ── Split layout ── */
+  /* ── Layout ── */
   .chef-layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    flex: 1;
-    width: 80%;
-    margin: 2.5rem auto 4rem;
+    max-width: 860px;
+    margin: 0 auto 4rem;
+    padding: 3rem 2rem 0;
   }
 
-  /* ── Photo column ── */
-  .chef-photo-col {
-    position: relative;
-    overflow: hidden;
-    background: var(--warm-white);
-  }
-
-  .chef-photo-wrap {
-    position: absolute;
-    inset: 0;
-  }
-
-  .chef-photo {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center top;
-    display: block;
-    opacity: 0.92;
-  }
-
-  /* ── Content column ── */
-  .chef-content-col {
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-  }
-
-  .chef-content {
-    padding: 5rem 4rem 5rem 2.5rem;
-    max-width: 580px;
+  /* ── Heading ── */
+  .chef-heading {
+    margin-bottom: 1.5rem;
   }
 
   /* ── Eyebrow ── */
@@ -155,13 +123,31 @@ const photoSrc = chef.photo ?? erinFallbackPhoto.src;
     display: flex;
     align-items: center;
     gap: 0.6rem;
-    margin-bottom: 3rem;
-    padding-bottom: 3rem;
-    border-bottom: 1px solid var(--border);
   }
 
   .role-dot {
     color: var(--border);
+  }
+
+  /* ── Photo ── */
+  .chef-photo-col {
+    margin-bottom: 1rem;
+  }
+
+  .chef-photo-wrap {
+    width: 100%;
+  }
+
+  .chef-photo {
+    width: 100%;
+    height: auto;
+    display: block;
+    opacity: 0.92;
+  }
+
+  /* ── Content ── */
+  .chef-content-col {
+    padding-top: 2rem;
   }
 
   /* ── Bio ── */
@@ -208,7 +194,7 @@ const photoSrc = chef.photo ?? erinFallbackPhoto.src;
 
   .accolade-text {
     font-family: var(--font-header-action) sans-serif;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 300;
     color: var(--ink);
     letter-spacing: 0.02em;
@@ -219,43 +205,9 @@ const photoSrc = chef.photo ?? erinFallbackPhoto.src;
     padding-top: 0.5rem;
   }
 
-  /* ── Responsive ── */
-  @media (max-width: 860px) {
+  @media (max-width: 600px) {
     .chef-layout {
-      grid-template-columns: 1fr;
-      width: 100%;
-      margin: 0 0 4rem;
-    }
-
-    .chef-photo-col {
-      position: static;
-      height: 60vw;
-      max-height: 480px;
-    }
-
-    .chef-photo-wrap {
-      position: static;
-      height: 100%;
-    }
-
-    .chef-photo {
-      height: 100%;
-    }
-
-    .chef-content-col {
-      border-left: none;
-      border-top: 1px solid var(--border);
-    }
-
-    .chef-content {
-      padding: 3.5rem 2rem 4rem;
-      max-width: none;
-    }
-  }
-
-  @media (max-width: 500px) {
-    .chef-content {
-      padding: 2.5rem 1.5rem 3rem;
+      padding: 0 1.25rem;
     }
 
     .chef-bio p {
