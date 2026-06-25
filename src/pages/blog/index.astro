@@ -131,9 +131,9 @@ function formatDate(iso: string) {
 
   .post-link {
     display: grid;
-    grid-template-columns: 200px 1fr;
+    grid-template-columns: 280px 1fr;
     gap: 2.5rem;
-    align-items: start;
+    align-items: stretch;
     padding: 2.5rem 0;
     text-decoration: none;
     color: inherit;
@@ -149,9 +149,9 @@ function formatDate(iso: string) {
   }
 
   .post-image-wrap {
-    aspect-ratio: 3 / 2;
     overflow: hidden;
     background: var(--parchment);
+    min-height: 180px;
   }
 
   .post-image {
