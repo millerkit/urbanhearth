@@ -50,15 +50,15 @@ const homepage = JSON.parse(
 // Homepage teaser photos keyed by dining option area id
 const teaserPhotos = {
   "dining-room": {
-    path: "src/assets/photos/HomeDiningRoomTeaser.jpeg",
+    path: "src/assets/photos/HomeDiningRoomTeaser.webp",
     alt: "Dining Room at Urban Hearth",
   },
   "chefs-counter": {
-    path: "src/assets/photos/HomeChefsCounterTeaser.jpeg",
+    path: "src/assets/photos/HomeChefsCounterTeaser.webp",
     alt: "Chef's Counter at Urban Hearth",
   },
   salon: {
-    path: "src/assets/photos/HomeBarTeaser.jpeg",
+    path: "src/assets/photos/HomeBarTeaser.webp",
     alt: "Bar & Salon at Urban Hearth",
   },
 };
@@ -70,7 +70,12 @@ async function uploadPhoto(rawPath) {
     return undefined;
   }
   const ext = extname(absPath).toLowerCase();
-  const contentType = ext === ".png" ? "image/png" : "image/jpeg";
+  const contentType =
+    ext === ".png"
+      ? "image/png"
+      : ext === ".webp"
+        ? "image/webp"
+        : "image/jpeg";
   const asset = await client.assets.upload("image", createReadStream(absPath), {
     filename: basename(absPath),
     contentType,

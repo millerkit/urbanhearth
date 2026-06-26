@@ -50,7 +50,12 @@ async function uploadPhoto(rawPath) {
     return undefined;
   }
   const ext = extname(absPath).toLowerCase();
-  const contentType = ext === ".png" ? "image/png" : "image/jpeg";
+  const contentType =
+    ext === ".png"
+      ? "image/png"
+      : ext === ".webp"
+        ? "image/webp"
+        : "image/jpeg";
   const asset = await client.assets.upload("image", createReadStream(absPath), {
     filename: basename(absPath),
     contentType,

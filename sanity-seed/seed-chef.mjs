@@ -50,7 +50,12 @@ async function uploadPhoto(rawPath) {
     return undefined;
   }
   const ext = extname(absPath).toLowerCase();
-  const contentType = ext === ".png" ? "image/png" : "image/jpeg";
+  const contentType =
+    ext === ".png"
+      ? "image/png"
+      : ext === ".webp"
+        ? "image/webp"
+        : "image/jpeg";
   const asset = await client.assets.upload("image", createReadStream(absPath), {
     filename: basename(absPath),
     contentType,
@@ -62,7 +67,7 @@ async function run() {
   console.log(`\nSeeding chef profile → Sanity (${SANITY_DATASET})\n`);
 
   process.stdout.write(`  Uploading photo … `);
-  const photo = await uploadPhoto("src/assets/photos/ChefErinHeadshot.jpg");
+  const photo = await uploadPhoto("src/assets/photos/ChefErinHeadshot.webp");
   console.log(photo ? "✓" : "skipped");
 
   process.stdout.write(`  Creating document … `);

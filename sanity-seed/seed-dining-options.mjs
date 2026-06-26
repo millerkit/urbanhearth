@@ -50,15 +50,15 @@ const areas = JSON.parse(
 
 // Primary photos keyed by area id (Dining Options page)
 const localPhotos = {
-  "dining-room": "src/assets/photos/OptionsDiningRoomTeaser.jpeg",
-  "chefs-counter": "src/assets/photos/OptionsChefsCounterTeaserSmall.jpeg",
-  salon: "src/assets/photos/OptionsSalonTeaser.jpeg",
+  "dining-room": "src/assets/photos/OptionsDiningRoomTeaser.webp",
+  "chefs-counter": "src/assets/photos/OptionsChefsCounterTeaserSmall.webp",
+  salon: "src/assets/photos/OptionsSalonTeaser.webp",
 };
 
 // Secondary photos shown side-by-side with the primary on the Dining Options page
 const localPhotosSecondary = {
-  "chefs-counter": "src/assets/photos/OptionsChefsCounterTeaserLarge.jpeg",
-  salon: "src/assets/photos/OptionsBarTeaser.jpeg",
+  "chefs-counter": "src/assets/photos/OptionsChefsCounterTeaserLarge.webp",
+  salon: "src/assets/photos/OptionsBarTeaser.webp",
 };
 
 async function uploadPhoto(rawPath) {
@@ -68,7 +68,12 @@ async function uploadPhoto(rawPath) {
     return undefined;
   }
   const ext = extname(absPath).toLowerCase();
-  const contentType = ext === ".png" ? "image/png" : "image/jpeg";
+  const contentType =
+    ext === ".png"
+      ? "image/png"
+      : ext === ".webp"
+        ? "image/webp"
+        : "image/jpeg";
   const asset = await client.assets.upload("image", createReadStream(absPath), {
     filename: basename(absPath),
     contentType,
