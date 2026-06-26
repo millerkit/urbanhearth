@@ -11,11 +11,8 @@ export default defineConfig({
   }),
   integrations: [
     sitemap({
-      // While HOLDING_PAGE=true, only the holding page is live — exclude everything else
-      // to avoid wasting crawl budget on pages that 302 to /holding.
       filter: (page) =>
-        process.env.HOLDING_PAGE !== "true" ||
-        page === "https://www.urbanhearth.net/holding/",
+        !page.includes("/holding/") && !page.includes("/checkout/"),
     }),
     react(),
   ],
