@@ -23,6 +23,10 @@
     "href": null,
     "children": [
       {
+        "label": "About",
+        "href": "/about"
+      },
+      {
         "label": "Chef Erin Miller",
         "href": "/chef"
       },
