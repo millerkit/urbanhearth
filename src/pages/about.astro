@@ -38,7 +38,11 @@ if (isSanityConfigured) {
 
     <div class="about-body">
       <section class="about-section about-section--intro">
-        <p class="about-statement">{aboutContent.statement}</p>
+        {
+          aboutContent.statement
+            .split("\n\n")
+            .map((p) => <p class="about-statement">{p}</p>)
+        }
       </section>
 
       <section class="about-section">
@@ -126,6 +130,10 @@ if (isSanityConfigured) {
     font-weight: 300;
     line-height: 1.8;
     color: var(--ink);
+  }
+
+  .about-statement + .about-statement {
+    margin-top: 1.5em;
   }
 
   .about-section-title {
