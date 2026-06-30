@@ -166,6 +166,35 @@ function isActive(item: { href: string; children?: { href: string }[] }) {
 </div>
 
 <script>
+  // Desktop dropdown: support touch devices (iPads) where :hover doesn't fire
+  document
+    .querySelectorAll<HTMLElement>("#site-nav .nav-item--dropdown")
+    .forEach((item) => {
+      item.addEventListener("click", (e) => {
+        const isOpen = item.classList.contains("is-open");
+        // Close all other open dropdowns
+        document
+          .querySelectorAll("#site-nav .nav-item--dropdown.is-open")
+          .forEach((el) => {
+            if (el !== item) el.classList.remove("is-open");
+          });
+        item.classList.toggle("is-open", !isOpen);
+        if (!isOpen) e.stopPropagation();
+      });
+      // Close when a dropdown link is clicked
+      item.querySelectorAll(".dropdown-link").forEach((link) => {
+        link.addEventListener("click", () => item.classList.remove("is-open"));
+      });
+    });
+  // Close open dropdowns when clicking outside the nav
+  document.addEventListener("click", () => {
+    document
+      .querySelectorAll("#site-nav .nav-item--dropdown.is-open")
+      .forEach((el) => {
+        el.classList.remove("is-open");
+      });
+  });
+
   const toggle = document.getElementById("menu-toggle");
   const menu = document.getElementById("mobile-menu");
 
@@ -262,7 +291,8 @@ function isActive(item: { href: string; children?: { href: string }[] }) {
     top: 1px;
   }
 
-  #site-nav .nav-item--dropdown:hover .dropdown-caret {
+  #site-nav .nav-item--dropdown:hover .dropdown-caret,
+  #site-nav .nav-item--dropdown.is-open .dropdown-caret {
     transform: rotate(180deg);
   }
 
@@ -296,7 +326,8 @@ function isActive(item: { href: string; children?: { href: string }[] }) {
     height: 15px;
   }
 
-  #site-nav .nav-item--dropdown:hover .dropdown {
+  #site-nav .nav-item--dropdown:hover .dropdown,
+  #site-nav .nav-item--dropdown.is-open .dropdown {
     opacity: 1;
     visibility: visible;
     transform: translateX(-50%) translateY(0);
