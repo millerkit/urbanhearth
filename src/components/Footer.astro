@@ -79,7 +79,7 @@ const addressLines = [streetAddress, cityParts.join(",").trim()];
 
   <div class="footer-info">
     <div class="footer-col">
-      <p class="footer-col-title">Contact</p>
+      <p class="footer-col-title">Visit</p>
       <address>
         <a
           href={restaurant.mapsUrl}
@@ -100,9 +100,6 @@ const addressLines = [streetAddress, cityParts.join(",").trim()];
           href={`tel:${restaurant.phone.replace(/\s/g, "")}`}
           class="footer-email">{restaurant.phone}</a
         >
-        <br /><a href="mailto:info@urbanhearth.net" class="footer-email"
-          >info@urbanhearth.net</a
-        >
       </address>
     </div>
 
@@ -112,12 +109,21 @@ const addressLines = [streetAddress, cityParts.join(",").trim()];
     </div>
 
     <div class="footer-col right">
-      <p class="footer-col-title">Events & Large Parties</p>
-      <p>
-        <a href={`mailto:${restaurant.privateDiningEmail}`} class="footer-email"
-          >{restaurant.privateDiningEmail}</a
+      <p class="footer-col-title">Email</p>
+      <address>
+        <span class="footer-email-note">general inquiries:</span><a
+          href="mailto:info@urbanhearth.net"
+          class="footer-email">info@urbanhearth.net</a
         >
-      </p>
+        <br /><span class="footer-email-note">reservation inquiries:</span><a
+          href="mailto:concierge@urbanhearth.net"
+          class="footer-email">concierge@urbanhearth.net</a
+        >
+        <br /><span class="footer-email-note">groups & events:</span><a
+          href={`mailto:${restaurant.privateDiningEmail}`}
+          class="footer-email">{restaurant.privateDiningEmail}</a
+        >
+      </address>
     </div>
   </div>
 
@@ -210,7 +216,7 @@ const addressLines = [streetAddress, cityParts.join(",").trim()];
     letter-spacing: 0.22em;
     text-transform: uppercase;
     color: var(--ink);
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
   }
 
   .footer-col p,
@@ -242,6 +248,10 @@ const addressLines = [streetAddress, cityParts.join(",").trim()];
   }
   .footer-email:hover {
     opacity: 0.6;
+  }
+
+  .footer-email-note {
+    padding-right: 10px;
   }
 
   .footer-col.center {
