@@ -78,6 +78,76 @@ function sortKeys(val) {
   return val;
 }
 
+// A short discriminator for an array element, so paths read as
+// `children[0:About]` instead of the meaningless `children[0]`.
+function itemTag(item) {
+  if (item !== null && typeof item === "object") {
+    const disc = item.label ?? item.name ?? item.title ?? item.id;
+    if (disc != null) return String(disc);
+  }
+  return null;
+}
+
+// Recursively walk two values, pushing one entry per leaf-level difference
+// (or per whole branch that only exists on one side) into `out`.
+function collectDiffs(path, a, b, out) {
+  if (a === undefined) a = null;
+  if (b === undefined) b = null;
+  if (a === null && b === null) return;
+
+  if (Array.isArray(a) || Array.isArray(b)) {
+    const arrA = Array.isArray(a) ? a : [];
+    const arrB = Array.isArray(b) ? b : [];
+
+    // Prefer matching elements by their tag (label/name/title/id) rather
+    // than raw index, so inserting/removing one element doesn't cascade
+    // into bogus diffs for every element after it.
+    const tagsA = arrA.map(itemTag);
+    const tagsB = arrB.map(itemTag);
+    const uniqueTags = (tags) =>
+      tags.every((t) => t != null) && new Set(tags).size === tags.length;
+    const canTagMatch = uniqueTags(tagsA) && uniqueTags(tagsB);
+
+    if (canTagMatch) {
+      const allTags = [...new Set([...tagsA, ...tagsB])];
+      for (const tag of allTags) {
+        const av = arrA[tagsA.indexOf(tag)];
+        const bv = arrB[tagsB.indexOf(tag)];
+        collectDiffs(`${path}[${tag}]`, av, bv, out);
+      }
+    } else {
+      const len = Math.max(arrA.length, arrB.length);
+      for (let i = 0; i < len; i++) {
+        const av = i < arrA.length ? arrA[i] : undefined;
+        const bv = i < arrB.length ? arrB[i] : undefined;
+        const tag = itemTag(av ?? bv);
+        collectDiffs(`${path}[${i}${tag ? `:${tag}` : ""}]`, av, bv, out);
+      }
+    }
+    return;
+  }
+
+  const aIsObj = a !== null && typeof a === "object";
+  const bIsObj = b !== null && typeof b === "object";
+  if (aIsObj || bIsObj) {
+    if (!aIsObj || !bIsObj) {
+      out.push({
+        path,
+        missing: aIsObj ? "sanity" : "fallback",
+        value: aIsObj ? a : b,
+      });
+      return;
+    }
+    const keys = new Set([...Object.keys(a), ...Object.keys(b)]);
+    for (const k of keys) {
+      collectDiffs(`${path}.${k}`, a[k], b[k], out);
+    }
+    return;
+  }
+
+  if (a !== b) out.push({ path, a, b });
+}
+
 function diff(label, local, remote, { blankEqualsNull = false } = {}) {
   let a = local ?? null;
   let b = remote ?? null;
@@ -88,6 +158,37 @@ function diff(label, local, remote, { blankEqualsNull = false } = {}) {
   const localStr = JSON.stringify(sortKeys(a));
   const remoteStr = JSON.stringify(sortKeys(b));
   if (localStr === remoteStr) return;
+
+  const isComplex = (v) => v !== null && typeof v === "object";
+  if (isComplex(a) || isComplex(b)) {
+    const leaves = [];
+    collectDiffs(label, a, b, leaves);
+    totalDiffs += leaves.length || 1;
+
+    if (leaves.length === 0) {
+      // Shouldn't normally happen (equality check above already caught
+      // identical values), but fall back to a raw dump just in case.
+      sectionLines.push(`      ✗ ${label}`);
+      sectionLines.push(`          fallback: ${JSON.stringify(a)}`);
+      sectionLines.push(`          sanity:   ${JSON.stringify(b)}`);
+      return;
+    }
+
+    for (const d of leaves) {
+      sectionLines.push(`      ✗ ${d.path}`);
+      if (d.missing) {
+        const other = d.missing === "fallback" ? "sanity" : "fallback";
+        sectionLines.push(
+          `          only in ${other}: ${JSON.stringify(d.value)}`,
+        );
+      } else {
+        sectionLines.push(`          fallback: ${JSON.stringify(d.a)}`);
+        sectionLines.push(`          sanity:   ${JSON.stringify(d.b)}`);
+      }
+    }
+    return;
+  }
+
   totalDiffs++;
   sectionLines.push(`      ✗ ${label}`);
   sectionLines.push(`          fallback: ${JSON.stringify(a)}`);
