@@ -1,0 +1,4 @@
+# Strip trailing slashes so every page has one canonical URL.
+# Cloudflare's default asset serving otherwise treats /post/foo and
+# /post/foo/ as separate valid pages, which Google indexes as duplicates.
+/*/ /:splat 301

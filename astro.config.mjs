@@ -6,6 +6,7 @@ import cloudflare from "@astrojs/cloudflare";
 
 export default defineConfig({
   site: "https://www.urbanhearth.net",
+  trailingSlash: "never",
   adapter: cloudflare({
     imageService: "passthrough",
   }),
