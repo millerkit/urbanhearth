@@ -68,20 +68,56 @@ fi
 # broke /menus even though the diff never touched that file directly — a
 # Cloudflare asset-layer default conflicted with an unrelated config change.
 # So this checks the whole nav, not just files in the diff.
-ROUTES="/ /dining-options /reservations /reservation-policy /menus /menus/a-la-carte /menus/chefs-counter-menu /menus/wine /menus/spirits-cocktails /menus/beer-cider /about /chef /team /blog /gallery /large-parties /gift-cards /mailing-list-signup /faq /products"
+ROUTES="/ /dining-options /reservations /reservation-policy /menus/a-la-carte /menus/chefs-counter-menu /menus/wine /menus/spirits-cocktails /menus/beer-cider /about /chef /team /blog /gallery /large-parties /gift-cards /mailing-list-signup /faq /products"
+
+# /menus is a redirect-only page (Astro.redirect in a prerendered route), so
+# Astro serves it as a 200 with a client-side meta-refresh stub rather than a
+# real 3xx — curl -L can't follow that, and real content-page assertions
+# would false-positive on it. Check its actual redirect target instead.
+REDIRECT_ROUTES="/menus:/menus/a-la-carte"
 
 fail=0
+BODY_FILE=$(mktemp)
 for route in $ROUTES; do
-  code=$(curl -s -o /dev/null -w "%{http_code}" -L --max-redirs 10 "http://localhost:$PORT$route")
+  code=$(curl -s -o "$BODY_FILE" -w "%{http_code}" -L --max-redirs 10 "http://localhost:$PORT$route")
   status=$?
   if [ "$status" -ne 0 ]; then
     echo "✘ $route -> curl error $status (likely a redirect loop)"
     fail=1
-  elif [ "$code" -ge 400 ]; then
+    continue
+  fi
+  if [ "$code" -ge 400 ]; then
     echo "✘ $route -> HTTP $code"
+    fail=1
+    continue
+  fi
+  # Status codes alone don't catch a page that "succeeds" but renders the
+  # wrong thing (blank content, an error boundary, a stale/broken layout).
+  # Every real page shares the site chrome, so its absence means something
+  # upstream broke even though the request itself returned 200.
+  if ! grep -q 'id="site-nav"' "$BODY_FILE"; then
+    echo "✘ $route -> HTTP $code but missing the site nav (page didn't render normally)"
+    fail=1
+  elif ! grep -q "Urban Hearth" "$BODY_FILE"; then
+    echo "✘ $route -> HTTP $code but missing site branding (page didn't render normally)"
     fail=1
   fi
 done
+
+for pair in $REDIRECT_ROUTES; do
+  route="${pair%%:*}"
+  target="${pair##*:}"
+  code=$(curl -s -o "$BODY_FILE" -w "%{http_code}" -L --max-redirs 10 "http://localhost:$PORT$route")
+  status=$?
+  if [ "$status" -ne 0 ]; then
+    echo "✘ $route -> curl error $status (likely a redirect loop)"
+    fail=1
+  elif ! grep -q "$target" "$BODY_FILE"; then
+    echo "✘ $route -> HTTP $code but doesn't point at $target"
+    fail=1
+  fi
+done
+rm -f "$BODY_FILE"
 
 if [ "$fail" -eq 1 ]; then
   echo "✘ Route smoke test failed against the real Worker runtime. Push blocked."
