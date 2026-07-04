@@ -2,7 +2,8 @@
 # Only runs the heavy check when routing-sensitive files are part of the push.
 # astro dev doesn't reproduce Cloudflare's own asset-serving/redirect behavior,
 # so changes here need to run against the real Worker runtime before they ship.
-# See TESTING.md for background (the 2026-07-03 /menus redirect-loop incident).
+# See TESTING.md for background (the 2026-07-03 redirect-loop incident, which
+# took down every nav destination except the homepage).
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
@@ -65,9 +66,10 @@ if [ -z "$ready" ]; then
 fi
 
 # Every top-nav / footer destination. The incident that prompted this hook
-# broke /menus even though the diff never touched that file directly — a
-# Cloudflare asset-layer default conflicted with an unrelated config change.
-# So this checks the whole nav, not just files in the diff.
+# broke every one of these except the homepage, even though the diff never
+# touched src/pages/ at all — a Cloudflare asset-layer default conflicted
+# with an unrelated astro.config.mjs change. So this checks the whole nav,
+# not just files in the diff.
 ROUTES="/ /dining-options /reservations /reservation-policy /menus/a-la-carte /menus/chefs-counter-menu /menus/wine /menus/spirits-cocktails /menus/beer-cider /about /chef /team /blog /gallery /large-parties /gift-cards /mailing-list-signup /faq /products"
 
 # /menus is a redirect-only page (Astro.redirect in a prerendered route), so

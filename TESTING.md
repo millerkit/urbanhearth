@@ -4,10 +4,13 @@
 static-asset serving layer, which has its own default trailing-slash/redirect
 handling independent of anything Astro does. On 2026-07-03 a `trailingSlash`
 and `_redirects` change looked correct locally but caused a live redirect
-loop on `/menus` (and broke the entire top nav) because the SSR worker's
-redirect logic and Cloudflare's asset-layer default fought each other in
-production. Use this checklist for anything touching routing, redirects, or
-Cloudflare config.
+loop across nearly every page on the site — every nav destination except the
+homepage — because the SSR worker's redirect logic and Cloudflare's
+asset-layer default fought each other in production. Neither commit in that
+change touched `src/pages/` at all; the conflict was purely between
+`astro.config.mjs` and Cloudflare's own defaults, which is why it wasn't
+obvious from the diff. Use this checklist for anything touching routing,
+redirects, or Cloudflare config.
 
 ## 1. Local — real Worker runtime (fast, no deploy)
 
@@ -29,10 +32,10 @@ whenever a push touches `astro.config*.mjs`, `wrangler.toml`,
 `public/_redirects`, `scripts/bundle-worker.mjs`,
 `scripts/fix-preview-wrangler.mjs`, or anything under `src/pages/`. It smoke
 tests every top-nav and footer destination, not just the files in the diff —
-that's what caught us out last time, since `/menus` wasn't part of the
-changed diff but broke anyway. Bypass in an emergency with
-`git push --no-verify`, but treat that as a signal to test manually before
-merging.
+that's what caught us out last time, since none of the affected pages were
+part of the changed diff, yet every one of them but the homepage broke
+anyway. Bypass in an emergency with `git push --no-verify`, but treat that
+as a signal to test manually before merging.
 
 Note: `wrangler pages dev` currently hits an unrelated local sandbox bug
 (`No such module "wrangler:modules-watch"`) in this environment — use
