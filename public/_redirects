@@ -1,0 +1,8 @@
+# Legacy URLs from the pre-migration Wix site (and one internal rename),
+# bridged to their current equivalents. Exact-string matches only — no
+# wildcard/splat patterns, since those are what caused the site-wide
+# redirect-loop outages on 2026-07-03 and 2026-07-06 (see TESTING.md).
+/giftcards /gift-cards 301
+/menu /menus 301
+/faqs /faq 301
+/privateevents /large-parties 301
