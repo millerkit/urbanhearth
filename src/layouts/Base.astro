@@ -25,8 +25,14 @@ const {
   ogType = "website",
 } = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? restaurant.url)
-  .href;
+// Normalize the canonical path to the no-slash form (matching how every
+// internal link is written) so /about and /about/ declare the same canonical
+// URL. This lets Google consolidate the trailing-slash duplicates without a
+// redirect — deliberately avoiding the Cloudflare asset-layer redirect that
+// broke the nav twice (see TESTING.md / the 2026-07 incidents).
+const normalizedPath =
+  Astro.url.pathname === "/" ? "/" : Astro.url.pathname.replace(/\/+$/, "");
+const canonicalURL = new URL(normalizedPath, Astro.site ?? restaurant.url).href;
 ---
 
 <!doctype html>
