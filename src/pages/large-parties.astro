@@ -2,6 +2,7 @@
 import { getSiteSettings } from "../lib/site-settings";
 import Base from "../layouts/Base.astro";
 import PageHeader from "../components/PageHeader.astro";
+import InquiryModal from "../components/InquiryModal.astro";
 
 const restaurant = await getSiteSettings();
 ---
@@ -15,6 +16,12 @@ const restaurant = await getSiteSettings();
       title="Group Bookings"
       lead="Some occasions deserve a little more room around the table."
     />
+
+    <div class="cta-row">
+      <button type="button" class="cta-inquire js-open-inquiry">
+        Inquire About Your Event
+      </button>
+    </div>
 
     <div class="body">
       <h2 class="section-eyebrow">Large Parties</h2>
@@ -35,18 +42,11 @@ const restaurant = await getSiteSettings();
           season and the spirit of your occasion. Menu options may be limited.
         </li>
         <li>
-          Our concierge team will guide you through menu selections, beverage
+          Our events team will guide you through menu selections, beverage
           pairings, and event details to ensure a seamless experience from
           beginning to end.
         </li>
       </ul>
-
-      <p class="contact">
-        To inquire, email us at <a
-          href={`mailto:${restaurant.privateDiningEmail}`}
-          >{restaurant.privateDiningEmail}</a
-        >.
-      </p>
     </div>
 
     <div class="body private-events">
@@ -58,20 +58,38 @@ const restaurant = await getSiteSettings();
         needs, and the restaurant space will be reserved exclusively for your
         group on the chosen evening.
       </p>
-      <p>
-        To learn more about availability, pricing, and event options, please
-        contact our concierge team at <a
-          href={`mailto:${restaurant.privateDiningEmail}`}
-          >{restaurant.privateDiningEmail}</a
-        >.
-      </p>
     </div>
   </div>
+
+  <InquiryModal email={restaurant.privateDiningEmail} />
 </Base>
 
 <style>
   .large-parties {
     margin-top: 111px;
+  }
+
+  .cta-row {
+    text-align: center;
+    padding: 2rem 2rem 2rem;
+  }
+
+  .cta-inquire {
+    font-family: var(--font-header-action), sans-serif;
+    font-size: var(--text-label);
+    font-weight: 400;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--parchment);
+    background: var(--midnight);
+    border: none;
+    padding: 0.9rem 3rem;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+
+  .cta-inquire:hover {
+    opacity: 0.8;
   }
 
   .body {
@@ -115,10 +133,6 @@ const restaurant = await getSiteSettings();
     line-height: 1.6;
     color: var(--ink);
     margin-bottom: 0.35rem;
-  }
-
-  .contact {
-    margin-top: 1rem;
   }
 
   .body .section-eyebrow {

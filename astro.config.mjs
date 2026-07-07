@@ -11,8 +11,7 @@ export default defineConfig({
   }),
   integrations: [
     sitemap({
-      filter: (page) =>
-        !page.includes("/holding/") && !page.includes("/checkout/"),
+      filter: (page) => !page.includes("/checkout/"),
       // Match the no-slash canonical form used everywhere else (internal
       // links, the canonical <link> in Base.astro) instead of the
       // trailing-slash form Astro generates by default. The sitemap was

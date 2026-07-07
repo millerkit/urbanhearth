@@ -1,0 +1,448 @@
+---
+interface Props {
+  email: string;
+}
+const { email } = Astro.props;
+---
+
+<div class="inquiry-overlay js-close-inquiry" id="inquiry-overlay"></div>
+
+<div
+  class="inquiry-modal"
+  id="inquiry-modal"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="inquiry-modal-title"
+>
+  <button
+    type="button"
+    class="inquiry-modal__close js-close-inquiry"
+    aria-label="Close"
+  >
+    <svg
+      width="16"
+      height="16"
+      viewBox="0 0 16 16"
+      fill="none"
+      aria-hidden="true"
+    >
+      <path
+        d="M2 2l12 12M14 2L2 14"
+        stroke="currentColor"
+        stroke-width="1.2"
+        stroke-linecap="round"></path>
+    </svg>
+  </button>
+
+  <div id="inquiry-modal-intro">
+    <h2 id="inquiry-modal-title" class="section-eyebrow">Inquire</h2>
+    <p>
+      Tell us a bit about your occasion and our events team will follow up to
+      continue the conversation.
+    </p>
+  </div>
+
+  <form
+    id="large-parties-form"
+    class="inquiry-form"
+    novalidate
+    data-submit-label="Send Inquiry"
+  >
+    <div class="form-row">
+      <div class="form-field">
+        <label for="name">Full name</label>
+        <input type="text" id="name" name="name" required autocomplete="name" />
+      </div>
+    </div>
+
+    <div class="form-row form-row--two">
+      <div class="form-field">
+        <label for="email">Email address</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          required
+          autocomplete="email"
+        />
+      </div>
+      <div class="form-field">
+        <label for="phone">Phone number</label>
+        <input type="tel" id="phone" name="phone" required autocomplete="tel" />
+      </div>
+    </div>
+
+    <div class="form-row form-row--two">
+      <div class="form-field">
+        <label for="party-size">Party size</label>
+        <input
+          type="number"
+          id="party-size"
+          name="party_size"
+          min="7"
+          required
+        />
+      </div>
+      <div class="form-field">
+        <label for="preferred-date">Preferred date</label>
+        <input type="date" id="preferred-date" name="preferred_date" required />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-field">
+        <label for="occasion">Occasion</label>
+        <select id="occasion" name="occasion" required>
+          <option value="" selected disabled>Select one</option>
+          <option value="Celebration / Birthday">Celebration / Birthday</option>
+          <option value="Business Dinner">Business Dinner</option>
+          <option value="Wedding">Wedding</option>
+          <option value="Corporate Gathering">Corporate Gathering</option>
+          <option value="Full Restaurant Buyout">Full Restaurant Buyout</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-field">
+        <label for="message">Tell us more</label>
+        <textarea id="message" name="message" rows="4"></textarea>
+      </div>
+    </div>
+
+    <input
+      type="hidden"
+      name="_subject"
+      value="Large Parties / Private Events Inquiry"
+    />
+
+    <div class="form-actions">
+      <button type="submit" class="form-submit">Send Inquiry</button>
+    </div>
+
+    <p class="form-error" hidden>
+      Something went wrong sending your inquiry. Please try again, or email us
+      directly at <a href={`mailto:${email}`}>{email}</a>.
+    </p>
+  </form>
+
+  <div class="form-success" hidden>
+    <p class="section-eyebrow">Thank you</p>
+    <p class="form-success-msg">
+      We've received your inquiry and will be in touch shortly. If you'd rather
+      reach us directly, email <a href={`mailto:${email}`}>{email}</a>.
+    </p>
+  </div>
+</div>
+
+<script is:inline>
+  (function () {
+    const overlay = document.getElementById("inquiry-overlay");
+    const modal = document.getElementById("inquiry-modal");
+    const openTriggers = document.querySelectorAll(".js-open-inquiry");
+    const closeTriggers = document.querySelectorAll(".js-close-inquiry");
+    if (!overlay || !modal) return;
+
+    let lastFocused = null;
+
+    function openModal(e) {
+      lastFocused = e ? e.currentTarget : null;
+      overlay.classList.add("inquiry-overlay--visible");
+      modal.classList.add("inquiry-modal--open");
+      document.body.style.overflow = "hidden";
+      const firstField = modal.querySelector("#name");
+      if (firstField) firstField.focus();
+    }
+
+    function closeModal() {
+      overlay.classList.remove("inquiry-overlay--visible");
+      modal.classList.remove("inquiry-modal--open");
+      document.body.style.overflow = "";
+      if (lastFocused) lastFocused.focus();
+
+      // If the form already submitted successfully, reset back to the
+      // intro + blank form for the next time the modal is opened.
+      const form = document.getElementById("large-parties-form");
+      const success = document.querySelector(".form-success");
+      const intro = document.getElementById("inquiry-modal-intro");
+      const errorMsg = document.querySelector(".form-error");
+      if (errorMsg) errorMsg.hidden = true;
+      if (form && form.hidden) {
+        form.reset();
+        form.hidden = false;
+        if (success) success.hidden = true;
+        if (intro) intro.hidden = false;
+      }
+    }
+
+    openTriggers.forEach((btn) => btn.addEventListener("click", openModal));
+    closeTriggers.forEach((btn) => btn.addEventListener("click", closeModal));
+
+    document.addEventListener("keydown", function (e) {
+      if (
+        e.key === "Escape" &&
+        modal.classList.contains("inquiry-modal--open")
+      ) {
+        closeModal();
+      }
+    });
+
+    const form = document.getElementById("large-parties-form");
+    if (!form) return;
+
+    // Preferred date must be in the future — disable today and earlier.
+    const dateInput = document.getElementById("preferred-date");
+    if (dateInput) {
+      const tomorrow = new Date();
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      const year = tomorrow.getFullYear();
+      const month = String(tomorrow.getMonth() + 1).padStart(2, "0");
+      const day = String(tomorrow.getDate()).padStart(2, "0");
+      dateInput.min = `${year}-${month}-${day}`;
+    }
+
+    const submitLabel = form.dataset.submitLabel || "Send Inquiry";
+    form.addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      const btn = form.querySelector('button[type="submit"]');
+      const errorMsg = form.querySelector(".form-error");
+      btn.disabled = true;
+      btn.textContent = "Sending…";
+      if (errorMsg) errorMsg.hidden = true;
+
+      try {
+        const res = await fetch("https://formspree.io/f/mqevoeje", {
+          method: "POST",
+          body: new FormData(form),
+          headers: { Accept: "application/json" },
+        });
+        if (res.ok) {
+          const intro = document.getElementById("inquiry-modal-intro");
+          if (intro) intro.hidden = true;
+          form.hidden = true;
+          document.querySelector(".form-success").hidden = false;
+        } else {
+          btn.disabled = false;
+          btn.textContent = submitLabel;
+          if (errorMsg) errorMsg.hidden = false;
+        }
+      } catch (_) {
+        btn.disabled = false;
+        btn.textContent = submitLabel;
+        if (errorMsg) errorMsg.hidden = false;
+      }
+    });
+  })();
+</script>
+
+<style>
+  /* ── Inquiry modal ── */
+  .inquiry-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(22, 34, 53, 0.3);
+    z-index: 299;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .inquiry-overlay--visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .inquiry-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) translateY(8px);
+    width: calc(100% - 2.5rem);
+    max-width: 560px;
+    max-height: 88vh;
+    overflow-y: auto;
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    padding: 2.5rem 2.25rem;
+    z-index: 300;
+    opacity: 0;
+    pointer-events: none;
+    transition:
+      opacity 0.25s ease,
+      transform 0.25s ease;
+  }
+
+  .inquiry-modal--open {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(-50%, -50%) translateY(0);
+  }
+
+  .inquiry-modal .section-eyebrow {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+  }
+
+  .inquiry-modal > p {
+    font-family: var(--font-body), serif;
+    font-size: 1.0625rem;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--ink);
+  }
+
+  .inquiry-modal__close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    color: var(--ink);
+    line-height: 0;
+    transition: opacity 0.2s;
+  }
+
+  .inquiry-modal__close:hover {
+    opacity: 0.5;
+  }
+
+  /* ── Inquiry form ── */
+  .inquiry-form {
+    margin-top: 1.5rem;
+  }
+
+  .form-row {
+    margin-bottom: 1.5rem;
+  }
+
+  .form-row--two {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .form-field label {
+    font-family: var(--font-header-action), sans-serif;
+    font-size: var(--text-label);
+    font-weight: 300;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+  }
+
+  .form-field input,
+  .form-field select,
+  .form-field textarea {
+    font-family: var(--font-header-action), sans-serif;
+    font-size: var(--text-sm);
+    font-weight: 300;
+    color: var(--ink);
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--border);
+    padding: 0.5rem 0;
+    outline: none;
+    width: 100%;
+    transition: border-color 0.2s;
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: 0;
+  }
+
+  .form-field textarea {
+    resize: vertical;
+    font-family: var(--font-body), serif;
+    font-size: 1.0625rem;
+    line-height: 1.5;
+  }
+
+  .form-field input:focus,
+  .form-field select:focus,
+  .form-field textarea:focus {
+    border-bottom-color: var(--ink);
+  }
+
+  .form-actions {
+    margin-top: 2rem;
+    text-align: center;
+  }
+
+  .form-submit {
+    font-family: var(--font-header-action), sans-serif;
+    font-size: var(--text-label);
+    font-weight: 400;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--parchment);
+    background: var(--midnight);
+    border: none;
+    padding: 0.9rem 3rem;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+
+  .form-submit:hover {
+    opacity: 0.8;
+  }
+
+  .form-submit:disabled {
+    opacity: 0.5;
+    cursor: default;
+  }
+
+  .form-error {
+    margin-top: 1.25rem;
+    font-family: var(--font-body), serif;
+    font-size: 0.9375rem;
+    font-weight: 300;
+    line-height: 1.5;
+    color: #b94a4a;
+    text-align: center;
+  }
+
+  .form-error a {
+    color: inherit;
+  }
+
+  .form-success {
+    padding: 1rem 0 0.5rem;
+  }
+
+  .form-success .section-eyebrow {
+    margin-bottom: 0.75rem;
+  }
+
+  .form-success-msg {
+    font-family: var(--font-body), serif;
+    font-size: 1.0625rem;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--ink);
+  }
+
+  @media (max-width: 500px) {
+    .form-row--two {
+      grid-template-columns: 1fr;
+    }
+
+    .inquiry-modal {
+      padding: 2.25rem 1.5rem;
+    }
+  }
+</style>

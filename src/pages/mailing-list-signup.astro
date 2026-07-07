@@ -77,6 +77,13 @@ if (isSanityConfigured) {
         <div class="form-actions">
           <button type="submit" class="form-submit">{page.submitLabel}</button>
         </div>
+
+        <p class="form-error" hidden>
+          Something went wrong signing you up. Please try again, or email us
+          directly at <a href="mailto:info@urbanhearth.net"
+            >info@urbanhearth.net</a
+          >.
+        </p>
       </form>
 
       <div class="form-success" hidden>
@@ -95,9 +102,17 @@ if (isSanityConfigured) {
     const submitLabel = form.dataset.submitLabel || "Join the List";
     form.addEventListener("submit", async function (e) {
       e.preventDefault();
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
       const btn = form.querySelector('button[type="submit"]');
+      const errorMsg = form.querySelector(".form-error");
       btn.disabled = true;
       btn.textContent = "Sending…";
+      if (errorMsg) errorMsg.hidden = true;
 
       try {
         const res = await fetch("https://formspree.io/f/meeddqvl", {
@@ -111,10 +126,12 @@ if (isSanityConfigured) {
         } else {
           btn.disabled = false;
           btn.textContent = submitLabel;
+          if (errorMsg) errorMsg.hidden = false;
         }
       } catch (_) {
         btn.disabled = false;
         btn.textContent = submitLabel;
+        if (errorMsg) errorMsg.hidden = false;
       }
     });
   })();
@@ -209,6 +226,20 @@ if (isSanityConfigured) {
   .form-submit:disabled {
     opacity: 0.5;
     cursor: default;
+  }
+
+  .form-error {
+    margin-top: 1.25rem;
+    font-family: var(--font-body), serif;
+    font-size: 0.9375rem;
+    font-weight: 300;
+    line-height: 1.5;
+    color: #b94a4a;
+    text-align: center;
+  }
+
+  .form-error a {
+    color: inherit;
   }
 
   /* ── Success ── */
