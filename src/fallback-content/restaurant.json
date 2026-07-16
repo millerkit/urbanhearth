@@ -10,7 +10,11 @@
     "shortLabel": "Reserve",
     "href": "/reservations"
   },
-  "hours": ["Tuesday – Sunday: 5:00 - 10:00 pm"],
+  "hours": [
+    "Tuesday – Sunday",
+    "Dining Room: 5:00 – 10:00 pm",
+    "Bar & Salon: 5:00 pm - 11:00 pm (last call 10:45)"
+  ],
   "privateDiningEmail": "events@urbanhearth.net",
   "social": {
     "facebook": "https://www.facebook.com/urbanhearthcambridge",

@@ -88,6 +88,8 @@
     ],
     "details": [
       { "label": "Hours", "value": "Tuesday – Sunday, 5:00 – 11:00 pm" },
+      { "label": "Kitchen", "value": "Until 10:00 pm" },
+      { "label": "Last Call", "value": "10:45 pm" },
       { "label": "Walk-ins", "value": "Always welcome" },
       { "label": "Groups of 4+", "value": "Reservation recommended" }
     ]
