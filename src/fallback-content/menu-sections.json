@@ -1,5 +1,5 @@
 {
-  "season": "June 2026",
+  "season": "July 2026",
   "footer_note": "Ask your server to see our dessert menu. Please inform your server if you have any dietary restrictions. We add a 20% gratuity for all parties of 6 or more.",
   "sections": [
     {
@@ -11,14 +11,14 @@
           "description": "Smoked maple miso butter"
         },
         {
-          "name": "Saffron Fougasse",
+          "name": "Skillet Cornbread",
           "price": "10",
-          "description": "Spanish olive oil · sherry salt"
+          "description": "Honeycomb · cultured butter · pickled peppers"
         },
         {
           "name": "Unicorn Oysters on the Halfshell",
           "price": "4ea",
-          "description": "Cucumber pastisse mignonette · pickled pepper vinegar"
+          "description": "Cucumber pastisse mignonette · pikliz"
         },
         {
           "name": "House Crafted Charcuterie",
@@ -36,24 +36,19 @@
       "title": "To share",
       "items": [
         {
-          "name": "Maine Lobster with Elderflower Vinaigrette",
-          "price": "32",
-          "description": "Brown butter popcorn · lovage oil · green garlic & chili"
+          "name": "Two Bite Lobster Cornette",
+          "price": "9",
+          "description": "Creme fraiche gelato · fennel & cucumber"
         },
         {
           "name": "Yellowfin Tuna Crudo with Wild Chamomile",
           "price": "24",
-          "description": "Wild rice furikake · lemon & laurel gel · strawberry consommé"
+          "description": "Wild rice furikake · lemon & laurel gel · watermelon consommé"
         },
         {
           "name": "Early Summer Salad with Cultured Sheepsmilk Cheese",
           "price": "18",
           "description": "Farm greens · cucumber · salted pistachio butter · early berries · garum vinaigrette"
-        },
-        {
-          "name": "Lamb Tartare with Spruce Tip Kōsho",
-          "price": "9",
-          "description": "Fermented turnip · sourdough crumpet · nasturtium · egg yolk jam"
         },
         {
           "name": "Squash Blossom Crepes",
@@ -71,7 +66,7 @@
           "description": "Jersey peach salsa · watercress · chicharrón"
         },
         {
-          "name": "Charcoal Grilled Boston Mackerel",
+          "name": "Charcoal Grilled Spanish Mackerel",
           "price": "30",
           "description": "Green crab curry · chive oil · summer escabeche"
         },
