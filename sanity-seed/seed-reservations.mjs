@@ -60,7 +60,6 @@ async function run() {
       eyebrow: exp.eyebrow,
       title: exp.title,
       id: { _type: "slug", current: exp.id },
-      description: exp.description,
       details: exp.details.map((d) => ({
         _type: "diningOptionDetail",
         _key: d.label.toLowerCase().replace(/\s+/g, "-"),

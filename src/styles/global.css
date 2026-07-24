@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap");
 
 @font-face {
   font-family: "ContaxSans35";
@@ -75,6 +75,10 @@ body {
 
 main {
   flex: 1;
+}
+
+strong {
+  font-weight: 600;
 }
 
 /* Shared utility classes */

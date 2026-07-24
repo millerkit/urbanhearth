@@ -14,12 +14,8 @@ import Base from "../layouts/Base.astro";
 const restaurant = await getSiteSettings();
 
 type Detail = { label: string; value?: string; linkType?: string };
-type Experience = Omit<
-  (typeof reservationsFallback)[number],
-  "details" | "description"
-> & {
+type Experience = Omit<(typeof reservationsFallback)[number], "details"> & {
   details: Detail[];
-  description: string | string[];
 };
 let experiences: Experience[] = reservationsFallback as Experience[];
 let page = pageFallback;
@@ -83,7 +79,7 @@ const diningOptionsMap = Object.fromEntries(
                   {(
                     pricing?.descriptionShort ??
                     pricing?.description ??
-                    [exp.description].flat()
+                    []
                   ).map((para: string) => (
                     <p set:html={para} />
                   ))}

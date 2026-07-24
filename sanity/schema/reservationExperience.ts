@@ -37,11 +37,6 @@ export const reservationExperience = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: "description",
-      type: "text",
-      validation: (Rule) => Rule.required(),
-    }),
-    defineField({
       name: "details",
       type: "array",
       of: [{ type: "diningOptionDetail" }],

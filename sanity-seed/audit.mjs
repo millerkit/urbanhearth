@@ -399,7 +399,7 @@ async function auditReservations() {
   startSection("reservationExperience  ←  reservations.json");
   const localExps = fallback("reservations.json");
   const remoteExps = await client.fetch(
-    `*[_type == "reservationExperience"] | order(order asc){ "id": id.current, order, number, eyebrow, title, description, note, details[]{ label, value, linkType } }`,
+    `*[_type == "reservationExperience"] | order(order asc){ "id": id.current, order, number, eyebrow, title, note, details[]{ label, value, linkType } }`,
   );
 
   for (const local of localExps) {
@@ -416,7 +416,6 @@ async function auditReservations() {
     diff(`${prefix}.number`, local.number, remote.number);
     diff(`${prefix}.eyebrow`, local.eyebrow, remote.eyebrow);
     diff(`${prefix}.title`, local.title, remote.title);
-    diff(`${prefix}.description`, local.description, remote.description);
     diff(`${prefix}.note`, local.note ?? null, remote.note ?? null);
 
     const localDetails = local.details ?? [];

@@ -58,15 +58,14 @@ const pricing = diningOptions.find((o) => o.id === "chefs-counter");
 
   <div class="desc">
     {
-      (
-        pricing?.descriptionShort ??
-        pricing?.description ?? [card.description]
-      ).map((para: string) => (
-        <>
-          <p set:html={para} />
-          <br />
-        </>
-      ))
+      (pricing?.descriptionShort ?? pricing?.description ?? []).map(
+        (para: string) => (
+          <>
+            <p set:html={para} />
+            <br />
+          </>
+        ),
+      )
     }
   </div>
 

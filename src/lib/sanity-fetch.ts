@@ -207,7 +207,6 @@ export async function fetchReservationExperiences() {
       eyebrow,
       title,
       "id": id.current,
-      description,
       details[]{ label, value, linkType },
       note
     }
@@ -313,7 +312,6 @@ export async function fetchChefsCounter() {
     *[_type == "diningOption" && id.current == "chefs-counter"][0]{
       "eyebrow": label,
       "priceDisplay": details[label == "Price"][0].value,
-      "description": description[0],
       "pairingsLabel": details[label == "Pairings"][0].label,
       "pairingsValue": details[label == "Pairings"][0].value,
       finePrint
