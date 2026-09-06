@@ -1,10 +1,15 @@
 {
-  "season": "August 2026",
+  "season": "September 2026",
   "footer_note": "Ask your server to see our dessert menu. Please inform your server if you have any dietary restrictions. We add a 20% gratuity for all parties of 6 or more.",
   "sections": [
     {
       "title": "To start",
       "items": [
+        {
+          "name": "Warm Mediterranean Olives",
+          "price": "8",
+          "description": "Roasted garlic and chili"
+        },
         {
           "name": "Laminated Buttermilk Biscuit",
           "price": "8",
@@ -18,7 +23,8 @@
         {
           "name": "Unicorn Oysters on the Halfshell",
           "price": "4ea",
-          "description": "Cucumber pastisse mignonette · pepper vinegar"
+          "description": "Wild blueberry ponzu · pepper vinegar",
+          "note": "Add-on: 2g California white sturgeon caviar — 12 per oyster"
         },
         {
           "name": "House Crafted Charcuterie",
@@ -38,7 +44,8 @@
         {
           "name": "Two Bite Lobster Cornette",
           "price": "9",
-          "description": "Creme fraiche gelato · fennel & cucumber"
+          "description": "Creme fraiche gelato · fennel & cucumber",
+          "note": "Add-on: 2g California white sturgeon caviar — 12 per cone"
         },
         {
           "name": "Marinated Melon & Herb Salad",
@@ -48,7 +55,7 @@
         {
           "name": "Yellowfin Tuna Crudo with Wild Chamomile",
           "price": "26",
-          "description": "Cucumber aguachile · zuccini salsa verde"
+          "description": "Cucumber aguachile · zucchini salsa verde"
         },
         {
           "name": "Squash Blossom Crepes",
@@ -56,39 +63,29 @@
           "description": "Whipped white bean spread · pickled green tomato · feta"
         },
         {
-          "name": "Grilled Haloumi and Heirloom Tomato",
+          "name": "Heirloom Tomato with Stracciatella",
           "price": "24",
-          "description": "Roasted pepper coulis · purslane · cerignola toast"
+          "description": "Roasted pepper coulis · oregano chimichurri · coriander pepita praline"
         },
         {
-          "name": "Summer Squash and Bacon Savory Brûlée",
+          "name": "Summer Squash Savory Crème Brûlée",
           "price": "28",
-          "description": "Jersey peach salsa · watercress · chicharrón"
-        },
-        {
-          "name": "Littleneck Clams in Sweet Corn Broth",
-          "price": "26",
-          "description": "Samphire · summer escabeche · sourdough"
+          "description": "Seared peach · pecorino crisp"
         },
         {
           "name": "Handmade Rigatoni & N'duja Sugo",
           "price": "33",
-          "description": "Stracciatella · fermented onion flower honey"
+          "description": "Mascarpone · fermented onion flower honey"
         },
         {
-          "name": "Ricotta Cavatelli with Petits Pois",
-          "price": "32",
-          "description": "Sugar snaps · bibb lettuce · soft herbs"
+          "name": "Pan-Roasted Halibut with Verjus & Late Summer Apple",
+          "price": "48",
+          "description": "Toasted buckwheat · cavolo nero · smoked marcona butter"
         },
         {
-          "name": "Dry Aged Striped Bass in Tarragon Lime Butter",
-          "price": "44",
-          "description": "Smoked trout roe · shaved fennel · grapefruit"
-        },
-        {
-          "name": "BBQ Duck Breast with Allspice and Cherry",
+          "name": "BBQ Duck Breast with Allspice and Wild Blueberry",
           "price": "46",
-          "description": "Sweet onion · sprouted broccoli · walnut"
+          "description": "Sweet onion · field broccoli · walnut"
         }
       ]
     }
