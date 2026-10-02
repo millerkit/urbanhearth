@@ -1,8 +1,28 @@
 /* Shared styles for à la carte menu and Chef's Counter */
 
+/* Dark Midnight card. Re-points the ink/border tokens so every menu page
+   flips to light-on-dark without per-page edits. */
 .menu-card {
-  background: var(--warm-white);
-  border: 1px solid rgba(22, 34, 53, 0.13);
+  --ink: var(--parchment);
+  --ink-mid: rgba(232, 227, 223, 0.72); /* ~7:1 on Midnight */
+  --ink-light: var(--ink-mid);
+  --border: rgba(232, 227, 223, 0.16);
+
+  background: var(--midnight);
+  border: 1px solid var(--midnight);
+}
+
+/* Light-on-dark text looks thinner; step weights up. */
+.menu-card .dish-desc,
+.menu-card .desc,
+.menu-card .menu-fine-print {
+  font-weight: 400;
+}
+
+/* Midnight button would vanish on a Midnight card; invert it. */
+.menu-card a.reservation-btn {
+  background: var(--parchment);
+  color: var(--midnight);
 }
 
 .menu-eyebrow {

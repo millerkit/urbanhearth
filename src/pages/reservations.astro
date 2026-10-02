@@ -160,16 +160,29 @@ const diningOptionsMap = Object.fromEntries(
     margin-top: 111px;
   }
 
+  /* Tighter header than the shared PageHeader default (2rem / 2.5rem / 1.5rem). */
+  .reservations :global(header.page-header) {
+    padding: 1.25rem 2rem 1.5rem;
+  }
+
+  .reservations :global(.page-header h1) {
+    margin-bottom: 0.6rem;
+  }
+
   /* ── Experience list ── */
+  /* Each experience is a contained Parchment panel on the warm-white page. */
   .experiences {
-    max-width: 936px;
-    margin: 0 auto;
-    border-top: 1px solid var(--border);
+    width: min(936px, 100% - 2.5rem);
+    margin: 1.5rem auto 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
   }
 
   .experience {
     padding: 1.75rem 2rem;
-    border-bottom: 1px solid var(--border);
+    background: var(--parchment);
+    border: 1px solid var(--border);
   }
 
   .exp-title {
@@ -178,6 +191,8 @@ const diningOptionsMap = Object.fromEntries(
     font-weight: 300;
     letter-spacing: 0.06em;
     color: var(--ink);
+    /* Only the Thin Contax weight is loaded; thicken strokes so it reads darker. */
+    -webkit-text-stroke: 0.6px var(--ink);
     line-height: 1.1;
     margin-bottom: 0.75rem;
   }
