@@ -1,20 +1,20 @@
 {
-  "curatedBy": "Peter G Nelson Jr, bar lead",
+  "curatedBy": [
+    "Katie Janik, wine director",
+    "Mika Klos-Shakaid, bartender",
+    "Abigail Taylor, general manager"
+  ],
   "spiritsSections": [
     {
-      "title": "Vodka",
+      "title": "Vodka & Gin",
       "items": [
         { "name": "Tito's", "price": "14" },
-        { "name": "Grey Goose", "price": "18" }
-      ]
-    },
-    {
-      "title": "Gin",
-      "items": [
+        { "name": "Grey Goose", "price": "18" },
         { "name": "Broker's", "price": "14" },
         { "name": "Barr Hill", "price": "14" },
+        { "name": "Hendrick's", "price": "16" },
         { "name": "Tanqueray", "price": "18" },
-        { "name": "Drumshambo Gunpowder Irish", "price": "20" },
+        { "name": "Monkey 47", "price": "24" },
         { "name": "Plymouth", "price": "16" },
         { "name": "Roku", "price": "18" }
       ]
@@ -24,144 +24,214 @@
       "items": [
         { "name": "Privateer Reserva", "price": "16" },
         { "name": "Privateer Silver", "price": "16" },
-        { "name": "Old Monk", "price": "16" },
         { "name": "Goslings", "price": "14" },
-        { "name": "Novo Fogo Cachaça", "price": "14" }
+        { "name": "Novo Fogo Cachaça", "price": "15" }
       ]
     },
     {
       "title": "Agave",
       "items": [
         { "name": "Tres Agave Bianco", "price": "14" },
+        { "name": "Fortaleza Blanco", "price": "18" },
         { "name": "Ocho Reposado", "price": "18" },
-        { "name": "400 Conejos Mezcal", "price": "14" }
+        { "name": "Granja Nómada Joven Mezcal", "price": "13" }
       ]
     },
     {
-      "title": "Whiskey",
+      "title": "Whiskey & Scotch",
       "items": [
         { "name": "Old Overholt", "price": "14" },
         { "name": "Basil Hayden Bourbon", "price": "18" },
-        { "name": "Nikka Coffey", "price": "18" },
-        { "name": "Rittenhouse Rye", "price": "14" }
-      ]
-    },
-    {
-      "title": "Scotch",
-      "items": [
+        { "name": "Elijah Craig", "price": "18" },
+        { "name": "Whistle Pig Rye 12", "price": "26" },
+        { "name": "Suntory Toki", "price": "18" },
+        { "name": "Rittenhouse Rye", "price": "14" },
         { "name": "Dewar's", "price": "12" },
+        { "name": "Port Charlotte 10", "price": "26" },
         { "name": "Caol Ila 12", "price": "22" },
         { "name": "Talisker Storm 10", "price": "22" },
         { "name": "Balvenie Doublewood 12", "price": "24" }
+      ]
+    },
+    {
+      "title": "Amaro etc.",
+      "items": [
+        { "name": "Amaro Averna", "price": "12" },
+        { "name": "Amaro Montenegro", "price": "14" },
+        { "name": "Amaro Braulio", "price": "14" },
+        { "name": "Aperol", "price": "11" },
+        { "name": "Campari", "price": "12" },
+        { "name": "Cynar", "price": "14" },
+        { "name": "Fernet Branca & Menta", "price": "14" },
+        { "name": "Jeppson's Malört", "price": "12" },
+        { "name": "BroVo Uncharted Rhapsody", "price": "16" },
+        { "name": "St Agrestis Amaro", "price": "14" },
+        { "name": "Green Chartreuse", "price": "22" },
+        { "name": "Yellow Chartreuse", "price": "22" },
+        { "name": "Sfumato Rabarbaro", "price": "14" },
+        { "name": "Amaro Lucano Zero Proof", "price": "14" },
+        { "name": "The Pathfinder N/A", "price": "14" }
       ]
     }
   ],
   "cocktailPrice": "18",
   "cocktails": [
     {
-      "name": "Sunkissed",
-      "description": "Vodka, rhubarb cordial, lemon"
-    },
-    {
-      "name": "Helix",
-      "description": "Roku Gin, Aperol, chinchona"
+      "name": "Midsummer Storm",
+      "description": "Blanco tequila, salted watermelon, shishito, mint (milk punch, contains whey)"
     },
     {
       "name": "Summertime Crush",
       "description": "Symphony 6 (black currant, fig leaf, citrus), yuzu, Earl Grey"
     },
     {
-      "name": "Low Light",
-      "description": "Vermouth, clarified coconut, olive, agave, celery"
-    },
-    {
-      "name": "Starry Eyes",
-      "description": "Brandy two ways — Blanche d'Armagnac, Calvados, shiso, bitters"
+      "name": "Theme in Yellow",
+      "description": "Butter-washed mezcal, Nixta, charred corn"
     },
     {
       "name": "Verdant Gent",
       "description": "Gin, Thai-basil matcha, American forest, lime"
     },
     {
+      "name": "Field Notes",
+      "description": "Vodka, tomato, manzanilla, koji"
+    },
+    {
+      "name": "Starry Eyes",
+      "description": "Brandy two ways — Blanche d'Armagnac, Calvados, shiso, bitters"
+    },
+    {
       "name": "Spark of Inspiration",
-      "description": "Cilantro, sherry, salted rosemary, rabarbaro"
+      "description": "Sherry, salted rosemary, cilantro, rabarbaro"
     },
     {
       "name": "Good Luck Charm",
       "description": "Snap pea, plum, sorghum, gentian"
     },
     {
-      "name": "Toil & Trouble",
-      "description": "Coconut milk, Thai-basil matcha, strawberry cordial, lime, seltzer",
-      "nonAlcoholic": true
-    },
-    {
-      "name": "Beach Rose",
-      "description": "Pentire Seaward, shiso, citrus, sherry vin, nori",
+      "name": "Spill the Tea",
+      "description": "Chamomile, lemongrass, pineapple, ginger",
       "nonAlcoholic": true
     },
     {
       "name": "Scarlet",
       "description": "Pomegranate, beet, citrus, salted rosemary, aromatic foam",
       "nonAlcoholic": true
+    },
+    {
+      "name": "There & Back Again",
+      "description": "Cucumber verjus, Pathfinder, agave nectar, bubbles",
+      "nonAlcoholic": true
     }
   ],
-  "zeroProofPrice": "12",
-  "beer": [
+  "zeroProofPrice": "15",
+  "smallFormatPrice": "10",
+  "smallFormat": [
     {
-      "name": "Notch Salem Lager",
-      "brewery": "Salem, MA",
-      "price": "10",
-      "description": "4.5% helles lager — lemon, brioche"
+      "name": "Wee Daiquiri",
+      "description": "1.5 oz Privateer white rum, lime, simple"
     },
+    {
+      "name": "Tini-tini",
+      "description": "1.5 oz vodka or gin martini served up with a twist or olive"
+    },
+    {
+      "name": "Tiny Negroni",
+      "description": "1.5 oz pour"
+    }
+  ],
+  "beer": [
     {
       "name": "Shilling Alexandr",
       "brewery": "Littleton, NH",
       "price": "10",
+      "format": "On Tap",
       "description": "5% pilsner — crisp, lemon, biscuit"
+    },
+    {
+      "name": "Notch Amber Vienna Lager",
+      "brewery": "Salem, MA",
+      "price": "10",
+      "format": "On Tap",
+      "description": "4.5% amber lager — toast, caramel, bread"
+    },
+    {
+      "name": "Oxbow Farmhouse Ale",
+      "brewery": "Newcastle, ME",
+      "price": "9",
+      "format": "On Tap",
+      "description": "6% session — brioche, lemon zest"
+    },
+    {
+      "name": "Maine Lunch IPA",
+      "brewery": "Freeport, ME",
+      "price": "11",
+      "format": "On Tap",
+      "description": "7% East Coast IPA — caramel, grapefruit, papaya"
+    },
+    {
+      "name": "Lamplighter Birds of a Feather",
+      "brewery": "Cambridge, MA",
+      "price": "9",
+      "format": "On Tap",
+      "description": "6.8% IPA — spruce, lemongrass, Meyer lemon"
+    },
+    {
+      "name": "Dorchester Brewing Punchbowl",
+      "brewery": "Dorchester, MA",
+      "price": "9",
+      "format": "On Tap",
+      "description": "4.9% sour — pineapple, açaí, guava & lime"
+    },
+    {
+      "name": "Notch Salem Lager",
+      "brewery": "Salem, MA",
+      "price": "10",
+      "format": "Packaged",
+      "description": "4.5% helles lager — lemon, brioche"
     },
     {
       "name": "Equilibrium Photon",
       "brewery": "Middletown, NY",
       "price": "10",
+      "format": "Packaged",
       "description": "4.8% pale ale — biscuit, pineapple, mango"
-    },
-    {
-      "name": "Aeronaut Dr. Nandu",
-      "brewery": "Somerville, MA",
-      "price": "10",
-      "description": "6.3% APA — pine sap, passion fruit, toast"
-    },
-    {
-      "name": "Oxbow Farmhouse Ale",
-      "brewery": "Newcastle, ME",
-      "price": "8",
-      "description": "6% session — brioche, lemon zest"
     },
     {
       "name": "Ommegang Rare Vos",
       "brewery": "Cooperstown, NY",
       "price": "9",
+      "format": "Packaged",
       "description": "6.5% amber — coriander, orange peel, grain"
     },
     {
       "name": "Stormalong Legendary Dry Cider",
       "brewery": "Millis, MA",
       "price": "9",
+      "format": "Packaged",
       "description": "6.5% extra dry cider"
     },
     {
-      "name": "Stormalong Passion Trip Cider",
-      "brewery": "Millis, MA",
-      "price": "9",
-      "description": "Non-alcoholic cider with passionfruit",
+      "name": "Wölffer No. 139 Dry Rosé Cider",
+      "brewery": "Sagaponack, NY",
+      "price": "14",
+      "format": "Packaged",
+      "description": "6.9% dry rosé cider"
+    },
+    {
+      "name": "N/A Notch Brewing IPA",
+      "brewery": "Salem, MA",
+      "price": "8",
+      "format": "Spirit Free Brews",
+      "description": "0.0% non-alcoholic IPA style",
       "nonAlcoholic": true
     },
     {
-      "name": "Notch Brewing IPA",
-      "brewery": "Salem, MA",
-      "price": "8",
-      "description": "Non-alcoholic IPA",
+      "name": "N/A Peak Organic All Good IPA",
+      "brewery": "Ithaca, NY",
+      "price": "9",
+      "format": "Spirit Free Brews",
+      "description": "0.0% non-alcoholic IPA style",
       "nonAlcoholic": true
     }
   ]

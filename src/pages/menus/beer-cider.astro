@@ -6,6 +6,15 @@ import Base from "../../layouts/Base.astro";
 import PageHeader from "../../components/PageHeader.astro";
 
 const restaurant = await getSiteSettings();
+
+const beerGroups = spiritsMenu.beer.reduce<
+  { format: string; items: typeof spiritsMenu.beer }[]
+>((groups, beer) => {
+  const group = groups.find((g) => g.format === beer.format);
+  if (group) group.items.push(beer);
+  else groups.push({ format: beer.format, items: [beer] });
+  return groups;
+}, []);
 ---
 
 <Base
@@ -20,20 +29,25 @@ const restaurant = await getSiteSettings();
 
     <div class="menus-layout">
       <div class="menu-card menu-main">
-        <ul class="dish-list">
-          {
-            spiritsMenu.beer.map((beer) => (
-              <li class="dish">
-                <div class="dish-top">
-                  <span class="dish-name">{beer.name}</span>
-                  <span class="dish-price">{beer.price}</span>
-                </div>
-                <p class="beer-brewery menu-label">{beer.brewery}</p>
-                <p class="dish-desc">{beer.description}</p>
-              </li>
-            ))
-          }
-        </ul>
+        {
+          beerGroups.map((group) => (
+            <section class="menu-section">
+              <h2 class="menu-label beer-format">{group.format}</h2>
+              <ul class="dish-list">
+                {group.items.map((beer) => (
+                  <li class="dish">
+                    <div class="dish-top">
+                      <span class="dish-name">{beer.name}</span>
+                      <span class="dish-price">{beer.price}</span>
+                    </div>
+                    <p class="beer-brewery menu-label">{beer.brewery}</p>
+                    <p class="dish-desc">{beer.description}</p>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ))
+        }
       </div>
     </div>
   </div>
@@ -55,6 +69,20 @@ const restaurant = await getSiteSettings();
 
   .menu-main {
     padding: 2.5rem 3rem 3rem;
+  }
+
+  .menu-section {
+    margin-bottom: 3rem;
+  }
+
+  .menu-section:last-of-type {
+    margin-bottom: 0;
+  }
+
+  .beer-format {
+    margin-bottom: 0.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
   }
 
   .dish-list {

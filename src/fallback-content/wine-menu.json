@@ -1,5 +1,9 @@
 {
-  "curatedBy": "Katie Janik, wine director",
+  "curatedBy": [
+    "Katie Janik, wine director",
+    "Mika Klos-Shakaid, bartender",
+    "Abigail Taylor, general manager"
+  ],
   "footerNote": "For a full bottle list, please ask your server.",
   "sections": [
     {
@@ -12,16 +16,10 @@
           "price": "14 | 45"
         },
         {
-          "name": "2024 Oyster River Morphos Pét Nat",
-          "region": "Warren, Maine",
-          "description": "Cayuga, Seyval Blanc — yeasty, lemon drops, yellow apples, brioche",
-          "price": "16 | 65"
-        },
-        {
-          "name": "NV Arnaud Lambert Crémant de Loire Brut",
-          "region": "Loire, France",
-          "description": "Chenin Blanc, Chardonnay — fresh citrus, honey, crisp minerality",
-          "price": "18 | 75"
+          "name": "NV Sophie Schall Crémant d'Alsace",
+          "region": "Alsace, France",
+          "description": "Pinot Blanc — green apple, lemon zest, toast",
+          "price": "17 | 75"
         }
       ]
     },
@@ -29,22 +27,16 @@
       "title": "White",
       "items": [
         {
-          "name": "2023 Union Sacré Dry Riesling",
-          "region": "Paso Robles, CA",
-          "description": "Riesling — pineapple, honeysuckle, minerality",
-          "price": "14 | 65"
+          "name": "2024 Alice Berthier Coteaux de Giennois",
+          "region": "Loire, France",
+          "description": "Sauvignon Blanc — grapefruit, white flowers, limestone",
+          "price": "16 | 70"
         },
         {
-          "name": "2024 Arnaud Lambert Le Parcelles",
-          "region": "Saumur, Loire, France",
-          "description": "Chenin Blanc — quince, pear, crushed rocks, salt",
-          "price": "18 | 80"
-        },
-        {
-          "name": "2023 Mortellito Cala Iancu",
+          "name": "2024 Barone Villagrande Etna Bianco",
           "region": "Sicily, Italy",
-          "description": "Grillo, Catarratto — zesty lemon, grapefruit, sea spray",
-          "price": "19 | 80"
+          "description": "Carricante — citrus, salinity, volcanic minerality",
+          "price": "20 | 85"
         },
         {
           "name": "2024 Judith Beck Weissburgunder",
@@ -58,16 +50,16 @@
       "title": "Rosé & Orange",
       "items": [
         {
-          "name": "2023 Turay Vineyards Galactic Juice",
-          "region": "Baj, Hungary",
-          "description": "Blaufränkisch — cherries & berries",
-          "price": "16 | 65"
+          "name": "2025 Bedrock Wine Co. 'Ode to Lulu' Rosé",
+          "region": "Sonoma County, California",
+          "description": "Mourvèdre — grapefruit, savory herbs, old-vine complexity",
+          "price": "18 | 80"
         },
         {
-          "name": "2024 Garalis Terra Ambera",
-          "region": "Lemnos, Greece",
-          "description": "Muscat of Alexandria — quince, lemon zest, mushroom",
-          "price": "18 | 75"
+          "name": "2023 Johan Vineyards Maceration White",
+          "region": "Willamette Valley, Oregon",
+          "description": "Kerner, Friulano, Grüner Veltliner — apricot, rhubarb, black tea",
+          "price": "20 | 85"
         }
       ]
     },
@@ -75,22 +67,22 @@
       "title": "Red",
       "items": [
         {
-          "name": "2024 San Biagio Vecchio Porcaloca",
+          "name": "2023 Domaine Lardy Les Dechamps",
+          "region": "Chénas, Beaujolais, France",
+          "description": "Gamay — wild blackberry, stony minerality, spices",
+          "price": "16 | 70"
+        },
+        {
+          "name": "2023 Chiara Condello Predappio",
           "region": "Emilia-Romagna, Italy",
-          "description": "Sangiovese — red licorice, cinnamon, subtle fruit",
-          "price": "18 | 85"
+          "description": "Sangiovese — cherry, rose, pomegranate, savory herbs",
+          "price": "20 | 85"
         },
         {
-          "name": "2023 Yohan Lardy Fleurie Le Vivier",
-          "region": "Fleurie, Beaujolais, France",
-          "description": "Gamay — bright cherry, strawberry, violets",
-          "price": "17 | 75"
-        },
-        {
-          "name": "2022 Zagreus Santimenti Red",
-          "region": "Thracian Valley, Bulgaria",
-          "description": "Mavrud — powerful, black cherry, spice",
-          "price": "17 | 75"
+          "name": "2025 Bodega Luberri Orlegi",
+          "region": "Rioja, Spain",
+          "description": "Tempranillo — raspberry, violet, pepper",
+          "price": "15 | 60"
         }
       ]
     }

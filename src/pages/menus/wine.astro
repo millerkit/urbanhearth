@@ -48,7 +48,15 @@ const restaurant = await getSiteSettings();
         }
 
         <p class="curated-by menu-fine-print">
-          Curated by {wineMenu.curatedBy}
+          Curated by
+          {
+            wineMenu.curatedBy.map((person) => (
+              <>
+                <br />
+                {person}
+              </>
+            ))
+          }
         </p>
       </div>
     </div>

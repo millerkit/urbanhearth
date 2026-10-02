@@ -44,6 +44,29 @@ const restaurant = await getSiteSettings();
         </section>
       </div>
 
+      <!-- ── Small Format ── -->
+      <div class="menu-card menu-main">
+        <p class="menu-eyebrow">Small Format</p>
+
+        <section class="menu-section">
+          <ul class="dish-list">
+            {
+              spiritsMenu.smallFormat.map((drink) => (
+                <li class="dish">
+                  <div class="dish-top">
+                    <span class="dish-name">{drink.name}</span>
+                    <span class="dish-price">
+                      {spiritsMenu.smallFormatPrice}
+                    </span>
+                  </div>
+                  <p class="dish-desc">{drink.description}</p>
+                </li>
+              ))
+            }
+          </ul>
+        </section>
+      </div>
+
       <!-- ── Zero Proof ── -->
       <div class="menu-card menu-main">
         <p class="menu-eyebrow">Zero Proof</p>
@@ -94,7 +117,15 @@ const restaurant = await getSiteSettings();
       </div>
 
       <p class="curated-by menu-fine-print">
-        Curated by {spiritsMenu.curatedBy}
+        Curated by
+        {
+          spiritsMenu.curatedBy.map((person) => (
+            <>
+              <br />
+              {person}
+            </>
+          ))
+        }
       </p>
     </div>
   </div>
