@@ -91,18 +91,20 @@ const canonicalURL = new URL(normalizedPath, Astro.site ?? restaurant.url).href;
         } catch (_) {}
       };
       document.addEventListener("click", function (e) {
-        var el = e.target.closest && e.target.closest("a, button");
-        if (!el) return;
-        if (el.classList.contains("js-open-inquiry")) {
-          window.trackEvent("Inquiry: open form");
-          return;
-        }
-        var href = el.getAttribute("href") || "";
-        if (href === "/reservations" || href === "/reservations/") {
-          window.trackEvent("Reserve: click");
-        } else if (href.indexOf("opentable.com") !== -1) {
-          window.trackEvent("Reserve: OpenTable click");
-        }
+        try {
+          var el = e.target.closest && e.target.closest("a, button");
+          if (!el) return;
+          if (el.classList.contains("js-open-inquiry")) {
+            window.trackEvent("Inquiry: open form");
+            return;
+          }
+          var href = el.getAttribute("href") || "";
+          if (href === "/reservations" || href === "/reservations/") {
+            window.trackEvent("Reserve: click");
+          } else if (href.indexOf("opentable.com") !== -1) {
+            window.trackEvent("Reserve: OpenTable click");
+          }
+        } catch (_) {}
       });
     </script>
 
