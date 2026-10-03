@@ -224,6 +224,7 @@ const { email } = Astro.props;
           headers: { Accept: "application/json" },
         });
         if (res.ok) {
+          if (window.trackEvent) window.trackEvent("Inquiry: submitted");
           const intro = document.getElementById("inquiry-modal-intro");
           if (intro) intro.hidden = true;
           form.hidden = true;
