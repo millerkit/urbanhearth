@@ -10,6 +10,8 @@
 
   background: var(--midnight);
   border: 1px solid var(--midnight);
+  /* Child components (e.g. RestaurantHours) aren't reached by scoped page styles */
+  color: var(--ink);
 }
 
 /* Light-on-dark text looks thinner; step weights up. */
