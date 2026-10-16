@@ -43,30 +43,30 @@
     "ctaLabel": "Reserve your seat",
     "description": [
       "An intimate front-row seat to the creative heart of Urban Hearth.",
-      "Join us at our six-seat Chef’s Counter for an immersive tasting menu featuring 8–12 courses inspired by the season, the farm, and the larder. Watch the kitchen at work, engage directly with the chefs, and experience each dish as it is finished and presented.",
-      "Led by James Beard Award-nominated Chef Erin Miller, the menu showcases exceptional local ingredients, foraged discoveries, and refined technique in a setting that is equal parts dinner party and culinary performance.",
+      "Join us at our six-seat Chef’s Counter for a tasting menu of 8–12 courses inspired by the season, the farm, and the larder. Erin Miller cooks and plates every course at the Counter, Tuesday through Saturday, and talks you through each one as it arrives. [TODO: one or two specific dishes or a sample menu]",
+      "Led by Chef Erin Miller, a 2025 James Beard Award nominee for Best Chef: Northeast, the menu showcases exceptional local ingredients, foraged discoveries, and refined technique in a setting that is equal parts dinner party and culinary performance.",
       "Thoughtful hospitality, lively conversation, and unforgettable food come together in an experience designed to delight and nourish.",
       "The Chef’s Counter experience is available Tuesday through Saturday at 5:45 and 8:15 pm.",
-      "We offer an <strong>omnivore or vegetarian menu</strong>. Please note which you’d prefer in your reservation. We can accommodate the following dietary restrictions: Vegetarian, Pescatarian, Mammal-free, Nut-free, Shellfish-free, Gluten-free, Dairy-free. If you have a combination of these or any other dietary restrictions, please reach out before booking. Please note your dietary restrictions and any other special requests in your reservation."
+      "We offer an <strong>omnivore or vegetarian menu</strong>. Please note which you’d prefer in your reservation. We can also accommodate the following dietary restrictions: Pescatarian, Mammal-free, Nut-free, Shellfish-free, Gluten-free, Dairy-free. If you have a combination of these or any other dietary restrictions, please email <a href=\"mailto:concierge@urbanhearth.net\">concierge@urbanhearth.net</a> before booking. Please note your dietary restrictions and any other special requests in your reservation."
     ],
     "descriptionShort": [
       "An intimate front-row seat to the creative heart of Urban Hearth.",
-      "Join us at our six-seat Chef’s Counter for an immersive tasting menu featuring 8–12 courses inspired by the season, the farm, and the larder. Watch the kitchen at work, engage directly with the chefs, and experience each dish as it is finished and presented.",
+      "Join us at our six-seat Chef’s Counter for a tasting menu of 8–12 courses inspired by the season, the farm, and the larder. Erin Miller cooks and plates every course at the Counter, Tuesday through Saturday, and talks you through each one as it arrives. [TODO: one or two specific dishes or a sample menu]",
       "The Chef’s Counter experience is available Tuesday through Saturday at 5:45 and 8:15 pm.",
-      "We offer an <strong>omnivore or vegetarian menu</strong>. Please note which you’d prefer in your reservation. We can accommodate the following dietary restrictions: Vegetarian, Pescatarian, Mammal-free, Nut-free, Shellfish-free, Gluten-free, Dairy-free. If you have a combination of these or any other dietary restrictions, please reach out before booking. Please note your dietary restrictions and any other special requests in your reservation."
+      "We offer an <strong>omnivore or vegetarian menu</strong>. Please note which you’d prefer in your reservation. We can also accommodate the following dietary restrictions: Pescatarian, Mammal-free, Nut-free, Shellfish-free, Gluten-free, Dairy-free. If you have a combination of these or any other dietary restrictions, please email <a href=\"mailto:concierge@urbanhearth.net\">concierge@urbanhearth.net</a> before booking. Please note your dietary restrictions and any other special requests in your reservation."
     ],
     "price": "$190",
     "priceSuffix": "per person, plus tax and tip",
-    "bookingNote": "Bookings are paid in advance via OpenTable, exclusions apply",
+    "bookingNote": "Bookings are paid in advance via OpenTable",
     "pairings": [
-      { "label": "5-course wine pairing", "price": "$85" },
-      { "label": "Premium wine pairing", "price": "$120" },
+      { "label": "Wine pairing, [TODO: number of pours]", "price": "$85" },
+      {
+        "label": "Premium wine pairing, [TODO: number of pours]",
+        "price": "$120"
+      },
       { "label": "Zero-proof pairing", "price": "$65" }
     ],
-    "details": [
-      { "label": "Seatings", "value": "5:45 pm & 8:15 pm" },
-      { "label": "Capacity", "value": "Maximum 4 guests per seating" }
-    ],
+    "details": [{ "label": "Seatings", "value": "5:45 pm & 8:15 pm" }],
     "finePrint": "Advance reservations required."
   },
   {

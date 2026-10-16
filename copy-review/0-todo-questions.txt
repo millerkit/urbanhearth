@@ -1,0 +1,57 @@
+QUESTIONS TO ANSWER BEFORE THE COPY GOES LIVE
+=============================================
+
+A. MARKED [TODO] IN THE COPY (these must be filled or cut before publishing)
+
+ 1. Our Story: In one sentence, what ties Erin's cooking together?
+    (the throughline)
+
+ 2. Chef's Counter: Which one or two dishes, or what sample menu, should the
+    page show?
+
+ 3. Chef's Counter: How many pours in the wine pairing ($85)?
+    (The old label said "5-course", but the menu runs 8-12 courses.)
+
+ 4. Chef's Counter: How many pours in the premium wine pairing ($120)?
+
+ 5. À la Carte, sustainability: What is one concrete example of low-waste
+    cooking? (a dish or preparation made from trim or surplus, and what is
+    preserved)
+
+ 6. À la Carte, sustainability: What is one concrete example of a direct farm
+    or producer relationship, and what do we buy from them?
+
+
+B. NOT MARKED IN THE COPY (nothing changed yet; needs answers first)
+
+ 7. Partner list (Our Story and À la Carte): What are the exact names and
+    "City, ST" locations for Rocky Neck, Island Creek Oysters, and Oysters
+    for My Friends? Should all three be listed publicly?
+
+ 8. Team page: What are Coco's full name, title, bio, and photo?
+
+ 9. Team page: Does Rebecca keep the title "Sous Chef", or get a new one?
+    Should the site say they "run the main line" at all?
+
+10. Team page: When does Gabriel leave? (his entry comes off then; the group
+    banner photo may also need updating)
+
+
+C. OPTIONAL / TO CONFIRM
+
+11. Bio: Does Erin want her Blue Ridge roots and foraging moved up near the
+    top, and how does she describe their effect on her cooking?
+    (An optional version is drafted; it is not in the copy.)
+
+12. Best of Boston: Was there a 2023 win? If so, which category?
+    (The list now shows 2022, 2024 and 2025 only.)
+
+13. Our Story: Do you want the Salon or a total seat count added?
+    (Only the 32-seat dining room is stated now.)
+
+
+D. WHEN GOING LIVE
+
+14. The edits are only in the JSON files. Sanity (Studio) must be updated or
+    re-seeded for the live site to change, including removing the "Capacity"
+    row from the Chef's Counter details in Sanity.

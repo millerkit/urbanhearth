@@ -1,0 +1,73 @@
+Chef's Counter
+==============
+Appears on /dining-options, /reservations and /menus/chefs-counter-menu
+
+Label above the card (/menus/chefs-counter-menu)
+------------------------------------------------
+Chef's Tasting Menu
+Advance reservations required.
+
+Price block
+-----------
+$190  per person, plus tax and tip
+Bookings are paid in advance via OpenTable
+
+Text on /dining-options (full version)
+--------------------------------------
+An intimate front-row seat to the creative heart of Urban Hearth.
+
+Join us at our six-seat Chef’s Counter for a tasting menu of 8–12 courses
+inspired by the season, the farm, and the larder. Erin Miller cooks and plates
+every course at the Counter, Tuesday through Saturday, and talks you through
+each one as it arrives. [TODO: one or two specific dishes or a sample menu]
+
+Led by Chef Erin Miller, a 2025 James Beard Award nominee for Best Chef:
+Northeast, the menu showcases exceptional local ingredients, foraged
+discoveries, and refined technique in a setting that is equal parts dinner
+party and culinary performance.
+
+Thoughtful hospitality, lively conversation, and unforgettable food come
+together in an experience designed to delight and nourish.
+
+The Chef’s Counter experience is available Tuesday through Saturday at 5:45
+and 8:15 pm.
+
+We offer an omnivore or vegetarian menu. Please note which you’d prefer in
+your reservation. We can also accommodate the following dietary restrictions:
+Pescatarian, Mammal-free, Nut-free, Shellfish-free, Gluten-free, Dairy-free.
+If you have a combination of these or any other dietary restrictions, please
+email concierge@urbanhearth.net before booking. Please note your dietary
+restrictions and any other special requests in your reservation.
+
+Text on /reservations and the Chef's Counter menu page (short version)
+----------------------------------------------------------------------
+An intimate front-row seat to the creative heart of Urban Hearth.
+
+Join us at our six-seat Chef’s Counter for a tasting menu of 8–12 courses
+inspired by the season, the farm, and the larder. Erin Miller cooks and plates
+every course at the Counter, Tuesday through Saturday, and talks you through
+each one as it arrives. [TODO: one or two specific dishes or a sample menu]
+
+The Chef’s Counter experience is available Tuesday through Saturday at 5:45
+and 8:15 pm.
+
+We offer an omnivore or vegetarian menu. Please note which you’d prefer in
+your reservation. We can also accommodate the following dietary restrictions:
+Pescatarian, Mammal-free, Nut-free, Shellfish-free, Gluten-free, Dairy-free.
+If you have a combination of these or any other dietary restrictions, please
+email concierge@urbanhearth.net before booking. Please note your dietary
+restrictions and any other special requests in your reservation.
+
+Optional pairings
+-----------------
+  Wine pairing, [TODO: number of pours]             $85
+  Premium wine pairing, [TODO: number of pours]     $120
+  Zero-proof pairing                                $65
+
+Details list (data only; not confirmed to display)
+--------------------------------------------------
+  Seatings: 5:45 pm & 8:15 pm
+
+Fine print
+----------
+Advance reservations required.
