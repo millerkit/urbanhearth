@@ -1,5 +1,5 @@
 {
-  "season": "September 2026",
+  "season": "Fall 2026",
   "footer_note": "Ask your server to see our dessert menu. Please inform your server if you have any dietary restrictions. We add a 20% gratuity for all parties of 6 or more.",
   "sections": [
     {
@@ -16,9 +16,9 @@
           "description": "Smoked maple miso butter"
         },
         {
-          "name": "Cornbread & Honeycomb",
+          "name": "Boston Brown Bread",
           "price": "10",
-          "description": "Cultured butter · pickled peppers"
+          "description": "Umami butter"
         },
         {
           "name": "Unicorn Oysters on the Halfshell",
@@ -34,7 +34,7 @@
         {
           "name": "New England Cheese Plate",
           "price": "23",
-          "description": "Jasper Hill brie · fiddlehead tomme · Vermont Creamery chèvre · confiture"
+          "description": "Jasper Hill cheddar · fiddlehead tomme · Vermont Creamery chèvre · confiture"
         }
       ]
     },
@@ -58,9 +58,9 @@
           "description": "Cucumber aguachile · zucchini salsa verde"
         },
         {
-          "name": "Squash Blossom Crepes",
+          "name": "Wild Mushroom Parfait with Sourdough Focaccia",
           "price": "28",
-          "description": "Whipped white bean spread · pickled green tomato · feta"
+          "description": "Crispy leeks · pickled shiitake"
         },
         {
           "name": "Heirloom Tomato with Stracciatella",
@@ -70,7 +70,7 @@
         {
           "name": "Summer Squash Savory Crème Brûlée",
           "price": "28",
-          "description": "Seared peach · pecorino crisp"
+          "description": "Peach · pecorino crisp"
         },
         {
           "name": "Handmade Rigatoni & N'duja Sugo",
@@ -78,14 +78,19 @@
           "description": "Mascarpone · fermented onion flower honey"
         },
         {
-          "name": "Pan-Roasted Halibut with Verjus & Late Summer Apple",
+          "name": "Gnocchi with Chanterelles in Sage Butter",
+          "price": "32",
+          "description": "Roasted miso & winter squash · silverberry mostarda · ricotta salata"
+        },
+        {
+          "name": "Pan-Roasted Halibut with Verjus & Apple",
           "price": "48",
           "description": "Toasted buckwheat · cavolo nero · smoked marcona butter"
         },
         {
-          "name": "Lapsang-Rubbed Petit Filet",
+          "name": "Lilac Hedge Farm Denver Steak",
           "price": "56",
-          "description": "Mocha demi-glace · black garlic BBQ carrots · coriander salad"
+          "description": "Lapsang rub · mocha demi-glace · BBQ carrots & black garlic caramel"
         }
       ]
     }
