@@ -17,7 +17,7 @@ Text on /dining-options (full version)
 An intimate front-row seat to the creative heart of Urban Hearth.
 
 Join us at our six-seat Chef’s Counter for a tasting menu of 8–12 courses
-inspired by the season, the farm, and the larder. Erin Miller cooks and plates
+inspired by the season, the farm, and the larder. The Chef cooks and plates
 every course at the Counter, Tuesday through Saturday, and talks you through
 each one as it arrives. [TODO: one or two specific dishes or a sample menu]
 
@@ -44,7 +44,7 @@ Text on /reservations and the Chef's Counter menu page (short version)
 An intimate front-row seat to the creative heart of Urban Hearth.
 
 Join us at our six-seat Chef’s Counter for a tasting menu of 8–12 courses
-inspired by the season, the farm, and the larder. Erin Miller cooks and plates
+inspired by the season, the farm, and the larder. The chef cooks and plates
 every course at the Counter, Tuesday through Saturday, and talks you through
 each one as it arrives. [TODO: one or two specific dishes or a sample menu]
 
