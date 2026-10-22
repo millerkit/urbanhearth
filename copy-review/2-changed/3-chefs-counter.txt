@@ -17,9 +17,10 @@ Text on /dining-options (full version)
 An intimate front-row seat to the creative heart of Urban Hearth.
 
 Join us at our six-seat Chef’s Counter for a tasting menu of 8–12 courses
-inspired by the season, the farm, and the larder. The Chef cooks and plates
-every course at the Counter, Tuesday through Saturday, and talks you through
-each one as it arrives. [TODO: one or two specific dishes or a sample menu]
+inspired by the season, the farm, and the larder. At the Counter, our chef
+cooks and plates every course and talks you through each one as it arrives. The
+Counter is open Tuesday through Saturday. [TODO: one or two specific dishes or
+a sample menu]
 
 Led by Chef Erin Miller, a 2025 James Beard Award nominee for Best Chef:
 Northeast, the menu showcases exceptional local ingredients, foraged
@@ -44,9 +45,10 @@ Text on /reservations and the Chef's Counter menu page (short version)
 An intimate front-row seat to the creative heart of Urban Hearth.
 
 Join us at our six-seat Chef’s Counter for a tasting menu of 8–12 courses
-inspired by the season, the farm, and the larder. The chef cooks and plates
-every course at the Counter, Tuesday through Saturday, and talks you through
-each one as it arrives. [TODO: one or two specific dishes or a sample menu]
+inspired by the season, the farm, and the larder. At the Counter, our chef
+cooks and plates every course and talks you through each one as it arrives. The
+Counter is open Tuesday through Saturday. [TODO: one or two specific dishes or
+a sample menu]
 
 The Chef’s Counter experience is available Tuesday through Saturday at 5:45
 and 8:15 pm.
