@@ -139,9 +139,11 @@ if (isSanityConfigured) {
       <p class="menu-label sustainability-heading">
         {menuSectionsFallback.sustainability.heading}
       </p>
-      <p class="sustainability-body">
-        {menuSectionsFallback.sustainability.body}
-      </p>
+      {
+        menuSectionsFallback.sustainability.body
+          .split("\n\n")
+          .map((p) => <p class="sustainability-body">{p}</p>)
+      }
     </div>
   </div>
 </Base>
@@ -329,6 +331,10 @@ if (isSanityConfigured) {
     color: var(--ink);
     line-height: 1.85;
     max-width: 100%;
+  }
+
+  .sustainability-body + .sustainability-body {
+    margin-top: 1.25rem;
   }
 
   @media (max-width: 600px) {
