@@ -8,7 +8,7 @@ const restaurant = await getSiteSettings();
 
 <Base
   title={`Reservation Policy — ${restaurant.name}`}
-  description="Reservation and cancellation policy at Urban Hearth. Reservations require a card to hold; late cancellations and no-shows are subject to a $50/person fee."
+  description="Reservation and cancellation policy at Urban Hearth. Reservations require a card to hold. Late cancellations and no-shows are subject to a $50/person fee, or $190/person for the Chef's Counter."
 >
   <div class="reservation-policy">
     <PageHeader title="Reservation Policy" />
@@ -19,6 +19,10 @@ const restaurant = await getSiteSettings();
         asked to cancel or reschedule reservations as early as possible.
         Reservations canceled within 24 hours of the reservation time and
         no-show/no-call bookings are subject to a $50/person charge.
+      </p>
+      <p>
+        Chef's Counter reservations have their own terms: cancellations within
+        48 hours and no-shows are charged $190 per guest.
       </p>
     </div>
   </div>

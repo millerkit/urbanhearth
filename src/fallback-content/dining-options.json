@@ -57,7 +57,7 @@
     ],
     "price": "$190",
     "priceSuffix": "per person, plus tax and tip",
-    "bookingNote": "Bookings are paid in advance via OpenTable, exclusions apply",
+    "bookingNote": "Reserve with a credit card on OpenTable",
     "pairings": [
       { "label": "5-course wine pairing", "price": "$85" },
       { "label": "Premium wine pairing", "price": "$120" },
@@ -67,7 +67,7 @@
       { "label": "Seatings", "value": "5:45 pm & 8:15 pm" },
       { "label": "Capacity", "value": "Maximum 4 guests per seating" }
     ],
-    "finePrint": "Advance reservations required."
+    "finePrint": "Your card is held to secure your seat. Please cancel at least 48 hours in advance. Cancellations within 48 hours and no-shows are charged $190 per guest."
   },
   {
     "order": 3,

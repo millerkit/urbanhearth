@@ -155,7 +155,7 @@ export const diningOption = defineType({
       title: "Booking note",
       type: "string",
       description:
-        'Short note about payment or booking policy, e.g. "Bookings are paid in advance via OpenTable"',
+        'Short note about payment or booking policy, e.g. "Reserve with a credit card on OpenTable"',
     }),
     defineField({
       name: "pairings",
