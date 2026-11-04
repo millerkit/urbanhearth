@@ -75,6 +75,20 @@ const articleJsonLd = {
       }
       <h1>{post.title}</h1>
       {post.excerpt && <p class="post-excerpt">{post.excerpt}</p>}
+      {
+        post.ctaUrl && post.ctaLabel && (
+          <p class="post-cta">
+            <a
+              href={post.ctaUrl}
+              class="text-cta"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {post.ctaLabel}
+            </a>
+          </p>
+        )
+      }
     </div>
 
     {
@@ -137,6 +151,10 @@ const articleJsonLd = {
     max-width: 540px;
     margin: 0 auto;
     line-height: 1.7;
+  }
+
+  .post-cta {
+    margin-top: 1.75rem;
   }
 
   /* ── Cover image ── */

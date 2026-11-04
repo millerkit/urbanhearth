@@ -58,6 +58,8 @@ export async function fetchPostBySlug(slug: string) {
       title,
       publishedAt,
       excerpt,
+      ctaLabel,
+      ctaUrl,
       "coverImage": coverImage.asset->url,
       "coverImageHotspot": coverImage.hotspot,
       body[]{

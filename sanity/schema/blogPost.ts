@@ -27,6 +27,24 @@ export const blogPost = defineType({
       rows: 3,
     }),
     defineField({
+      name: "ctaLabel",
+      title: "Button label",
+      description:
+        'Optional button shown under the excerpt, e.g. "Book on OpenTable". Needs a button link too.',
+      type: "string",
+    }),
+    defineField({
+      name: "ctaUrl",
+      title: "Button link",
+      type: "url",
+      validation: (Rule) =>
+        Rule.uri({ scheme: ["https"] }).custom((url, context) =>
+          url && !(context.document as any)?.ctaLabel
+            ? "Add a button label too"
+            : true,
+        ),
+    }),
+    defineField({
       name: "coverImage",
       title: "Cover image",
       type: "image",
