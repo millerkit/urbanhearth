@@ -1,0 +1,98 @@
+---
+// The bar points to /gift-cards, so it's redundant (and the extra page
+// padding unwanted) on that page itself.
+const showBar = Astro.url.pathname.replace(/\/+$/, "") !== "/gift-cards";
+---
+
+{
+  showBar && (
+    <aside class="gift-bar" aria-label="Gift cards">
+      <p class="gift-bar__text">Give the gift of Urban Hearth</p>
+      <a href="/gift-cards" class="gift-bar__btn">
+        Buy Gift Card
+      </a>
+    </aside>
+  )
+}
+
+<script>
+  document.querySelector(".gift-bar a")?.addEventListener("click", () => {
+    try {
+      (window as any).trackEvent?.("Gift card: bar click");
+    } catch (_) {}
+  });
+</script>
+
+<style>
+  .gift-bar {
+    position: fixed;
+    top: 111px; /* below TopBar (68px) + desktop Nav */
+    left: 0;
+    right: 0;
+    z-index: 98; /* under nav (99) so its dropdowns overlap this bar */
+    height: 44px;
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    gap: 1.5rem;
+    background: var(--midnight);
+    font-family: var(--font-header-action), sans-serif;
+  }
+
+  .gift-bar__text {
+    align-self: center;
+    margin: 0;
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #fff;
+  }
+
+  .gift-bar__btn {
+    display: flex;
+    align-items: center;
+    padding: 0 1.4rem;
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--midnight);
+    background: var(--parchment);
+    transition: opacity 0.2s;
+  }
+
+  .gift-bar__btn:hover {
+    opacity: 0.8;
+  }
+
+  .gift-bar__btn:focus-visible {
+    outline: 2px solid var(--parchment);
+    outline-offset: -4px;
+  }
+
+  @media (max-width: 700px) {
+    .gift-bar {
+      top: 68px;
+      gap: 0;
+    }
+
+    .gift-bar__text {
+      display: none;
+    }
+
+    .gift-bar__btn {
+      flex: 1;
+      justify-content: center;
+      padding: 0 0.5rem;
+    }
+  }
+</style>
+
+<style is:global>
+  /* Reserve room for the bar so it doesn't cover the top of each page */
+  body:has(.gift-bar) main {
+    padding-top: 44px;
+  }
+</style>

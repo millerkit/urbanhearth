@@ -2,11 +2,9 @@
 import { getSiteSettings } from "../lib/site-settings";
 import Base from "../layouts/Base.astro";
 import PageHeader from "../components/PageHeader.astro";
+import { GIFT_CARD_URL } from "../lib/gift-cards";
 
 const restaurant = await getSiteSettings();
-
-const GIFT_CARD_URL =
-  "https://order.toasttab.com/egiftcards/urban-hearth-inman-square";
 ---
 
 <Base
