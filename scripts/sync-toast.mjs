@@ -10,6 +10,7 @@
  *
  * The Sanity token must have Editor (write) access.
  * Products are matched by toastItemGuid and upserted — safe to re-run.
+ * Products synced from Toast earlier that are no longer in the menu are deleted.
  * Fields managed in Sanity (longDescription, category, image) are never overwritten.
  *
  * All items from the SYNC_MENU_NAME menu are synced, preserving the group
@@ -25,6 +26,11 @@ const TOAST_BASE_URL = "https://ws-api.toasttab.com";
 
 // Name of the Toast menu to sync. Must match exactly.
 const SYNC_MENU_NAME = "Retail Products";
+
+// When the same item is listed in more than one group, it is shown in the
+// first of these groups it appears in. Items not in any of these groups are
+// shown in the first group they appear in (Toast menu order).
+const PRIORITY_GROUPS = ["Holiday Collection"];
 
 const TOAST_CLIENT_ID = process.env.TOAST_CLIENT_ID;
 const TOAST_CLIENT_SECRET = process.env.TOAST_CLIENT_SECRET;
@@ -143,6 +149,23 @@ async function main() {
 
   const groups = menu.menuGroups ?? [];
   let totalItems = 0;
+  const syncedGuids = new Set();
+
+  // Decide which group "owns" each item that appears in several groups.
+  const ownerGroupIndex = new Map(); // item guid → group index
+  const ownerIsPriority = new Map(); // item guid → boolean
+  groups.forEach((group, index) => {
+    const isPriority = PRIORITY_GROUPS.includes(group.name);
+    for (const item of collectGroupItems(group)) {
+      if (!ownerGroupIndex.has(item.guid)) {
+        ownerGroupIndex.set(item.guid, index);
+        ownerIsPriority.set(item.guid, isPriority);
+      } else if (isPriority && !ownerIsPriority.get(item.guid)) {
+        ownerGroupIndex.set(item.guid, index);
+        ownerIsPriority.set(item.guid, true);
+      }
+    }
+  });
 
   for (let groupIndex = 0; groupIndex < groups.length; groupIndex++) {
     const group = groups[groupIndex];
@@ -154,6 +177,13 @@ async function main() {
     );
 
     for (const item of items) {
+      syncedGuids.add(item.guid);
+
+      if (ownerGroupIndex.get(item.guid) !== groupIndex) {
+        console.log(`    Skipped (shown in another group): ${item.name}`);
+        continue;
+      }
+
       const docId = `product-${item.guid}`;
 
       const modifierGroups = (item.modifierGroupReferences ?? [])
@@ -211,6 +241,38 @@ async function main() {
           ...toastFields,
         });
         console.log(`    Created: ${item.name}`);
+      }
+    }
+  }
+
+  // ── Prune products that are no longer in the synced menu ──────────────────
+  // Only documents that came from Toast (they have a toastItemGuid) are
+  // considered, so products created by hand in Sanity are never touched.
+
+  if (syncedGuids.size === 0) {
+    console.warn(
+      "\nNo items found in menu; skipping prune so we don't delete everything.",
+    );
+  } else {
+    const stale = await sanity.fetch(
+      `*[_type == "product" && defined(toastItemGuid) && !(toastItemGuid in $guids)]{ _id, name, toastGroupName }`,
+      { guids: [...syncedGuids] },
+    );
+
+    for (const doc of stale) {
+      const publishedId = doc._id.replace(/^drafts\./, "");
+      try {
+        // Delete both the published document and any draft of it
+        await sanity
+          .transaction()
+          .delete(publishedId)
+          .delete(`drafts.${publishedId}`)
+          .commit();
+        console.log(
+          `    Removed (not in "${SYNC_MENU_NAME}"): ${doc.name} [${doc.toastGroupName}]`,
+        );
+      } catch (err) {
+        console.warn(`    Could not remove ${doc.name}: ${err.message}`);
       }
     }
   }
