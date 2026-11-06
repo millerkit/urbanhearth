@@ -126,12 +126,9 @@ const formatPrice = (price: unknown) =>
 
     <div class="shop-body">
       {
-        categories.map((cat, i) => (
+        categories.map((cat) => (
           <section class="category" id={cat.id} aria-labelledby={`h-${cat.id}`}>
             <div class="cat-header">
-              <span class="cat-num" aria-hidden="true">
-                {String(i + 1).padStart(2, "0")}
-              </span>
               <div class="cat-heading">
                 <h2 class="cat-title" id={`h-${cat.id}`}>
                   {cat.label}
@@ -450,20 +447,20 @@ const formatPrice = (price: unknown) =>
 
   .cat-header {
     display: grid;
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: 1fr auto;
     align-items: end;
     gap: 0 1.5rem;
     margin-bottom: 2.25rem;
   }
 
-  .cat-num {
-    font-family: var(--font-headline), sans-serif;
-    font-size: clamp(2.5rem, 5vw, 3.75rem);
-    line-height: 0.85;
-    color: var(--copper);
-    letter-spacing: 0.02em;
-    /* Sit beside the title even when a long description follows it */
-    align-self: start;
+  /* Short copper rule above each title */
+  .cat-heading::before {
+    content: "";
+    display: block;
+    width: 48px;
+    height: 2px;
+    background: var(--copper);
+    margin-bottom: 1.25rem;
   }
 
   .cat-title {
@@ -838,8 +835,7 @@ const formatPrice = (price: unknown) =>
     }
 
     .cat-header {
-      grid-template-columns: auto 1fr;
-      gap: 0 1rem;
+      grid-template-columns: 1fr;
       margin-bottom: 1.5rem;
     }
 
