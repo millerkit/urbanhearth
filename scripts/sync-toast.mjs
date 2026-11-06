@@ -1,5 +1,5 @@
 /**
- * sync-toast.mjs — Toast "Online Ordering" menu → Sanity products
+ * sync-toast.mjs — Toast "Retail Products" menu → Sanity products
  *
  * Usage:
  *   node --env-file=.env.local scripts/sync-toast.mjs
@@ -24,7 +24,7 @@ config({ path: ".env.local" });
 const TOAST_BASE_URL = "https://ws-api.toasttab.com";
 
 // Name of the Toast menu to sync. Must match exactly.
-const SYNC_MENU_NAME = "Online Ordering";
+const SYNC_MENU_NAME = "Retail Products";
 
 const TOAST_CLIENT_ID = process.env.TOAST_CLIENT_ID;
 const TOAST_CLIENT_SECRET = process.env.TOAST_CLIENT_SECRET;
