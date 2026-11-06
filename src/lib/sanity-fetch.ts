@@ -30,6 +30,31 @@ export async function fetchMenu() {
   `);
 }
 
+export async function fetchWineMenu() {
+  return client!.fetch(`
+    *[_type == "wineMenu"] | order(_updatedAt desc) [0]{
+      curatedBy,
+      footerNote,
+      sections[]{ title, items[]{ name, region, description, price } }
+    }
+  `);
+}
+
+export async function fetchSpiritsMenu() {
+  return client!.fetch(`
+    *[_type == "spiritsMenu"] | order(_updatedAt desc) [0]{
+      curatedBy,
+      cocktailPrice,
+      cocktails[]{ name, description, nonAlcoholic },
+      zeroProofPrice,
+      smallFormatPrice,
+      smallFormat[]{ name, description },
+      spiritsSections[]{ title, items[]{ name, price } },
+      beer[]{ name, brewery, price, format, description, nonAlcoholic }
+    }
+  `);
+}
+
 export async function fetchAllPosts(page = 1, perPage = 10) {
   const start = (page - 1) * perPage;
   const end = start + perPage - 1;

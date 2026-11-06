@@ -1,9 +1,5 @@
 {
-  "curatedBy": [
-    "Katie Janik, wine director",
-    "Mika Klos-Shakaid, bartender",
-    "Abigail Taylor, general manager"
-  ],
+  "curatedBy": ["Katie Janik, beverage director"],
   "footerNote": "For a full bottle list, please ask your server.",
   "sections": [
     {
@@ -27,9 +23,9 @@
       "title": "White",
       "items": [
         {
-          "name": "2024 Alice Berthier Coteaux de Giennois",
+          "name": "2023 Arnaud Lambert Les Parcelles",
           "region": "Loire, France",
-          "description": "Sauvignon Blanc — grapefruit, white flowers, limestone",
+          "description": "Chenin Blanc — stone fruit, citrus, stony minerality",
           "price": "16 | 70"
         },
         {
@@ -47,19 +43,19 @@
       ]
     },
     {
-      "title": "Rosé & Orange",
+      "title": "Skin Contact",
       "items": [
         {
-          "name": "2025 Bedrock Wine Co. 'Ode to Lulu' Rosé",
-          "region": "Sonoma County, California",
-          "description": "Mourvèdre — grapefruit, savory herbs, old-vine complexity",
-          "price": "18 | 80"
+          "name": "2024 Castel Pujols Folklore Naranja",
+          "region": "Rivera, Uruguay",
+          "description": "Trebbiano, Petite Manseng — apricot, white peach, dried sage",
+          "price": "16 | 70"
         },
         {
-          "name": "2023 Johan Vineyards Maceration White",
-          "region": "Willamette Valley, Oregon",
-          "description": "Kerner, Friulano, Grüner Veltliner — apricot, rhubarb, black tea",
-          "price": "20 | 85"
+          "name": "2024 Garalis Terra Ambera",
+          "region": "Lemnos, Greece",
+          "description": "Muscat of Alexandria — quince, lemon zest, mushroom",
+          "price": "18 | 80"
         }
       ]
     },
@@ -67,22 +63,39 @@
       "title": "Red",
       "items": [
         {
-          "name": "2023 Domaine Lardy Les Dechamps",
-          "region": "Chénas, Beaujolais, France",
-          "description": "Gamay — wild blackberry, stony minerality, spices",
+          "name": "2024 Johan Lardy Le Vivier",
+          "region": "Fleurie, Beaujolais, France",
+          "description": "Gamay — bright strawberry, cherry, violets",
           "price": "16 | 70"
         },
         {
-          "name": "2023 Chiara Condello Predappio",
-          "region": "Emilia-Romagna, Italy",
-          "description": "Sangiovese — cherry, rose, pomegranate, savory herbs",
-          "price": "20 | 85"
+          "name": "2022 San Guglielmo Rosso di Montalcino",
+          "region": "Tuscany, Italy",
+          "description": "Sangiovese — cherry, violet, baking spices, tobacco",
+          "price": "20 | 95"
         },
         {
-          "name": "2025 Bodega Luberri Orlegi",
-          "region": "Rioja, Spain",
-          "description": "Tempranillo — raspberry, violet, pepper",
-          "price": "15 | 60"
+          "name": "2024 Mas de Libian Khayyâm",
+          "region": "Southern Rhône, France",
+          "description": "Grenache, Syrah, Mourvèdre — blackberries, dark chocolate, forest floor",
+          "price": "18 | 80"
+        }
+      ]
+    },
+    {
+      "title": "Low ABV & No ABV Selections",
+      "items": [
+        {
+          "name": "R.A.S. Wines WILD 250ml",
+          "region": "Columbia Falls, Maine",
+          "description": "Bubbly Maine wild blueberry wine in a can! Tart fruit, dry, a little like Lambrusco — 7% ABV",
+          "price": "10"
+        },
+        {
+          "name": "Muri Yamilé",
+          "region": "Copenhagen, Denmark",
+          "description": "Non-alcoholic sparkling rosé — carbonic raspberry, smoked rhubarb, pink peppercorn — 0.5% ABV",
+          "price": "16"
         }
       ]
     }

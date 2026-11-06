@@ -20,6 +20,7 @@ const scripts = [
   "seed-homepage.mjs",
   "seed-dining-options.mjs",
   "seed-menu.mjs",
+  "seed-beverage-menus.mjs",
   "seed-partners.mjs",
   "seed-menus-page.mjs",
   "seed-reservations.mjs",

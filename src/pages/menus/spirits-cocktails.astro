@@ -1,11 +1,12 @@
 ---
 import { getSiteSettings } from "../../lib/site-settings";
-import spiritsMenu from "../../fallback-content/spirits-menu.json";
+import { getSpiritsMenu } from "../../lib/beverage-menus";
 import "../../styles/menu-shared.css";
 import Base from "../../layouts/Base.astro";
 import PageHeader from "../../components/PageHeader.astro";
 
 const restaurant = await getSiteSettings();
+const spiritsMenu = await getSpiritsMenu();
 ---
 
 <Base

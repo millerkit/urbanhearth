@@ -40,6 +40,11 @@
   --ink-mid: #4a4948; /* = charcoal; secondary text — darkened for WCAG AA */
   --ink-light: #4a4948; /* darkened from #706f6d which failed contrast on parchment */
   --border: rgba(22, 34, 53, 0.1);
+  /* Copper is a print-only foil in the brand guide (no digital hex). These are
+     digital stand-ins for accents: --copper passes AA on warm-white/white,
+     --copper-light passes AA on midnight. */
+  --copper: #9c5f38;
+  --copper-light: #d9a57c;
   /* Typefaces — see docs/Urban_Hearth_Brand_Guide.pdf §1.3
      - --font-headline:      Contax Sans 35 (exact match; headlines only, never multi-sentence)
      - --font-header-action: Basic Commercial = Akzidenz-Grotesk (same typeface, Linotype trademark name)

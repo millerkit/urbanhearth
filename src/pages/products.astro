@@ -4,7 +4,6 @@ import { isSanityConfigured } from "../lib/sanity";
 import { fetchAllProducts } from "../lib/sanity-fetch";
 import Base from "../layouts/Base.astro";
 import AgeGate from "../components/AgeGate.astro";
-import PageHeader from "../components/PageHeader.astro";
 
 const restaurant = await getSiteSettings();
 
@@ -36,16 +35,37 @@ if (isSanityConfigured) {
       }
       grouped.get(key)!.products.push(p);
     }
-    categories = [...grouped.entries()].map(([id, group]) => ({
-      id,
-      label: group.label,
-      description: group.description,
-      products: group.products,
-    }));
+    // Readable anchors (#pantry-food-products) for the category nav and shared
+    // links; fall back to the Toast GUID if two labels slugify the same.
+    const seen = new Set<string>();
+    categories = [...grouped.entries()].map(([guid, group]) => {
+      let id = group.label
+        .toLowerCase()
+        .replace(/&/g, "and")
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-|-$/g, "");
+      if (!id || seen.has(id)) id = guid;
+      seen.add(id);
+      return {
+        id,
+        label: group.label,
+        description: group.description,
+        products: group.products,
+      };
+    });
   } catch {
     // categories stays empty; coming-soon notice will render
   }
 }
+
+// Sanity's image CDN resizes on the fly; crop everything to the card's 4:5 ratio.
+const sanityImg = (url: string, w: number) =>
+  `${url}?w=${w}&h=${Math.round(w * 1.25)}&fit=crop&auto=format`;
+
+const formatPrice = (price: unknown) =>
+  typeof price === "number"
+    ? `$${price % 1 === 0 ? price : price.toFixed(2)}`
+    : `$${price}`;
 ---
 
 <Base
@@ -55,11 +75,21 @@ if (isSanityConfigured) {
   <AgeGate />
 
   <div class="products-page">
-    <PageHeader
-      eyebrow="From Our Kitchen & Bar"
-      title="Shop"
-      lead="Take Urban Hearth home. Food, bottled cocktails, house mixers, and zero-proof drinks — all made in our kitchen."
-    />
+    <header class="shop-hero">
+      <div class="shop-hero__inner">
+        <p class="shop-hero__eyebrow">From Our Kitchen &amp; Bar</p>
+        <h1 class="shop-hero__title">Shop</h1>
+        <p class="shop-hero__lead">
+          Take Urban Hearth home. Pantry staples, bottled cocktails, house
+          mixers, and gifts — all made in our kitchen.
+        </p>
+        <ul class="shop-hero__perks" aria-label="Why shop with us">
+          <li>Made in-house</li>
+          <li>Pickup in Cambridge</li>
+          <li>Gift-ready</li>
+        </ul>
+      </div>
+    </header>
 
     {
       categories.length === 0 && (
@@ -79,88 +109,238 @@ if (isSanityConfigured) {
     }
 
     {
-      categories.map((cat, i) => (
-        <section
-          class={`category${i % 2 === 1 ? " category--alt" : ""}`}
-          id={cat.id}
-        >
-          <div class="cat-header">
-            <span class="cat-num section-eyebrow">
-              {String(i + 1).padStart(2, "0")}
-            </span>
-            <h2 class="cat-title">{cat.label}</h2>
-            <p class="cat-desc">{cat.description}</p>
-          </div>
-
-          <div
-            class="product-grid"
-            style={`--product-cols: ${Math.min(cat.products.length, 4)}`}
-          >
-            {cat.products.map((p: any) => (
-              <div
-                class={`product-card${p.available === false ? " product-card--unavailable" : ""}`}
-              >
-                <div class="product-image-wrap">
-                  {p.image ? (
-                    <img
-                      src={p.image}
-                      alt={p.name}
-                      class="product-image"
-                      loading="lazy"
-                    />
-                  ) : (
-                    <div class="product-image-placeholder" aria-hidden="true" />
-                  )}
-                  {p.available === false && (
-                    <span class="out-of-stock-badge">Out of stock</span>
-                  )}
-                </div>
-                <div class="product-info">
-                  <h3 class="product-name">{p.name}</h3>
-                  {p.description && <p class="product-note">{p.description}</p>}
-                </div>
-                <div class="product-footer">
-                  <span class="product-price">
-                    $
-                    {typeof p.price === "number" ? p.price.toFixed(2) : p.price}
-                  </span>
-                  {p.slug ? (
-                    <a href={`/product/${p.slug}`} class="product-cta">
-                      View
-                    </a>
-                  ) : (
-                    <button
-                      class="product-cta"
-                      disabled
-                      aria-label={`${p.name} — coming soon`}
-                    >
-                      Coming Soon
-                    </button>
-                  )}
-                </div>
-              </div>
+      categories.length > 1 && (
+        <nav class="cat-nav" aria-label="Shop categories">
+          <ul class="cat-nav__list">
+            {categories.map((cat) => (
+              <li>
+                <a href={`#${cat.id}`} class="cat-nav__link">
+                  {cat.label}
+                </a>
+              </li>
             ))}
-          </div>
-        </section>
-      ))
+          </ul>
+        </nav>
+      )
     }
 
+    <div class="shop-body">
+      {
+        categories.map((cat, i) => (
+          <section class="category" id={cat.id} aria-labelledby={`h-${cat.id}`}>
+            <div class="cat-header">
+              <span class="cat-num" aria-hidden="true">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <div class="cat-heading">
+                <h2 class="cat-title" id={`h-${cat.id}`}>
+                  {cat.label}
+                </h2>
+                {cat.description && <p class="cat-desc">{cat.description}</p>}
+              </div>
+              <span class="cat-count">
+                {cat.products.length}{" "}
+                {cat.products.length === 1 ? "item" : "items"}
+              </span>
+            </div>
+
+            <div class="product-grid">
+              {cat.products.map((p: any) => (
+                <article
+                  class={`product-card${p.available === false ? " product-card--unavailable" : ""}`}
+                >
+                  <div class="product-media">
+                    {p.image ? (
+                      <img
+                        src={sanityImg(p.image, 640)}
+                        srcset={`${sanityImg(p.image, 400)} 400w, ${sanityImg(p.image, 640)} 640w, ${sanityImg(p.image, 960)} 960w`}
+                        sizes="(max-width: 520px) 100vw, (max-width: 900px) 50vw, 280px"
+                        alt={p.name}
+                        class="product-image"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    ) : (
+                      <div class="product-placeholder" aria-hidden="true">
+                        <span class="product-placeholder__mark">
+                          Urban Hearth
+                        </span>
+                        <span class="product-placeholder__cat">
+                          {cat.label}
+                        </span>
+                      </div>
+                    )}
+                    {p.available === false && (
+                      <span class="badge badge--sold-out">Sold out</span>
+                    )}
+                  </div>
+
+                  <div class="product-body">
+                    <h3 class="product-name">
+                      {p.slug ? (
+                        <a href={`/product/${p.slug}`} class="product-link">
+                          {p.name}
+                        </a>
+                      ) : (
+                        p.name
+                      )}
+                    </h3>
+                    {p.description && (
+                      <p class="product-desc">{p.description}</p>
+                    )}
+                    <div class="product-footer">
+                      <span class="product-price">{formatPrice(p.price)}</span>
+                      <span class="product-cta" aria-hidden="true">
+                        {p.slug ? "View" : "Coming soon"}
+                        {p.slug && <span class="product-cta__arrow">→</span>}
+                      </span>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </section>
+        ))
+      }
+    </div>
+
     <section class="pickup-band">
-      <p class="section-eyebrow">Order Ahead</p>
-      <p class="pickup-text">
-        All products are available for in-restaurant pickup during dining hours.
-        Contact us to arrange an order.
-      </p>
-      <a href={`mailto:${restaurant.privateDiningEmail}`} class="text-cta"
-        >Get in touch</a
-      >
+      <div class="pickup-band__inner">
+        <p class="pickup-band__eyebrow">Order Ahead</p>
+        <h2 class="pickup-band__title">Ready when you are</h2>
+        <p class="pickup-band__text">
+          Every product is available for pickup at the restaurant during dining
+          hours. Questions, large orders, or something special in mind? We'd
+          love to help.
+        </p>
+        <div class="pickup-band__actions">
+          <a
+            href={`mailto:${restaurant.privateDiningEmail}`}
+            class="btn btn--light">Get in touch</a
+          >
+          <a href="/gift-cards" class="btn btn--ghost">Buy a gift card</a>
+        </div>
+      </div>
     </section>
   </div>
 </Base>
 
+<script>
+  // Highlight the category pill for the section in view, and keep it visible
+  // in the horizontally-scrolling bar.
+  const links = [
+    ...document.querySelectorAll<HTMLAnchorElement>(".cat-nav__link"),
+  ];
+  const list = document.querySelector<HTMLElement>(".cat-nav__list");
+  if (links.length && list && "IntersectionObserver" in window) {
+    const byId = new Map(links.map((a) => [a.hash.slice(1), a]));
+    const setActive = (id: string) => {
+      links.forEach((a) => a.removeAttribute("aria-current"));
+      const a = byId.get(id);
+      if (!a) return;
+      a.setAttribute("aria-current", "true");
+      const left = a.offsetLeft - list.clientWidth / 2 + a.clientWidth / 2;
+      list.scrollTo({ left, behavior: "smooth" });
+    };
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const hit = entries.find((e) => e.isIntersecting);
+        if (hit) setActive(hit.target.id);
+      },
+      // A thin band ~30% down the viewport decides which section is "current"
+      { rootMargin: "-30% 0px -69% 0px" },
+    );
+    document
+      .querySelectorAll<HTMLElement>("section.category")
+      .forEach((s) => observer.observe(s));
+  }
+</script>
+
 <style>
   .products-page {
     margin-top: 111px;
+    background: var(--warm-white);
+  }
+
+  /* ── Hero ── */
+  .shop-hero {
+    position: relative;
+    overflow: hidden;
+    background:
+      radial-gradient(
+        ellipse 60% 80% at 85% 10%,
+        rgba(217, 165, 124, 0.22),
+        transparent 60%
+      ),
+      radial-gradient(
+        ellipse 50% 70% at 10% 100%,
+        rgba(217, 165, 124, 0.12),
+        transparent 60%
+      ),
+      linear-gradient(160deg, #1d2d43 0%, var(--midnight) 60%);
+    color: var(--parchment);
+    text-align: center;
+    padding: 4.5rem 2rem 4rem;
+  }
+
+  .shop-hero__inner {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .shop-hero__eyebrow {
+    font-family: var(--font-header-action), sans-serif;
+    font-size: var(--text-label);
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--copper-light);
+    margin-bottom: 1.25rem;
+  }
+
+  .shop-hero__title {
+    font-family: var(--font-headline), sans-serif;
+    font-weight: 300;
+    font-size: clamp(2.75rem, 7vw, 4.5rem);
+    letter-spacing: 0.12em;
+    line-height: 1;
+    color: var(--parchment);
+    margin-bottom: 1.5rem;
+  }
+
+  .shop-hero__lead {
+    font-family: var(--font-body), serif;
+    font-size: clamp(1.125rem, 1.8vw, 1.3rem);
+    line-height: 1.6;
+    color: rgba(232, 227, 223, 0.9);
+    max-width: 560px;
+    margin: 0 auto 2rem;
+  }
+
+  .shop-hero__perks {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem 1.75rem;
+    font-family: var(--font-header-action), sans-serif;
+    font-size: var(--text-fine);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--parchment);
+  }
+
+  .shop-hero__perks li {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .shop-hero__perks li::before {
+    content: "";
+    width: 5px;
+    height: 5px;
+    background: var(--copper-light);
+    transform: rotate(45deg);
   }
 
   /* ── Coming-soon notice ── */
@@ -190,207 +370,449 @@ if (isSanityConfigured) {
     opacity: 0.6;
   }
 
-  /* ── Category section ── */
-  .category {
-    border-bottom: 1px solid var(--border);
-    padding: 4rem 2.5rem;
-  }
-
-  .cat-header {
-    max-width: 1100px;
-    margin: 0 auto 3rem;
-    display: grid;
-    grid-template-columns: 40px 1fr;
-    grid-template-rows: auto auto;
-    column-gap: 1.5rem;
-    align-items: start;
-  }
-
-  .cat-num {
-    grid-row: 1 / 3;
-    padding-top: 5px;
-    color: var(--ink-light);
-  }
-
-  .cat-title {
-    font-family: var(--font-body), serif;
-    font-size: clamp(1.6rem, 2.5vw, 2.2rem);
-    font-weight: 300;
-    letter-spacing: 0.07em;
-    color: var(--ink);
-    line-height: 1.1;
-    margin-bottom: 0.75rem;
-  }
-
-  .cat-desc {
-    font-family: var(--font-body), serif;
-    font-size: 1.0625rem;
-    font-weight: 300;
-    line-height: 1.75;
-    color: var(--ink);
-    max-width: 560px;
-  }
-
-  /* ── Alternating section backgrounds ── */
-  .category {
-    background: var(--warm-white);
-  }
-
-  .category--alt {
-    background: var(--parchment);
-  }
-
-  /* Cards contrast against their section: warm-white sections get parchment cards,
-     parchment sections get warm-white cards */
-  .category--alt .product-card {
-    background: var(--warm-white);
-  }
-
-  /* ── Product grid ── */
-  .product-grid {
-    max-width: 1100px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(var(--product-cols, 4), minmax(0, 1fr));
-    border-right: 1px solid var(--border);
+  /* ── Sticky category nav ── */
+  .cat-nav {
+    position: sticky;
+    top: 155px; /* TopBar 68 + Nav 43 + gift bar 44 */
+    z-index: 20;
+    background: rgba(244, 241, 238, 0.94);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     border-bottom: 1px solid var(--border);
   }
 
-  .product-card {
-    background: var(--parchment);
+  .cat-nav__list {
+    list-style: none;
     display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    border-top: 1px solid var(--border);
-    border-left: 1px solid var(--border);
+    gap: 0.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0.85rem 2.5rem;
+    overflow-x: auto;
+    scrollbar-width: none;
   }
 
-  .product-card--unavailable {
-    opacity: 0.65;
+  .cat-nav__list::-webkit-scrollbar {
+    display: none;
   }
 
-  /* ── Product image ── */
-  .product-image-wrap {
-    position: relative;
-    flex-shrink: 0;
-  }
-
-  .product-image {
-    width: 100%;
-    aspect-ratio: 3 / 4;
-    object-fit: cover;
-    object-position: center;
+  .cat-nav__link {
     display: block;
-    background: var(--parchment);
-  }
-
-  .out-of-stock-badge {
-    position: absolute;
-    bottom: 0.75rem;
-    left: 0.75rem;
+    white-space: nowrap;
     font-family: var(--font-header-action), sans-serif;
-    font-size: 10px;
-    font-weight: 300;
+    font-size: var(--text-fine);
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--warm-white);
-    background: rgba(22, 34, 53, 0.72);
-    padding: 0.3rem 0.6rem;
-  }
-
-  /* ── Product info ── */
-  .product-info {
-    padding: 1.25rem 1.25rem 0.75rem;
-    flex: 1;
-  }
-
-  .product-name {
-    font-family: var(--font-body), serif;
-    font-size: var(--text-md);
-    font-weight: 300;
-    letter-spacing: 0.04em;
-    color: var(--ink);
-    line-height: 1.2;
-    margin-bottom: 0.4rem;
-  }
-
-  .product-note {
-    font-family: var(--font-header-action), sans-serif;
-    font-size: 11px;
-    font-weight: 300;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--ink-light);
-  }
-
-  /* ── Product footer ── */
-  .product-footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.75rem 1.25rem 1.25rem;
-    gap: 1rem;
-  }
-
-  .product-price {
-    font-family: var(--font-header-action), sans-serif;
-    font-size: 0.9375rem;
-    font-weight: 300;
-    letter-spacing: 0.04em;
-    color: var(--ink);
-  }
-
-  .product-cta {
-    font-family: var(--font-header-action), sans-serif;
-    font-size: 10px;
-    font-weight: 300;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--ink-mid);
-    background: transparent;
-    border: 1px solid var(--border);
-    padding: 0.6rem 1rem;
     text-decoration: none;
+    color: var(--ink);
+    padding: 0.55rem 1rem;
+    border: 1px solid rgba(22, 34, 53, 0.18);
+    border-radius: 999px;
     transition:
+      background 0.2s,
       color 0.2s,
       border-color 0.2s;
   }
 
-  a.product-cta:hover {
-    color: var(--ink);
-    border-color: rgba(22, 34, 53, 0.4);
+  .cat-nav__link:hover {
+    border-color: var(--midnight);
   }
 
-  button.product-cta {
-    cursor: not-allowed;
+  /* Active state changes fill AND weight, not just color */
+  .cat-nav__link[aria-current="true"] {
+    background: var(--midnight);
+    border-color: var(--midnight);
+    color: var(--parchment);
+  }
+
+  .cat-nav__link:focus-visible {
+    outline: 2px solid var(--copper);
+    outline-offset: 2px;
+  }
+
+  /* ── Category sections ── */
+  .shop-body {
+    padding: 1rem 2.5rem 5rem;
+  }
+
+  .category {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 0 1rem;
+    /* Land below the fixed header + sticky category bar on jump */
+    scroll-margin-top: 215px;
+  }
+
+  .category + .category {
+    border-top: 1px solid rgba(22, 34, 53, 0.14);
+    margin-top: 2.5rem;
+  }
+
+  .cat-header {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: end;
+    gap: 0 1.5rem;
+    margin-bottom: 2.25rem;
+  }
+
+  .cat-num {
+    font-family: var(--font-headline), sans-serif;
+    font-size: clamp(2.5rem, 5vw, 3.75rem);
+    line-height: 0.85;
+    color: var(--copper);
+    letter-spacing: 0.02em;
+    /* Sit beside the title even when a long description follows it */
+    align-self: start;
+  }
+
+  .cat-title {
+    font-family: var(--font-body), serif;
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+    line-height: 1.05;
+  }
+
+  .cat-desc {
+    font-family: var(--font-body), serif;
+    font-size: var(--text-md);
+    line-height: 1.6;
+    color: var(--ink);
+    max-width: 640px;
+    margin-top: 0.75rem;
+  }
+
+  .cat-count {
+    font-family: var(--font-header-action), sans-serif;
+    font-size: var(--text-fine);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+    white-space: nowrap;
+    padding-bottom: 0.3rem;
+  }
+
+  /* ── Product grid ── */
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.75rem;
+  }
+
+  /* ── Product card ── */
+  .product-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow:
+      0 1px 2px rgba(22, 34, 53, 0.06),
+      0 4px 14px rgba(22, 34, 53, 0.06);
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+  }
+
+  .product-card:hover,
+  .product-card:focus-within {
+    transform: translateY(-4px);
+    box-shadow:
+      0 2px 4px rgba(22, 34, 53, 0.06),
+      0 16px 36px rgba(22, 34, 53, 0.14);
+  }
+
+  .product-media {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    background: var(--parchment);
+  }
+
+  .product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
+  }
+
+  .product-card:hover .product-image {
+    transform: scale(1.05);
+  }
+
+  /* Branded stand-in until product photography lands */
+  .product-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 1.5rem;
+    text-align: center;
+    background:
+      radial-gradient(
+        circle at 70% 20%,
+        rgba(217, 165, 124, 0.25),
+        transparent 55%
+      ),
+      linear-gradient(160deg, #22344d 0%, var(--midnight) 100%);
+    transition: transform 0.6s ease;
+  }
+
+  .product-card:hover .product-placeholder {
+    transform: scale(1.05);
+  }
+
+  .product-placeholder__mark {
+    font-family: var(--font-headline), sans-serif;
+    font-size: 1.35rem;
+    letter-spacing: 0.08em;
+    color: var(--parchment);
+    opacity: 0.85;
+  }
+
+  .product-placeholder__cat {
+    font-family: var(--font-header-action), sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--copper-light);
+  }
+
+  .badge {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    font-family: var(--font-header-action), sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding: 0.35rem 0.65rem;
+    border-radius: 999px;
+  }
+
+  .badge--sold-out {
+    background: var(--parchment);
+    color: var(--midnight);
+  }
+
+  .product-card--unavailable .product-media > :first-child {
+    filter: grayscale(1);
     opacity: 0.6;
+  }
+
+  .product-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 1.25rem 1.25rem 1.1rem;
+  }
+
+  .product-name {
+    font-family: var(--font-body), serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+  }
+
+  .product-link {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  /* Whole card is the click target */
+  .product-link::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+
+  .product-link:focus-visible {
+    outline: none;
+  }
+
+  .product-card:has(.product-link:focus-visible) {
+    outline: 2px solid var(--copper);
+    outline-offset: 3px;
+  }
+
+  .product-desc {
+    font-family: var(--font-body), serif;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--ink-mid);
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-bottom: 1rem;
+  }
+
+  .product-footer {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-top: 0.9rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .product-price {
+    font-family: var(--font-body), serif;
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--copper);
+  }
+
+  .product-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--font-header-action), sans-serif;
+    font-size: var(--text-fine);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+
+  .product-cta__arrow {
+    transition: transform 0.25s ease;
+  }
+
+  .product-card:hover .product-cta__arrow {
+    transform: translateX(4px);
   }
 
   /* ── Pickup band ── */
   .pickup-band {
+    background:
+      radial-gradient(
+        ellipse 50% 90% at 50% 0%,
+        rgba(217, 165, 124, 0.18),
+        transparent 70%
+      ),
+      var(--midnight);
+    color: var(--parchment);
     text-align: center;
     padding: 5rem 2rem;
-    background: var(--warm-white);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.25rem;
   }
 
-  .pickup-text {
+  .pickup-band__inner {
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  .pickup-band__eyebrow {
+    font-family: var(--font-header-action), sans-serif;
+    font-size: var(--text-label);
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--copper-light);
+    margin-bottom: 1rem;
+  }
+
+  .pickup-band__title {
+    font-family: var(--font-body), serif;
+    font-size: clamp(1.9rem, 3.5vw, 2.6rem);
+    font-weight: 400;
+    line-height: 1.1;
+    margin-bottom: 1.25rem;
+  }
+
+  .pickup-band__text {
     font-family: var(--font-body), serif;
     font-size: var(--text-md);
-    font-weight: 300;
-    color: var(--ink);
-    max-width: 420px;
-    line-height: 1.75;
-    margin: 0;
+    line-height: 1.7;
+    color: rgba(232, 227, 223, 0.9);
+    margin-bottom: 2rem;
+  }
+
+  .pickup-band__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+
+  .btn {
+    display: inline-block;
+    font-family: var(--font-header-action), sans-serif;
+    font-size: var(--text-fine);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 0.95rem 1.6rem;
+    border: 1px solid var(--parchment);
+    transition:
+      background 0.2s,
+      color 0.2s;
+  }
+
+  .btn--light {
+    background: var(--parchment);
+    color: var(--midnight);
+  }
+
+  .btn--light:hover {
+    background: #fff;
+  }
+
+  .btn--ghost {
+    color: var(--parchment);
+  }
+
+  .btn--ghost:hover {
+    background: rgba(232, 227, 223, 0.12);
+  }
+
+  .btn:focus-visible {
+    outline: 2px solid var(--copper-light);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .product-card,
+    .product-image,
+    .product-placeholder,
+    .product-cta__arrow {
+      transition: none;
+    }
+    .product-card:hover,
+    .product-card:focus-within {
+      transform: none;
+    }
+    .product-card:hover .product-image,
+    .product-card:hover .product-placeholder {
+      transform: none;
+    }
   }
 
   /* ── Responsive ── */
   @media (max-width: 900px) {
     .product-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.25rem;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .cat-nav {
+      top: 112px; /* TopBar 68 + gift bar 44; desktop Nav is hidden */
+    }
+
+    .category {
+      scroll-margin-top: 170px;
     }
   }
 
@@ -399,26 +821,60 @@ if (isSanityConfigured) {
       margin-top: 60px;
     }
 
+    .shop-hero {
+      padding: 3.25rem 1.5rem 3rem;
+    }
+
+    .cat-nav__list {
+      padding: 0.7rem 1rem;
+    }
+
+    .shop-body {
+      padding: 0 1rem 3.5rem;
+    }
+
     .category {
-      padding: 3rem 1.5rem;
+      padding-top: 3rem;
     }
 
     .cat-header {
-      grid-template-columns: 1fr;
-      gap: 0.5rem;
-      margin-bottom: 2rem;
+      grid-template-columns: auto 1fr;
+      gap: 0 1rem;
+      margin-bottom: 1.5rem;
     }
 
-    .cat-num {
-      grid-row: auto;
+    .cat-count {
+      display: none;
     }
 
     .product-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.85rem;
+    }
+
+    .product-body {
+      padding: 0.9rem 0.9rem 0.85rem;
+    }
+
+    .product-name {
+      font-size: 1.1rem;
+    }
+
+    .product-desc {
+      font-size: 0.95rem;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+    }
+
+    .product-price {
+      font-size: 1.15rem;
+    }
+
+    .product-cta {
+      display: none;
     }
   }
 
-  @media (max-width: 400px) {
+  @media (max-width: 340px) {
     .product-grid {
       grid-template-columns: 1fr;
     }

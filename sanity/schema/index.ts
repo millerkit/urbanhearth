@@ -1,4 +1,5 @@
 import { aboutPage } from "./aboutPage";
+import { beverageMenuTypes } from "./beverageMenus";
 import { blogPost } from "./blogPost";
 import { faqItem } from "./faqItem";
 import { mailingListPage } from "./mailingListPage";
@@ -35,6 +36,7 @@ export const schemaTypes = [
   reservationsPage,
   blogPost,
   ...menuTypes,
+  ...beverageMenuTypes,
   product,
   ...privateEventTypes,
   ...navLinkTypes,

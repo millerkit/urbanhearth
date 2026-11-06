@@ -1,7 +1,7 @@
 {
   "curatedBy": [
-    "Katie Janik, wine director",
-    "Mika Klos-Shakaid, bartender",
+    "Katie Janik, beverage director",
+    "Mika Klos-Shakaid, lead bartender",
     "Abigail Taylor, general manager"
   ],
   "spiritsSections": [
@@ -77,36 +77,36 @@
   "cocktailPrice": "18",
   "cocktails": [
     {
-      "name": "Midsummer Storm",
-      "description": "Blanco tequila, salted watermelon, shishito, mint (milk punch, contains whey)"
+      "name": "Butterfly Effect",
+      "description": "Gin, Mint, Cacao, Bitter Bianco, Yuzu"
     },
     {
-      "name": "Summertime Crush",
-      "description": "Symphony 6 (black currant, fig leaf, citrus), yuzu, Earl Grey"
+      "name": "Stomping Boots",
+      "description": "Suyo Pisco, Concord Grape Juice, clarified Greek yogurt, tarragon"
     },
     {
-      "name": "Theme in Yellow",
-      "description": "Butter-washed mezcal, Nixta, charred corn"
+      "name": "Old McGregor's Garden",
+      "description": "Bourbon, Carrot, Pineapple, Orgeat, Coffee, Cumin"
     },
     {
-      "name": "Verdant Gent",
-      "description": "Gin, Thai-basil matcha, American forest, lime"
+      "name": "The Big E",
+      "description": "Privateer White Rum, Local apples, dark caramel, miso"
     },
     {
       "name": "Field Notes",
       "description": "Vodka, tomato, manzanilla, koji"
     },
     {
-      "name": "Starry Eyes",
-      "description": "Brandy two ways — Blanche d'Armagnac, Calvados, shiso, bitters"
+      "name": "Velvet Flame",
+      "description": "Cocoa Butter Washed Mezcal, Cinnamon, Dry Curaçao, Cayenne"
     },
     {
-      "name": "Spark of Inspiration",
-      "description": "Sherry, salted rosemary, cilantro, rabarbaro"
+      "name": "Orchard",
+      "description": "Apple Brandy, Grenadine, Celery Bitters, Herbsaint"
     },
     {
-      "name": "Good Luck Charm",
-      "description": "Snap pea, plum, sorghum, gentian"
+      "name": "The Loading Dock",
+      "description": "Rye, Cynar 70, Sassafras, Mole"
     },
     {
       "name": "Spill the Tea",
@@ -182,6 +182,13 @@
       "price": "9",
       "format": "On Tap",
       "description": "4.9% sour — pineapple, açaí, guava & lime"
+    },
+    {
+      "name": "Narragansett Lager",
+      "brewery": "Providence, RI",
+      "price": "5",
+      "format": "Packaged",
+      "description": "5% lager — hi neighbor!"
     },
     {
       "name": "Notch Salem Lager",
