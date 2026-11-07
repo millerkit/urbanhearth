@@ -1,58 +1,49 @@
 ---
-// The bar points to /gift-cards, so it's redundant (and the extra page
-// padding unwanted) on that page itself.
-const showBar = Astro.url.pathname.replace(/\/+$/, "") !== "/gift-cards";
+// A small floating pill that links to /gift-cards. Phones only: on desktop the
+// nav already has a Gift Cards link, but on mobile it's hidden in the hamburger
+// menu. Hidden on /gift-cards itself, where it would only link to itself.
+const showTab = Astro.url.pathname.replace(/\/+$/, "") !== "/gift-cards";
 ---
 
 {
-  showBar && (
-    <aside class="gift-bar" aria-label="Gift cards">
-      <p class="gift-bar__text">Give the gift of Urban Hearth</p>
-      <a href="/gift-cards" class="gift-bar__btn">
-        Buy Gift Card
-      </a>
-    </aside>
+  showTab && (
+    <a href="/gift-cards" class="gift-tab" aria-label="Buy a gift card">
+      <svg
+        class="gift-tab__icon"
+        viewBox="0 0 24 24"
+        width="18"
+        height="18"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"
+        aria-hidden="true"
+      >
+        <rect x="3" y="8" width="18" height="4" />
+        <path d="M5 12v9h14v-9M12 8v13" />
+        <path d="M12 8c-1-4-6-4-5-1 .6 1.6 3 1 5 1zm0 0c1-4 6-4 5-1-.6 1.6-3 1-5 1z" />
+      </svg>
+      <span>Buy Gift Card</span>
+    </a>
   )
 }
 
 <script>
-  document.querySelector(".gift-bar a")?.addEventListener("click", () => {
+  document.querySelector(".gift-tab")?.addEventListener("click", () => {
     try {
-      (window as any).trackEvent?.("Gift card: bar click");
+      (window as any).trackEvent?.("Gift card: tab click");
     } catch (_) {}
   });
 </script>
 
 <style>
-  .gift-bar {
+  .gift-tab {
+    display: none; /* desktop: the nav has a Gift Cards link */
     position: fixed;
-    top: 111px; /* below TopBar (68px) + desktop Nav */
-    left: 0;
-    right: 0;
-    z-index: 98; /* under nav (99) so its dropdowns overlap this bar */
-    height: 44px;
-    display: flex;
-    align-items: stretch;
-    justify-content: center;
-    gap: 1.5rem;
-    background: var(--midnight);
-    font-family: var(--font-header-action), sans-serif;
-  }
-
-  .gift-bar__text {
-    align-self: center;
-    margin: 0;
-    font-size: 11px;
-    font-weight: 300;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: #fff;
-  }
-
-  .gift-bar__btn {
-    display: flex;
+    z-index: 98;
     align-items: center;
-    padding: 0 1.4rem;
+    gap: 0.6rem;
+    padding: 0.8rem 1.2rem;
+    font-family: var(--font-header-action), sans-serif;
     font-size: 11px;
     font-weight: 300;
     letter-spacing: 0.22em;
@@ -60,39 +51,43 @@ const showBar = Astro.url.pathname.replace(/\/+$/, "") !== "/gift-cards";
     text-decoration: none;
     color: var(--midnight);
     background: var(--parchment);
-    transition: opacity 0.2s;
+    border: 1px solid var(--midnight);
+    box-shadow: 0 6px 18px rgba(22, 34, 53, 0.22);
+    transition:
+      background 0.2s,
+      color 0.2s;
   }
 
-  .gift-bar__btn:hover {
-    opacity: 0.8;
+  .gift-tab__icon {
+    color: var(--copper);
+    flex-shrink: 0;
+    transition: color 0.2s;
   }
 
-  .gift-bar__btn:focus-visible {
-    outline: 2px solid var(--parchment);
-    outline-offset: -4px;
+  .gift-tab:hover,
+  .gift-tab:focus-visible {
+    background: var(--midnight);
+    color: #fff;
+  }
+
+  .gift-tab:hover .gift-tab__icon,
+  .gift-tab:focus-visible .gift-tab__icon {
+    color: var(--copper-light);
+  }
+
+  .gift-tab:focus-visible {
+    outline: 2px solid var(--midnight);
+    outline-offset: 3px;
   }
 
   @media (max-width: 700px) {
-    .gift-bar {
-      top: 68px;
-      gap: 0;
+    .gift-tab {
+      /* Floats bottom-right: easy to reach with a thumb and clear of page
+         titles. */
+      display: inline-flex;
+      right: 1rem;
+      bottom: calc(1rem + env(safe-area-inset-bottom));
+      padding: 0.95rem 1.25rem;
     }
-
-    .gift-bar__text {
-      display: none;
-    }
-
-    .gift-bar__btn {
-      flex: 1;
-      justify-content: center;
-      padding: 0 0.5rem;
-    }
-  }
-</style>
-
-<style is:global>
-  /* Reserve room for the bar so it doesn't cover the top of each page */
-  body:has(.gift-bar) main {
-    padding-top: 44px;
   }
 </style>
