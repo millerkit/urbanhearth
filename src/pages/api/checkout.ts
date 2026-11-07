@@ -106,6 +106,8 @@ export const POST: APIRoute = async ({ request }) => {
   const session = await stripe.checkout.sessions.create({
     mode: "payment",
     payment_method_types: ["card"],
+    // Pickup orders need a phone number; the name comes from the card details
+    phone_number_collection: { enabled: true },
     line_items: items.map((item) => {
       const product = productMap.get(item.id)!;
       return {
