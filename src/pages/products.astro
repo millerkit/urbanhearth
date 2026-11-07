@@ -53,6 +53,22 @@ if (isSanityConfigured) {
         products: group.products,
       };
     });
+
+    // Storefront order, independent of Toast's group order. Matches category
+    // anchors; anything not listed keeps its Toast order after these.
+    // After the holidays: remove "holiday-collection" so Bottled Cocktails leads.
+    const SHOP_ORDER = [
+      "holiday-collection",
+      "bottled-cocktails",
+      "pantry-food-products",
+      "books",
+    ];
+    const rank = (id: string) => {
+      const i = SHOP_ORDER.indexOf(id);
+      return i === -1 ? SHOP_ORDER.length : i;
+    };
+    // Array.prototype.sort is stable, so unlisted categories keep Toast order
+    categories.sort((a, b) => rank(a.id) - rank(b.id));
   } catch {
     // categories stays empty; coming-soon notice will render
   }
@@ -108,97 +124,110 @@ const formatPrice = (price: unknown) =>
       )
     }
 
-    {
-      categories.length > 1 && (
-        <nav class="cat-nav" aria-label="Shop categories">
-          <ul class="cat-nav__list">
-            {categories.map((cat) => (
-              <li>
-                <a href={`#${cat.id}`} class="cat-nav__link">
-                  {cat.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      )
-    }
-
-    <div class="shop-body">
+    <div
+      class={`shop-layout${categories.length > 1 ? " shop-layout--nav" : ""}`}
+    >
       {
-        categories.map((cat) => (
-          <section class="category" id={cat.id} aria-labelledby={`h-${cat.id}`}>
-            <div class="cat-header">
-              <div class="cat-heading">
-                <h2 class="cat-title" id={`h-${cat.id}`}>
-                  {cat.label}
-                </h2>
-                {cat.description && <p class="cat-desc">{cat.description}</p>}
-              </div>
-              <span class="cat-count">
-                {cat.products.length}{" "}
-                {cat.products.length === 1 ? "item" : "items"}
-              </span>
-            </div>
+        categories.length > 1 && (
+          <nav class="cat-nav" aria-label="Shop categories">
+            <p class="cat-nav__title" aria-hidden="true">
+              Shop by category
+            </p>
+            <ul class="cat-nav__list">
+              {categories.map((cat) => (
+                <li>
+                  <a href={`#${cat.id}`} class="cat-nav__link">
+                    {cat.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        )
+      }
 
-            <div class="product-grid">
-              {cat.products.map((p: any) => (
-                <article
-                  class={`product-card${p.available === false ? " product-card--unavailable" : ""}`}
-                >
-                  <div class="product-media">
-                    {p.image ? (
-                      <img
-                        src={sanityImg(p.image, 640)}
-                        srcset={`${sanityImg(p.image, 400)} 400w, ${sanityImg(p.image, 640)} 640w, ${sanityImg(p.image, 960)} 960w`}
-                        sizes="(max-width: 520px) 100vw, (max-width: 900px) 50vw, 280px"
-                        alt={p.name}
-                        class="product-image"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    ) : (
-                      <div class="product-placeholder" aria-hidden="true">
-                        <span class="product-placeholder__mark">
-                          Urban Hearth
+      <div class="shop-body">
+        {
+          categories.map((cat) => (
+            <section
+              class="category"
+              id={cat.id}
+              aria-labelledby={`h-${cat.id}`}
+            >
+              <div class="cat-header">
+                <div class="cat-heading">
+                  <h2 class="cat-title" id={`h-${cat.id}`}>
+                    {cat.label}
+                  </h2>
+                  {cat.description && <p class="cat-desc">{cat.description}</p>}
+                </div>
+                <span class="cat-count">
+                  {cat.products.length}{" "}
+                  {cat.products.length === 1 ? "item" : "items"}
+                </span>
+              </div>
+
+              <div class="product-grid">
+                {cat.products.map((p: any) => (
+                  <article
+                    class={`product-card${p.available === false ? " product-card--unavailable" : ""}`}
+                  >
+                    <div class="product-media">
+                      {p.image ? (
+                        <img
+                          src={sanityImg(p.image, 640)}
+                          srcset={`${sanityImg(p.image, 400)} 400w, ${sanityImg(p.image, 640)} 640w, ${sanityImg(p.image, 960)} 960w`}
+                          sizes="(max-width: 520px) 100vw, (max-width: 900px) 50vw, 280px"
+                          alt={p.name}
+                          class="product-image"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      ) : (
+                        <div class="product-placeholder" aria-hidden="true">
+                          <span class="product-placeholder__mark">
+                            Urban Hearth
+                          </span>
+                          <span class="product-placeholder__cat">
+                            {cat.label}
+                          </span>
+                        </div>
+                      )}
+                      {p.available === false && (
+                        <span class="badge badge--sold-out">Sold out</span>
+                      )}
+                    </div>
+
+                    <div class="product-body">
+                      <h3 class="product-name">
+                        {p.slug ? (
+                          <a href={`/product/${p.slug}`} class="product-link">
+                            {p.name}
+                          </a>
+                        ) : (
+                          p.name
+                        )}
+                      </h3>
+                      {p.description && (
+                        <p class="product-desc">{p.description}</p>
+                      )}
+                      <div class="product-footer">
+                        <span class="product-price">
+                          {formatPrice(p.price)}
                         </span>
-                        <span class="product-placeholder__cat">
-                          {cat.label}
+                        <span class="product-cta" aria-hidden="true">
+                          {p.slug ? "View" : "Coming soon"}
+                          {p.slug && <span class="product-cta__arrow">→</span>}
                         </span>
                       </div>
-                    )}
-                    {p.available === false && (
-                      <span class="badge badge--sold-out">Sold out</span>
-                    )}
-                  </div>
-
-                  <div class="product-body">
-                    <h3 class="product-name">
-                      {p.slug ? (
-                        <a href={`/product/${p.slug}`} class="product-link">
-                          {p.name}
-                        </a>
-                      ) : (
-                        p.name
-                      )}
-                    </h3>
-                    {p.description && (
-                      <p class="product-desc">{p.description}</p>
-                    )}
-                    <div class="product-footer">
-                      <span class="product-price">{formatPrice(p.price)}</span>
-                      <span class="product-cta" aria-hidden="true">
-                        {p.slug ? "View" : "Coming soon"}
-                        {p.slug && <span class="product-cta__arrow">→</span>}
-                      </span>
                     </div>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </section>
-        ))
-      }
+                  </article>
+                ))}
+              </div>
+            </section>
+          ))
+        }
+      </div>
     </div>
 
     <section class="pickup-band">
@@ -237,7 +266,9 @@ const formatPrice = (price: unknown) =>
       if (!a) return;
       a.setAttribute("aria-current", "true");
       const left = a.offsetLeft - list.clientWidth / 2 + a.clientWidth / 2;
-      list.scrollTo({ left, behavior: "smooth" });
+      // Only the phone/tablet pill bar scrolls sideways; the desktop sidebar doesn't
+      if (list.scrollWidth > list.clientWidth)
+        list.scrollTo({ left, behavior: "smooth" });
     };
     const observer = new IntersectionObserver(
       (entries) => {
@@ -792,6 +823,89 @@ const formatPrice = (price: unknown) =>
     .product-card:hover .product-image,
     .product-card:hover .product-placeholder {
       transform: none;
+    }
+  }
+
+  /* ── Desktop: category nav becomes a sticky left sidebar ── */
+  .cat-nav__title {
+    display: none;
+  }
+
+  @media (min-width: 1000px) {
+    .shop-layout {
+      max-width: 1440px;
+      margin: 0 auto;
+    }
+
+    .shop-layout--nav {
+      display: grid;
+      grid-template-columns: 230px minmax(0, 1fr);
+      gap: 0 3rem;
+      padding: 0 2.5rem;
+    }
+
+    .shop-layout--nav .shop-body {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .category {
+      max-width: none;
+      scroll-margin-top: 175px;
+    }
+
+    .cat-nav {
+      top: 179px; /* fixed header stack (155px) + breathing room */
+      align-self: start;
+      margin-top: 5rem;
+      max-height: calc(100vh - 179px - 1.5rem);
+      overflow-y: auto;
+      background: none;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      border-bottom: 0;
+    }
+
+    .cat-nav__title {
+      display: block;
+      font-family: var(--font-header-action), sans-serif;
+      font-size: var(--text-fine);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--ink-mid);
+      padding: 0 0 0.9rem 1rem;
+      margin-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cat-nav__list {
+      flex-direction: column;
+      gap: 0;
+      padding: 0;
+      overflow: visible;
+      max-width: none;
+    }
+
+    .cat-nav__link {
+      white-space: normal;
+      padding: 0.7rem 1rem;
+      border: 0;
+      border-left: 2px solid transparent;
+      border-radius: 0;
+      line-height: 1.35;
+    }
+
+    .cat-nav__link:hover {
+      border-color: rgba(156, 95, 56, 0.5);
+      background: rgba(22, 34, 53, 0.04);
+    }
+
+    /* Active: copper bar, tinted fill, and heavier text, not color alone */
+    .cat-nav__link[aria-current="true"] {
+      background: rgba(22, 34, 53, 0.07);
+      border-color: var(--copper);
+      color: var(--ink);
+      font-weight: 700;
     }
   }
 
