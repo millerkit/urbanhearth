@@ -1,6 +1,7 @@
 import type { APIRoute } from "astro";
 import Stripe from "stripe";
 import { fetchProductPrices } from "../../lib/sanity-fetch";
+import { checkToastStock } from "../../lib/toast-stock";
 
 export const prerender = false;
 
@@ -56,6 +57,47 @@ export const POST: APIRoute = async ({ request }) => {
         { status: 400, headers: { "Content-Type": "application/json" } },
       );
     }
+  }
+
+  // Live stock check against Toast, right before payment. Sanity's flag can be
+  // hours stale, so this is the real oversell protection.
+  const stockItems = items.map((item) => ({
+    guid: productMap.get(item.id)!.toastItemGuid,
+    quantity: item.quantity,
+  }));
+  const missingGuid = stockItems.some((s) => !s.guid);
+  if (missingGuid) {
+    // Every storefront product should come from Toast; refuse rather than guess
+    return new Response(
+      JSON.stringify({ error: "An item in your cart can't be verified." }),
+      { status: 400, headers: { "Content-Type": "application/json" } },
+    );
+  }
+  const stock = await checkToastStock(
+    stockItems.map((s) => ({ guid: s.guid!, quantity: s.quantity })),
+  );
+  if (!stock.ok) {
+    if (stock.reason === "unavailable") {
+      const names = items
+        .filter((i) =>
+          stock.unavailableGuids.includes(productMap.get(i.id)!.toastItemGuid!),
+        )
+        .map((i) => `"${productMap.get(i.id)!.name}"`);
+      return new Response(
+        JSON.stringify({
+          error: `Sorry, ${names.join(", ")} ${names.length > 1 ? "are" : "is"} no longer available in the quantity requested.`,
+        }),
+        { status: 409, headers: { "Content-Type": "application/json" } },
+      );
+    }
+    console.error("Toast stock check failed:", stock.message);
+    return new Response(
+      JSON.stringify({
+        error:
+          "We couldn't confirm availability right now. Please try again in a moment.",
+      }),
+      { status: 503, headers: { "Content-Type": "application/json" } },
+    );
   }
 
   const stripe = new Stripe(stripeKey);

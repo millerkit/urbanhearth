@@ -168,17 +168,22 @@ export async function fetchAllProductSlugs(): Promise<string[]> {
   return slugs ?? [];
 }
 
-export async function fetchProductPrices(
-  slugs: string[],
-): Promise<
-  { slug: string; name: string; price: number; available: boolean }[]
+export async function fetchProductPrices(slugs: string[]): Promise<
+  {
+    slug: string;
+    name: string;
+    price: number;
+    available: boolean;
+    toastItemGuid?: string;
+  }[]
 > {
   const products = await client!.fetch(
     `*[_type == "product" && slug.current in $slugs]{
       "slug": slug.current,
       name,
       price,
-      available
+      available,
+      toastItemGuid
     }`,
     { slugs },
   );
