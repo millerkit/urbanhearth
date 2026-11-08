@@ -17,6 +17,8 @@ interface Props {
   description?: string;
   ogImage?: string;
   ogType?: "website" | "article";
+  /** Ask search engines not to index this page. */
+  noindex?: boolean;
 }
 
 const {
@@ -24,6 +26,7 @@ const {
   description = restaurant.tagline,
   ogImage = `${restaurant.url}/og-image.jpg`,
   ogType = "website",
+  noindex = false,
 } = Astro.props;
 
 // Normalize the canonical path to the no-slash form (matching how every
@@ -44,6 +47,7 @@ const canonicalURL = new URL(normalizedPath, Astro.site ?? restaurant.url).href;
     <meta name="description" content={description} />
     <title>{title}</title>
     <link rel="canonical" href={canonicalURL} />
+    {noindex && <meta name="robots" content="noindex" />}
 
     <!-- Preload display fonts to prevent FOUT on headline elements -->
     <link

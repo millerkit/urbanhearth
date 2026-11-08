@@ -4,6 +4,7 @@ import { isSanityConfigured } from "../lib/sanity";
 import { fetchAllProducts } from "../lib/sanity-fetch";
 import Base from "../layouts/Base.astro";
 import AgeGate from "../components/AgeGate.astro";
+import { shopEnabled } from "../lib/shop";
 
 const restaurant = await getSiteSettings();
 
@@ -87,6 +88,7 @@ const formatPrice = (price: unknown) =>
 <Base
   title={`Products — ${restaurant.name}`}
   description="Shop bottled cocktails, bar mixers, and non-alcoholic beverages from Urban Hearth's bar program."
+  noindex={!shopEnabled}
 >
   <AgeGate />
 
@@ -107,7 +109,7 @@ const formatPrice = (price: unknown) =>
     </header>
 
     {
-      categories.length === 0 && (
+      (!shopEnabled || categories.length === 0) && (
         <div class="shop-notice">
           <p class="notice-text">
             Online ordering is opening soon.{" "}

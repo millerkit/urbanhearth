@@ -1,10 +1,21 @@
 import type { APIRoute } from "astro";
 import Stripe from "stripe";
 import { fetchProductPrices } from "../../lib/sanity-fetch";
+import { shopEnabled } from "../../lib/shop";
 
 export const prerender = false;
 
 export const POST: APIRoute = async ({ request }) => {
+  if (!shopEnabled) {
+    return new Response(
+      JSON.stringify({ error: "Online ordering isn't open yet." }),
+      {
+        status: 503,
+        headers: { "Content-Type": "application/json" },
+      },
+    );
+  }
+
   const stripeKey = import.meta.env.STRIPE_SECRET_KEY;
   if (!stripeKey) {
     return new Response(
