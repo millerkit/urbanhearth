@@ -47,26 +47,23 @@
       "Led by James Beard Award-nominated Chef Erin Miller, the menu showcases exceptional local ingredients, foraged discoveries, and refined technique in a setting that is equal parts dinner party and culinary performance.",
       "Thoughtful hospitality, lively conversation, and unforgettable food come together in an experience designed to delight and nourish.",
       "The Chef’s Counter experience is available Tuesday through Saturday at 5:45 and 8:15 pm.",
-      "We offer an <strong>omnivore or vegetarian menu</strong>. Please note which you’d prefer in your reservation. We can accommodate the following dietary restrictions: Vegetarian, Pescatarian, Mammal-free, Nut-free, Shellfish-free, Gluten-free, Dairy-free. If you have a combination of these or any other dietary restrictions, please reach out before booking. Please note your dietary restrictions and any other special requests in your reservation."
+      "We offer an <strong>omnivore or vegetarian menu</strong>. Please note which you’d prefer in your reservation. We can also accommodate the following dietary restrictions: Pescatarian, Mammal-free, Nut-free, Shellfish-free, Gluten-free, Dairy-free. If you have a combination of these or any other dietary restrictions, please email <a href=\"mailto:concierge@urbanhearth.net\">concierge@urbanhearth.net</a> before booking. Please note your dietary restrictions and any other special requests in your reservation."
     ],
     "descriptionShort": [
       "An intimate front-row seat to the creative heart of Urban Hearth.",
       "Join us at our six-seat Chef’s Counter for an immersive tasting menu featuring 8–12 courses inspired by the season, the farm, and the larder. Watch the kitchen at work, engage directly with the chefs, and experience each dish as it is finished and presented.",
       "The Chef’s Counter experience is available Tuesday through Saturday at 5:45 and 8:15 pm.",
-      "We offer an <strong>omnivore or vegetarian menu</strong>. Please note which you’d prefer in your reservation. We can accommodate the following dietary restrictions: Vegetarian, Pescatarian, Mammal-free, Nut-free, Shellfish-free, Gluten-free, Dairy-free. If you have a combination of these or any other dietary restrictions, please reach out before booking. Please note your dietary restrictions and any other special requests in your reservation."
+      "We offer an <strong>omnivore or vegetarian menu</strong>. Please note which you’d prefer in your reservation. We can also accommodate the following dietary restrictions: Pescatarian, Mammal-free, Nut-free, Shellfish-free, Gluten-free, Dairy-free. If you have a combination of these or any other dietary restrictions, please email <a href=\"mailto:concierge@urbanhearth.net\">concierge@urbanhearth.net</a> before booking. Please note your dietary restrictions and any other special requests in your reservation."
     ],
     "price": "$190",
     "priceSuffix": "per person, plus tax and tip",
     "bookingNote": "Reserve with a credit card on OpenTable",
     "pairings": [
-      { "label": "5-course wine pairing", "price": "$85" },
+      { "label": "Wine pairing", "price": "$85" },
       { "label": "Premium wine pairing", "price": "$120" },
       { "label": "Zero-proof pairing", "price": "$65" }
     ],
-    "details": [
-      { "label": "Seatings", "value": "5:45 pm & 8:15 pm" },
-      { "label": "Capacity", "value": "Maximum 4 guests per seating" }
-    ],
+    "details": [{ "label": "Seatings", "value": "5:45 pm & 8:15 pm" }],
     "finePrint": "Your card is held to secure your seat. Please cancel at least 48 hours in advance. Cancellations within 48 hours and no-shows are charged $190 per guest."
   },
   {
