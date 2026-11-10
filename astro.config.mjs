@@ -4,9 +4,10 @@ import sitemap from "@astrojs/sitemap";
 import react from "@astrojs/react";
 import cloudflare from "@astrojs/cloudflare";
 
-// Keep the unlaunched shop out of the sitemap. Mirrors shopEnabled in
-// src/lib/shop.ts, which can't be imported here (no import.meta.env).
-const shopEnabled = process.env.SHOP_ENABLED === "true";
+// Keep the unlaunched custom shop out of the sitemap. Mirrors
+// customShopEnabled in src/lib/shop.ts, which can't be imported here (no
+// import.meta.env). Only SHOP_MODE=custom opens it.
+const customShopEnabled = process.env.SHOP_MODE === "custom";
 
 export default defineConfig({
   site: "https://www.urbanhearth.net",
@@ -17,7 +18,7 @@ export default defineConfig({
     sitemap({
       filter: (page) => {
         if (page.includes("/checkout/")) return false;
-        if (!shopEnabled) {
+        if (!customShopEnabled) {
           const { pathname } = new URL(page);
           if (/^\/products\/?$/.test(pathname)) return false;
           if (pathname.startsWith("/product/")) return false;

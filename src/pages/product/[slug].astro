@@ -7,7 +7,7 @@ import {
   fetchAllProductSlugs,
 } from "../../lib/sanity-fetch";
 import AddToCartButton from "../../components/AddToCartButton";
-import { shopEnabled } from "../../lib/shop";
+import { customShopEnabled } from "../../lib/shop";
 
 export async function getStaticPaths() {
   if (!isSanityConfigured) return [];
@@ -77,10 +77,10 @@ const productJsonLd = {
   title={`${product.name} — ${restaurant.name}`}
   description={product.description ?? `A product from Urban Hearth.`}
   ogImage={product.image ?? undefined}
-  noindex={!shopEnabled}
+  noindex={!customShopEnabled}
 >
   {
-    shopEnabled && (
+    customShopEnabled && (
       <script
         slot="head"
         type="application/ld+json"
@@ -157,7 +157,7 @@ const productJsonLd = {
 
         <div class="product-actions">
           {
-            shopEnabled ? (
+            customShopEnabled ? (
               <AddToCartButton
                 client:only="react"
                 id={product.slug}

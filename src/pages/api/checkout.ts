@@ -1,13 +1,13 @@
 import type { APIRoute } from "astro";
 import Stripe from "stripe";
 import { fetchProductPrices } from "../../lib/sanity-fetch";
-import { shopEnabled } from "../../lib/shop";
+import { customShopEnabled } from "../../lib/shop";
 import { checkToastStock } from "../../lib/toast-stock";
 
 export const prerender = false;
 
 export const POST: APIRoute = async ({ request }) => {
-  if (!shopEnabled) {
+  if (!customShopEnabled) {
     return new Response(
       JSON.stringify({ error: "Online ordering isn't open yet." }),
       {

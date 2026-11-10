@@ -1,6 +1,14 @@
 {
   "secondaryLinks": [
     {
+      "label": "Online Shop",
+      "href": "https://order.toasttab.com/online/urban-hearth-inman-square"
+    },
+    {
+      "label": "Gift Cards",
+      "href": "/gift-cards"
+    },
+    {
       "label": "FAQ",
       "href": "/faq"
     },

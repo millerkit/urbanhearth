@@ -1,7 +1,7 @@
 import type { APIRoute } from "astro";
 import Stripe from "stripe";
 import { fetchProductPrices } from "../../lib/sanity-fetch";
-import { shopEnabled } from "../../lib/shop";
+import { customShopEnabled } from "../../lib/shop";
 import { createToastOrder } from "../../lib/toast-orders";
 
 export const prerender = false;
@@ -19,7 +19,7 @@ function respond(status: number, body: string) {
  */
 export const POST: APIRoute = async ({ request }) => {
   // Same gate as /api/checkout: nothing shop-related runs until launch
-  if (!shopEnabled) return respond(200, "Shop is closed.");
+  if (!customShopEnabled) return respond(200, "Shop is closed.");
 
   const stripeKey = import.meta.env.STRIPE_SECRET_KEY;
   const webhookSecret = import.meta.env.STRIPE_WEBHOOK_SECRET;

@@ -4,6 +4,7 @@ import { isSanityConfigured } from "../lib/sanity";
 import { fetchFooterLinks } from "../lib/sanity-fetch";
 import footerLinksFallback from "../fallback-content/footer-links.json";
 import RestaurantHours from "./RestaurantHours.astro";
+import { withShopLink } from "../lib/shop";
 
 const restaurant = await getSiteSettings();
 
@@ -42,7 +43,7 @@ const addressLines = [streetAddress, cityParts.join(",").trim()];
 <footer>
   <nav class="footer-nav">
     {
-      footerLinks.secondaryLinks.map(({ label, href }) => {
+      withShopLink(footerLinks.secondaryLinks).map(({ label, href }) => {
         const isExternal = href.startsWith("http");
         const isInstagram = href.includes("instagram.com");
         return (
