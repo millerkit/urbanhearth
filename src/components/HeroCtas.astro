@@ -1,0 +1,136 @@
+---
+// Small pills over the top-right of the homepage hero, phones only. They sit
+// inside the hero (not fixed), so they scroll away with the image. On desktop
+// the nav already has Shop and Gift Cards links; on mobile those are in the
+// hamburger menu, footer and inline page links.
+import { shopLink } from "../lib/shop";
+---
+
+<div class="mobile-ctas">
+  {
+    shopLink && (
+      <a
+        href={shopLink.href}
+        target={shopLink.external ? "_blank" : undefined}
+        rel={shopLink.external ? "noopener noreferrer" : undefined}
+        class="cta-pill"
+        data-track="Online shop: tab click"
+        aria-label="Online shop"
+      >
+        <svg
+          class="cta-pill__icon"
+          viewBox="0 0 24 24"
+          width="14"
+          height="14"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          aria-hidden="true"
+        >
+          <path d="M5 8h14l-1 13H6L5 8z" />
+          <path d="M9 8V6a3 3 0 0 1 6 0v2" />
+        </svg>
+        <span>Online Shop</span>
+      </a>
+    )
+  }
+  {
+    (
+      <a
+        href="/gift-cards"
+        class="cta-pill"
+        data-track="Gift card: tab click"
+        aria-label="Buy a gift card"
+      >
+        <svg
+          class="cta-pill__icon"
+          viewBox="0 0 24 24"
+          width="14"
+          height="14"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          aria-hidden="true"
+        >
+          <rect x="3" y="8" width="18" height="4" />
+          <path d="M5 12v9h14v-9M12 8v13" />
+          <path d="M12 8c-1-4-6-4-5-1 .6 1.6 3 1 5 1zm0 0c1-4 6-4 5-1-.6 1.6-3 1-5 1z" />
+        </svg>
+        <span>Buy Gift Card</span>
+      </a>
+    )
+  }
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>(".cta-pill").forEach((pill) => {
+    pill.addEventListener("click", () => {
+      try {
+        (window as any).trackEvent?.(pill.dataset.track);
+      } catch (_) {}
+    });
+  });
+</script>
+
+<style>
+  .mobile-ctas {
+    display: none; /* desktop: the nav has these links */
+  }
+
+  .cta-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 0.9rem;
+    font-family: var(--font-header-action), sans-serif;
+    font-size: 10px;
+    font-weight: 300;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--midnight);
+    background: var(--parchment);
+    border: 1px solid var(--midnight);
+    box-shadow: 0 6px 18px rgba(22, 34, 53, 0.22);
+    transition:
+      background 0.2s,
+      color 0.2s;
+  }
+
+  .cta-pill__icon {
+    color: var(--copper);
+    flex-shrink: 0;
+    transition: color 0.2s;
+  }
+
+  .cta-pill:hover,
+  .cta-pill:focus-visible {
+    background: var(--midnight);
+    color: #fff;
+  }
+
+  .cta-pill:hover .cta-pill__icon,
+  .cta-pill:focus-visible .cta-pill__icon {
+    color: var(--copper-light);
+  }
+
+  .cta-pill:focus-visible {
+    outline: 2px solid var(--midnight);
+    outline-offset: 3px;
+  }
+
+  @media (max-width: 700px) {
+    .mobile-ctas {
+      /* Top-right of the hero image. Absolute inside .hero, so it scrolls
+         away with the image rather than following the reader. */
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.4rem;
+      position: absolute;
+      z-index: 2;
+      top: 0.75rem;
+      right: 0.75rem;
+    }
+  }
+</style>

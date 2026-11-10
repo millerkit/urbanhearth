@@ -3,6 +3,7 @@ import { isSanityConfigured } from "../lib/sanity";
 import { fetchNavLinks } from "../lib/sanity-fetch";
 import linksFallback from "../fallback-content/nav-links.json";
 import { getSiteSettings } from "../lib/site-settings";
+import { shopLink, withShopLink } from "../lib/shop";
 import logo from "../assets/brand/UrbanHearth_Logo_BLACK_cropped.png";
 
 const restaurant = await getSiteSettings();
@@ -29,6 +30,16 @@ if (isSanityConfigured) {
   }
 }
 
+// Shop link: dropped, or pointed at Toast / our own shop, per SHOP_MODE
+links = withShopLink(links);
+
+// Links to other sites (e.g. the Toast store) open in a new tab
+function ext(href?: string) {
+  return href && /^https?:\/\//.test(href)
+    ? { target: "_blank", rel: "noopener noreferrer" }
+    : {};
+}
+
 function isActive(item: { href: string; children?: { href: string }[] }) {
   if (currentPath === item.href) return true;
   return item.children?.some((c) => currentPath === c.href) ?? false;
@@ -46,6 +57,7 @@ function isActive(item: { href: string; children?: { href: string }[] }) {
           {item.href ? (
             <a
               href={item.href}
+              {...ext(item.href)}
               class={`nav-link${isActive(item) ? " active" : ""}`}
             >
               {item.label}
@@ -91,6 +103,7 @@ function isActive(item: { href: string; children?: { href: string }[] }) {
             {item.children.map((child) => (
               <a
                 href={child.href}
+                {...ext(child.href)}
                 class={`dropdown-link${currentPath === child.href ? " active" : ""}`}
               >
                 {child.label}
@@ -102,6 +115,7 @@ function isActive(item: { href: string; children?: { href: string }[] }) {
         <div class="nav-item">
           <a
             href={item.href}
+            {...ext(item.href)}
             class={`nav-link${currentPath === item.href ? " active" : ""}`}
           >
             {item.label}
@@ -133,6 +147,7 @@ function isActive(item: { href: string; children?: { href: string }[] }) {
           {item.href ? (
             <a
               href={item.href}
+              {...ext(item.href)}
               class={`mm-link${isActive(item) ? " active" : ""}`}
             >
               {item.label}
@@ -148,6 +163,7 @@ function isActive(item: { href: string; children?: { href: string }[] }) {
             item.children.map((child) => (
               <a
                 href={child.href}
+                {...ext(child.href)}
                 class={`mm-child${currentPath === child.href ? " active" : ""}`}
               >
                 {child.label}
@@ -162,6 +178,16 @@ function isActive(item: { href: string; children?: { href: string }[] }) {
     <a href={restaurant.reservations.href} class="mm-reserve"
       >{restaurant.reservations.label}</a
     >
+    <div class="mm-shop-row">
+      {
+        shopLink && (
+          <a href={shopLink.href} {...ext(shopLink.href)} class="mm-secondary">
+            Online Shop
+          </a>
+        )
+      }
+      <a href="/gift-cards" class="mm-secondary">Gift Cards</a>
+    </div>
   </div>
 </div>
 
@@ -365,6 +391,31 @@ function isActive(item: { href: string; children?: { href: string }[] }) {
     background: var(--parchment);
   }
 
+  /* Narrower desktops/tablets: tighten spacing so all links fit on one line
+     (they need ~1100px at the full 3rem gap). */
+  @media (max-width: 1200px) {
+    #site-nav {
+      gap: 1.75rem;
+    }
+  }
+
+  @media (max-width: 1040px) {
+    #site-nav {
+      gap: 1rem;
+    }
+  }
+
+  @media (max-width: 900px) {
+    #site-nav {
+      gap: 0.6rem;
+    }
+
+    #site-nav .nav-link {
+      font-size: 10px;
+      letter-spacing: 0.08em;
+    }
+  }
+
   /* ── Mobile: hide desktop nav, reduce page offset ── */
   @media (max-width: 700px) {
     #site-nav {
@@ -513,6 +564,32 @@ function isActive(item: { href: string; children?: { href: string }[] }) {
     }
 
     .mm-reserve:hover {
+      opacity: 0.6;
+    }
+
+    .mm-shop-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      margin-top: 0.75rem;
+    }
+
+    .mm-secondary {
+      display: block;
+      font-family: var(--font-header-action), sans-serif;
+      font-size: 11px;
+      font-weight: 300;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+      border: 1px solid var(--ink);
+      padding: 1.1rem 0.5rem;
+      text-align: center;
+      transition: opacity 0.2s;
+    }
+
+    .mm-secondary:hover {
       opacity: 0.6;
     }
   }

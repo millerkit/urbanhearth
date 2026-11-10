@@ -1,0 +1,40 @@
+---
+// A quiet one-line pointer to the gift cards and the online shop, for the
+// bottom of content pages. Text links only; meant to read as content. The
+// shop half only appears when SHOP_MODE sets a shop link.
+import { shopLink } from "../lib/shop";
+
+// Built as a string so the closing period sits right against the last link
+// (template whitespace would otherwise render "shop .").
+const shop = shopLink
+  ? ` or <a href="${shopLink.href}"${
+      shopLink.external ? ' target="_blank" rel="noopener noreferrer"' : ""
+    }>visit our online shop</a>`
+  : "";
+const line = `Give Urban Hearth to someone you love: <a href="/gift-cards">buy a gift card</a>${shop}.`;
+---
+
+<p class="promo-line" set:html={line} />
+
+<style>
+  .promo-line {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+    font-family: var(--font-body), serif;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--midnight);
+  }
+
+  .promo-line a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .promo-line a:hover {
+    opacity: 0.6;
+  }
+</style>

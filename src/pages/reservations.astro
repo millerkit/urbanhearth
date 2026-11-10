@@ -10,6 +10,7 @@ import reservationsFallback from "../fallback-content/reservations.json";
 import pageFallback from "../fallback-content/reservations-page.json";
 import diningOptionsFallback from "../fallback-content/dining-options.json";
 import Base from "../layouts/Base.astro";
+import PromoLine from "../components/PromoLine.astro";
 
 const restaurant = await getSiteSettings();
 
@@ -153,6 +154,7 @@ const diningOptionsMap = Object.fromEntries(
       }
     </div>
   </div>
+  <PromoLine />
 </Base>
 
 <style>

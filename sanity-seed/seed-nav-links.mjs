@@ -44,8 +44,12 @@ const links = JSON.parse(
 );
 
 function toNavLink(item) {
+  // Keys must be plain [A-Za-z0-9_-]; external hrefs (https://…) have : and .
   const key = item.href
-    ? item.href.replace(/\//g, "-").replace(/^-/, "")
+    ? item.href
+        .replace(/^https?:\/\//, "")
+        .replace(/[^A-Za-z0-9_-]+/g, "-")
+        .replace(/^-|-$/g, "")
     : item.label
         .toLowerCase()
         .replace(/[^a-z0-9]+/g, "-")

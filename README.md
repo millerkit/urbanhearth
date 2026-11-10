@@ -41,6 +41,7 @@ pnpm sanity:dev    # Start Sanity Studio
 - `SANITY_PROJECT_ID` — Sanity project ID
 - `SANITY_DATASET` — `production`
 - `NODE_VERSION` — `22.15.0`
+- `SHOP_MODE` — where the "Shop" links go. One of `off` (default; no Shop links), `toast` (links to the Toast storefront), or `custom` (our own shop at `/products` is live). Read at build time, so redeploy after changing it. See `src/lib/shop.ts`.
 
 ### Preview (GitHub Actions secrets)
 

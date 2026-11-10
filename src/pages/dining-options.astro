@@ -36,6 +36,7 @@ if (isSanityConfigured) {
     console.error("Failed to fetch dining options from Sanity:", e);
   }
 }
+import PromoLine from "../components/PromoLine.astro";
 ---
 
 <Base
@@ -113,6 +114,7 @@ if (isSanityConfigured) {
       })
     }
   </div>
+  <PromoLine />
   <div class="bottom-photo-wrap">
     <img
       src={bottomBarPhoto.src}

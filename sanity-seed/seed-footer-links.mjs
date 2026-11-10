@@ -46,7 +46,12 @@ const { secondaryLinks, legalLinks } = JSON.parse(
 function toLink(prefix, item) {
   return {
     _type: "object",
-    _key: `${prefix}-${item.href.replace(/\//g, "-").replace(/^-/, "") || "home"}`,
+    _key: `${prefix}-${
+      item.href
+        .replace(/^https?:\/\//, "")
+        .replace(/[^A-Za-z0-9_-]+/g, "-")
+        .replace(/^-|-$/g, "") || "home"
+    }`,
     label: item.label,
     href: item.href,
   };
