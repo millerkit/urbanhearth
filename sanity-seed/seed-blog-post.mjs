@@ -15,6 +15,8 @@
  *   "slug": "post-title",                 // optional, derived from name if absent
  *   "publishedAt": "2026-09-07T00:00:00.000Z",
  *   "excerpt": "One or two sentences.",
+ *   "ctaLabel": "Button label",           // optional, needs ctaUrl too
+ *   "ctaUrl": "https://…",                 // optional, https only
  *   "coverImage": "images/foo.jpg",       // optional, path relative to sanity-seed/
  *   "coverImageUrl": "https://…",          // optional, alternative to coverImage
  *   "body": [
@@ -201,6 +203,11 @@ const doc = {
   slug: { _type: "slug", current: slug },
   ...(post.publishedAt && { publishedAt: post.publishedAt }),
   ...(post.excerpt && { excerpt: post.excerpt }),
+  ...(post.ctaLabel &&
+    post.ctaUrl && {
+      ctaLabel: post.ctaLabel,
+      ctaUrl: post.ctaUrl,
+    }),
   ...(coverAssetId && {
     coverImage: {
       _type: "image",
